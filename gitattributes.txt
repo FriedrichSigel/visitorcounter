@@ -1,0 +1,3 @@
+# Zeilenenden im Repository einheitlich auf LF normalisieren.
+# Verhindert, dass Dateien nur wegen CRLF/LF als geaendert erscheinen.
+* text=auto eol=lf

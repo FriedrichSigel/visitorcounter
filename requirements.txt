@@ -1,0 +1,28 @@
+# Python-Abhängigkeiten des Besucherzählsensors (core).
+#
+# Installation in die aktivierte venv:
+#   pip install -r requirements.txt
+#
+# WICHTIG — nicht per pip installierbar (kommen mit der Hailo-Installation,
+# siehe README.md / setup_env.sh):
+#   - hailo, hailo_apps        (Hailo-Python-SDK + App-Framework)
+#   - gi / PyGObject, GStreamer (System-Pakete, via apt)
+# Die venv muss deshalb mit Zugriff auf die System-/SDK-Pakete laufen
+# (--system-site-packages ODER die vom Hailo-Setup erzeugte venv nutzen).
+
+# --- Bildverarbeitung / Numerik ---
+numpy<2.0.0            # <2.0, weil hailort/opencv-Builds noch NumPy-1.x-ABI erwarten
+opencv-python          # cv2 — Frame-Handling, Zeichnen, Kamerazugriff
+Pillow                 # PIL — Bewegungsbilder, Vorschau im Konfig-Tool
+
+# --- GUI (app.py, roi_config_app.py, ctk_dialogs.py) ---
+customtkinter          # dunkles UI-Design, Dialoge
+# tkinter selbst ist Teil der Standardbibliothek (ggf. apt: python3-tk)
+
+# --- Auto-Konfiguration (auto_config_clustering.py) ---
+scikit-learn           # DBSCAN-Clustering der Track-Start-/Endpunkte
+scipy                  # ConvexHull für die Flächenbildung
+
+# --- optional, nur für die Tests ---
+# pytest
+# pytest-timeout
