@@ -179,6 +179,11 @@ RECORDING_SEGMENT_SECONDS = int(os.environ.get("RECORDING_SEGMENT_SECONDS", "600
 # Übertritte zu beurteilen.
 RECORDING_FPS = int(os.environ.get("RECORDING_FPS", "15"))
 
+# Container: "mkv" (Standard) oder "mp4". MKV ist absturzfest — MP4 schreibt
+# sein Inhaltsverzeichnis erst beim Schliessen und ist bei einem Abbruch
+# komplett unlesbar, obwohl die Bilddaten auf der Platte liegen.
+RECORDING_CONTAINER = os.environ.get("RECORDING_CONTAINER", "mkv")
+
 
 # Ob die Zähllogik aktiv ist. False = nur Tracking wie bisher, keine Zählung.
 COUNTING_ENABLED = True

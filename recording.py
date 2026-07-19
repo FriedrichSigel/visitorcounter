@@ -203,7 +203,7 @@ def _configure_encoder(enc, factory, bitrate_kbps, fps):
 
 
 def build_recording_bin(target_dir, bitrate_kbps=2000, segment_seconds=600,
-                        fps=15, name_prefix="lauf"):
+                        fps=15, name_prefix="lauf", container="mkv"):
     """
     Baut den Aufnahme-Bin und gibt ihn zurück (oder None bei Fehler).
 
@@ -212,7 +212,19 @@ def build_recording_bin(target_dir, bitrate_kbps=2000, segment_seconds=600,
     als video-sink von "hailo_display".
     """
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-    location = os.path.join(target_dir, f"{name_prefix}_{timestamp}_%03d.mp4")
+
+    # Container: Matroska ist der Standard, weil MP4 sein Inhaltsverzeichnis
+    # (die moov-Box) erst BEIM SCHLIESSEN schreibt. Bricht die Aufnahme ab —
+    # Absturz, Stromausfall, hartes Kill — ist eine MP4-Datei komplett
+    # unbrauchbar, obwohl die Bilddaten vollständig auf der Platte liegen.
+    # Matroska schreibt fortlaufend und lässt sich auch mittendrin abspielen.
+    # Für Laborläufe, die man notfalls hart beendet, ist das der Unterschied
+    # zwischen "auswertbar" und "Lauf wiederholen".
+    if container == "mp4":
+        muxer_factory, suffix = "mp4mux", "mp4"
+    else:
+        muxer_factory, suffix = "matroskamux", "mkv"
+    location = os.path.join(target_dir, f"{name_prefix}_{timestamp}_%03d.{suffix}")
 
     bin_ = Gst.Bin.new("recording_bin")
 
@@ -284,8 +296,19 @@ def build_recording_bin(target_dir, bitrate_kbps=2000, segment_seconds=600,
 
     sink = elements["rec_sink"]
     sink.set_property("location", location)
+    if Gst.ElementFactory.find(muxer_factory) is not None:
+        sink.set_property("muxer-factory", muxer_factory)
+    else:
+        print(f"WARNUNG: {muxer_factory} nicht verfügbar — es wird der "
+              f"Standard-Muxer (MP4) verwendet.")
     sink.set_property("max-size-time", segment_seconds * Gst.SECOND)
-    sink.set_property("async-finalize", True)
+    # async-finalize BEWUSST aus (Standard). Mit async-finalize=True legt
+    # splitmuxsink pro Fragment einen neuen Muxer über muxer-factory an — in
+    # dieser Kombination sind hier Dateien entstanden, die den reinen
+    # Encoder-Datenstrom OHNE jede Container-Struktur enthielten (kein ftyp,
+    # kein moov). Mit dem synchronen Standardweg wird der Muxer regulär
+    # instanziiert und schreibt seine Header.
+    sink.set_property("async-finalize", False)
     sink.set_property("send-keyframe-requests", True)
 
     # Verkettung: die Framerate-Begrenzung braucht ein Caps-Filter, sonst
@@ -305,5 +328,5 @@ def build_recording_bin(target_dir, bitrate_kbps=2000, segment_seconds=600,
 
     print(f"Mitschnitt aktiv: {location}")
     print(f"  {fps} fps, {bitrate_kbps} kbit/s, Segmente à {segment_seconds} s, "
-          f"Encoder: {encoder_factory}")
+          f"Encoder: {encoder_factory}, Container: {suffix}")
     return bin_
