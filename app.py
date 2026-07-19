@@ -45,6 +45,7 @@ import customtkinter as ctk
 import lora_message
 from roi_config_app import RoiConfigApp, load_first_frame
 from ui_utils import make_scrollable
+from recording import find_usb_mount, free_gb
 
 # Höhe der LoRa-Hinweisbox in Pixeln: klein, solange LoRa aus ist,
 # hoch genug für die komplette Byte-Tabelle, sobald es an ist.
@@ -104,6 +105,16 @@ class MainApp:
         # An/aus, Sende-Intervall (Minuten, Pause nach erfolgreichem Uplink)
         # und Sensor-ID (Byte 1 der Nachricht). Wird beim Start als eigener
         # Subprozess (lora_send_loop.py --live-counts) mitgestartet.
+        # --- Mitschnitt (Tab 3) ---
+        # Zeichnet parallel zum Zähllauf ein Video mit eingebrannter Uhrzeit
+        # auf, um die Zählergebnisse hinterher am Bildmaterial zu prüfen.
+        # Wird core.py über Umgebungsvariablen mitgegeben (siehe config.py).
+        self.recording_enabled_var = tk.BooleanVar(value=False)
+        self.recording_dir_var = tk.StringVar(value="auto")
+        self.recording_bitrate_var = tk.StringVar(value="2000")
+        self.recording_fps_var = tk.StringVar(value="15")
+        self.recording_segment_var = tk.StringVar(value="600")
+
         self.lora_enabled_var = tk.BooleanVar(value=False)
         self.lora_interval_var = tk.StringVar(value="5")
         self.lora_sensor_id_var = tk.StringVar(value="1")
@@ -290,6 +301,55 @@ class MainApp:
         ctk.CTkLabel(frame, text="Pipeline starten / stoppen", font=ctk.CTkFont(size=18, weight="bold")).pack(
             anchor="w", pady=(5, 15))
 
+        # --- Mitschnitt (Benchmark) — bewusst ganz oben, weil die Entscheidung
+        # "wird dieser Lauf aufgezeichnet?" vor allen anderen Optionen steht.
+        rec_frame = ctk.CTkFrame(frame, corner_radius=8)
+        rec_frame.pack(anchor="w", fill="x", pady=(0, 12))
+        ctk.CTkCheckBox(
+            rec_frame, text="Video mitschneiden (Benchmark / Laborlauf)",
+            variable=self.recording_enabled_var, command=self._on_recording_toggle,
+            font=ctk.CTkFont(weight="bold")).pack(anchor="w", padx=12, pady=(10, 6))
+
+        rec_row = ctk.CTkFrame(rec_frame, fg_color="transparent")
+        rec_row.pack(anchor="w", fill="x", padx=12)
+        ctk.CTkLabel(rec_row, text="Ziel:").pack(side="left")
+        self.recording_dir_entry = ctk.CTkEntry(
+            rec_row, textvariable=self.recording_dir_var, width=260)
+        self.recording_dir_entry.pack(side="left", padx=(5, 5))
+        self.recording_browse_button = ctk.CTkButton(
+            rec_row, text="Ordner wählen", width=110, fg_color="gray30",
+            command=self._choose_recording_dir)
+        self.recording_browse_button.pack(side="left", padx=(0, 5))
+        self.recording_usb_button = ctk.CTkButton(
+            rec_row, text="USB suchen", width=100, fg_color="gray30",
+            command=self._detect_recording_usb)
+        self.recording_usb_button.pack(side="left")
+
+        rec_row2 = ctk.CTkFrame(rec_frame, fg_color="transparent")
+        rec_row2.pack(anchor="w", fill="x", padx=12, pady=(6, 0))
+        ctk.CTkLabel(rec_row2, text="Bitrate (kbit/s):").pack(side="left")
+        self.recording_bitrate_entry = ctk.CTkEntry(
+            rec_row2, textvariable=self.recording_bitrate_var, width=70)
+        self.recording_bitrate_entry.pack(side="left", padx=(5, 15))
+        ctk.CTkLabel(rec_row2, text="Bilder/s:").pack(side="left")
+        self.recording_fps_entry = ctk.CTkEntry(
+            rec_row2, textvariable=self.recording_fps_var, width=60)
+        self.recording_fps_entry.pack(side="left", padx=(5, 15))
+        ctk.CTkLabel(rec_row2, text="Segment (s):").pack(side="left")
+        self.recording_segment_entry = ctk.CTkEntry(
+            rec_row2, textvariable=self.recording_segment_var, width=70)
+        self.recording_segment_entry.pack(side="left", padx=5)
+
+        # Zeigt freien Speicher und geschätzte Reichweite — die eigentliche
+        # Frage bei einem Laborlauf ist "wie lange reicht der Platz?".
+        self.recording_info_var = tk.StringVar(value="")
+        ctk.CTkLabel(rec_frame, textvariable=self.recording_info_var,
+                     text_color="gray70", wraplength=560, justify="left").pack(
+            anchor="w", padx=12, pady=(6, 10))
+
+        for var in (self.recording_dir_var, self.recording_bitrate_var):
+            var.trace_add("write", lambda *_: self._refresh_recording_info())
+
         self.use_frame_var = tk.BooleanVar(value=True)
         ctk.CTkCheckBox(frame, text="Live-Vorschau anzeigen (--use-frame)",
                         variable=self.use_frame_var).pack(anchor="w", padx=10, pady=(0, 4))
@@ -348,6 +408,7 @@ class MainApp:
         self.lora_interval_var.trace_add("write", lambda *_: self._refresh_lora_hint())
         self.lora_sensor_id_var.trace_add("write", lambda *_: self._refresh_lora_hint())
         self._on_lora_toggle()   # setzt Feld-Zustände + baut den Hint einmal auf
+        self._on_recording_toggle()   # setzt Feld-Zustände des Mitschnitts
 
         # Optionales Zeitlimit für den normalen Zähllauf. Leer = kein Limit.
         # (Das automatische Stoppen nach fester Zeit war früher an die
@@ -389,6 +450,117 @@ class MainApp:
                  "core.py zuverlässig sauber funktioniert.",
             text_color="gray60", wraplength=500, justify="left",
         ).pack(anchor="w", pady=10)
+
+    def _on_recording_toggle(self):
+        """Schaltet die Eingabefelder des Mitschnitts frei und aktualisiert die
+        Platzanzeige."""
+        state = "normal" if self.recording_enabled_var.get() else "disabled"
+        for widget_name in ("recording_dir_entry", "recording_browse_button",
+                            "recording_usb_button", "recording_bitrate_entry",
+                            "recording_fps_entry", "recording_segment_entry"):
+            widget = getattr(self, widget_name, None)
+            if widget is not None:
+                widget.configure(state=state)
+        self._refresh_recording_info()
+        if hasattr(self, "page_frames"):
+            self.root.after(20, lambda: self._redraw_tree(self.page_frames["3. Start"]))
+
+    def _choose_recording_dir(self):
+        path = filedialog.askdirectory(title="Zielordner für den Mitschnitt wählen")
+        if path:
+            self.recording_dir_var.set(path)
+
+    def _detect_recording_usb(self):
+        """Sucht einen eingehängten USB-Datenträger und trägt ihn als Ziel ein.
+
+        Nutzt dieselbe Suche wie core.py, damit die GUI nicht etwas anderes
+        anzeigt, als der Zähllauf später tatsächlich verwendet.
+        """
+        usb = find_usb_mount()
+        if usb:
+            self.recording_dir_var.set(os.path.join(usb, "visitorcounter_aufnahmen"))
+        else:
+            messagebox.showinfo(
+                "Nichts gefunden",
+                "Kein eingehängter USB-Datenträger gefunden. Stick anstecken und "
+                "kurz warten, bis er im Dateimanager auftaucht — oder den Ordner "
+                "von Hand wählen.",
+                parent=self.root)
+
+    def _refresh_recording_info(self):
+        """Zeigt freien Speicher am Zielort und die geschätzte Aufnahmedauer."""
+        if not hasattr(self, "recording_info_var"):
+            return
+        if not self.recording_enabled_var.get():
+            self.recording_info_var.set(
+                "Aus. Der Mitschnitt ist nur für Labor-/Benchmarkläufe gedacht — "
+                "im Dauerbetrieb ausgeschaltet lassen.")
+            return
+
+        target = self.recording_dir_var.get().strip()
+        if not target or target.lower() == "auto":
+            usb = find_usb_mount()
+            target = os.path.join(usb, "visitorcounter_aufnahmen") if usb else os.path.abspath("aufnahmen")
+            prefix = f"Automatisch gewählt: {target}"
+        else:
+            prefix = f"Ziel: {target}"
+
+        # Für die Platzberechnung reicht das nächstgelegene existierende
+        # Elternverzeichnis — der Zielordner wird erst von core.py angelegt.
+        probe = target
+        while probe and not os.path.isdir(probe):
+            parent = os.path.dirname(probe)
+            if parent == probe:
+                break
+            probe = parent
+
+        try:
+            bitrate = int(self.recording_bitrate_var.get().strip() or "0")
+        except ValueError:
+            bitrate = 0
+
+        free = free_gb(probe) if probe else 0.0
+        if bitrate > 0:
+            gb_per_hour = bitrate * 3600 / 8 / 1_000_000
+            hours = max(free - 2.0, 0) / gb_per_hour
+            self.recording_info_var.set(
+                f"{prefix}\n{free:.1f} GB frei — reicht für ca. {hours:.1f} Stunden "
+                f"({gb_per_hour:.2f} GB/h). 2 GB bleiben als Reserve frei.")
+        else:
+            self.recording_info_var.set(f"{prefix}\n{free:.1f} GB frei.")
+
+    def _validate_recording_settings(self):
+        """Prüft die Zahlenfelder des Mitschnitts. Rückgabe: dict oder None."""
+        fields = {
+            "Bitrate": (self.recording_bitrate_var, 100, 20000),
+            "Bilder/s": (self.recording_fps_var, 1, 60),
+            "Segmentlänge": (self.recording_segment_var, 10, 3600),
+        }
+        values = {}
+        for label, (var, low, high) in fields.items():
+            raw = var.get().strip()
+            try:
+                value = int(raw)
+            except ValueError:
+                messagebox.showwarning(
+                    "Ungültige Eingabe",
+                    f"{label} muss eine ganze Zahl sein (eingegeben: '{raw}').",
+                    parent=self.root)
+                return None
+            if not (low <= value <= high):
+                messagebox.showwarning(
+                    "Ungültige Eingabe",
+                    f"{label} muss zwischen {low} und {high} liegen.",
+                    parent=self.root)
+                return None
+            values[label] = value
+
+        return {
+            "dir": self.recording_dir_var.get().strip() or "auto",
+            "bitrate": values["Bitrate"],
+            "fps": values["Bilder/s"],
+            "segment": values["Segmentlänge"],
+        }
 
     def _on_lora_toggle(self):
         """Aktiviert/deaktiviert die LoRa-Eingabefelder und baut den Hint neu."""
@@ -554,6 +726,14 @@ class MainApp:
             if lora_settings is None:
                 return
 
+        # Mitschnitt ebenfalls nur bei normalen Zählläufen (Tab 3). Bei der
+        # Auto-Config-Datensammlung wäre er nutzlos und würde nur CPU kosten.
+        recording_settings = None
+        if not collection and self.recording_enabled_var.get():
+            recording_settings = self._validate_recording_settings()
+            if recording_settings is None:
+                return
+
         cmd = [sys.executable, "core.py", "--input", self.input_value]
         env = os.environ.copy()
 
@@ -577,6 +757,16 @@ class MainApp:
             if run_duration:
                 env["RUN_DURATION_SECONDS"] = run_duration
             self.collection_hint_var.set("")
+
+            if recording_settings is not None:
+                env["RECORDING_ENABLED"] = "true"
+                env["RECORDING_DIR"] = recording_settings["dir"]
+                env["RECORDING_BITRATE_KBPS"] = str(recording_settings["bitrate"])
+                env["RECORDING_FPS"] = str(recording_settings["fps"])
+                env["RECORDING_SEGMENT_SECONDS"] = str(recording_settings["segment"])
+                self.collection_hint_var.set(
+                    "● Mitschnitt AKTIV — der genaue Zielordner und die Reichweite "
+                    "stehen in der Ausgabe auf Seite 4.")
 
         try:
             self.process = subprocess.Popen(
