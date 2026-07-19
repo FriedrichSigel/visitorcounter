@@ -65,11 +65,30 @@ SNAPSHOT_TIMEOUT_SECONDS = 120
 # der Frame-Auflösung konstant groß, das Layout springt beim Laden nicht mehr,
 # und die rechte Bedienspalte behält immer ihren Platz.
 DISPLAY_WIDTH = 960
+
+# Feste Breite der rechten Bedienspalte. Die Bedienelemente liegen in einem
+# eigenen Frame (self.side) — NICHT im selben Grid wie der Canvas. Grund:
+# ein Canvas mit rowspan über die Bedienzeilen zwingt Tk, die Canvas-Höhe auf
+# diese Zeilen zu verteilen; dabei entstehen die beobachteten Lücken und
+# abgeschnittenen Elemente. Getrennte Container = getrennte Höhenrechnung.
+SIDE_PANEL_WIDTH = 265
 DISPLAY_HEIGHT = 540  # 16:9 zu 960 — kompakter, trifft ~3/5-Breite im Fenster-Layout
 
 # Canvas-Hintergrund passend zum dunklen Theme (statt Tkinter-Standardgrau)
 CANVAS_BG = "#242424"
 CANVAS_PLACEHOLDER_FG = "#888888"
+
+# Leerer Arbeitsbereich: Wenn kein Frame geladen ist, kann die Geometrie
+# trotzdem gesetzt werden — der Canvas zeigt dann eine neutrale Fläche mit
+# Hilfsraster statt eines Kamerabildes. Die Koordinaten werden gegen diese
+# Referenzauflösung normalisiert; da die Konfiguration ohnehin relativ
+# (0.0-1.0) gespeichert wird, passt sie später zu jeder echten Auflösung,
+# solange das Seitenverhältnis stimmt (16:9).
+BLANK_REFERENCE_WIDTH = 1280
+BLANK_REFERENCE_HEIGHT = 720
+BLANK_CANVAS_BG = "#F2F2F2"
+BLANK_GRID_COLOR = "#D0D0D0"
+BLANK_HINT_COLOR = "#909090"
 
 REGION_COLORS = ["#4CAF50", "#29B6F6", "#FFA726", "#EC407A", "#EEEEEE", "#EF5350"]
 
@@ -196,21 +215,32 @@ class RoiConfigApp:
         self.frame_bgr = None
 
         # --- Linke Seite: Canvas ---
-        # Feste Größe von Anfang an — der Canvas ändert seine Größe beim
-        # Frame-Laden NICHT mehr, damit die rechte Bedienspalte nicht
-        # verschoben oder abgeschnitten wird.
+        # Canvas und Bedienspalte liegen in ZWEI getrennten Grid-Zellen der
+        # gleichen Zeile. Der Canvas hat bewusst KEIN rowspan mehr (siehe
+        # Kommentar bei SIDE_PANEL_WIDTH).
+        master.grid_rowconfigure(0, weight=1)
+        master.grid_columnconfigure(0, weight=0)
+        master.grid_columnconfigure(1, weight=0)
+
         self.canvas = tk.Canvas(master, width=self.display_width, height=self.display_height,
                                  cursor="cross", bg=CANVAS_BG, highlightthickness=0)
-        self.canvas.grid(row=0, column=0, rowspan=25, padx=10, pady=10)
-        self.canvas.create_text(self.display_width // 2, self.display_height // 2,
-                                 text="Noch kein Frame geladen.",
-                                 fill=CANVAS_PLACEHOLDER_FG, font=("Arial", 12), tags=("placeholder",))
+        self.canvas.grid(row=0, column=0, padx=10, pady=10, sticky="nw")
         self.canvas.bind("<Button-1>", self.on_click)
 
-        # --- Rechte Seite: Bedienelemente ---
+        # Ohne geladenen Frame direkt den leeren Arbeitsbereich aufziehen,
+        # damit sofort konfiguriert werden kann.
+        self._setup_blank_workspace()
+
+        # --- Rechte Seite: Bedienelemente in eigenem Container ---
+        side = ctk.CTkFrame(master, fg_color="transparent", width=SIDE_PANEL_WIDTH)
+        side.grid(row=0, column=1, sticky="nw", pady=10, padx=(0, 10))
+        side.grid_propagate(False)
+        side.grid_columnconfigure(0, weight=1, minsize=SIDE_PANEL_WIDTH)
+        self.side = side
+
         row = 0
-        ctk.CTkLabel(master, text="Zählmodus", font=ctk.CTkFont(size=14, weight="bold")).grid(
-            row=row, column=1, sticky="w", padx=10, pady=(0, 5))
+        ctk.CTkLabel(side, text="Zählmodus", font=ctk.CTkFont(size=14, weight="bold")).grid(
+            row=row, column=0, sticky="w", padx=10, pady=(0, 5))
         row += 1
 
         self.mode_var = tk.StringVar(value="line")
@@ -222,24 +252,24 @@ class RoiConfigApp:
             ("Auto: Randraster", "auto_border"),
         ]
         for label, value in mode_options:
-            ctk.CTkRadioButton(master, text=label, variable=self.mode_var, value=value,
-                                command=self.on_mode_change).grid(row=row, column=1, sticky="w", padx=20, pady=2)
+            ctk.CTkRadioButton(side, text=label, variable=self.mode_var, value=value,
+                                command=self.on_mode_change).grid(row=row, column=0, sticky="w", padx=20, pady=2)
             row += 1
 
-        self.close_button = ctk.CTkButton(master, text="Fläche schließen", command=self.close_polygon)
-        self.close_button.grid(row=row, column=1, sticky="we", padx=10, pady=(8, 2))
+        self.close_button = ctk.CTkButton(side, text="Fläche schließen", command=self.close_polygon)
+        self.close_button.grid(row=row, column=0, sticky="we", padx=10, pady=(8, 2))
         self.close_button.grid_remove()
         row += 1
 
-        self.undo_button = ctk.CTkButton(master, text="Letzte Fläche löschen", fg_color="gray30",
+        self.undo_button = ctk.CTkButton(side, text="Letzte Fläche löschen", fg_color="gray30",
                                           command=self.undo_last_region)
-        self.undo_button.grid(row=row, column=1, sticky="we", padx=10, pady=(0, 5))
+        self.undo_button.grid(row=row, column=0, sticky="we", padx=10, pady=(0, 5))
         self.undo_button.grid_remove()
         row += 1
 
         # --- Auto-Konfigurations-Panel ---
-        self.auto_frame = ctk.CTkFrame(master, corner_radius=8)
-        self.auto_frame.grid(row=row, column=1, sticky="we", padx=10, pady=(5, 5))
+        self.auto_frame = ctk.CTkFrame(side, corner_radius=8)
+        self.auto_frame.grid(row=row, column=0, sticky="we", padx=10, pady=(5, 5))
         self.auto_frame.grid_remove()
         row += 1
 
@@ -248,7 +278,7 @@ class RoiConfigApp:
 
         self.collection_status_var = tk.StringVar(value="Noch keine Punkte gesammelt.")
         ctk.CTkLabel(self.auto_frame, textvariable=self.collection_status_var,
-                     wraplength=200, justify="left", text_color="gray70").grid(
+                     wraplength=210, justify="left", text_color="gray70").grid(
             row=1, column=0, columnspan=2, sticky="w", padx=10)
         ctk.CTkButton(self.auto_frame, text="Sammel-Status aktualisieren", fg_color="gray30",
                       command=self._refresh_collection_status).grid(
@@ -281,33 +311,33 @@ class RoiConfigApp:
 
         self.auto_result_var = tk.StringVar(value="")
         ctk.CTkLabel(self.auto_frame, textvariable=self.auto_result_var, text_color="gray70",
-                     wraplength=200, justify="left").grid(row=5, column=0, columnspan=2, sticky="w", padx=10, pady=(0, 8))
+                     wraplength=210, justify="left").grid(row=5, column=0, columnspan=2, sticky="w", padx=10, pady=(0, 8))
 
-        ctk.CTkLabel(master, text="Klassen zählen", font=ctk.CTkFont(size=14, weight="bold")).grid(
-            row=row, column=1, sticky="w", padx=10, pady=(15, 5))
+        ctk.CTkLabel(side, text="Klassen zählen", font=ctk.CTkFont(size=14, weight="bold")).grid(
+            row=row, column=0, sticky="w", padx=10, pady=(15, 5))
         row += 1
 
         self.class_vars = {}
         for cls in ALL_CLASSES:
             var = tk.BooleanVar(value=True)
-            ctk.CTkCheckBox(master, text=cls, variable=var).grid(row=row, column=1, sticky="w", padx=20, pady=2)
+            ctk.CTkCheckBox(side, text=cls, variable=var).grid(row=row, column=0, sticky="w", padx=20, pady=2)
             self.class_vars[cls] = var
             row += 1
 
         self.reverse_var = tk.BooleanVar(value=False)
         self.reverse_check = ctk.CTkCheckBox(
-            master, text="Richtung umkehren (IN/OUT tauschen)",
+            side, text="Richtung umkehren (IN/OUT tauschen)",
             variable=self.reverse_var, command=self.redraw,
         )
-        self.reverse_check.grid(row=row, column=1, sticky="w", padx=10, pady=(15, 0))
+        self.reverse_check.grid(row=row, column=0, sticky="w", padx=10, pady=(15, 0))
         row += 1
 
         self.snap_var = tk.BooleanVar(value=False)
         self.snap_check = ctk.CTkCheckBox(
-            master, text="Punkte ohne Treffer der nächsten\nFläche zuordnen (statt 'außerhalb')",
+            side, text="Punkte ohne Treffer der nächsten\nFläche zuordnen (statt 'außerhalb')",
             variable=self.snap_var,
         )
-        self.snap_check.grid(row=row, column=1, sticky="w", padx=10, pady=(5, 0))
+        self.snap_check.grid(row=row, column=0, sticky="w", padx=10, pady=(5, 0))
         self.snap_check.grid_remove()
         row += 1
 
@@ -318,30 +348,53 @@ class RoiConfigApp:
         self.in_field_placeholder = "(kein Feld gewählt)"
         self.in_field_var = tk.StringVar(value=self.in_field_placeholder)
         self.in_field_label = ctk.CTkLabel(
-            master, text="IN-Feld (rein = IN, raus = OUT):")
-        self.in_field_label.grid(row=row, column=1, sticky="w", padx=10, pady=(12, 0))
+            side, text="IN-Feld (rein = IN, raus = OUT):")
+        self.in_field_label.grid(row=row, column=0, sticky="w", padx=10, pady=(12, 0))
         row += 1
         self.in_field_menu = ctk.CTkOptionMenu(
-            master, variable=self.in_field_var, values=[self.in_field_placeholder])
-        self.in_field_menu.grid(row=row, column=1, sticky="we", padx=10, pady=(2, 0))
+            side, variable=self.in_field_var, values=[self.in_field_placeholder])
+        self.in_field_menu.grid(row=row, column=0, sticky="we", padx=10, pady=(2, 0))
         self.in_field_label.grid_remove()
         self.in_field_menu.grid_remove()
         row += 1
 
-        ctk.CTkButton(master, text="Zurücksetzen", fg_color="gray30", command=self.reset_geometry).grid(
-            row=row, column=1, sticky="we", padx=10, pady=(15, 5))
+        ctk.CTkButton(side, text="Zurücksetzen", fg_color="gray30", command=self.reset_geometry).grid(
+            row=row, column=0, sticky="we", padx=10, pady=(15, 5))
         row += 1
         ctk.CTkButton(
-            master, text="Speichern", fg_color="#2E8B57", hover_color="#256e46",
+            side, text="Speichern", fg_color="#2E8B57", hover_color="#256e46",
             font=ctk.CTkFont(weight="bold"), command=self.save,
-        ).grid(row=row, column=1, sticky="we", padx=10, pady=5)
+        ).grid(row=row, column=0, sticky="we", padx=10, pady=5)
         row += 1
 
         self.status_var = tk.StringVar()
-        ctk.CTkLabel(master, textvariable=self.status_var, wraplength=220, text_color="gray70",
-                     justify="left").grid(row=row, column=1, sticky="w", padx=10, pady=10)
+        ctk.CTkLabel(side, textvariable=self.status_var, wraplength=SIDE_PANEL_WIDTH - 30,
+                     text_color="gray70", justify="left").grid(
+            row=row, column=0, sticky="w", padx=10, pady=10)
+
+        # Höhe der Bedienspalte einmal nach dem Aufbau an den tatsächlichen
+        # Bedarf anpassen (grid_propagate ist aus, damit die Breite fix bleibt).
+        side.after(60, self._fit_side_height)
 
         self._update_status_for_mode()
+
+    def _fit_side_height(self):
+        """
+        Passt die Höhe der Bedienspalte an ihren tatsächlichen Bedarf an.
+
+        grid_propagate(False) hält die BREITE fest (sonst zieht ein langer
+        Hinweistext die Spalte auseinander); die HÖHE muss dann aber von Hand
+        gesetzt werden, sonst werden untere Elemente wie 'Speichern'
+        abgeschnitten. Wird nach jedem Moduswechsel erneut aufgerufen, weil
+        ein-/ausgeblendete Elemente den Bedarf ändern.
+        """
+        try:
+            self.side.update_idletasks()
+            bbox = self.side.grid_bbox()
+            needed = bbox[3] if bbox else 0
+            self.side.configure(height=max(needed + 12, 200))
+        except Exception:
+            pass
 
     def load_frame(self, frame_bgr):
         self.frame_bgr = frame_bgr
@@ -363,6 +416,68 @@ class RoiConfigApp:
         self._display_image_on_canvas(frame_bgr)
         self.reset_geometry()
 
+    def _setup_blank_workspace(self):
+        """
+        Bereitet das Konfigurieren OHNE Kamerabild vor.
+
+        Setzt Skalierung und Offsets so, dass der gesamte Canvas der
+        Referenzauflösung (BLANK_REFERENCE_*) entspricht. Dadurch liefert
+        _to_normalized() auch ohne Frame gültige 0.0-1.0-Koordinaten, und
+        Klicks/Speichern funktionieren wie gewohnt.
+        """
+        self.frame_bgr = None
+        self.orig_w = BLANK_REFERENCE_WIDTH
+        self.orig_h = BLANK_REFERENCE_HEIGHT
+        self.scale = min(self.display_width / self.orig_w,
+                         self.display_height / self.orig_h)
+        disp_w = int(self.orig_w * self.scale)
+        disp_h = int(self.orig_h * self.scale)
+        self.offset_x = (self.display_width - disp_w) // 2
+        self.offset_y = (self.display_height - disp_h) // 2
+        self._draw_blank_canvas()
+
+    def _draw_blank_canvas(self):
+        """Zeichnet die neutrale Arbeitsfläche mit Hilfsraster und Hinweis."""
+        self.canvas.delete("all")
+        self.canvas_items = []
+
+        disp_w = int(self.orig_w * self.scale)
+        disp_h = int(self.orig_h * self.scale)
+        x0, y0 = self.offset_x, self.offset_y
+        x1, y1 = x0 + disp_w, y0 + disp_h
+
+        self.canvas.create_rectangle(x0, y0, x1, y1, fill=BLANK_CANVAS_BG,
+                                     outline=BLANK_GRID_COLOR, tags=("blank",))
+
+        # Zehntel-Raster als Orientierungshilfe — ohne Bild fehlen sonst
+        # jegliche Anhaltspunkte, wo im Bildausschnitt man klickt.
+        for i in range(1, 10):
+            gx = x0 + disp_w * i / 10
+            gy = y0 + disp_h * i / 10
+            width = 2 if i == 5 else 1
+            self.canvas.create_line(gx, y0, gx, y1, fill=BLANK_GRID_COLOR,
+                                    width=width, tags=("blank",))
+            self.canvas.create_line(x0, gy, x1, gy, fill=BLANK_GRID_COLOR,
+                                    width=width, tags=("blank",))
+
+        self.canvas.create_text(
+            (x0 + x1) // 2, y0 + 22,
+            text="Ohne Kamerabild — Koordinaten relativ zum Bildausschnitt "
+                 f"({self.orig_w}x{self.orig_h} Referenz, 16:9)",
+            fill=BLANK_HINT_COLOR, font=("Arial", 10), tags=("blank",))
+        self.canvas.create_text(
+            (x0 + x1) // 2, y1 - 22,
+            text="'Frame laden' oben zeigt stattdessen das echte Kamerabild.",
+            fill=BLANK_HINT_COLOR, font=("Arial", 10), tags=("blank",))
+
+    def _redraw_background(self):
+        """Hintergrund neu zeichnen — Kamerabild, falls vorhanden, sonst die
+        leere Arbeitsfläche."""
+        if self.frame_bgr is not None:
+            self._display_image_on_canvas(self.frame_bgr)
+        else:
+            self._draw_blank_canvas()
+
     def _display_image_on_canvas(self, img_bgr):
         disp_w, disp_h = int(self.orig_w * self.scale), int(self.orig_h * self.scale)
         img_rgb = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2RGB)
@@ -380,6 +495,9 @@ class RoiConfigApp:
     def on_mode_change(self):
         self.reset_geometry()
         mode = self.mode_var.get()
+        # Nach dem Umschalten die Spaltenhöhe neu bestimmen (verzögert, damit
+        # Tk die ein-/ausgeblendeten Elemente schon eingerechnet hat).
+        self.side.after(30, self._fit_side_height)
 
         # IN-Feld-Auswahl nur im manuellen multi_roi-Modus zeigen.
         if mode == "multi_roi":
@@ -424,15 +542,18 @@ class RoiConfigApp:
 
     def _update_status_for_mode(self):
         mode = self.mode_var.get()
+        blank = " (ohne Kamerabild — Raster als Orientierung)" if self.frame_bgr is None else ""
         if mode == "line":
-            self.status_var.set("Klicke zwei Punkte auf dem Bild, um die Zähllinie zu setzen.")
+            self.status_var.set(
+                "Klicke zwei Punkte, um die Zähllinie zu setzen." + blank)
         elif mode == "roi":
-            self.status_var.set("Klicke mindestens drei Punkte, dann 'Fläche schließen'.")
+            self.status_var.set(
+                "Klicke mindestens drei Punkte, dann 'Fläche schließen'." + blank)
         elif mode == "multi_roi":
             self.status_var.set(
                 "Klicke mindestens drei Punkte für die erste Fläche, dann "
                 "'Fläche schließen' und einen Namen vergeben. Danach die "
-                "nächste Fläche klicken. Mindestens zwei Flächen nötig."
+                "nächste Fläche klicken. Mindestens zwei Flächen nötig." + blank
             )
         else:
             self.status_var.set(
@@ -531,8 +652,7 @@ class RoiConfigApp:
         self.regions = []
         self.current_points = []
         self.auto_regions = None
-        if self.frame_bgr is not None:
-            self._display_image_on_canvas(self.frame_bgr)
+        self._redraw_background()
         self.redraw()
         self._refresh_in_field_options()
         self._update_status_for_mode()
@@ -631,7 +751,16 @@ class RoiConfigApp:
 
     def _run_auto_evaluation(self):
         if self.frame_bgr is None:
-            messagebox.showwarning("Fehlt noch", "Bitte zuerst einen Frame laden.", parent=self.root)
+            # Die Auto-Modi zeichnen ihr Ergebnis als Overlay auf den Frame —
+            # dafür ist ein echtes Bild zwingend. Manuelles Klicken (Linie,
+            # Fläche, Mehrere Flächen) geht dagegen auch ohne.
+            messagebox.showwarning(
+                "Fehlt noch",
+                "Die Auto-Konfiguration wertet die gesammelten Punkte auf dem "
+                "Kamerabild aus — dafür bitte oben 'Frame laden' benutzen.\n\n"
+                "Ohne Bild lassen sich nur die manuellen Modi (Linie, Fläche, "
+                "Mehrere Flächen) konfigurieren.",
+                parent=self.root)
             return
 
         points = load_collected_points()

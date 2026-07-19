@@ -46,6 +46,11 @@ import lora_message
 from roi_config_app import RoiConfigApp, load_first_frame
 from ui_utils import make_scrollable
 
+# Höhe der LoRa-Hinweisbox in Pixeln: klein, solange LoRa aus ist,
+# hoch genug für die komplette Byte-Tabelle, sobald es an ist.
+LORA_HINT_HEIGHT_OFF = 54
+LORA_HINT_HEIGHT_ON = 300
+
 ZAEHLUNG_CSV = "zaehlung.csv"
 ROI_CONFIG_PATH = "roi_config.json"
 
@@ -280,10 +285,18 @@ class MainApp:
         # Hinweis mit der Struktur der Nachricht — richtet sich nach der
         # Konfiguration (roi_config.json). Monospace, damit die Byte-Tabelle
         # ausgerichtet bleibt.
-        self.lora_hint_label = ctk.CTkLabel(
-            lora_frame, text="", justify="left", anchor="w",
+        #
+        # Bewusst eine CTkTextbox statt eines CTkLabel: das Label war breiter
+        # als die scrollbare Seite, wurde deshalb rechts abgeschnitten
+        # ("Inaktive Klassen belegen il...") und hat das Layout der
+        # nachfolgenden Abschnitte zerschossen. Eine Textbox hat eine feste
+        # Größe, scrollt ihren Inhalt selbst (waagerecht dank wrap="none") und
+        # lässt den Rest der Seite dadurch in Ruhe. read-only über state.
+        self.lora_hint_box = ctk.CTkTextbox(
+            lora_frame, height=LORA_HINT_HEIGHT_OFF, wrap="none", activate_scrollbars=True,
             text_color="gray70", font=ctk.CTkFont(family="Courier", size=11))
-        self.lora_hint_label.pack(anchor="w", fill="x", padx=12, pady=(4, 4))
+        self.lora_hint_box.pack(anchor="w", fill="x", padx=12, pady=(4, 4))
+        self.lora_hint_box.configure(state="disabled")
         ctk.CTkButton(
             lora_frame, text="Struktur aus Konfiguration aktualisieren",
             command=self._refresh_lora_hint, width=280, height=26,
@@ -356,12 +369,12 @@ class MainApp:
     def _refresh_lora_hint(self):
         """Baut den Hinweistext mit der Nachrichtenstruktur neu — abhängig von
         der aktuellen Konfiguration, dem gewählten Intervall und der Sensor-ID."""
-        if not hasattr(self, "lora_hint_label"):
+        if not hasattr(self, "lora_hint_box"):
             return
         if not self.lora_enabled_var.get():
-            self.lora_hint_label.configure(
-                text="LoRa-Versand aus. Aktivieren, um die Nachrichtenstruktur "
-                     "und das Sende-Intervall zu sehen.")
+            self._set_lora_hint(
+                "LoRa-Versand aus. Aktivieren, um die Nachrichtenstruktur "
+                "und das Sende-Intervall zu sehen.", LORA_HINT_HEIGHT_OFF)
             return
 
         cfg = self._load_roi_config()
@@ -383,7 +396,17 @@ class MainApp:
             hint = lora_message.describe_structure(
                 cfg, interval_minutes=interval_display, sensor_id=sensor_id,
                 counts_in=counts_in, counts_out=counts_out)
-        self.lora_hint_label.configure(text=hint)
+        self._set_lora_hint(hint, LORA_HINT_HEIGHT_ON)
+
+    def _set_lora_hint(self, text, height):
+        """Schreibt Text in die (sonst schreibgeschützte) Hinweis-Textbox und
+        passt ihre Höhe an — kurz bei ausgeschaltetem LoRa, hoch genug für die
+        vollständige Byte-Tabelle bei eingeschaltetem."""
+        box = self.lora_hint_box
+        box.configure(state="normal", height=height)
+        box.delete("1.0", "end")
+        box.insert("1.0", text)
+        box.configure(state="disabled")
 
     def _validate_lora_settings(self):
         """Prüft Intervall und Sensor-ID vor dem Start. Rückgabe: (interval_min,
