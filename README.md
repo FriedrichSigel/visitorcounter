@@ -1,5 +1,5 @@
 # Besucherzählsensor — core
-UI toll
+
 Computer-Vision-basierter Sensor zur automatisierten Besucherzählung auf
 Raspberry Pi 5 mit Hailo-8-Beschleuniger. Dieser Ordner ist eigenständig
 lauffähig — er enthält die komplette Anwendung (Objekterkennung, Tracking,
