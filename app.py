@@ -261,17 +261,40 @@ class MainApp:
         frame = make_scrollable(self.page_frames["2. Konfiguration"])
 
         top = ctk.CTkFrame(frame, fg_color="transparent")
-        top.pack(fill="x", pady=(0, 10))
+        top.pack(fill="x", pady=(0, 4))
         ctk.CTkButton(top, text="Frame laden (nutzt Input von Seite 1)",
                       command=self._load_config_frame).pack(side="left")
         self.config_status_var = tk.StringVar(value="Noch kein Frame geladen.")
         ctk.CTkLabel(top, textvariable=self.config_status_var, text_color="gray70").pack(side="left", padx=15)
+
+        # Zweite Zeile: bestehende Konfiguration einlesen und anzeigen. Ohne
+        # das laesst sich nur schwer pruefen, was auf dem Geraet tatsaechlich
+        # eingestellt ist — man musste die JSON-Datei von Hand oeffnen.
+        second = ctk.CTkFrame(frame, fg_color="transparent")
+        second.pack(fill="x", pady=(0, 10))
+        ctk.CTkButton(second, text="Aktuelle Konfiguration laden",
+                      fg_color="gray30", command=self._load_existing_config).pack(side="left")
+        self.config_loaded_var = tk.StringVar(value="")
+        ctk.CTkLabel(second, textvariable=self.config_loaded_var,
+                     text_color="gray70").pack(side="left", padx=15)
 
         container = ctk.CTkFrame(frame, fg_color="transparent")
         container.pack(fill="both", expand=True)
         # Frame-Anzeigebreite fest an die 3/5-Layoutspalte binden, damit der
         # Canvas das Fenster nicht breiter zieht.
         self.roi_config_widget = RoiConfigApp(container, frame_width=CONFIG_FRAME_WIDTH)
+
+    def _load_existing_config(self):
+        """
+        Liest roi_config.json und stellt sie in Tab 2 dar — Modus, Geometrie,
+        Klassen, Richtung, IN-Feld. Damit ist auf einen Blick sichtbar, womit
+        das Geraet gerade tatsaechlich zaehlt.
+        """
+        ok = self.roi_config_widget.load_config()
+        if ok:
+            self.config_loaded_var.set(f"Geladen aus {ROI_CONFIG_PATH}")
+        else:
+            self.config_loaded_var.set("Nicht geladen — siehe Meldung.")
 
     def _load_config_frame(self):
         if not self.input_value:

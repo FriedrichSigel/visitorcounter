@@ -665,7 +665,17 @@ class RoiConfigApp:
         # Nach dem Umschalten neu zeichnen — ein-/ausgeblendete Elemente
         # veraendern das Layout der Spalte.
         self.side.after(30, self._force_redraw)
+        self._apply_mode_widgets(mode)
 
+    def _apply_mode_widgets(self, mode):
+        """
+        Blendet die Bedienelemente passend zum Modus ein und aus.
+
+        Bewusst getrennt von on_mode_change: beim Laden einer gespeicherten
+        Konfiguration muss die Anzeige zum Modus passen, die Geometrie darf
+        dabei aber NICHT zurueckgesetzt werden — genau das taete
+        on_mode_change ueber reset_geometry.
+        """
         # IN-Feld-Auswahl nur im manuellen multi_roi-Modus zeigen.
         if mode == "multi_roi":
             self.in_field_label.grid()
@@ -1069,6 +1079,120 @@ class RoiConfigApp:
 
         messagebox.showinfo("Gespeichert", f"Konfiguration gespeichert in {CONFIG_PATH}", parent=self.root)
         self.status_var.set(f"Gespeichert: {CONFIG_PATH}")
+
+    def _from_normalized(self, nx, ny):
+        """
+        Gegenstueck zu _to_normalized: rechnet gespeicherte 0.0-1.0-Koordinaten
+        zurueck in Canvas-Pixel. Wird beim Laden einer bestehenden
+        Konfiguration gebraucht.
+        """
+        orig_x = nx * self.orig_w
+        orig_y = ny * self.orig_h
+        return (orig_x * self.scale + self.offset_x,
+                orig_y * self.scale + self.offset_y)
+
+    def load_config(self, path=None, silent=False):
+        """
+        Laedt eine gespeicherte Konfiguration und stellt den kompletten
+        Bedienzustand wieder her: Modus, Punkte bzw. Flaechen, Klassenauswahl,
+        Richtungsumkehr, Zuordnung zur naechsten Flaeche und IN-Feld.
+
+        Die Datei enthaelt relative Koordinaten (0.0-1.0). Sie werden ueber
+        _from_normalized in Canvas-Pixel zurueckgerechnet — dadurch passt eine
+        Konfiguration auch dann, wenn sie bei anderer Anzeigegroesse oder ganz
+        ohne Kamerabild erstellt wurde.
+
+        Rueckgabe: True bei Erfolg.
+        """
+        path = path or CONFIG_PATH
+        if not os.path.exists(path):
+            if not silent:
+                messagebox.showwarning(
+                    "Keine Konfiguration",
+                    f"Es wurde keine Datei {path} gefunden. Erst konfigurieren "
+                    f"und speichern, dann laesst sie sich laden.",
+                    parent=self.root)
+            return False
+
+        try:
+            with open(path) as f:
+                config = json.load(f)
+        except (OSError, json.JSONDecodeError) as exc:
+            if not silent:
+                messagebox.showerror(
+                    "Datei nicht lesbar",
+                    f"{path} konnte nicht gelesen werden:\n{exc}",
+                    parent=self.root)
+            return False
+
+        mode = config.get("mode", "line")
+        if mode not in ("line", "roi", "multi_roi"):
+            if not silent:
+                messagebox.showwarning(
+                    "Unbekannter Modus",
+                    f"Der Modus '{mode}' aus der Datei ist unbekannt.",
+                    parent=self.root)
+            return False
+
+        # Geometrie leeren, aber OHNE reset_geometry — das wuerde ueber
+        # on_mode_change wieder alles zuruecksetzen, was wir gerade laden.
+        self.points = []
+        self.polygon_closed = False
+        self.regions = []
+        self.current_points = []
+        self.auto_regions = None
+
+        self.mode_var.set(mode)
+        self._apply_mode_widgets(mode)
+
+        if mode == "multi_roi":
+            for region in config.get("regions", []):
+                pts = [self._from_normalized(nx, ny)
+                       for (nx, ny) in region.get("points", [])]
+                if len(pts) >= 3:
+                    self.regions.append({"name": region.get("name", "?"), "points": pts})
+        else:
+            self.points = [self._from_normalized(nx, ny)
+                           for (nx, ny) in config.get("points", [])]
+            self.polygon_closed = (mode == "roi" and len(self.points) >= 3)
+
+        # Klassen: nur die in der Datei genannten anhaken.
+        saved_classes = config.get("classes")
+        if saved_classes is not None:
+            for cls, var in self.class_vars.items():
+                var.set(cls in saved_classes)
+
+        self.reverse_var.set(bool(config.get("reverse_direction", False)))
+        self.snap_var.set(bool(config.get("snap_to_nearest", False)))
+
+        self._refresh_in_field_options()
+        in_field = config.get("in_field") or ""
+        if in_field and any(r["name"] == in_field for r in self.regions):
+            self.in_field_var.set(in_field)
+
+        self._force_redraw()
+        self._describe_loaded_config(config, path)
+        return True
+
+    def _describe_loaded_config(self, config, path):
+        """Schreibt eine Zusammenfassung des Geladenen in die Statuszeile."""
+        mode = config.get("mode", "?")
+        mode_names = {"line": "Linie", "roi": "Fläche / ROI",
+                      "multi_roi": "Mehrere Flächen"}
+        parts = [f"Geladen aus {os.path.basename(path)}",
+                 f"Modus: {mode_names.get(mode, mode)}"]
+        if mode == "multi_roi":
+            names = ", ".join(r["name"] for r in self.regions) or "keine"
+            parts.append(f"Flächen: {names}")
+            parts.append(f"IN-Feld: {config.get('in_field') or 'NICHT gesetzt'}")
+        else:
+            parts.append(f"Punkte: {len(self.points)}")
+        parts.append("Klassen: " + (", ".join(config.get("classes", [])) or "keine"))
+        if config.get("reverse_direction"):
+            parts.append("Richtung umgekehrt")
+        if config.get("snap_to_nearest"):
+            parts.append("Zuordnung zur nächsten Fläche aktiv")
+        self.status_var.set("\n".join(parts))
 
     def _to_normalized(self, x, y):
         # Klickkoordinaten sind Canvas-Pixel; erst den Zentrier-Offset des
