@@ -13,11 +13,15 @@ Warum kein zweiter ffmpeg-Prozess:
     einen Benchmark auch die methodisch saubere Variante.
 
 Einhängepunkt:
-    core.py biegt die video-sink-Eigenschaft des Elements "hailo_display"
-    ohnehin schon auf ein fakesink um (damit sich nicht zwei Fenster öffnen).
-    Genau dort sitzt jetzt wahlweise dieser Aufnahme-Bin: derselbe Videostrom,
-    der bisher verworfen wurde, wird encodiert und auf Platte geschrieben.
-    Es geht also nichts verloren und die Zählpipeline bleibt unangetastet.
+    core.py trennt die Verbindung vor dem Element "hailo_display" auf und setzt
+    einen tee dazwischen (_attach_recording_tee). Zweig 1 geht weiter wie
+    bisher, Zweig 2 in diesen Aufnahme-Bin.
+
+    Der erste Versuch, den Bin einfach als video-sink von fpsdisplaysink zu
+    setzen, hat NICHT funktioniert: die Dateien wurden zwar angelegt, es kamen
+    aber nie Puffer an — fpsdisplaysink erwartet dort ein echtes Sink-Element
+    und behandelt einen Bin nicht zuverlässig als solches. Der tee ist der
+    übliche und belastbare Weg.
 
 Aufbau des Bins:
     queue (leaky) -> videorate -> videoconvert -> clockoverlay
@@ -181,7 +185,7 @@ def build_recording_bin(target_dir, bitrate_kbps=2000, segment_seconds=600,
     # Queue: Rückstau darf die Zählpipeline NICHT bremsen — lieber Frames im
     # Mitschnitt verlieren.
     q = elements["rec_queue"]
-    q.set_property("max-size-buffers", 30)
+    q.set_property("max-size-buffers", 60)
     q.set_property("max-size-time", 0)
     q.set_property("max-size-bytes", 0)
     q.set_property("leaky", 2)          # 2 = downstream (älteste verwerfen)

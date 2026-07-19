@@ -82,6 +82,84 @@ def _build_recording_sink():
     )
 
 
+def _attach_recording_tee(pipeline, hailo_display, recording_bin):
+    """
+    Hängt den Aufnahme-Bin über einen echten tee in die Pipeline.
+
+    Erster Versuch war, den Bin als video-sink von fpsdisplaysink zu setzen.
+    Das legt zwar die Dateien an, liefert aber keine Daten: fpsdisplaysink
+    erwartet dort ein echtes Sink-Element und behandelt einen Bin nicht
+    zuverlässig als solches — es kamen nie Puffer an, deshalb blieb der
+    Aufnahmeordner leer.
+
+    Sauberer ist der klassische Weg: die Verbindung VOR hailo_display auftrennen,
+    einen tee dazwischensetzen und den zweiten Zweig zur Aufnahme führen. Muss
+    im NULL-Zustand passieren, also vor app.run().
+    """
+    sink_pad = hailo_display.get_static_pad("sink")
+    if sink_pad is None:
+        print("WARNUNG: hailo_display hat keinen sink-Pad — Mitschnitt nicht möglich.")
+        return False
+
+    peer_pad = sink_pad.get_peer()
+    if peer_pad is None:
+        print("WARNUNG: hailo_display ist mit nichts verbunden — Mitschnitt nicht möglich.")
+        return False
+
+    tee = Gst.ElementFactory.make("tee", "recording_tee")
+    if tee is None:
+        print("WARNUNG: tee-Element nicht verfügbar — Mitschnitt nicht möglich.")
+        return False
+
+    # Vorhandene Verbindung auftrennen und den tee dazwischenhängen.
+    peer_pad.unlink(sink_pad)
+    pipeline.add(tee)
+    pipeline.add(recording_bin)
+
+    if peer_pad.link(tee.get_static_pad("sink")) != Gst.PadLinkReturn.OK:
+        print("WARNUNG: Konnte tee nicht einhängen — Mitschnitt deaktiviert.")
+        return False
+
+    # Zweig 1: weiter wie bisher zur Anzeige (bzw. zum fakesink).
+    tee_src_display = tee.request_pad_simple("src_%u")
+    if tee_src_display.link(sink_pad) != Gst.PadLinkReturn.OK:
+        print("WARNUNG: tee -> hailo_display fehlgeschlagen — Mitschnitt deaktiviert.")
+        return False
+
+    # Zweig 2: Aufnahme.
+    tee_src_record = tee.request_pad_simple("src_%u")
+    record_pad = recording_bin.get_static_pad("sink")
+    if tee_src_record.link(record_pad) != Gst.PadLinkReturn.OK:
+        print("WARNUNG: tee -> Aufnahme fehlgeschlagen — Mitschnitt deaktiviert.")
+        return False
+
+    print("Mitschnitt über tee in die Pipeline eingehängt.")
+    return True
+
+
+def _finish_recording(pipeline):
+    """
+    Schickt EOS durch die Pipeline und wartet kurz darauf, damit splitmuxsink
+    das laufende MP4-Segment ordentlich abschließt.
+
+    Ohne das bleibt die zuletzt geschriebene Datei ohne Index zurück und ist
+    in den meisten Playern nicht abspielbar — die vorherigen Segmente sind
+    davon nicht betroffen.
+    """
+    print("Mitschnitt wird abgeschlossen (EOS an die Pipeline) ...")
+    pipeline.send_event(Gst.Event.new_eos())
+    bus = pipeline.get_bus()
+    # Bis zu 10 Sekunden auf die Bestätigung warten; danach abbrechen, damit
+    # ein hängender Encoder das Programmende nicht blockiert.
+    msg = bus.timed_pop_filtered(
+        10 * Gst.SECOND, Gst.MessageType.EOS | Gst.MessageType.ERROR)
+    if msg is None:
+        print("WARNUNG: Kein EOS innerhalb von 10 s — letztes Segment ist "
+              "möglicherweise unvollständig.")
+    else:
+        print("Mitschnitt abgeschlossen.")
+
+
 # -----------------------------------------------------------------------------------------------
 # Pro-Frame-Callback — wird von GStreamer für jeden Frame aufgerufen, der durch die Pipeline läuft
 # -----------------------------------------------------------------------------------------------
@@ -267,15 +345,14 @@ if __name__ == "__main__":
     # Kameraöffnung, die ohnehin nicht möglich wäre.
     hailo_display = app.pipeline.get_by_name("hailo_display")
     if hailo_display is not None:
-        recording_sink = None
+        fakesink = Gst.ElementFactory.make("fakesink", "hailo_display_fakesink")
+        fakesink.set_property("sync", False)
+        hailo_display.set_property("video-sink", fakesink)
+
         if RECORDING_ENABLED:
-            recording_sink = _build_recording_sink()
-        if recording_sink is not None:
-            hailo_display.set_property("video-sink", recording_sink)
-        else:
-            fakesink = Gst.ElementFactory.make("fakesink", "hailo_display_fakesink")
-            fakesink.set_property("sync", False)
-            hailo_display.set_property("video-sink", fakesink)
+            recording_bin = _build_recording_sink()
+            if recording_bin is not None:
+                _attach_recording_tee(app.pipeline, hailo_display, recording_bin)
     else:
         print("WARNUNG: Display-Element 'hailo_display' nicht gefunden — "
               "es öffnen sich vermutlich weiterhin zwei Fenster.")
@@ -308,6 +385,13 @@ if __name__ == "__main__":
         app.run()
     except KeyboardInterrupt:
         print("Stopping...")
+        # Bei aktivem Mitschnitt zuerst sauber ausleiten, sonst bleibt das
+        # laufende MP4-Segment unvollständig.
+        if RECORDING_ENABLED:
+            try:
+                _finish_recording(app.pipeline)
+            except Exception as exc:
+                print(f"WARNUNG: Abschluss des Mitschnitts fehlgeschlagen: {exc}")
     finally:
         # Läuft immer — egal ob durch EOS, Ctrl+C oder etwas anderes beendet.
         # Unbedingt aufrufbar: finalize() ist ein No-Op, falls es schon über
