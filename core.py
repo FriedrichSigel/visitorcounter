@@ -24,6 +24,8 @@ from hailo_apps.hailo_app_python.apps.detection.detection_pipeline import GStrea
 from config import (
     TRACKED_LABELS, SUMMARY_CANVAS_WIDTH, SUMMARY_CANVAS_HEIGHT, RUN_DURATION_SECONDS,
     SNAPSHOT_ONLY, CAMERA_RAW_PATH, LIVE_PREVIEW_HORIZONTAL_FLIP,
+    RECORDING_ENABLED, RECORDING_DIR, RECORDING_BITRATE_KBPS,
+    RECORDING_SEGMENT_SECONDS, RECORDING_FPS,
 )
 from tracking import TrackingState
 from visualization import (
@@ -32,6 +34,7 @@ from visualization import (
 )
 from logging_utils import build_log_entry
 from cleanup_utils import archive_previous_run
+from recording import build_recording_bin, resolve_target_dir, estimate_hours
 
 
 # -----------------------------------------------------------------------------------------------
@@ -50,6 +53,33 @@ class MyDetectionApp(GStreamerDetectionApp):
         print("End-of-stream (Video zu Ende) — Programm wird beendet.")
         user_data.finalize()   # Alle verbleibenden Tracks speichern und Ausgabebild schreiben
         self.shutdown()        # GStreamer-Pipeline stoppen und die Main Loop beenden
+
+
+# -----------------------------------------------------------------------------------------------
+# Mitschnitt (nur Benchmark-/Laborläufe)
+# -----------------------------------------------------------------------------------------------
+def _build_recording_sink():
+    """
+    Bereitet den Aufnahme-Bin vor: Zielordner prüfen, Reichweite abschätzen,
+    Bin bauen. Gibt None zurück, wenn die Aufnahme nicht möglich ist — der
+    Zähllauf startet dann trotzdem, nur eben ohne Video. Ein fehlender USB-Stick
+    darf keinen Messlauf verhindern.
+    """
+    target_dir, note = resolve_target_dir(RECORDING_DIR)
+    print(note)
+    if target_dir is None:
+        return None
+
+    hours = estimate_hours(target_dir, RECORDING_BITRATE_KBPS)
+    if hours is not None:
+        print(f"  Reichweite bei dieser Bitrate: ca. {hours:.1f} Stunden")
+
+    return build_recording_bin(
+        target_dir,
+        bitrate_kbps=RECORDING_BITRATE_KBPS,
+        segment_seconds=RECORDING_SEGMENT_SECONDS,
+        fps=RECORDING_FPS,
+    )
 
 
 # -----------------------------------------------------------------------------------------------
@@ -228,14 +258,30 @@ if __name__ == "__main__":
     # von "hailo_display" auf ein fakesink umgebogen (verwirft die Frames,
     # ohne sie anzuzeigen) statt xvimagesink. Muss vor app.run() passieren.
     # Quelle: https://community.hailo.ai/t/how-can-i-stop-displaying-the-main-frame-in-detection-py-in-hailo-rpi5-examples/3020
+    #
+    # Genau dieser Sink ist zugleich der Einhängepunkt für den Mitschnitt
+    # (RECORDING_ENABLED, siehe recording.py): der Videostrom, der hier sonst
+    # verworfen wird, geht dann stattdessen in den Aufnahme-Bin. Die
+    # Zählpipeline selbst bleibt dadurch unverändert — sie bekommt weder ein
+    # zusätzliches Element in ihren Verarbeitungspfad noch eine zweite
+    # Kameraöffnung, die ohnehin nicht möglich wäre.
     hailo_display = app.pipeline.get_by_name("hailo_display")
     if hailo_display is not None:
-        fakesink = Gst.ElementFactory.make("fakesink", "hailo_display_fakesink")
-        fakesink.set_property("sync", False)
-        hailo_display.set_property("video-sink", fakesink)
+        recording_sink = None
+        if RECORDING_ENABLED:
+            recording_sink = _build_recording_sink()
+        if recording_sink is not None:
+            hailo_display.set_property("video-sink", recording_sink)
+        else:
+            fakesink = Gst.ElementFactory.make("fakesink", "hailo_display_fakesink")
+            fakesink.set_property("sync", False)
+            hailo_display.set_property("video-sink", fakesink)
     else:
         print("WARNUNG: Display-Element 'hailo_display' nicht gefunden — "
               "es öffnen sich vermutlich weiterhin zwei Fenster.")
+        if RECORDING_ENABLED:
+            print("WARNUNG: Ohne dieses Element kann auch der Mitschnitt nicht "
+                  "eingehängt werden — es wird KEIN Video aufgezeichnet.")
 
     # Optionales Zeitlimit (z. B. für --input usb/rpi ohne natürliches
     # Video-Ende). In config.py über RUN_DURATION_SECONDS einstellbar;

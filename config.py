@@ -153,6 +153,33 @@ MAX_FLUSHED_OBJECTS = 500
 _env_duration = os.environ.get("RUN_DURATION_SECONDS")
 RUN_DURATION_SECONDS = int(_env_duration) if _env_duration else None
 
+# --- Mitschnitt für Benchmark-/Laborläufe (recording.py) -------------------
+# Schreibt parallel zum Zähllauf ein Video mit eingebrannter Uhrzeit mit, damit
+# die Zählergebnisse hinterher am Bildmaterial überprüfbar sind. Alles per
+# Umgebungsvariable schaltbar, damit ein normaler Feldlauf davon unberührt
+# bleibt (Standard: aus).
+_env_recording = os.environ.get("RECORDING_ENABLED")
+RECORDING_ENABLED = (_env_recording.lower() == "true") if _env_recording is not None else False
+
+# Zielordner. "auto" = eingehängten USB-Datenträger suchen und dort schreiben;
+# nur wenn keiner gefunden wird, wird auf ./aufnahmen (SD-Karte) ausgewichen.
+# Alternativ ein fester Pfad, z. B. "/media/fritz/STICK/aufnahmen".
+RECORDING_DIR = os.environ.get("RECORDING_DIR", "auto")
+
+# Bitrate in kbit/s. 2000 reicht für 720p, um Übertritte sicher nachzuvollziehen
+# (~0,9 GB pro Stunde).
+RECORDING_BITRATE_KBPS = int(os.environ.get("RECORDING_BITRATE_KBPS", "2000"))
+
+# Länge eines Segments in Sekunden. Kürzere Segmente = weniger Verlust bei
+# einem Absturz und früher hochladbar.
+RECORDING_SEGMENT_SECONDS = int(os.environ.get("RECORDING_SEGMENT_SECONDS", "600"))
+
+# Bilder pro Sekunde im Mitschnitt. Der Pi 5 encodiert in Software (kein
+# Hardware-H.264 mehr), deshalb bewusst niedrig — 15 fps genügen, um
+# Übertritte zu beurteilen.
+RECORDING_FPS = int(os.environ.get("RECORDING_FPS", "15"))
+
+
 # Ob die Zähllogik aktiv ist. False = nur Tracking wie bisher, keine Zählung.
 COUNTING_ENABLED = True
 

@@ -153,6 +153,48 @@ class MainApp:
             is_active = (n == name)
             btn.configure(fg_color=("gray75", "gray25") if is_active else "transparent")
 
+        # Seite nach dem Einblenden einmal komplett neu zeichnen lassen.
+        #
+        # Hintergrund: alle fünf Seiten werden im __init__ gebaut, aber nur die
+        # erste wird sofort gepackt. customtkinter zeichnet seine Widgets auf
+        # interne Canvas-Elemente, und diese Zeichenoperation läuft bei einem
+        # noch nicht eingeblendeten (unmapped) Widget gegen eine Größe von 1x1.
+        # Ergebnis: Flächen bleiben schwarz oder werden nur teilweise gefüllt
+        # (abgeschnittene Kopfleiste bei "Optionales Zeitlimit"), bis ein
+        # <Enter>- oder <Configure>-Ereignis — also z. B. Mauszeiger drüber —
+        # ein Neuzeichnen auslöst. Deshalb hier explizit anstoßen, sobald die
+        # Seite tatsächlich sichtbar ist.
+        self.root.after(20, lambda: self._redraw_tree(self.page_frames[name]))
+
+    def _redraw_tree(self, widget):
+        """Ruft rekursiv das interne Neuzeichnen jedes customtkinter-Widgets auf.
+
+        Vor dem ersten Zeichnen müssen die Geometrie-Berechnungen abgeschlossen
+        sein, sonst kennt das Widget seine endgültige Größe noch nicht und der
+        Fehler wiederholt sich nur mit anderen Maßen.
+        """
+        try:
+            self.root.update_idletasks()
+        except Exception:
+            return
+        self._redraw_recursive(widget)
+
+    def _redraw_recursive(self, widget):
+        draw = getattr(widget, "_draw", None)
+        if callable(draw):
+            try:
+                draw(no_color_updates=False)
+            except Exception:
+                # Einzelne Widgets dürfen scheitern, ohne den Rest der Seite
+                # ungezeichnet zu lassen.
+                pass
+        try:
+            children = widget.winfo_children()
+        except Exception:
+            return
+        for child in children:
+            self._redraw_recursive(child)
+
     # -----------------------------------------------------------------
     # Seite 1: Input
     # -----------------------------------------------------------------
@@ -356,6 +398,10 @@ class MainApp:
             self.lora_interval_entry.configure(state=state)
             self.lora_sensor_entry.configure(state=state)
         self._refresh_lora_hint()
+        # Die Hinweisbox ändert beim Umschalten ihre Höhe; alles darunter rutscht
+        # und muss neu gezeichnet werden (sonst bleiben Restflächen schwarz).
+        if hasattr(self, "page_frames"):
+            self.root.after(20, lambda: self._redraw_tree(self.page_frames["3. Start"]))
 
     def _load_roi_config(self):
         """Liest roi_config.json (für den Struktur-Hint). Fällt bei Fehler auf
