@@ -301,6 +301,11 @@ class MainApp:
             messagebox.showwarning("Fehlt noch", "Bitte zuerst auf Seite 1 einen Input auswählen.", parent=self.root)
             return
 
+        # Hinweis auf die geladene Konfiguration loeschen: das Laden eines
+        # neuen Frames setzt die Geometrie zurueck, die Meldung "Geladen aus
+        # roi_config.json" waere danach schlicht falsch.
+        self.config_loaded_var.set("")
+
         if self.input_value in ("usb", "rpi"):
             self.config_status_var.set(
                 "Nehme Referenzbild über die Pipeline auf, bitte warten "
