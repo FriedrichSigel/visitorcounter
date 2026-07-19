@@ -146,6 +146,62 @@ def estimate_hours(target_dir, bitrate_kbps):
     return usable / gb_per_hour
 
 
+# Encoder in Reihenfolge der Präferenz: (Element, passender Parser).
+# Der Pi 5 hat KEINEN Hardware-H.264-Encoder mehr, es kommt also in jedem Fall
+# ein Software-Encoder zum Einsatz — es geht nur darum, welcher installiert ist.
+ENCODER_CANDIDATES = [
+    ("x264enc", "h264parse"),        # gstreamer1.0-plugins-ugly — beste Qualität/Tempo
+    ("openh264enc", "h264parse"),    # gstreamer1.0-plugins-bad — brauchbare Alternative
+    ("avenc_mpeg4", "mpeg4videoparse"),  # gstreamer1.0-libav — Notnagel, größere Dateien
+]
+
+ENCODER_INSTALL_HINT = (
+    "Nachinstallieren mit:\n"
+    "  sudo apt update\n"
+    "  sudo apt install gstreamer1.0-plugins-ugly gstreamer1.0-plugins-bad \\\n"
+    "                   gstreamer1.0-plugins-good gstreamer1.0-libav\n"
+    "Danach prüfen mit: gst-inspect-1.0 x264enc"
+)
+
+
+def pick_encoder():
+    """
+    Sucht den ersten verfügbaren Encoder samt passendem Parser.
+
+    Rückgabe: (encoder_factory, parser_factory) oder None.
+    """
+    for encoder, parser in ENCODER_CANDIDATES:
+        if (Gst.ElementFactory.find(encoder) is not None
+                and Gst.ElementFactory.find(parser) is not None):
+            if encoder != ENCODER_CANDIDATES[0][0]:
+                print(f"Hinweis: x264enc nicht verfügbar, verwende stattdessen {encoder}.")
+            return encoder, parser
+    return None
+
+
+def _configure_encoder(enc, factory, bitrate_kbps, fps):
+    """Setzt die Encoder-Eigenschaften. Achtung: die Bitrate-Einheit ist je nach
+    Encoder kbit/s (x264enc) oder bit/s (openh264enc, avenc_*)."""
+    if factory == "x264enc":
+        enc.set_property("bitrate", bitrate_kbps)      # kbit/s
+        enc.set_property("speed-preset", 1)            # 1 = ultrafast
+        enc.set_property("tune", 4)                    # 4 = zerolatency
+        enc.set_property("key-int-max", fps * 2)
+    elif factory == "openh264enc":
+        enc.set_property("bitrate", bitrate_kbps * 1000)   # bit/s
+        enc.set_property("gop-size", fps * 2)
+        try:
+            enc.set_property("complexity", 0)          # 0 = low, spart CPU
+        except TypeError:
+            pass
+    else:  # avenc_mpeg4 und andere libav-Encoder
+        enc.set_property("bitrate", bitrate_kbps * 1000)   # bit/s
+        try:
+            enc.set_property("gop-size", fps * 2)
+        except TypeError:
+            pass
+
+
 def build_recording_bin(target_dir, bitrate_kbps=2000, segment_seconds=600,
                         fps=15, name_prefix="lauf"):
     """
@@ -160,6 +216,13 @@ def build_recording_bin(target_dir, bitrate_kbps=2000, segment_seconds=600,
 
     bin_ = Gst.Bin.new("recording_bin")
 
+    encoder_choice = pick_encoder()
+    if encoder_choice is None:
+        print("FEHLER: Kein nutzbarer Video-Encoder gefunden — Aufnahme deaktiviert.")
+        print(ENCODER_INSTALL_HINT)
+        return None
+    encoder_factory, parser_factory = encoder_choice
+
     elements = {}
     spec = [
         ("queue", "rec_queue"),
@@ -167,17 +230,16 @@ def build_recording_bin(target_dir, bitrate_kbps=2000, segment_seconds=600,
         ("videoconvert", "rec_convert_in"),
         ("clockoverlay", "rec_clock"),
         ("videoconvert", "rec_convert_out"),
-        ("x264enc", "rec_encoder"),
-        ("h264parse", "rec_parse"),
+        (encoder_factory, "rec_encoder"),
+        (parser_factory, "rec_parse"),
         ("splitmuxsink", "rec_sink"),
     ]
     for factory, element_name in spec:
         element = Gst.ElementFactory.make(factory, element_name)
         if element is None:
             print(f"FEHLER: GStreamer-Element '{factory}' nicht verfügbar — "
-                  f"Aufnahme deaktiviert. Fehlendes Paket? "
-                  f"(x264enc steckt in gstreamer1.0-plugins-ugly, "
-                  f"clockoverlay/splitmuxsink in gstreamer1.0-plugins-good)")
+                  f"Aufnahme deaktiviert.")
+            print(ENCODER_INSTALL_HINT)
             return None
         elements[element_name] = element
         bin_.add(element)
@@ -202,13 +264,10 @@ def build_recording_bin(target_dir, bitrate_kbps=2000, segment_seconds=600,
     clock.set_property("shaded-background", True)
     clock.set_property("font-desc", "Monospace 14")
 
-    # Software-Encoder: schnellstes Preset, damit möglichst wenig CPU neben der
-    # Hailo-Inferenz verbraucht wird.
-    enc = elements["rec_encoder"]
-    enc.set_property("bitrate", bitrate_kbps)
-    enc.set_property("speed-preset", 1)     # 1 = ultrafast
-    enc.set_property("tune", 4)             # 4 = zerolatency
-    enc.set_property("key-int-max", fps * 2)
+    # Software-Encoder konfigurieren. Die Encoder unterscheiden sich in ihren
+    # Eigenschaftsnamen UND in der Einheit der Bitrate — deshalb pro Encoder
+    # getrennt, statt blind dieselben Properties zu setzen.
+    _configure_encoder(elements["rec_encoder"], encoder_factory, bitrate_kbps, fps)
 
     sink = elements["rec_sink"]
     sink.set_property("location", location)
@@ -241,5 +300,6 @@ def build_recording_bin(target_dir, bitrate_kbps=2000, segment_seconds=600,
     bin_.add_pad(ghost)
 
     print(f"Mitschnitt aktiv: {location}")
-    print(f"  {fps} fps, {bitrate_kbps} kbit/s, Segmente à {segment_seconds} s")
+    print(f"  {fps} fps, {bitrate_kbps} kbit/s, Segmente à {segment_seconds} s, "
+          f"Encoder: {encoder_factory}")
     return bin_
