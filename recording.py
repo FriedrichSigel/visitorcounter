@@ -226,8 +226,9 @@ def build_recording_bin(target_dir, bitrate_kbps=2000, segment_seconds=600,
     elements = {}
     spec = [
         ("queue", "rec_queue"),
-        ("videorate", "rec_videorate"),
         ("videoconvert", "rec_convert_in"),
+        ("videorate", "rec_videorate"),
+        ("capsfilter", "rec_capsfilter"),
         ("clockoverlay", "rec_clock"),
         ("videoconvert", "rec_convert_out"),
         (encoder_factory, "rec_encoder"),
@@ -247,13 +248,25 @@ def build_recording_bin(target_dir, bitrate_kbps=2000, segment_seconds=600,
     # Queue: Rückstau darf die Zählpipeline NICHT bremsen — lieber Frames im
     # Mitschnitt verlieren.
     q = elements["rec_queue"]
-    q.set_property("max-size-buffers", 60)
+    # Bewusst KLEIN halten: die Queue soll früh anfangen zu verwerfen, statt
+    # sich langsam zu füllen und dabei den tee — und damit die gesamte
+    # Zählpipeline — zu blockieren. Genau das war die Ursache dafür, dass die
+    # Zählung nach wenigen Frames stehenblieb.
+    q.set_property("max-size-buffers", 5)
     q.set_property("max-size-time", 0)
     q.set_property("max-size-bytes", 0)
     q.set_property("leaky", 2)          # 2 = downstream (älteste verwerfen)
+    q.set_property("silent", True)
 
     # Framerate begrenzen (CPU-Entlastung, siehe Modulkommentar).
-    elements["rec_videorate"].set_property("drop-only", True)
+    # drop-only: nie Frames duplizieren — videorate soll ausschliesslich
+    # weglassen, sonst erzeugt es bei stockender Quelle künstliche Last.
+    # skip-to-first: nicht auf einen "passenden" ersten Frame warten.
+    vr = elements["rec_videorate"]
+    vr.set_property("drop-only", True)
+    vr.set_property("skip-to-first", True)
+    elements["rec_capsfilter"].set_property(
+        "caps", Gst.Caps.from_string(f"video/x-raw,framerate={fps}/1"))
 
     # Uhrzeit ins Bild brennen — Ortszeit, damit sie direkt zu den Zeitstempeln
     # in zaehlung.csv passt.
@@ -277,17 +290,8 @@ def build_recording_bin(target_dir, bitrate_kbps=2000, segment_seconds=600,
 
     # Verkettung: die Framerate-Begrenzung braucht ein Caps-Filter, sonst
     # bleibt videorate wirkungslos.
-    caps = Gst.Caps.from_string(f"video/x-raw,framerate={fps}/1")
-    if not elements["rec_queue"].link(elements["rec_videorate"]):
-        print("FEHLER: Aufnahme-Bin — queue -> videorate fehlgeschlagen.")
-        return None
-    if not elements["rec_videorate"].link(elements["rec_convert_in"]):
-        print("FEHLER: Aufnahme-Bin — videorate -> videoconvert fehlgeschlagen.")
-        return None
-    if not elements["rec_convert_in"].link_filtered(elements["rec_clock"], caps):
-        print("FEHLER: Aufnahme-Bin — Caps-Filter (Framerate) fehlgeschlagen.")
-        return None
-    chain = ["rec_clock", "rec_convert_out", "rec_encoder", "rec_parse", "rec_sink"]
+    chain = ["rec_queue", "rec_convert_in", "rec_videorate", "rec_capsfilter",
+             "rec_clock", "rec_convert_out", "rec_encoder", "rec_parse", "rec_sink"]
     for first, second in zip(chain, chain[1:]):
         if not elements[first].link(elements[second]):
             print(f"FEHLER: Aufnahme-Bin — {first} -> {second} fehlgeschlagen.")

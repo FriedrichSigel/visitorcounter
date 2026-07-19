@@ -120,10 +120,27 @@ def _attach_recording_tee(pipeline, hailo_display, recording_bin):
         print("WARNUNG: Konnte tee nicht einhängen — Mitschnitt deaktiviert.")
         return False
 
-    # Zweig 1: weiter wie bisher zur Anzeige (bzw. zum fakesink).
+    # Zweig 1: weiter wie bisher zur Anzeige (bzw. zum fakesink) — aber MIT
+    # eigener queue. Ein tee hat keinen eigenen Thread und schiebt seine Puffer
+    # nacheinander in alle Zweige; ohne queue bremst jeder Zweig alle anderen.
+    # Genau daran blieb die Zählung nach wenigen Frames stehen.
+    display_queue = Gst.ElementFactory.make("queue", "recording_display_queue")
+    if display_queue is None:
+        print("WARNUNG: queue-Element nicht verfügbar — Mitschnitt nicht möglich.")
+        return False
+    display_queue.set_property("max-size-buffers", 5)
+    display_queue.set_property("max-size-time", 0)
+    display_queue.set_property("max-size-bytes", 0)
+    display_queue.set_property("leaky", 2)      # downstream
+    display_queue.set_property("silent", True)
+    pipeline.add(display_queue)
+
     tee_src_display = tee.request_pad_simple("src_%u")
-    if tee_src_display.link(sink_pad) != Gst.PadLinkReturn.OK:
-        print("WARNUNG: tee -> hailo_display fehlgeschlagen — Mitschnitt deaktiviert.")
+    if tee_src_display.link(display_queue.get_static_pad("sink")) != Gst.PadLinkReturn.OK:
+        print("WARNUNG: tee -> Anzeige-queue fehlgeschlagen — Mitschnitt deaktiviert.")
+        return False
+    if display_queue.get_static_pad("src").link(sink_pad) != Gst.PadLinkReturn.OK:
+        print("WARNUNG: Anzeige-queue -> hailo_display fehlgeschlagen — Mitschnitt deaktiviert.")
         return False
 
     # Zweig 2: Aufnahme.
@@ -132,6 +149,12 @@ def _attach_recording_tee(pipeline, hailo_display, recording_bin):
     if tee_src_record.link(record_pad) != Gst.PadLinkReturn.OK:
         print("WARNUNG: tee -> Aufnahme fehlgeschlagen — Mitschnitt deaktiviert.")
         return False
+
+    # Zustände an die Pipeline angleichen. Im NULL-Zustand ist das ein No-op;
+    # sollte die Pipeline schon weiter sein, verhindert es einen Zweig, der
+    # nie anläuft und dadurch den tee blockiert.
+    for element in (tee, display_queue, recording_bin):
+        element.sync_state_with_parent()
 
     print("Mitschnitt über tee in die Pipeline eingehängt.")
     return True
