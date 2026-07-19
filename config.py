@@ -154,10 +154,16 @@ _env_duration = os.environ.get("RUN_DURATION_SECONDS")
 RUN_DURATION_SECONDS = int(_env_duration) if _env_duration else None
 
 # --- Mitschnitt für Benchmark-/Laborläufe (recording.py) -------------------
-# Schreibt parallel zum Zähllauf ein Video mit eingebrannter Uhrzeit mit, damit
-# die Zählergebnisse hinterher am Bildmaterial überprüfbar sind. Alles per
-# Umgebungsvariable schaltbar, damit ein normaler Feldlauf davon unberührt
-# bleibt (Standard: aus).
+#
+# WICHTIG — Abgrenzung zum Normalbetrieb:
+# Der Sensor ist nach Privacy by Design gebaut: im Zählbetrieb werden Frames
+# verarbeitet und VERWORFEN, gespeichert werden nur aggregierte Zählwerte.
+# Diese Mitschnittfunktion ist die einzige Ausnahme. Sie dient ausschliesslich
+# dazu, die Zählgenauigkeit unter Laborbedingungen gegen echtes Bildmaterial
+# zu prüfen (Ground Truth für die Evaluation). Sie ist deshalb standardmässig
+# AUS, muss bewusst eingeschaltet werden und darf im Feldeinsatz NICHT
+# verwendet werden.
+# Regeln: docs/entwicklung/Mitschnitt_Benchmark_und_Datenschutz.md
 _env_recording = os.environ.get("RECORDING_ENABLED")
 RECORDING_ENABLED = (_env_recording.lower() == "true") if _env_recording is not None else False
 

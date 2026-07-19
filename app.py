@@ -338,6 +338,15 @@ class MainApp:
             variable=self.recording_enabled_var, command=self._on_recording_toggle,
             font=ctk.CTkFont(weight="bold")).pack(anchor="w", padx=12, pady=(10, 6))
 
+        ctk.CTkLabel(
+            rec_frame,
+            text="Nur für Benchmark-/Laborläufe. Im Normalbetrieb werden keine "
+                 "Bilddaten gespeichert (Privacy by Design) — diese Option "
+                 "deshalb im Feldeinsatz ausgeschaltet lassen. Aufnahmen nach "
+                 "der Auswertung löschen.",
+            text_color="#E0A030", wraplength=560, justify="left").pack(
+            anchor="w", padx=12, pady=(0, 8))
+
         rec_row = ctk.CTkFrame(rec_frame, fg_color="transparent")
         rec_row.pack(anchor="w", fill="x", padx=12)
         ctk.CTkLabel(rec_row, text="Ziel:").pack(side="left")
