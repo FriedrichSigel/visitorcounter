@@ -93,6 +93,23 @@ ausgeschlossen): `ergebniss.csv` (Track-Zwischenspeicher mit `avg_confidence`),
 `_finalize.png`. Beim Start werden Artefakte des Vorlaufs nach
 `vorherige_laeufe/<Zeitstempel>/` verschoben.
 
+### Bilddaten — Normalbetrieb vs. Benchmarklauf
+
+**Im Normalbetrieb speichert der Sensor keine Bilder.** Frames werden
+verarbeitet und verworfen, gespeichert werden nur die aggregierten Zählwerte in
+`zaehlung.csv` bzw. das anonyme Bewegungsbild. Das ist die Grundlage des
+Privacy-by-Design-Ansatzes (DSGVO Art. 25).
+
+Für die **Messung der Zählgenauigkeit** gibt es zusätzlich eine
+Mitschnittfunktion (`recording.py`, Tab 3 der App, Checkbox ganz oben). Sie
+zeichnet parallel zum Zähllauf Video mit eingebrannter Uhrzeit auf, damit sich
+die gezählten Ereignisse gegen das Bildmaterial prüfen lassen.
+
+> Diese Funktion ist **standardmässig aus**, wird bei jedem App-Start
+> zurückgesetzt und ist **ausschliesslich für Laborläufe** vorgesehen — nicht
+> für den Feldeinsatz. Regeln zum Umgang mit dem Material:
+> [`docs/entwicklung/Mitschnitt_Benchmark_und_Datenschutz.md`](docs/entwicklung/Mitschnitt_Benchmark_und_Datenschutz.md)
+
 ## Konfiguration
 
 `roi_config.json` (Zählgeometrie) ist geräte-/standortspezifisch und wird über
@@ -113,6 +130,7 @@ Kurzbeschreibung jeder Datei: **[`docs/README.md`](docs/README.md)**.
 | `docs/projekt/` | Einstieg (`HANDOFF.md`) und offene Punkte (`ToDo.md`) — der laufende Stand |
 | `docs/abschlussarbeit/` | Gliederung, Statusbericht, Zeitplan, Architekturentwurf, Abbildungen |
 | `docs/einrichtung/` | Gerät aufsetzen, LA66 einrichten, eigenes Git-Repository |
+| `docs/entwicklung/` | Änderungshistorie, Analysen — u. a. **Mitschnitt: Benchmark vs. Normalbetrieb** |
 | `docs/lora/` | Verbindliche Nachrichtenformat-Spezifikation, Integrations-Changelog, Recherche |
 | `docs/entwicklung/` | Änderungshistorie, gelöste Probleme, Analysen |
 

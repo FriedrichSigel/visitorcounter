@@ -1,6 +1,6 @@
 # HANDOFF — Personenzähl-Prototyp (Stadtwerke Potsdam)
 
-**Zuletzt aktualisiert: 18.07.2026 (Doku-/Teststruktur neu geordnet; Befund: IN-Feld nicht gesetzt)**
+**Zuletzt aktualisiert: 19.07.2026 (Mitschnitt für Benchmarkläufe ergänzt; Befund: IN-Feld nicht gesetzt)**
 *(Dieses Datum bei jeder inhaltlichen Änderung mit hochziehen — siehe Hinweis ganz unten.)*
 
 Diese Datei ist der schnelle Einstieg ins Projekt: Was ist das, wo liegt was,
@@ -13,6 +13,21 @@ was funktioniert gerade, was ist als Nächstes dran. Details stehen in
 beruht (Hailo-Community, GitHub-Docs o. ä.), wird die Quelle direkt bei der
 Lösung mit notiert — auch bei Zwischenständen, die noch nicht fertig
 funktionieren. Spart beim nächsten Anlauf die erneute Suche.
+
+## 0. Grundregel zum Bildmaterial
+
+**Im Normalbetrieb speichert der Sensor keine Bilddaten.** Frames werden auf
+dem Gerät verarbeitet und verworfen; nach aussen gehen ausschliesslich
+aggregierte Zählwerte. Das ist kein Nebenaspekt, sondern das
+Privacy-by-Design-Argument, auf dem die Architekturentscheidung (Edge statt
+Cloud) in der Arbeit beruht.
+
+Seit dem 19.07. gibt es eine **Mitschnittfunktion** (`recording.py`), die
+parallel zum Zähllauf Video aufzeichnet. Sie ist **ausschliesslich für
+Benchmarkläufe** gedacht — also für die Frage, wie genau der Sensor zählt —
+und standardmässig **abgeschaltet**. Sie darf im Feldeinsatz nicht verwendet
+werden. Regeln, Konfiguration und die Formulierung für die Arbeit:
+[`../entwicklung/Mitschnitt_Benchmark_und_Datenschutz.md`](../entwicklung/Mitschnitt_Benchmark_und_Datenschutz.md).
 
 ## 1. Worum geht's
 

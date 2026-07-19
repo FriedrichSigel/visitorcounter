@@ -1,9 +1,21 @@
 """
 Mitschnitt-Zweig für Benchmark-/Laborläufe.
 
-Zweck: Während eines normalen Zähllaufs parallel ein Video mitschreiben, um die
-gezählten Ereignisse hinterher gegen das Bildmaterial prüfen zu können
-(Ground Truth für die Genauigkeitsuntersuchung).
+NUR FÜR BENCHMARKLÄUFE — NICHT FÜR DEN NORMALBETRIEB.
+
+    Der Sensor ist nach Privacy by Design gebaut: im Zählbetrieb werden Frames
+    verarbeitet und verworfen, gespeichert werden ausschliesslich aggregierte
+    Zählwerte. Dieses Modul ist die einzige Ausnahme davon und dient allein der
+    Erhebung einer Referenz (Ground Truth), um die Zählgenauigkeit unter
+    Laborbedingungen zu messen.
+
+    Entsprechend: standardmässig abgeschaltet (RECORDING_ENABLED), bei jedem
+    App-Start zurückgesetzt, im Feldeinsatz nicht zu verwenden, Material nach
+    der Auswertung löschen.
+    Regeln: docs/entwicklung/Mitschnitt_Benchmark_und_Datenschutz.md
+
+Zweck: Während eines Zähllaufs parallel ein Video mitschreiben, um die
+gezählten Ereignisse hinterher gegen das Bildmaterial prüfen zu können.
 
 Warum kein zweiter ffmpeg-Prozess:
     Die Kamera kann nur von EINEM Prozess geöffnet werden. Ein paralleles

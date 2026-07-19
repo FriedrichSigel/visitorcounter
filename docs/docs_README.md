@@ -1,6 +1,6 @@
 # Dokumentation — Übersicht
 
-Stand: 18.07.2026
+Stand: 19.07.2026
 
 Alle Dokumente zum Besucherzählsensor, thematisch sortiert. Zusammengeführt aus
 den früheren Ablageorten (`basic_pipelines/Commando/`, `basic_pipelines/core/`,
@@ -10,6 +10,12 @@ den früheren Ablageorten (`basic_pipelines/Commando/`, `basic_pipelines/core/`,
 > gesetzt — der LoRa-Versand überträgt dadurch Nullwerte. Details und Behebung:
 > [`projekt/ToDo.md`](projekt/ToDo.md), Abschnitt „Sofort erledigen".
 
+> **Video-Mitschnitt: nur für Benchmarkläufe.** Der Sensor speichert im
+> Normalbetrieb keine Bilddaten (Privacy by Design). Die Mitschnittfunktion ist
+> standardmäßig AUS und dient ausschliesslich der Genauigkeitsmessung unter
+> Laborbedingungen. Regeln:
+> [`entwicklung/Mitschnitt_Benchmark_und_Datenschutz.md`](entwicklung/Mitschnitt_Benchmark_und_Datenschutz.md).
+
 ## Wo fange ich an?
 
 | Ich will … | Datei |
@@ -18,6 +24,7 @@ den früheren Ablageorten (`basic_pipelines/Commando/`, `basic_pipelines/core/`,
 | wissen, was als Nächstes zu tun ist | [`projekt/ToDo.md`](projekt/ToDo.md) |
 | an der Abschlussarbeit schreiben | [`abschlussarbeit/Gliederung_DSRM_v2.md`](abschlussarbeit/Gliederung_DSRM_v2.md) |
 | ein Gerät neu aufsetzen | [`einrichtung/GERAETE_EINRICHTUNG.md`](einrichtung/GERAETE_EINRICHTUNG.md) |
+| wissen, wann Video aufgezeichnet werden darf | [`entwicklung/Mitschnitt_Benchmark_und_Datenschutz.md`](entwicklung/Mitschnitt_Benchmark_und_Datenschutz.md) |
 | das LoRa-Nachrichtenformat nachschlagen | [`lora/LoRa_Nachrichtenformat_Spezifikation.md`](lora/LoRa_Nachrichtenformat_Spezifikation.md) |
 
 ## `projekt/` — laufender Stand

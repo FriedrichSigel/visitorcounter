@@ -1,9 +1,17 @@
 # ToDo – Personenzähl-Prototyp (Stadtwerke Potsdam)
 
-Stand: 18.07.2026 — Bezug: `core/` (app.py, roi_config_app.py, ui_utils.py, config.py, tracking.py, counting.py, visualization.py, logging_utils.py, csv_utils.py, core.py, auto_config.py, auto_config_clustering.py, lora_message.py, lora_send_loop.py) sowie `tests/` (Kamera- und LoRa-Hardware-Tests)
+Stand: 19.07.2026 — Bezug: `core/` (app.py, roi_config_app.py, ui_utils.py, config.py, tracking.py, counting.py, visualization.py, logging_utils.py, csv_utils.py, core.py, auto_config.py, auto_config_clustering.py, lora_message.py, lora_send_loop.py) sowie `tests/` (Kamera- und LoRa-Hardware-Tests)
 
 **Praxis ab sofort:** Lösungen, die auf recherchierten externen Quellen beruhen,
 werden mit Quellenlink notiert — auch wenn sie noch nicht fertig funktionieren.
+
+## 🔒 Dauerregel — Bildmaterial
+
+**Normalbetrieb: keine Bildspeicherung.** Der Mitschnitt (`recording.py`,
+Tab 3, Checkbox ganz oben) ist ein reines Benchmark-Werkzeug und
+standardmässig aus. Vor jedem Feldeinsatz prüfen, dass er aus ist; nach jedem
+Laborlauf das Material nach der Auswertung löschen. Begründung und Regeln:
+[`../entwicklung/Mitschnitt_Benchmark_und_Datenschutz.md`](../entwicklung/Mitschnitt_Benchmark_und_Datenschutz.md).
 
 ## 🚨 Sofort erledigen — wirkt sich JETZT auf die Messung aus
 
