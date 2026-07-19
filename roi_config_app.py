@@ -92,7 +92,65 @@ BLANK_HINT_COLOR = "#909090"
 
 REGION_COLORS = ["#4CAF50", "#29B6F6", "#FFA726", "#EC407A", "#EEEEEE", "#EF5350"]
 
+# Darstellung der Einzugsgebiete ("Punkte ohne Treffer der naechsten Flaeche
+# zuordnen"). Jeder Bildbereich wird in der Farbe der Flaeche eingefaerbt, der
+# er zugeschlagen wuerde — aber deutlich heller und durchscheinend, damit die
+# eigentliche Flaeche klar davon unterscheidbar bleibt.
+CATCHMENT_ALPHA = 0.30      # Deckkraft der Einfaerbung (0 = unsichtbar, 1 = deckend)
+CATCHMENT_LIGHTEN = 0.55    # Anteil Weiss, der der Flaechenfarbe beigemischt wird
+CATCHMENT_GRID = 8          # Rasterweite in Pixeln — groeber = schneller
+
 AUTO_MODES = ("auto_cluster", "auto_border")
+
+
+def _point_to_segment_distance(px, py, ax, ay, bx, by):
+    """Kuerzester Abstand des Punktes (px,py) zur Strecke (ax,ay)-(bx,by)."""
+    dx, dy = bx - ax, by - ay
+    if dx == 0 and dy == 0:
+        return ((px - ax) ** 2 + (py - ay) ** 2) ** 0.5
+    t = ((px - ax) * dx + (py - ay) * dy) / (dx * dx + dy * dy)
+    t = max(0.0, min(1.0, t))
+    cx, cy = ax + t * dx, ay + t * dy
+    return ((px - cx) ** 2 + (py - cy) ** 2) ** 0.5
+
+
+def _point_in_polygon(px, py, points):
+    """Ray-Casting: liegt der Punkt innerhalb des Polygons?"""
+    inside = False
+    n = len(points)
+    for i in range(n):
+        ax, ay = points[i]
+        bx, by = points[(i + 1) % n]
+        if (ay > py) != (by > py):
+            x_cross = ax + (py - ay) * (bx - ax) / (by - ay)
+            if px < x_cross:
+                inside = not inside
+    return inside
+
+
+def _distance_to_polygon(px, py, points):
+    """Abstand zum Polygon; 0, wenn der Punkt darin liegt."""
+    if len(points) >= 3 and _point_in_polygon(px, py, points):
+        return 0.0
+    best = float("inf")
+    n = len(points)
+    for i in range(n):
+        ax, ay = points[i]
+        bx, by = points[(i + 1) % n]
+        d = _point_to_segment_distance(px, py, ax, ay, bx, by)
+        if d < best:
+            best = d
+    return best
+
+
+def _lighten(hex_color, amount):
+    """Mischt Weiss bei: amount=0 laesst die Farbe, amount=1 ergibt Weiss."""
+    hex_color = hex_color.lstrip("#")
+    r, g, b = (int(hex_color[i:i + 2], 16) for i in (0, 2, 4))
+    r = int(r + (255 - r) * amount)
+    g = int(g + (255 - g) * amount)
+    b = int(b + (255 - b) * amount)
+    return (r, g, b)
 
 
 def _capture_snapshot_via_core(input_value, timeout=SNAPSHOT_TIMEOUT_SECONDS):
@@ -232,10 +290,15 @@ class RoiConfigApp:
         self._setup_blank_workspace()
 
         # --- Rechte Seite: Bedienelemente in eigenem Container ---
-        side = ctk.CTkFrame(master, fg_color="transparent", width=SIDE_PANEL_WIDTH)
+        side = ctk.CTkFrame(master, fg_color="transparent")
         side.grid(row=0, column=1, sticky="nw", pady=10, padx=(0, 10))
-        side.grid_propagate(False)
-        side.grid_columnconfigure(0, weight=1, minsize=SIDE_PANEL_WIDTH)
+        # Breite ueber minsize der einzigen Spalte festlegen — NICHT ueber
+        # grid_propagate(False) mit fester Hoehe. Der frueher hier verwendete
+        # Weg zwang mich, die Hoehe von Hand zu berechnen; diese Rechnung lief
+        # beim Aufbau gegen ein noch nicht eingeblendetes Widget und lieferte
+        # deshalb je nach Zeitpunkt andere (falsche) Werte. Jetzt bestimmt Tk
+        # die Hoehe selbst, die Breite ist trotzdem gedeckelt.
+        side.grid_columnconfigure(0, weight=0, minsize=SIDE_PANEL_WIDTH)
         self.side = side
 
         row = 0
@@ -335,7 +398,7 @@ class RoiConfigApp:
         self.snap_var = tk.BooleanVar(value=False)
         self.snap_check = ctk.CTkCheckBox(
             side, text="Punkte ohne Treffer der nächsten\nFläche zuordnen (statt 'außerhalb')",
-            variable=self.snap_var,
+            variable=self.snap_var, command=self._on_snap_toggle,
         )
         self.snap_check.grid(row=row, column=0, sticky="w", padx=10, pady=(5, 0))
         self.snap_check.grid_remove()
@@ -372,29 +435,57 @@ class RoiConfigApp:
                      text_color="gray70", justify="left").grid(
             row=row, column=0, sticky="w", padx=10, pady=10)
 
-        # Höhe der Bedienspalte einmal nach dem Aufbau an den tatsächlichen
-        # Bedarf anpassen (grid_propagate ist aus, damit die Breite fix bleibt).
-        side.after(60, self._fit_side_height)
+        # Sicherstellen, dass alles gezeichnet wird, sobald das Widget
+        # tatsaechlich sichtbar wird (siehe _on_map).
+        master.bind("<Map>", self._on_map, add="+")
 
         self._update_status_for_mode()
 
-    def _fit_side_height(self):
-        """
-        Passt die Höhe der Bedienspalte an ihren tatsächlichen Bedarf an.
+    def _on_snap_toggle(self):
+        """Ein-/Ausschalten der Zuordnung zur naechsten Flaeche — die
+        Einzugsgebiete werden entsprechend ein- oder ausgeblendet."""
+        self._redraw_background()
+        self.redraw()
+        self._update_status_for_mode()
 
-        grid_propagate(False) hält die BREITE fest (sonst zieht ein langer
-        Hinweistext die Spalte auseinander); die HÖHE muss dann aber von Hand
-        gesetzt werden, sonst werden untere Elemente wie 'Speichern'
-        abgeschnitten. Wird nach jedem Moduswechsel erneut aufgerufen, weil
-        ein-/ausgeblendete Elemente den Bedarf ändern.
+    def _on_map(self, _event=None):
         """
+        Wird aufgerufen, sobald Tab 2 tatsaechlich sichtbar wird.
+
+        Hintergrund: customtkinter zeichnet seine Widgets auf interne
+        Canvas-Elemente. Passiert das, waehrend das Widget noch nicht
+        eingeblendet ist, rechnet es mit einer Groesse von 1x1 — daher die
+        fehlenden Beschriftungen, halb gezeichneten Buttons und verrutschten
+        Texte. Ein <Map>-Ereignis ist der frueheste Zeitpunkt, zu dem die
+        echten Masse feststehen; deshalb hier ein vollstaendiger Neuaufbau der
+        Darstellung.
+        """
+        self.side.after(30, self._force_redraw)
+
+    def _force_redraw(self):
+        """Zeichnet Bedienspalte und Canvas komplett neu."""
         try:
             self.side.update_idletasks()
-            bbox = self.side.grid_bbox()
-            needed = bbox[3] if bbox else 0
-            self.side.configure(height=max(needed + 12, 200))
         except Exception:
-            pass
+            return
+        self._redraw_ctk_tree(self.side)
+        self._redraw_background()
+        self.redraw()
+
+    def _redraw_ctk_tree(self, widget):
+        """Ruft rekursiv das interne Neuzeichnen jedes customtkinter-Widgets auf."""
+        draw = getattr(widget, "_draw", None)
+        if callable(draw):
+            try:
+                draw(no_color_updates=False)
+            except Exception:
+                pass
+        try:
+            children = widget.winfo_children()
+        except Exception:
+            return
+        for child in children:
+            self._redraw_ctk_tree(child)
 
     def load_frame(self, frame_bgr):
         self.frame_bgr = frame_bgr
@@ -472,11 +563,87 @@ class RoiConfigApp:
 
     def _redraw_background(self):
         """Hintergrund neu zeichnen — Kamerabild, falls vorhanden, sonst die
-        leere Arbeitsfläche."""
+        leere Arbeitsfläche. Anschliessend ggf. die Einzugsgebiete darueber."""
         if self.frame_bgr is not None:
             self._display_image_on_canvas(self.frame_bgr)
         else:
             self._draw_blank_canvas()
+        self._draw_catchment_overlay()
+
+    def _draw_catchment_overlay(self):
+        """
+        Faerbt das Bild danach ein, welcher Flaeche ein Punkt zugeschlagen
+        wuerde — nur aktiv, wenn "Punkte ohne Treffer der naechsten Flaeche
+        zuordnen" eingeschaltet ist.
+
+        Genau das ist ja die Frage, die man beim Setzen dieser Option hat:
+        wohin faellt eigentlich alles, was in KEINER Flaeche liegt? Ohne
+        Darstellung ist das reine Vorstellungskraft.
+
+        Die Einfaerbung nutzt die Farbe der jeweiligen Flaeche, aber stark
+        aufgehellt und durchscheinend (CATCHMENT_LIGHTEN / CATCHMENT_ALPHA),
+        damit die eigentliche Flaeche mit ihrem kraeftigen Rand klar
+        unterscheidbar bleibt.
+
+        Gerechnet wird auf einem groben Raster (CATCHMENT_GRID) und in PIL,
+        nicht mit einzelnen Canvas-Objekten — tausende Rechtecke waeren in Tk
+        zu langsam, um beim Klicken fluessig zu bleiben.
+        """
+        self._catchment_photo = None
+        if not self.snap_var.get():
+            return
+        if self.mode_var.get() != "multi_roi":
+            return
+        closed_regions = [r for r in self.regions if len(r.get("points", [])) >= 3]
+        if not closed_regions:
+            return
+
+        disp_w = int(self.orig_w * self.scale)
+        disp_h = int(self.orig_h * self.scale)
+        if disp_w <= 0 or disp_h <= 0:
+            return
+
+        step = max(2, CATCHMENT_GRID)
+        cols = max(1, disp_w // step)
+        rows = max(1, disp_h // step)
+
+        colors = [_lighten(REGION_COLORS[i % len(REGION_COLORS)], CATCHMENT_LIGHTEN)
+                  for i in range(len(self.regions))]
+        # Punkte der Flaechen liegen in Canvas-Koordinaten, also inkl. Offset.
+        polys = []
+        for region in self.regions:
+            pts = region.get("points", [])
+            if len(pts) >= 3:
+                polys.append([(x - self.offset_x, y - self.offset_y) for (x, y) in pts])
+            else:
+                polys.append(None)
+
+        # Kleines Bild in Rasteraufloesung fuellen, danach hochskalieren.
+        small = Image.new("RGBA", (cols, rows), (0, 0, 0, 0))
+        pixels = small.load()
+        alpha = int(round(CATCHMENT_ALPHA * 255))
+
+        for gy in range(rows):
+            py = gy * step + step / 2
+            for gx in range(cols):
+                px = gx * step + step / 2
+                best_index, best_dist = None, float("inf")
+                for i, poly in enumerate(polys):
+                    if poly is None:
+                        continue
+                    d = _distance_to_polygon(px, py, poly)
+                    if d < best_dist:
+                        best_index, best_dist = i, d
+                    if best_dist == 0.0:
+                        break
+                if best_index is not None:
+                    r, g, b = colors[best_index]
+                    pixels[gx, gy] = (r, g, b, alpha)
+
+        overlay = small.resize((disp_w, disp_h), Image.NEAREST)
+        self._catchment_photo = ImageTk.PhotoImage(overlay)
+        self.canvas.create_image(self.offset_x, self.offset_y, anchor="nw",
+                                 image=self._catchment_photo)
 
     def _display_image_on_canvas(self, img_bgr):
         disp_w, disp_h = int(self.orig_w * self.scale), int(self.orig_h * self.scale)
@@ -495,9 +662,9 @@ class RoiConfigApp:
     def on_mode_change(self):
         self.reset_geometry()
         mode = self.mode_var.get()
-        # Nach dem Umschalten die Spaltenhöhe neu bestimmen (verzögert, damit
-        # Tk die ein-/ausgeblendeten Elemente schon eingerechnet hat).
-        self.side.after(30, self._fit_side_height)
+        # Nach dem Umschalten neu zeichnen — ein-/ausgeblendete Elemente
+        # veraendern das Layout der Spalte.
+        self.side.after(30, self._force_redraw)
 
         # IN-Feld-Auswahl nur im manuellen multi_roi-Modus zeigen.
         if mode == "multi_roi":
@@ -555,6 +722,12 @@ class RoiConfigApp:
                 "'Fläche schließen' und einen Namen vergeben. Danach die "
                 "nächste Fläche klicken. Mindestens zwei Flächen nötig." + blank
             )
+            if self.snap_var.get() and self.regions:
+                self.status_var.set(
+                    self.status_var.get() +
+                    "\n\nDie hellen Farbflächen zeigen, welcher Fläche ein Punkt "
+                    "zugeschlagen würde, der in keiner Fläche liegt."
+                )
         else:
             self.status_var.set(
                 "Kein manuelles Klicken nötig. Erst core.py mit aktivierter "
@@ -621,6 +794,9 @@ class RoiConfigApp:
                 return
             self.regions.append({"name": name, "points": list(self.current_points)})
             self.current_points = []
+            # Hintergrund mit neu zeichnen: die Einzugsgebiete haengen von den
+            # Flaechen ab und aendern sich mit jeder neuen Flaeche.
+            self._redraw_background()
             self.redraw()
             self._refresh_in_field_options()
             self.status_var.set(
@@ -642,6 +818,8 @@ class RoiConfigApp:
     def undo_last_region(self):
         if self.regions:
             removed = self.regions.pop()
+            # Einzugsgebiete haengen an den Flaechen — mit neu zeichnen.
+            self._redraw_background()
             self.redraw()
             self._refresh_in_field_options()
             self.status_var.set(f"Fläche '{removed['name']}' entfernt.")
