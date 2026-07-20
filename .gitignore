@@ -13,19 +13,19 @@ env/
 ENV/
 
 # === Laufzeit-Ausgaben des Sensors (werden bei jedem Lauf neu erzeugt) ===
-ergebniss.csv
-zaehlung.csv
-auto_config_points.csv
-bewegungsbild_*.png
-tracked_objects_*.png
-auto_config_clusters.png
-auto_config_border.png
+#ergebniss.csv
+#zaehlung.csv
+#auto_config_points.csv
+#bewegungsbild_*.png
+#tracked_objects_*.png
+#auto_config_clusters.png
+#auto_config_border.png
 
 # Referenzbild wird bei jeder Aufnahme neu erzeugt
 camera_raw.png
 
 # Archiv vorheriger Läufe (vom Start-Cleanup angelegt)
-vorherige_laeufe/
+#vorherige_laeufe/
 
 # Altbestände / manuell abgelegte Track-Dateien
 old_track files/
