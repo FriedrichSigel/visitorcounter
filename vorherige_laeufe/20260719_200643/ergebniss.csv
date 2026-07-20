@@ -1,0 +1,2 @@
+display_id,kind,track_id,label,start_x,start_y,end_x,end_y,avg_confidence,first_timestamp,last_timestamp
+person_ID_1,FINALIZE,1,person,257,418,258,416,0.6705,2026-07-19 20:05:13.233,2026-07-19 20:05:13.434

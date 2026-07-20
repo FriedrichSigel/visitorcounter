@@ -1,0 +1,31 @@
+timestamp,display_id,label,direction,is_transition
+2026-07-20 13:47:19.274,person_ID_2,person,ausgang (kein Wechsel),False
+2026-07-20 13:47:21.792,person_ID_1,person,ausgang->Vorlesung,True
+2026-07-20 13:47:31.489,person_ID_3,person,ausgang (kein Wechsel),False
+2026-07-20 13:47:41.278,person_ID_4,person,Vorlesung->office,True
+2026-07-20 13:47:48.173,person_ID_6,person,office->Anlage,True
+2026-07-20 13:47:59.524,person_ID_5,person,ausgang (kein Wechsel),False
+2026-07-20 13:48:06.271,person_ID_7,person,Anlage->ausgang,True
+2026-07-20 13:48:15.470,person_ID_8,person,ausgang (kein Wechsel),False
+2026-07-20 13:48:24.194,person_ID_10,person,ausgang (kein Wechsel),False
+2026-07-20 13:48:27.377,person_ID_9,person,ausgang->Vorlesung,True
+2026-07-20 13:48:27.895,person_ID_12,person,Vorlesung (kein Wechsel),False
+2026-07-20 13:48:33.459,person_ID_14,person,Vorlesung (kein Wechsel),False
+2026-07-20 13:48:36.688,person_ID_11,person,ausgang (kein Wechsel),False
+2026-07-20 13:48:40.006,person_ID_15,person,ausgang (kein Wechsel),False
+2026-07-20 13:48:42.331,person_ID_16,person,ausgang (kein Wechsel),False
+2026-07-20 13:48:44.297,person_ID_17,person,ausgang (kein Wechsel),False
+2026-07-20 13:48:49.778,person_ID_18,person,ausgang (kein Wechsel),False
+2026-07-20 13:48:52.737,person_ID_13,person,Vorlesung->ausgang,True
+2026-07-20 13:48:57.517,person_ID_20,person,ausgang (kein Wechsel),False
+2026-07-20 13:49:03.545,person_ID_21,person,ausgang (kein Wechsel),False
+2026-07-20 13:49:11.031,person_ID_22,person,ausgang (kein Wechsel),False
+2026-07-20 13:49:17.927,person_ID_23,person,ausgang (kein Wechsel),False
+2026-07-20 13:49:24.105,person_ID_24,person,ausgang (kein Wechsel),False
+2026-07-20 13:49:28.923,person_ID_26,person,Anlage (kein Wechsel),False
+2026-07-20 13:49:32.157,person_ID_19,person,ausgang (kein Wechsel),False
+2026-07-20 13:49:40.841,person_ID_27,person,Anlage (kein Wechsel),False
+2026-07-20 13:49:51.794,person_ID_25,person,ausgang (kein Wechsel),False
+2026-07-20 13:49:56.783,person_ID_29,person,ausgang (kein Wechsel),False
+2026-07-20 13:50:06.287,person_ID_28,person,ausgang (kein Wechsel),False
+2026-07-20 13:50:06.287,person_ID_30,person,ausgang (kein Wechsel),False

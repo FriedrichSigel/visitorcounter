@@ -1,0 +1,5 @@
+display_id,kind,track_id,label,start_x,start_y,end_x,end_y,avg_confidence,first_timestamp,last_timestamp
+car_ID_1,FLUSH,1,car,52,460,101,502,0.3173,2026-07-19 21:04:55.822,2026-07-19 21:04:56.029
+truck_ID_1,FLUSH,1,truck,95,474,139,469,0.5269,2026-07-19 21:04:56.057,2026-07-19 21:04:56.698
+truck_ID_2,FLUSH,2,truck,83,504,82,506,0.3664,2026-07-19 21:04:56.164,2026-07-19 21:04:56.794
+bus_ID_1,FINALIZE,1,bus,212,462,899,413,0.7881,2026-07-19 21:04:56.730,2026-07-19 21:05:00.105

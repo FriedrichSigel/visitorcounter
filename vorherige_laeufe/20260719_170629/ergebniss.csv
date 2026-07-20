@@ -1,0 +1,2 @@
+display_id,kind,track_id,label,start_x,start_y,end_x,end_y,avg_confidence,first_timestamp,last_timestamp
+car_ID_1,FINALIZE,1,car,307,398,307,399,0.3369,2026-07-19 17:05:51.339,2026-07-19 17:05:51.588

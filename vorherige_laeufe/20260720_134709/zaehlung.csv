@@ -1,0 +1,7 @@
+timestamp,display_id,label,direction,is_transition
+2026-07-20 13:37:56.684,person_ID_1,person,ausgang (kein Wechsel),False
+2026-07-20 13:37:59.252,person_ID_3,person,ausgang (kein Wechsel),False
+2026-07-20 13:38:00.057,person_ID_2,person,office->ausgang,True
+2026-07-20 13:38:05.929,person_ID_5,person,ausgang (kein Wechsel),False
+2026-07-20 13:38:14.598,person_ID_4,person,ausgang->office,True
+2026-07-20 13:38:23.076,person_ID_6,person,office (kein Wechsel),False

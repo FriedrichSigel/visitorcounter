@@ -1,0 +1,5 @@
+timestamp,display_id,label,direction,is_transition
+2026-07-19 21:04:56.029,car_ID_1,car,Potsdam (kein Wechsel),False
+2026-07-19 21:04:56.698,truck_ID_1,truck,Potsdam (kein Wechsel),False
+2026-07-19 21:04:56.794,truck_ID_2,truck,Potsdam (kein Wechsel),False
+2026-07-19 21:05:00.105,bus_ID_1,bus,Potsdam->Berlin,True
