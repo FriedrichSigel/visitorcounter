@@ -1,0 +1,229 @@
+timestamp,display_id,label,direction,is_transition
+2026-07-20 15:12:09.312,person_ID_1,person,Anlage->office,True
+2026-07-20 15:12:18.896,person_ID_4,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:12:27.128,person_ID_5,person,office (kein Wechsel),False
+2026-07-20 15:12:27.235,person_ID_2,person,office (kein Wechsel),False
+2026-07-20 15:12:32.333,person_ID_6,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:12:42.071,person_ID_8,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:12:45.467,person_ID_9,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:12:47.465,person_ID_7,person,ausgang (kein Wechsel),False
+2026-07-20 15:12:50.927,person_ID_11,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:13:00.900,person_ID_10,person,office->Anlage,True
+2026-07-20 15:13:00.900,person_ID_12,person,ausgang (kein Wechsel),False
+2026-07-20 15:13:06.596,person_ID_13,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:13:07.899,person_ID_16,person,office->Anlage,True
+2026-07-20 15:13:10.063,person_ID_14,person,ausgang (kein Wechsel),False
+2026-07-20 15:13:11.431,person_ID_17,person,ausgang (kein Wechsel),False
+2026-07-20 15:13:12.903,person_ID_19,person,Anlage (kein Wechsel),False
+2026-07-20 15:13:13.334,person_ID_18,person,ausgang (kein Wechsel),False
+2026-07-20 15:13:13.569,person_ID_20,person,Anlage (kein Wechsel),False
+2026-07-20 15:13:14.400,person_ID_21,person,ausgang (kein Wechsel),False
+2026-07-20 15:13:20.043,person_ID_22,person,office->Anlage,True
+2026-07-20 15:13:26.772,person_ID_24,person,ausgang (kein Wechsel),False
+2026-07-20 15:13:28.599,person_ID_26,person,office (kein Wechsel),False
+2026-07-20 15:13:29.032,person_ID_23,person,office (kein Wechsel),False
+2026-07-20 15:13:33.473,person_ID_15,person,Anlage->office,True
+2026-07-20 15:14:05.866,person_ID_3,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:14:18.814,person_ID_28,person,Anlage (kein Wechsel),False
+2026-07-20 15:14:22.772,person_ID_29,person,Anlage->office,True
+2026-07-20 15:14:36.404,person_ID_30,person,office (kein Wechsel),False
+2026-07-20 15:16:15.586,person_ID_25,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:16:58.500,person_ID_27,person,ausgang (kein Wechsel),False
+2026-07-20 15:17:08.018,person_ID_31,person,ausgang (kein Wechsel),False
+2026-07-20 15:17:08.315,person_ID_32,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:17:19.912,person_ID_34,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:17:21.603,person_ID_35,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:17:22.070,person_ID_33,person,ausgang (kein Wechsel),False
+2026-07-20 15:17:26.621,person_ID_36,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:17:28.763,person_ID_37,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:17:29.406,person_ID_38,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:17:30.697,person_ID_39,person,ausgang (kein Wechsel),False
+2026-07-20 15:17:31.720,person_ID_40,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:17:34.092,person_ID_41,person,ausgang (kein Wechsel),False
+2026-07-20 15:17:35.207,person_ID_42,person,ausgang (kein Wechsel),False
+2026-07-20 15:17:37.417,person_ID_43,person,ausgang (kein Wechsel),False
+2026-07-20 15:17:41.867,person_ID_44,person,ausgang (kein Wechsel),False
+2026-07-20 15:17:46.697,person_ID_45,person,ausgang (kein Wechsel),False
+2026-07-20 15:17:54.403,person_ID_48,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:17:54.705,person_ID_47,person,ausgang (kein Wechsel),False
+2026-07-20 15:17:56.671,person_ID_51,person,ausgang (kein Wechsel),False
+2026-07-20 15:17:57.172,person_ID_52,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:17:59.124,person_ID_55,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:17:59.270,person_ID_53,person,ausgang (kein Wechsel),False
+2026-07-20 15:17:59.642,person_ID_54,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:17:59.711,person_ID_57,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:18:01.572,person_ID_58,person,ausgang (kein Wechsel),False
+2026-07-20 15:18:01.972,person_ID_46,person,Vorlesung->ausgang,True
+2026-07-20 15:18:03.407,person_ID_60,person,ausgang (kein Wechsel),False
+2026-07-20 15:18:03.819,person_ID_50,person,Vorlesung->ausgang,True
+2026-07-20 15:18:04.413,person_ID_49,person,Vorlesung->ausgang,True
+2026-07-20 15:18:06.512,person_ID_59,person,ausgang (kein Wechsel),False
+2026-07-20 15:18:07.697,person_ID_56,person,Vorlesung->ausgang,True
+2026-07-20 15:18:08.629,person_ID_62,person,ausgang (kein Wechsel),False
+2026-07-20 15:18:10.548,person_ID_64,person,ausgang (kein Wechsel),False
+2026-07-20 15:18:10.589,person_ID_63,person,ausgang (kein Wechsel),False
+2026-07-20 15:18:10.620,person_ID_66,person,ausgang (kein Wechsel),False
+2026-07-20 15:18:14.251,person_ID_68,person,ausgang (kein Wechsel),False
+2026-07-20 15:18:15.372,person_ID_65,person,ausgang->Vorlesung,True
+2026-07-20 15:18:16.010,person_ID_70,person,ausgang (kein Wechsel),False
+2026-07-20 15:18:18.343,person_ID_71,person,ausgang (kein Wechsel),False
+2026-07-20 15:18:19.534,person_ID_72,person,ausgang (kein Wechsel),False
+2026-07-20 15:18:20.043,person_ID_61,person,ausgang->Anlage,True
+2026-07-20 15:18:23.143,person_ID_67,person,ausgang (kein Wechsel),False
+2026-07-20 15:18:23.879,person_ID_75,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:18:24.098,person_ID_76,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:18:24.135,person_ID_73,person,ausgang->office,True
+2026-07-20 15:18:25.168,person_ID_69,person,ausgang->Anlage,True
+2026-07-20 15:18:26.302,person_ID_79,person,ausgang (kein Wechsel),False
+2026-07-20 15:18:27.484,person_ID_74,person,Anlage->office,True
+2026-07-20 15:18:29.933,person_ID_82,person,office (kein Wechsel),False
+2026-07-20 15:18:30.883,person_ID_78,person,Anlage (kein Wechsel),False
+2026-07-20 15:18:34.447,person_ID_83,person,ausgang (kein Wechsel),False
+2026-07-20 15:18:37.278,person_ID_81,person,office->Vorlesung,True
+2026-07-20 15:18:39.456,person_ID_84,person,ausgang (kein Wechsel),False
+2026-07-20 15:18:39.644,person_ID_80,person,Anlage->ausgang,True
+2026-07-20 15:18:42.756,person_ID_87,person,ausgang (kein Wechsel),False
+2026-07-20 15:18:43.967,person_ID_77,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:18:45.714,person_ID_88,person,ausgang (kein Wechsel),False
+2026-07-20 15:18:46.234,person_ID_86,person,ausgang->Vorlesung,True
+2026-07-20 15:18:47.694,person_ID_85,person,Anlage->Vorlesung,True
+2026-07-20 15:18:50.605,person_ID_89,person,ausgang (kein Wechsel),False
+2026-07-20 15:19:00.479,person_ID_95,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:19:02.648,person_ID_90,person,ausgang (kein Wechsel),False
+2026-07-20 15:19:05.104,person_ID_96,person,ausgang (kein Wechsel),False
+2026-07-20 15:19:07.600,person_ID_94,person,Vorlesung->ausgang,True
+2026-07-20 15:19:08.611,person_ID_97,person,ausgang (kein Wechsel),False
+2026-07-20 15:19:11.218,person_ID_99,person,ausgang (kein Wechsel),False
+2026-07-20 15:19:11.589,person_ID_91,person,Vorlesung->Anlage,True
+2026-07-20 15:19:14.706,person_ID_98,person,ausgang (kein Wechsel),False
+2026-07-20 15:19:17.361,person_ID_93,person,Vorlesung->Anlage,True
+2026-07-20 15:19:19.048,person_ID_103,person,Anlage (kein Wechsel),False
+2026-07-20 15:19:19.891,person_ID_104,person,Anlage (kein Wechsel),False
+2026-07-20 15:19:20.542,person_ID_105,person,Anlage (kein Wechsel),False
+2026-07-20 15:19:22.801,person_ID_101,person,Anlage->Vorlesung,True
+2026-07-20 15:19:25.350,person_ID_107,person,office (kein Wechsel),False
+2026-07-20 15:19:25.575,person_ID_100,person,ausgang (kein Wechsel),False
+2026-07-20 15:19:26.141,person_ID_92,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:19:27.044,person_ID_108,person,ausgang (kein Wechsel),False
+2026-07-20 15:19:29.897,person_ID_106,person,Anlage->Vorlesung,True
+2026-07-20 15:19:36.770,person_ID_109,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:19:39.968,person_ID_102,person,ausgang->Vorlesung,True
+2026-07-20 15:20:03.565,person_ID_110,person,ausgang (kein Wechsel),False
+2026-07-20 15:20:06.555,person_ID_111,person,ausgang (kein Wechsel),False
+2026-07-20 15:20:07.256,person_ID_112,person,ausgang (kein Wechsel),False
+2026-07-20 15:20:10.350,person_ID_113,person,ausgang (kein Wechsel),False
+2026-07-20 15:20:19.084,person_ID_114,person,ausgang (kein Wechsel),False
+2026-07-20 15:20:37.635,person_ID_115,person,ausgang (kein Wechsel),False
+2026-07-20 15:20:40.434,person_ID_118,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:20:41.667,person_ID_119,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:20:42.241,person_ID_121,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:20:43.537,person_ID_122,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:20:45.514,person_ID_123,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:20:49.096,person_ID_120,person,ausgang (kein Wechsel),False
+2026-07-20 15:20:49.739,person_ID_125,person,ausgang (kein Wechsel),False
+2026-07-20 15:20:53.930,person_ID_126,person,ausgang (kein Wechsel),False
+2026-07-20 15:20:58.973,person_ID_117,person,Vorlesung->ausgang,True
+2026-07-20 15:21:04.448,person_ID_127,person,Vorlesung->ausgang,True
+2026-07-20 15:21:04.556,person_ID_129,person,ausgang (kein Wechsel),False
+2026-07-20 15:21:05.723,person_ID_116,person,office (kein Wechsel),False
+2026-07-20 15:21:07.856,person_ID_131,person,office (kein Wechsel),False
+2026-07-20 15:21:08.660,person_ID_130,person,ausgang (kein Wechsel),False
+2026-07-20 15:21:09.393,person_ID_124,person,Vorlesung->ausgang,True
+2026-07-20 15:21:09.697,person_ID_132,person,office (kein Wechsel),False
+2026-07-20 15:21:12.586,person_ID_135,person,ausgang (kein Wechsel),False
+2026-07-20 15:21:13.546,person_ID_133,person,ausgang (kein Wechsel),False
+2026-07-20 15:21:15.187,person_ID_136,person,office (kein Wechsel),False
+2026-07-20 15:21:22.790,person_ID_134,person,office (kein Wechsel),False
+2026-07-20 15:21:32.089,person_ID_138,person,ausgang (kein Wechsel),False
+2026-07-20 15:21:32.980,person_ID_139,person,ausgang (kein Wechsel),False
+2026-07-20 15:21:33.719,person_ID_140,person,ausgang (kein Wechsel),False
+2026-07-20 15:21:35.666,person_ID_141,person,office (kein Wechsel),False
+2026-07-20 15:21:36.017,person_ID_137,person,office (kein Wechsel),False
+2026-07-20 15:21:49.753,person_ID_143,person,ausgang (kein Wechsel),False
+2026-07-20 15:21:59.557,person_ID_144,person,ausgang (kein Wechsel),False
+2026-07-20 15:22:01.840,person_ID_145,person,ausgang (kein Wechsel),False
+2026-07-20 15:22:03.400,person_ID_146,person,ausgang (kein Wechsel),False
+2026-07-20 15:22:07.793,person_ID_147,person,ausgang (kein Wechsel),False
+2026-07-20 15:22:08.963,person_ID_148,person,ausgang (kein Wechsel),False
+2026-07-20 15:22:12.858,person_ID_142,person,office->ausgang,True
+2026-07-20 15:22:17.059,person_ID_150,person,ausgang (kein Wechsel),False
+2026-07-20 15:22:17.252,person_ID_149,person,ausgang (kein Wechsel),False
+2026-07-20 15:22:23.226,person_ID_151,person,ausgang (kein Wechsel),False
+2026-07-20 15:22:24.284,person_ID_152,person,ausgang (kein Wechsel),False
+2026-07-20 15:22:38.067,person_ID_153,person,ausgang (kein Wechsel),False
+2026-07-20 15:22:39.534,person_ID_154,person,ausgang (kein Wechsel),False
+2026-07-20 15:22:40.319,person_ID_155,person,ausgang (kein Wechsel),False
+2026-07-20 15:22:42.457,person_ID_156,person,ausgang (kein Wechsel),False
+2026-07-20 15:22:43.303,person_ID_157,person,ausgang (kein Wechsel),False
+2026-07-20 15:22:45.094,person_ID_128,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:22:45.235,person_ID_158,person,ausgang (kein Wechsel),False
+2026-07-20 15:22:53.553,person_ID_160,person,ausgang (kein Wechsel),False
+2026-07-20 15:22:54.980,person_ID_161,person,ausgang (kein Wechsel),False
+2026-07-20 15:22:58.071,person_ID_162,person,ausgang (kein Wechsel),False
+2026-07-20 15:23:00.283,person_ID_163,person,ausgang (kein Wechsel),False
+2026-07-20 15:23:01.142,person_ID_164,person,ausgang (kein Wechsel),False
+2026-07-20 15:23:02.066,person_ID_165,person,ausgang (kein Wechsel),False
+2026-07-20 15:23:04.253,person_ID_166,person,ausgang (kein Wechsel),False
+2026-07-20 15:23:05.467,person_ID_167,person,ausgang (kein Wechsel),False
+2026-07-20 15:23:09.614,person_ID_168,person,ausgang (kein Wechsel),False
+2026-07-20 15:23:11.519,person_ID_169,person,ausgang (kein Wechsel),False
+2026-07-20 15:23:13.055,person_ID_170,person,ausgang (kein Wechsel),False
+2026-07-20 15:23:16.908,person_ID_171,person,ausgang (kein Wechsel),False
+2026-07-20 15:23:17.698,person_ID_172,person,office (kein Wechsel),False
+2026-07-20 15:23:23.980,person_ID_173,person,office (kein Wechsel),False
+2026-07-20 15:23:28.354,person_ID_174,person,office (kein Wechsel),False
+2026-07-20 15:23:29.151,person_ID_175,person,ausgang (kein Wechsel),False
+2026-07-20 15:23:30.184,person_ID_176,person,ausgang (kein Wechsel),False
+2026-07-20 15:23:34.213,person_ID_159,person,Vorlesung (kein Wechsel),False
+2026-07-20 15:23:36.933,person_ID_177,person,ausgang (kein Wechsel),False
+2026-07-20 15:23:39.565,person_ID_178,person,ausgang (kein Wechsel),False
+2026-07-20 15:23:52.322,person_ID_179,person,ausgang (kein Wechsel),False
+2026-07-20 15:23:57.978,person_ID_180,person,ausgang (kein Wechsel),False
+2026-07-20 15:24:03.842,person_ID_182,person,ausgang (kein Wechsel),False
+2026-07-20 15:24:07.301,person_ID_183,person,ausgang (kein Wechsel),False
+2026-07-20 15:24:11.189,person_ID_184,person,ausgang (kein Wechsel),False
+2026-07-20 15:24:14.939,person_ID_181,person,Vorlesung->Anlage,True
+2026-07-20 15:24:16.964,person_ID_185,person,ausgang (kein Wechsel),False
+2026-07-20 15:24:18.517,person_ID_187,person,ausgang (kein Wechsel),False
+2026-07-20 15:24:25.507,person_ID_188,person,ausgang (kein Wechsel),False
+2026-07-20 15:24:26.974,person_ID_189,person,ausgang (kein Wechsel),False
+2026-07-20 15:24:28.674,person_ID_190,person,ausgang (kein Wechsel),False
+2026-07-20 15:24:30.337,person_ID_191,person,ausgang (kein Wechsel),False
+2026-07-20 15:24:30.642,person_ID_186,person,Anlage->Vorlesung,True
+2026-07-20 15:24:37.415,person_ID_192,person,ausgang (kein Wechsel),False
+2026-07-20 15:24:40.712,person_ID_193,person,ausgang (kein Wechsel),False
+2026-07-20 15:24:43.069,person_ID_195,person,ausgang (kein Wechsel),False
+2026-07-20 15:24:46.736,person_ID_196,person,ausgang (kein Wechsel),False
+2026-07-20 15:24:48.920,person_ID_197,person,ausgang (kein Wechsel),False
+2026-07-20 15:24:53.787,person_ID_198,person,ausgang (kein Wechsel),False
+2026-07-20 15:24:59.922,person_ID_199,person,ausgang (kein Wechsel),False
+2026-07-20 15:25:13.402,person_ID_200,person,office->Anlage,True
+2026-07-20 15:25:14.990,person_ID_201,person,ausgang (kein Wechsel),False
+2026-07-20 15:25:15.920,person_ID_202,person,ausgang (kein Wechsel),False
+2026-07-20 15:25:19.032,person_ID_204,person,ausgang (kein Wechsel),False
+2026-07-20 15:25:23.491,person_ID_205,person,ausgang (kein Wechsel),False
+2026-07-20 15:25:25.432,person_ID_206,person,ausgang (kein Wechsel),False
+2026-07-20 15:25:26.997,person_ID_207,person,ausgang (kein Wechsel),False
+2026-07-20 15:25:28.627,person_ID_208,person,ausgang (kein Wechsel),False
+2026-07-20 15:25:33.723,person_ID_209,person,ausgang (kein Wechsel),False
+2026-07-20 15:25:38.161,person_ID_210,person,ausgang (kein Wechsel),False
+2026-07-20 15:25:40.488,person_ID_211,person,ausgang (kein Wechsel),False
+2026-07-20 15:25:43.197,person_ID_212,person,ausgang (kein Wechsel),False
+2026-07-20 15:25:52.226,person_ID_203,person,Anlage (kein Wechsel),False
+2026-07-20 15:25:56.590,person_ID_214,person,Anlage (kein Wechsel),False
+2026-07-20 15:26:03.300,person_ID_215,person,Anlage (kein Wechsel),False
+2026-07-20 15:26:03.328,person_ID_213,person,ausgang (kein Wechsel),False
+2026-07-20 15:26:04.724,person_ID_216,person,ausgang (kein Wechsel),False
+2026-07-20 15:26:07.030,person_ID_217,person,ausgang (kein Wechsel),False
+2026-07-20 15:26:08.327,person_ID_218,person,ausgang (kein Wechsel),False
+2026-07-20 15:26:09.320,person_ID_219,person,ausgang (kein Wechsel),False
+2026-07-20 15:26:10.854,person_ID_220,person,ausgang (kein Wechsel),False
+2026-07-20 15:26:12.501,person_ID_221,person,ausgang (kein Wechsel),False
+2026-07-20 15:26:16.561,person_ID_222,person,ausgang (kein Wechsel),False
+2026-07-20 15:26:18.121,person_ID_224,person,ausgang (kein Wechsel),False
+2026-07-20 15:26:19.361,person_ID_223,person,ausgang (kein Wechsel),False
+2026-07-20 15:26:25.188,person_ID_226,person,ausgang (kein Wechsel),False
+2026-07-20 15:26:30.871,person_ID_225,person,Anlage->office,True
+2026-07-20 15:26:39.195,person_ID_227,person,ausgang (kein Wechsel),False
+2026-07-20 15:26:41.401,person_ID_194,person,Vorlesung->ausgang,True
+2026-07-20 15:26:41.401,person_ID_228,person,ausgang (kein Wechsel),False

@@ -51,3 +51,9 @@ roi_config.json
 
 # === Testvideos (liegen außerhalb des Repos) ===
 *.mp4
+
+# Videomitschnitte — duerfen NIE ins Repository
+aufnahmen/
+*.mkv
+*.mp4
+*.avi

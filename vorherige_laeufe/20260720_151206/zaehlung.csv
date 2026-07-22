@@ -1,0 +1,5 @@
+timestamp,display_id,label,direction,is_transition
+2026-07-20 13:53:07.560,person_ID_2,person,ausgang (kein Wechsel),False
+2026-07-20 13:53:16.900,person_ID_1,person,ausgang (kein Wechsel),False
+2026-07-20 14:55:20.131,person_ID_1,person,ausgang (kein Wechsel),False
+2026-07-20 14:55:20.131,person_ID_2,person,Vorlesung (kein Wechsel),False

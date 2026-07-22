@@ -1,3 +1,35 @@
 timestamp,display_id,label,direction,is_transition
-2026-07-20 13:53:07.560,person_ID_2,person,ausgang (kein Wechsel),False
-2026-07-20 13:53:16.900,person_ID_1,person,ausgang (kein Wechsel),False
+2026-07-21 12:27:49.887,car_ID_2,car,potsdam (kein Wechsel),False
+2026-07-21 12:27:50.919,car_ID_3,car,potsdam (kein Wechsel),False
+2026-07-21 12:27:53.550,car_ID_4,car,potsdam->berlin,True
+2026-07-21 12:27:56.020,bicycle_ID_2,bicycle,potsdam (kein Wechsel),False
+2026-07-21 12:27:56.860,bicycle_ID_1,bicycle,potsdam (kein Wechsel),False
+2026-07-21 12:27:57.566,person_ID_1,person,potsdam (kein Wechsel),False
+2026-07-21 12:27:57.694,bicycle_ID_3,bicycle,potsdam (kein Wechsel),False
+2026-07-21 12:27:58.123,person_ID_2,person,potsdam (kein Wechsel),False
+2026-07-21 12:27:58.928,bicycle_ID_4,bicycle,potsdam->berlin,True
+2026-07-21 12:27:58.928,person_ID_3,person,potsdam (kein Wechsel),False
+2026-07-21 12:27:59.025,bicycle_ID_5,bicycle,potsdam (kein Wechsel),False
+2026-07-21 12:27:59.089,person_ID_5,person,berlin (kein Wechsel),False
+2026-07-21 12:27:59.351,person_ID_4,person,potsdam (kein Wechsel),False
+2026-07-21 12:27:59.419,person_ID_6,person,berlin (kein Wechsel),False
+2026-07-21 12:27:59.554,person_ID_7,person,potsdam (kein Wechsel),False
+2026-07-21 12:28:00.192,person_ID_8,person,berlin (kein Wechsel),False
+2026-07-21 12:28:00.290,bicycle_ID_6,bicycle,potsdam->berlin,True
+2026-07-21 12:28:00.356,bicycle_ID_7,bicycle,berlin (kein Wechsel),False
+2026-07-21 12:28:00.355,person_ID_10,person,berlin (kein Wechsel),False
+2026-07-21 12:28:01.251,person_ID_11,person,berlin (kein Wechsel),False
+2026-07-21 12:28:01.389,bicycle_ID_10,bicycle,berlin (kein Wechsel),False
+2026-07-21 12:28:01.519,bicycle_ID_9,bicycle,berlin (kein Wechsel),False
+2026-07-21 12:28:02.322,bicycle_ID_11,bicycle,berlin (kein Wechsel),False
+2026-07-21 12:28:02.418,bicycle_ID_8,bicycle,potsdam->berlin,True
+2026-07-21 12:28:02.790,person_ID_9,person,potsdam->berlin,True
+2026-07-21 12:28:17.457,car_ID_1,car,potsdam (kein Wechsel),False
+2026-07-21 12:28:28.150,person_ID_12,person,potsdam (kein Wechsel),False
+2026-07-21 12:28:30.121,bus_ID_1,bus,berlin (kein Wechsel),False
+2026-07-21 12:28:30.456,truck_ID_1,truck,potsdam->berlin,True
+2026-07-21 12:28:30.686,car_ID_6,car,potsdam->berlin,True
+2026-07-21 12:28:31.190,truck_ID_2,truck,berlin (kein Wechsel),False
+2026-07-21 12:28:31.386,car_ID_7,car,berlin (kein Wechsel),False
+2026-07-21 12:28:32.652,car_ID_5,car,potsdam (kein Wechsel),False
+2026-07-21 12:28:36.172,car_ID_8,car,potsdam (kein Wechsel),False
