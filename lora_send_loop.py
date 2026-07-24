@@ -79,6 +79,74 @@ def log(msg):
     print(f"[{datetime.now():%H:%M:%S}] {msg}", flush=True)
 
 
+def open_serial(port, baud):
+    """
+    Öffnet die serielle Schnittstelle, OHNE das Modul zurückzusetzen.
+
+    Hintergrund: pyserial legt beim Öffnen standardmäßig DTR und RTS an. Bei
+    vielen USB-Seriell-Wandlern (auch dem hier verwendeten CP2102) hängen
+    diese Leitungen am Reset-Eingang des Funkmoduls. Jedes Öffnen des Ports
+    löst dann einen Neustart des LA66 aus — und ein neu gestartetes
+    OTAA-Gerät meldet sich zwangsläufig neu am Netz an (Join).
+
+    Wird das Skript also in kurzen Abständen neu gestartet, erzeugt allein
+    das eine Kette von Join-Vorgängen ohne einen einzigen Uplink. Deshalb
+    werden beide Leitungen hier vor dem Öffnen abgeschaltet.
+    """
+    ser = serial.Serial()
+    ser.port = port
+    ser.baudrate = baud
+    ser.timeout = 1
+    # Vor dem Öffnen abschalten; pyserial übernimmt die Werte beim open().
+    ser.dtr = False
+    ser.rts = False
+    ser.open()
+    # Nach dem Öffnen noch einmal sicherstellen — nicht jede Plattform
+    # übernimmt die Werte schon vorher.
+    try:
+        ser.dtr = False
+        ser.rts = False
+    except (OSError, ValueError):
+        pass
+    return ser
+
+
+def query_join_status(ser, timeout_s=4):
+    """
+    Fragt den Anmeldestatus ab (AT+NJS=?). Rückgabe: True (angemeldet),
+    False (nicht angemeldet) oder None (keine verwertbare Antwort).
+
+    Wichtig für die Fehlersuche: Dieses Skript löst NIE selbst einen Join
+    aus — es sendet ausschließlich AT+SENDB. Erscheinen in der TTN-Konsole
+    fortlaufend Join-Vorgänge, kommen die vom Modul selbst. Das passiert,
+    wenn das Modul die Join-Antwort des Netzes nicht empfängt und es deshalb
+    immer wieder versucht. Die Ursache liegt dann außerhalb dieses Skripts
+    (Empfang, Antenne, Gateway-Downlink, Modulkonfiguration).
+    """
+    try:
+        ser.reset_input_buffer()
+        ser.write(b"AT+NJS=?\r\n")
+        ser.flush()
+    except (OSError, serial.SerialException):
+        return None
+
+    deadline = time.time() + timeout_s
+    while time.time() < deadline:
+        try:
+            line = ser.readline().decode(errors="replace").strip()
+        except (OSError, serial.SerialException):
+            return None
+        if not line:
+            continue
+        log(f"  LA66> {line}")
+        kompakt = line.replace(" ", "")
+        if kompakt in ("1", "NJS=1") or "NJS=1" in kompakt:
+            return True
+        if kompakt in ("0", "NJS=0") or "NJS=0" in kompakt:
+            return False
+    return None
+
+
 def build_command(payload_hex):
     """Baut das AT+SENDB-Kommando: AT+SENDB=<confirm>,<Fport>,<len>,<hexdata>."""
     length = len(payload_hex) // 2          # Byte-Anzahl
@@ -329,13 +397,26 @@ def main():
 
     log(f"Öffne {args.port} @ {args.baud} Baud")
     try:
-        ser = serial.Serial(args.port, args.baud, timeout=1)
+        ser = open_serial(args.port, args.baud)
     except serial.SerialException as e:
         log(f"FEHLER: Port konnte nicht geöffnet werden: {e}")
         log("Prüfen: Steckt der LA66? Rechte (dialout-Gruppe)? Richtiger Port?")
         sys.exit(1)
 
     time.sleep(0.5)  # dem Adapter kurz Zeit geben
+
+    # Einmal zu Beginn festhalten, ob das Modul am Netz angemeldet ist. Ohne
+    # Anmeldung ist jeder Sendeversuch zwecklos, und die Ursache liegt dann
+    # nicht in diesem Skript (siehe Kommentar bei query_join_status).
+    status = query_join_status(ser)
+    if status is True:
+        log("LA66 ist am Netz angemeldet (NJS=1).")
+    elif status is False:
+        log("ACHTUNG: LA66 ist NICHT angemeldet (NJS=0). Solange das so bleibt, "
+            "kann kein Uplink zustande kommen — das Modul versucht dann von "
+            "sich aus immer wieder einen Join.")
+    else:
+        log("Anmeldestatus nicht ermittelbar (Modul antwortet nicht auf AT+NJS=?).")
 
     if args.live_counts:
         log(f"Live-Modus ({mode}): Frames je Uplink aus {args.config} + "
@@ -346,6 +427,7 @@ def main():
         f"(Strg-C zum Beenden)")
 
     sent_count = 0
+    fehlversuche = 0
     try:
         while True:
             # Ein Zyklus = eine Frame-Liste (statisch/Linie: 1 Frame; multi_roi:
@@ -373,6 +455,7 @@ def main():
             if all_ok:
                 provider.commit()
                 sent_count += 1
+                fehlversuche = 0
                 log(f"Gesamt erfolgreich gesendete Zyklen: {sent_count}")
                 if args.once:
                     break
@@ -380,6 +463,20 @@ def main():
                 time.sleep(args.pause * 60)
             else:
                 provider.mark_failed()   # nächster Frame trägt STATUS_BUFFERED
+                fehlversuche += 1
+                # Nach dem dritten Fehlschlag den Anmeldestatus nachfragen.
+                # So steht im Protokoll, OB das Modul ueberhaupt am Netz ist —
+                # ohne Anmeldung ist weiteres Senden zwecklos und die Ursache
+                # liegt nicht in diesem Skript.
+                if fehlversuche % 3 == 0:
+                    status = query_join_status(ser)
+                    if status is False:
+                        log("Das Modul ist nicht am Netz angemeldet. Es versucht "
+                            "selbstständig einen Join; bis der durchgeht, kann "
+                            "kein Uplink gesendet werden.")
+                    elif status is True:
+                        log("Modul ist angemeldet — der Fehler liegt beim Senden, "
+                            "nicht an der Anmeldung.")
                 if args.once:
                     break
                 time.sleep(args.retry)
