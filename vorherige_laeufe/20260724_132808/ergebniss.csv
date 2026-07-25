@@ -1,0 +1,5 @@
+display_id,kind,track_id,label,start_x,start_y,end_x,end_y,avg_confidence,first_timestamp,last_timestamp
+person_ID_1,FLUSH,5,person,242,312,638,248,0.9012,2026-07-22 21:38:36.440,2026-07-22 21:38:38.174
+person_ID_2,FLUSH,8,person,654,238,1203,457,0.8933,2026-07-22 21:38:39.905,2026-07-22 21:38:44.107
+person_ID_4,FLUSH,12,person,1252,339,1252,339,0.4014,2026-07-22 21:38:45.045,2026-07-22 21:38:45.510
+person_ID_3,FLUSH,11,person,1252,480,271,323,0.8742,2026-07-22 21:38:45.044,2026-07-22 21:38:48.775
