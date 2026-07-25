@@ -1,6 +1,6 @@
 # HANDOFF — Personenzähl-Prototyp (Stadtwerke Potsdam)
 
-**Zuletzt aktualisiert: 19.07.2026 (Mitschnitt für Benchmarkläufe ergänzt; Befund: IN-Feld nicht gesetzt)**
+**Zuletzt aktualisiert: 24.07.2026 (LoRa am Standort ausgefallen → MQTT+Server gebaut; Labortest erfolgreich; IN-Feld gesetzt)**
 *(Dieses Datum bei jeder inhaltlichen Änderung mit hochziehen — siehe Hinweis ganz unten.)*
 
 Diese Datei ist der schnelle Einstieg ins Projekt: Was ist das, wo liegt was,
@@ -127,16 +127,32 @@ Weitere relevante Dateien im Repo:
 3. Seite 2: Zählmodus „Auto: Clustering" oder „Auto: Randraster" wählen, Parameter setzen, „Auswerten" (zeigt Kontrollbild direkt im Canvas), „Speichern"
 4. Seite 3: normalen Zähllauf starten — nutzt automatisch die neu erzeugten Flächen
 
-**LoRa-Übertragung — INTEGRIERT UND IM ECHTBETRIEB BESTÄTIGT (18.07.):**
-Sensordaten kommen online per LoRa an. Der Versand ist Teil von `core/` und in
-Tab 3 der App zuschaltbar.
+**Übertragung — WECHSEL VON LoRa AUF MQTT (24.07.):**
 
-> ⚠️ **Aber: aktuell werden Nullwerte übertragen.** Die Gerätekonfiguration
-> steht auf `multi_roi` (Berlin/Potsdam), hat aber **kein `in_field` gesetzt**.
-> Ohne IN-Feld kann der Sender keine IN/OUT-Werte ableiten und schickt formal
-> korrekte Frames mit lauter Nullen — im TTN kommen also Uplinks an, die nichts
-> aussagen. Behebung: Tab 2 → Modus „Mehrere Flächen" → IN-Feld auswählen und
-> speichern. Siehe `ToDo.md`, Abschnitt „Sofort erledigen".
+> 🔴 **LoRa fällt am aktuellen Standort aus.** Vom 18.–22.07. kamen echte
+> Zählwerte per LoRa in TTN an. Seit dem 24.07. hängt das Modul in einer
+> Join-Schleife (alle ~148 s ein Join, kein Uplink). Ursache: **RSSI ≈ −130 dBm**
+> — die Uplinks kommen gerade noch durch, der Join-Accept-Downlink erreicht das
+> Modul nie. Kein Softwarefehler. **Konsequenz: Umstieg auf MQTT.** Details in
+> `ToDo.md`, Abschnitt „LoRa" und „MQTT-Übertragung + Server".
+
+**Das IN-Feld ist inzwischen gesetzt** (`multi_roi`, vier Felder
+`office`/`ausgang`/`Vorlesung`/`Anlage`, `in_field = office`,
+`snap_to_nearest = true`) — der frühere Nullwerte-Fehler ist erledigt.
+
+**MQTT + Stadtwerke-Server (gebaut, noch nicht auf der Hardware):** Ein zweiter
+Pi 5 („stadtwerke-server", eigenes Repo `zaehlsensor-server`) simuliert die
+Empfangsseite — Flask-Dashboard, empfängt über TTN **und** direkt per MQTT.
+Neues **Format 3** (JSON) überträgt die vollständige Übergangsmatrix (von-Feld →
+nach-Feld je Klasse), das alte 18-Byte-Format läuft parallel weiter. Sender:
+`fuer_den_sensor/mqtt_send_loop.py` + `uebergangs_payload.py`.
+
+**Labortest erfolgreich (20.–22.07.):** 228 Datensätze, 34 gezählte Übergänge.
+Auswertung läuft; Vergleichs-Werkzeug (`vergleich/`, Desktop + Tablet-Web)
+gebaut.
+
+**Der ursprüngliche LoRa-Integrationsstand (gilt weiter für den Code):**
+Der Versand ist Teil von `core/` und in Tab 3 der App zuschaltbar.
 - **Hardware: Dragino LA66 USB LoRaWAN Adapter** (EU868), eingerichtet nach
   `EINRICHTUNG_LA66.md`. AT-Format: `AT+SENDB=<confirm>,<Fport>,<len>,<hexdata>`,
   FPort 2, unbestätigte Uplinks.
@@ -188,6 +204,15 @@ Danach/parallel:
 - Live-Bild bei `--input usb` ist gespiegelt (Fix als Option vorhanden, Wirksamkeit unbestätigt)
 
 ## 4a. Bereits gelöste Probleme (nicht nochmal debuggen)
+
+- **LoRa-Join-Schleife = Funkstrecke, nicht Software (24.07.).** Symptom: alle
+  ~148 s ein Join, kein Uplink, jedes Mal neue DevAddr. Ursache: **RSSI −130 dBm**
+  — Uplinks kommen durch, der Join-Accept-Downlink nicht. `lora_send_loop.py`
+  löst nie selbst einen Join aus (nur `AT+SENDB`); die Joins kommen vom Modul.
+  Nicht weiter am Code suchen — es ist der Standort. Ergänzt: `open_serial()`
+  öffnet ohne DTR/RTS (pyserial resettet sonst über den CP2102 das Modul bei
+  jedem Skriptstart und erzwingt einen Join), `query_join_status()` prüft
+  `AT+NJS=?`. Lösung fürs Projekt: MQTT.
 
 - **Frame-Anzeige-Crash geklärt (15.07.)** — der Absturz `std::system_error: Invalid argument` nach mehreren tausend Frames hängt an der **Live-Vorschau** (`--use-frame`/View-Fenster), NICHT am Tracking. Ohne View läuft die Pipeline durch. Konsequenz: Für Dauerläufe die Vorschau deaktiviert lassen; der Produktivbetrieb am Volkspark läuft ohnehin headless. App-seitig abgefedert (siehe nächster Punkt).
 - **App hing nach nativem Crash auf „läuft (PID …)" (15.07.)** — `app.py` verließ sich allein auf das stdout-Signal `__PROCESS_ENDED__`, das bei hartem C++-Absturz nie kam. Fix: Liveness-Check per `process.poll()` im Poll-Loop erkennt toten Prozess auch ohne stdout; Status zeigt „ABGESTÜRZT (Signal N)"; Stop eskaliert SIGINT→SIGTERM→SIGKILL. Kein hängender Zombie mehr. Zusätzlich `flushed_objects` als `deque(maxlen=MAX_FLUSHED_OBJECTS)` gegen unbegrenztes Speicherwachstum bei Langläufen.

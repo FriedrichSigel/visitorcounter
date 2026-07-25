@@ -1,6 +1,6 @@
 # ToDo – Personenzähl-Prototyp (Stadtwerke Potsdam)
 
-Stand: 19.07.2026 — Bezug: `core/` (app.py, roi_config_app.py, ui_utils.py, config.py, tracking.py, counting.py, visualization.py, logging_utils.py, csv_utils.py, core.py, auto_config.py, auto_config_clustering.py, lora_message.py, lora_send_loop.py) sowie `tests/` (Kamera- und LoRa-Hardware-Tests)
+Stand: 24.07.2026 — Bezug: `core/` (app.py, roi_config_app.py, ui_utils.py, config.py, tracking.py, counting.py, visualization.py, logging_utils.py, csv_utils.py, core.py, auto_config.py, auto_config_clustering.py, lora_message.py, lora_send_loop.py) sowie `tests/` (Kamera- und LoRa-Hardware-Tests)
 
 **Praxis ab sofort:** Lösungen, die auf recherchierten externen Quellen beruhen,
 werden mit Quellenlink notiert — auch wenn sie noch nicht fertig funktionieren.
@@ -15,13 +15,10 @@ Laborlauf das Material nach der Auswertung löschen. Begründung und Regeln:
 
 ## 🚨 Sofort erledigen — wirkt sich JETZT auf die Messung aus
 
-- [ ] **IN-Feld in der Gerätekonfiguration setzen.** Geprüft am Stand vom
-      18.07.: `roi_config.json` auf dem Gerät steht auf `multi_roi` mit den
-      Flächen `Berlin`/`Potsdam`, aber `in_field` ist **nicht gesetzt**
-      (`None`). Folge: **der LoRa-Versand überträgt durchgehend Nullwerte** —
-      die Uplinks kommen an, enthalten aber keine Zählungen. Behebung: App →
-      Tab 2 (Konfiguration), Modus „Mehrere Flächen", am Ende das IN-Feld
-      auswählen und speichern. Danach einen Uplink im TTN gegenprüfen.
+- [x] **IN-Feld gesetzt (24.07.).** Die Gerätekonfiguration steht jetzt auf
+      `multi_roi` mit vier Flächen (`office`/`ausgang`/`Vorlesung`/`Anlage`),
+      `in_field = office`, `snap_to_nearest = true`. Der frühere Nullwerte-Fehler
+      (IN-Feld `None`) ist damit erledigt.
 - [ ] **Zeilenenden vereinheitlichen (CRLF → LF).** Die Dateien auf dem Gerät
       haben Windows-Zeilenenden. Git meldet dadurch Dateien als geändert, die
       nie angefasst wurden (`LICENSE`, `depth.py`, `VideoApp.py` u. a. — bei
@@ -78,10 +75,35 @@ Vom Nutzer als nächste Schritte benannt, nachdem LoRa steht:
 - [ ] **`--input usb`-Kaltstart-Timeout verifizieren.** Nutzer-Beobachtung: "Frame laden" schlägt fehl, geht aber, wenn vorher einmal über Seite 3 gestartet+gestoppt wurde — Ursache identifiziert (allererster `core.py`-Lauf seit Neustart dauert deutlich länger als das Snapshot-Timeout). Fix: Timeout 120s -> 240s, nach `config.py` verschoben (`SNAPSHOT_TIMEOUT_SECONDS`). **Nutzer-Bestätigung, ob 240s jetzt reichen, steht noch aus.**
 - [ ] **Kreuzungserkennung mit echten Tracking-Daten verifizieren.** Weiterhin offen (seit mehreren Sessions) — Geometrie-Logik synthetisch durchgetestet und korrekt, echter Betrieb auf dem Pi noch nicht bestätigt.
 
-## 🔌 LoRa-Übertragung — INTEGRIERT UND IM BETRIEB BESTÄTIGT (18.07.)
+## 🔌 LoRa-Übertragung — funktioniert grundsätzlich, scheitert aber am Standort (24.07.)
 
-**Status: funktioniert.** Sensordaten kommen online per LoRa an. Der Versand ist
-in `core/` integriert und in Tab 3 der App zuschaltbar.
+**Status: Code funktioniert, Funkstrecke am aktuellen Standort nicht.**
+Vom 18.–22.07. kamen echte Zählwerte per LoRa in TTN an (FPort 2). Ab dem 24.07.
+hängt das Modul in einer **Join-Schleife**: alle ~148 s ein Join-Versuch, jedes
+Mal eine neue DevAddr, **kein einziger Uplink**.
+
+**Ursache gefunden: RSSI ≈ −130 dBm** — praktisch die Nachweisgrenze (LoRa
+schafft theoretisch bis etwa −137 dBm). Die Uplinks quetschen sich gerade noch
+durch, aber der Join-Accept-**Downlink** vom Gateway erreicht das Modul nie.
+Deshalb meldet sich das Gerät endlos neu an, ohne je zu senden. Das ist **kein
+Softwarefehler**: `lora_send_loop.py` löst nie selbst einen Join aus (sendet nur
+`AT+SENDB`); die Joins kommen vom Modul selbst.
+
+**Konsequenz: Wechsel auf MQTT** als Übertragungsweg (siehe eigener Abschnitt
+unten). LoRa bleibt für die Arbeit als Vergleichsfall wertvoll — es zeigt, dass
+OTAA von einer funktionierenden Downlink-Richtung abhängt, die bei fremder
+Gateway-Infrastruktur nicht garantiert ist.
+
+**Am Code ergänzt (24.07.):** `open_serial()` öffnet die serielle Schnittstelle
+ohne DTR/RTS (pyserial setzt sonst über den CP2102 das Modul bei jedem
+Skriptstart zurück und erzwingt einen Join); `query_join_status()` fragt
+`AT+NJS=?` beim Start und nach je drei Fehlversuchen ab und schreibt das Ergebnis
+ins Protokoll — so ist sofort sichtbar, ob das Modul überhaupt am Netz ist.
+
+Der ursprüngliche Integrationsstand darunter gilt weiter:
+
+**Status der Integration: funktioniert.** Der Versand ist in `core/` integriert
+und in Tab 3 der App zuschaltbar.
 
 - [x] Nachrichtenformat: 18-Byte-Zählformat v2 (Header 6 Byte + 6 Klassen x
       [IN][OUT]), definiert in `lora_message.py` — die eine Stelle, an der das
@@ -135,6 +157,43 @@ in `core/` integriert und in Tab 3 der App zuschaltbar.
       LoRa-Versands in Tab 3 blockieren, solange kein IN-Feld gesetzt ist, statt
       Nullwerte zu senden.
 
+## 📡 MQTT-Übertragung + Stadtwerke-Server — gebaut, noch nicht auf der Hardware (24.07.)
+
+**Status: fertig entwickelt und getestet, aber vom Nutzer noch nicht auf Sensor
+und Server-Pi in Betrieb genommen.** Ersatz für LoRa am aktuellen Standort.
+
+**Zwei Nachrichtenformate:**
+- **Format 2 (LoRa, 18 Byte):** je Klasse ein IN/OUT-Paar bezogen aufs IN-Feld.
+- **Format 3 (MQTT, JSON):** die **vollständige Übergangsmatrix** — je Paar
+  (von-Feld, nach-Feld) und Klasse die Anzahl im Intervall. Über MQTT gibt es
+  die 18-Byte-Grenze nicht. Als Liste umgesetzt (nur belegte Kombinationen),
+  weil die volle Matrix fast leer wäre (~11 von 72 Kombinationen belegt).
+  `summen{}` bleibt für die Vergleichbarkeit mit LoRa erhalten.
+
+**Server (zweiter Pi 5, „stadtwerke-server"):** eigenes Repo `zaehlsensor-server`,
+Flask + zwei MQTT-Empfänger in einem Prozess. Empfängt über **TTN** (stellt selbst
+einen MQTT-Broker bereit) **und** direkt per **lokalem MQTT**. Dashboard mit
+Kennzahlen, Verlaufsdiagramm, Übergangsmatrix, LED je Empfangsweg. SQLite-Ablage.
+Beide Formate laufen parallel, Erkennung automatisch.
+
+- [ ] **MQTT auf dem Sensor in Betrieb nehmen.** `fuer_den_sensor/mqtt_send_loop.py`
+      und `uebergangs_payload.py` auf den Sensor neben `lora_send_loop.py` legen,
+      `pip3 install paho-mqtt`. Start:
+      `python3 mqtt_send_loop.py --broker <server-ip> --uebergaenge --sensor-id 1 --pause 5 --pipeline-ok`
+- [ ] **Server-Pi einrichten.** Nach `EINRICHTUNG_SERVER.md` (feste IP, Mosquitto
+      fürs Netz öffnen, TTN-Zugangsdaten, systemd). SSH-Schlüssel des Pi ist bei
+      GitHub bereits registriert.
+- [ ] **paho-mqtt-Version prüfen.** Bei 2.x bricht `ingest.py` —
+      `pip3 install "paho-mqtt<2.0" --break-system-packages --force-reinstall`.
+- [ ] **systemd-Unit anpassen.** `zaehlsensor-server.service` steht noch auf
+      Benutzer `fritz`; auf dem Server-Pi heißt der Benutzer `stadtwerke-server`
+      — `User=` und `WorkingDirectory=` ändern.
+- [ ] **In der Arbeit begründen:** Format 3 erhöht den Detailgrad bewusst von
+      „hinein/hinaus" auf „von wo nach wo". Das ist eine Entwurfsentscheidung,
+      keine technische Notwendigkeit — bei sehr kurzen Intervallen beschreibt eine
+      Nachricht mit genau einem Übergang faktisch eine einzelne Person, daher ist
+      die Intervalllänge auch eine Frage der Datensparsamkeit.
+
 ## ✅ Bereits funktionsfähig
 
 - [x] Hailo-8-Beschleuniger auf Raspberry Pi 5 installiert und lauffähig (Firmware 4.23.0)
@@ -182,6 +241,15 @@ in `core/` integriert und in Tab 3 der App zuschaltbar.
 - [ ] Dabei mitprüfen: hängt die optimale Schwelle vom Zählmodus oder von der Kameraperspektive ab?
 
 ### Konfiguration
+- [ ] **„Nächste Fläche zuordnen" pro Fläche wählbar machen (Nutzerwunsch 24.07.).**
+      Aktuell ist `snap_to_nearest` ein globaler Schalter: entweder werden Punkte
+      ohne Treffer bei *allen* Flächen der nächsten zugeschlagen oder bei keiner.
+      Gewünscht: die Zuordnung soll nur für *ausgewählte* Flächen gelten. Denkbar
+      als Häkchen je Fläche in der Flächenliste in Tab 2; im `roi_config.json`
+      dann statt eines globalen `snap_to_nearest` ein Feld je Region (z. B.
+      `"snap": true`), wobei der alte globale Schalter aus Verträglichkeit weiter
+      gelesen werden sollte. Das Einzugsgebiet-Overlay (`_draw_catchment_overlay`)
+      muss dann nur noch die Flächen mit gesetztem Häkchen einfärben.
 - [ ] Live-Vorschau in `roi_config_app.py` (Linie/Fläche schon beim Klicken mitzeichnen) — bewusst aus dem MVP rausgelassen
 - [ ] Mehrere unabhängige Zählgeometrien gleichzeitig (z. B. mehrere Eingänge in einem Video) — zu unterscheiden vom bestehenden "Mehrere Flächen"-Modus, der Übergänge *zwischen* Flächen zählt, nicht unabhängige Eingänge
 
@@ -196,22 +264,31 @@ in `core/` integriert und in Tab 3 der App zuschaltbar.
 - [ ] `VideoApp.py` kann aus dem Repo entfernt werden (durch `roi_config_app.py`/`app.py` ersetzt)
 
 ### Tests
-- [ ] Labortest unter kontrollierten Bedingungen formal durchführen und dokumentieren
+- [x] **Labortest durchgeführt — erfolgreich (20.–22.07.).** Kontrollierter Lauf
+      mit 228 Datensätzen, 34 gezählten Übergängen; `zaehlung.csv` + `ergebniss.csv`
+      + `roi_config.json` liegen vor. Auswertung läuft noch (siehe unten).
+- [ ] **Auswertung des Labortests (in Arbeit).** Vergleichs-Werkzeug gebaut
+      (`vergleich/`): Desktop (`vergleich_app.py`) und Tablet-Web (`vergleich_web.html`),
+      zeigt jeden Datensatz textlich und grafisch auf der Zählfläche, mit
+      „frühere Datensätze einblenden", Filter „nur gezählte Übergänge" und
+      deutlicher Warnung bei Datensatz-Abweichung. Abgleich gegen das Video läuft
+      manuell; Fehlertaxonomie steht (Erkennung / Tracking / Zählung getrennt).
 - [ ] Realtest — Vorschlag an Betreuer geschickt: erst an der Uni (bester Zugriff), danach ggf. Volkspark Biosphäre. Antwort steht noch aus.
 
 ## Priorisierung für die kommenden Wochen
 
-0. **Zuerst der Abschnitt „Sofort erledigen"** — vor allem das IN-Feld. Solange
-   es fehlt, sind alle übertragenen Werte Nullen; jede Messung in dieser Zeit
-   ist wertlos, obwohl im TTN Uplinks ankommen.
-1. **Die drei aktuellen Arbeitspakete** — Konfigurationen durchgehen,
-   UI-Probleme beheben, Genauigkeit/Confidence untersuchen. Punkt 3 ist der
-   inhaltlich wichtigste für die Arbeit selbst: eine belastbare Aussage zur
-   Zählgenauigkeit ist das eigentliche Ergebnis, nicht die Lauffähigkeit.
-2. **Bei den UI-Problemen zuerst die Symptome festhalten**, bevor gefixt wird —
+0. **Auswertung des Labortests** — der inhaltlich wichtigste Punkt für die
+   Arbeit. Die belastbare Aussage zur Zählgenauigkeit ist das eigentliche
+   Ergebnis, nicht die Lauffähigkeit. Läuft bereits.
+1. **MQTT + Server in Betrieb nehmen**, weil LoRa am Standort ausfällt und der
+   Sensor sonst keinen funktionierenden Übertragungsweg hat. Code ist fertig und
+   getestet, es fehlt die Inbetriebnahme auf der Hardware.
+2. **Die drei Arbeitspakete** — Konfigurationen durchgehen (inkl. „nächste
+   Fläche" pro Fläche), UI-Feinschliff, Genauigkeit/Confidence untersuchen.
+3. **Bei den UI-Problemen zuerst die Symptome festhalten**, bevor gefixt wird —
    ohne Notiz, welcher Tab und welches Verhalten, geht Zeit beim Reproduzieren
    verloren.
-3. Kreuzungserkennung mit echten Tracking-Daten verifizieren — die letzte
+4. Kreuzungserkennung mit echten Tracking-Daten verifizieren — die letzte
    größere inhaltliche Verifikation, die noch aussteht.
 4. LoRa: kein akuter Handlungsbedarf mehr (läuft). Offen bleiben nur die
    Header-Bytes 3–4 und das fehlende `in_field` in den Auto-Modi.
