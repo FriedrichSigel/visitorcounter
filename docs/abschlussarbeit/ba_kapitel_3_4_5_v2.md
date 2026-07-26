@@ -231,8 +231,7 @@ In einer geometrischen **Vorstudie** wurden die mathematischen Grundlagen für d
 *Nicht vorhanden (neu erstellt).*
 
 ### Überarbeiteter/Neu geschriebener Fließtext
-Aus den Erkenntnissen der Vorstudie wurden **drei eigenständige Zählmodi** abgeleitet, um allen 17 Eingangsgeometrien des Volksparks gerecht zu werden. Der **Linien-Modus** dient als schlanke Standardkonfiguration für orthogonale Zugänge. Der **Einzel-ROI-Modus** erfasst den reinen Füllstand eines definierten Sektors. Der konzeptionell anspruchsvollste Modus ist der **Mehrflächen-Modus (Multi-ROI)**. Hierbei werden im Bildraum beliebig viele, benannte Polygone definiert. Ein Zählereignis wird als Zustandsübergang (z. B. $Sektor\_A 
-ightarrow Sektor\_B$) definiert. Ein entscheidendes Novum im Design ist die Einführung der Spalte `is_transition` in der Datenschicht. Verbleibt eine Person innerhalb desselben Sektors oder verlässt ihn in eine nicht-zählbare Zone, wird das Ereignis mit `is_transition = False` protokolliert. Dies verhindert effektiv Fehlzählungen durch unentschlossene Besucher oder Bildrauschen am Rand und sichert die Datenintegrität (vgl. Robust_Alzheimer’s_Patient_Det 2025).
+Aus den Erkenntnissen der Vorstudie wurden **drei eigenständige Zählmodi** abgeleitet, um allen 17 Eingangsgeometrien des Volksparks gerecht zu werden. Der **Linien-Modus** dient als schlanke Standardkonfiguration für orthogonale Zugänge. Der **Einzel-ROI-Modus** erfasst den reinen Füllstand eines definierten Sektors. Der konzeptionell anspruchsvollste Modus ist der **Mehrflächen-Modus (Multi-ROI)**. Hierbei werden im Bildraum beliebig viele, benannte Polygone definiert. Ein Zählereignis wird als Zustandsübergang (z. B. $Sektor\_A ightarrow Sektor\_B$) definiert. Ein entscheidendes Novum im Design ist die Einführung der Spalte `is_transition` in der Datenschicht. Verbleibt eine Person innerhalb desselben Sektors oder verlässt ihn in eine nicht-zählbare Zone, wird das Ereignis mit `is_transition = False` protokolliert. Dies verhindert effektiv Fehlzählungen durch unentschlossene Besucher oder Bildrauschen am Rand und sichert die Datenintegrität (vgl. Robust_Alzheimer’s_Patient_Det 2025).
 
 ---
 
@@ -260,10 +259,7 @@ Die rauen Betriebsbedingungen im Volkspark Biosphäre (z. B. mechanische Erschü
 ## i. Gesamtarchitektur
 ### Stichpunktartige Notiz
 * Konzeptuelles Blockschaltbild basierend auf dem Standard-Sensormodell nach Heinrich et al. (2020).
-* Aufteilung des Signalflusses in: Aufnehmer (Kamera-Optik) $
-ightarrow$ Messgrößenaufbereitung (Hailo-8 / YOLO) $
-ightarrow$ Datenverarbeitung (Zähllogik) $
-ightarrow$ Schnittstelle/Ausgabe (MQTT / LoRaWAN).
+* Aufteilung des Signalflusses in: Aufnehmer (Kamera-Optik) $ightarrow$ Messgrößenaufbereitung (Hailo-8 / YOLO) $ightarrow$ Datenverarbeitung (Zähllogik) $ightarrow$ Schnittstelle/Ausgabe (MQTT / LoRaWAN).
 
 ### Praktischer Status
 * Systemarchitektur konzeptionell entworfen und als SVG-Grafik (`Messkette_Hardware.svg`) für die Einbindung in der Arbeit vorbereitet.
@@ -348,9 +344,7 @@ Für die Datenkommunikation ist der Sensor dual aufgestellt: Standardmäßig ist
 ## i. Modulare Architektur / Pipeline-Pattern
 ### Stichpunktartige Notiz
 * Beschreibung des Software-Schichtenmodells basierend auf dem Hailo-Framework.
-* Integration von GStreamer (Streaming-Framework) $
-ightarrow$ Tappas (C/C++ Hailo-Elemente wie `hailonet` und `hailotracker`) $
-ightarrow$ Python-Anwendungsschicht.
+* Integration von GStreamer (Streaming-Framework) $ightarrow$ Tappas (C/C++ Hailo-Elemente wie `hailonet` und `hailotracker`) $ightarrow$ Python-Anwendungsschicht.
 * Begründung des Single Network Pipeline-Patterns: Minimiert den Overhead gegenüber Multi-Network-Designs, da Objekterkennung und Tracking in einem einzigen hocheffizienten Hardware-Durchlauf stattfinden (vgl. TAPPAS User Guide 2022).
 
 ### Praktischer Status
@@ -398,8 +392,7 @@ Das Modul `tracking.py` ordnet die Detektionen den bestehenden Tracks zu und ber
 ### Stichpunktartige Notiz
 * Mathematische Implementierung der drei Zählprinzipien in `counting.py`.
 * **Linienquerung:** Bestimmung des Schnittpunkts zwischen der Trajektorie (Start- und Endpunkt des Tracks) und der virtuellen Zähllinie über das Vorzeichen des Vektorkreuzprodukts.
-* **Mehrflächen-Modus:** Sektorübergänge werden als gerichtete Zustandswechsel aufgezeichnet (z. B. "Potsdam" $
-ightarrow$ "Berlin").
+* **Mehrflächen-Modus:** Sektorübergänge werden als gerichtete Zustandswechsel aufgezeichnet (z. B. "Potsdam" $ightarrow$ "Berlin").
 * Integration des Parameters `snap_to_nearest`: Wenn ein Track knapp außerhalb einer definierten ROI endet (z. B. durch optische Verdeckung am Pfeiler), wird der Endpunkt mathematisch auf das nächstgelegene Polygon projiziert, um Zähllücken zu schließen.
 
 ### Praktischer Status
@@ -628,8 +621,7 @@ Zur Absicherung der wissenschaftlichen Qualität des Prototyps werden die klassi
 ### Überarbeiteter/Neu geschriebener Fließtext
 Die quantitative Bewertung des Sensorsystems erfolgt über ein differenziertes Set an **technischen und operationalen Metriken**. Als primäre Messgröße für die Zählgenauigkeit dient der **Mean Absolute Percentage Error (MAPE)**, welcher die prozentuale Abweichung der Sensorzählung ($Y_{Sensor}$) von der manuell ermittelten Ground Truth ($Y_{Truth}$) bestimmt:
 
-$$	ext{MAPE} = rac{1}{N} \sum_{i=1}^{n} \left| rac{Y_{Sensor, i} - Y_{Truth, i}}{Y_{Truth, i}} 
-ight| 	imes 100\%$$
+$$	ext{MAPE} = rac{1}{N} \sum_{i=1}^{n} \left| rac{Y_{Sensor, i} - Y_{Truth, i}}{Y_{Truth, i}} ight| 	imes 100\%$$
 
 Die Echtzeitfähigkeit wird über die durchschnittlich verarbeiteten **Frames per Second (FPS)** gemessen. Das wichtigste inhaltliche Ergebnis der Vorstudie ist jedoch die **empirische Herleitung des `avg_confidence`-Filters**. Bei der Analyse realer Tracking-Daten zeigte sich eine deutliche statistische Diskrepanz: Echte, kontinuierlich verfolgte Personen wiesen über die gesamte Trajektorie hinweg eine gemittelte Konfidenz von $\emptyset\ 0,72$ auf, während kurze Bildstörungen (z. B. Blätterrauschen oder Fehlinterpretationen des Modells für 2–3 Frames) lediglich eine mittlere Konfidenz von $\emptyset\ 0,43$ erreichten (vgl. HANDOFF 2026). Diese empirische Differenz von genau **0,29** dient als mathematische Grenze für die Funktion `should_count_track()`. Tracks, deren `avg_confidence` unter einer Schwelle von $0,50$ liegt, werden automatisch verworfen. Dies reduziert die Falsch-Positiv-Rate im Dauerbetrieb drastisch und steigert die Datenqualität erhebtlich.
 
