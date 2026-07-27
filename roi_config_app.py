@@ -404,6 +404,24 @@ class RoiConfigApp:
         self.snap_check.grid_remove()
         row += 1
 
+        # Pro-Fläche-Auswahl: wenn die Zuordnung zur nächsten Fläche an ist,
+        # kann hier je Fläche festgelegt werden, ob sie überhaupt Punkte ohne
+        # Treffer aufnimmt. So lässt sich das Einzugsgebiet auf einzelne Flächen
+        # beschränken (z. B. nur die Eingänge, nicht die Randzonen).
+        # Der Rahmen wird bei jedem Bedarf neu mit einer Checkbox je Fläche
+        # gefüllt (_refresh_snap_fields); die Zustände hängen an
+        # self.snap_field_vars, gespeichert wird pro Fläche in region["snap"].
+        self.snap_fields_label = ctk.CTkLabel(
+            side, text="Zuordnung gilt für diese Flächen:", text_color="gray70")
+        self.snap_fields_label.grid(row=row, column=0, sticky="w", padx=10, pady=(6, 0))
+        self.snap_fields_label.grid_remove()
+        row += 1
+        self.snap_fields_frame = ctk.CTkFrame(side, fg_color="transparent")
+        self.snap_fields_frame.grid(row=row, column=0, sticky="we", padx=10, pady=(0, 0))
+        self.snap_fields_frame.grid_remove()
+        self.snap_field_vars = {}   # Flächenname -> BooleanVar
+        row += 1
+
         # IN-Feld-Auswahl (nur multi_roi): bestimmt, welche Fläche als
         # "IN-Bereich" gilt. Übergang in dieses Feld = IN, heraus = OUT — damit
         # passt multi_roi in dasselbe IN/OUT-Nachrichtenformat wie Linie/ROI
@@ -444,9 +462,65 @@ class RoiConfigApp:
     def _on_snap_toggle(self):
         """Ein-/Ausschalten der Zuordnung zur naechsten Flaeche — die
         Einzugsgebiete werden entsprechend ein- oder ausgeblendet."""
+        self._refresh_snap_fields()
+        # Die Pro-Flaeche-Checkboxen werden hier neu erzeugt; damit sie nicht
+        # gegen eine 1x1-Groesse gezeichnet werden (customtkinter-Eigenheit),
+        # denselben rekursiven Neuaufbau anstossen wie beim Moduswechsel.
+        self.side.after(30, self._force_redraw)
+        self._update_status_for_mode()
+
+    def _refresh_snap_fields(self):
+        """
+        Baut die Pro-Flaeche-Auswahl neu auf: eine Checkbox je benannter
+        Flaeche, mit der sich einstellen laesst, ob diese Flaeche Punkte ohne
+        Treffer aufnimmt.
+
+        Sichtbar nur, wenn die globale Zuordnung an ist UND der Modus
+        multi_roi mit mindestens einer Flaeche vorliegt. Vorhandene Haekchen
+        bleiben erhalten (region["snap"]); neue Flaechen starten auf True,
+        damit sich das Verhalten ohne Zutun wie bisher verhaelt (alle Flaechen
+        nehmen auf).
+        """
+        # Alte Checkboxen entfernen.
+        for child in self.snap_fields_frame.winfo_children():
+            child.destroy()
+        self.snap_field_vars = {}
+
+        sichtbar = (self.snap_var.get()
+                    and self.mode_var.get() == "multi_roi"
+                    and any(r.get("name") for r in self.regions))
+        if not sichtbar:
+            self.snap_fields_label.grid_remove()
+            self.snap_fields_frame.grid_remove()
+            return
+
+        for region in self.regions:
+            name = region.get("name")
+            if not name:
+                continue
+            # Standard True: ohne ausdrueckliche Wahl verhaelt es sich wie der
+            # alte globale Schalter (alle Flaechen nehmen auf).
+            aktiv = bool(region.get("snap", True))
+            var = tk.BooleanVar(value=aktiv)
+            self.snap_field_vars[name] = var
+            ctk.CTkCheckBox(
+                self.snap_fields_frame, text=name, variable=var,
+                command=self._on_snap_field_toggle,
+                checkbox_width=18, checkbox_height=18,
+            ).pack(anchor="w", pady=1)
+
+        self.snap_fields_label.grid()
+        self.snap_fields_frame.grid()
+
+    def _on_snap_field_toggle(self):
+        """Uebernimmt die Pro-Flaeche-Haekchen in die Flaechendaten und
+        zeichnet das Einzugsgebiet-Overlay neu."""
+        for region in self.regions:
+            name = region.get("name")
+            if name in self.snap_field_vars:
+                region["snap"] = self.snap_field_vars[name].get()
         self._redraw_background()
         self.redraw()
-        self._update_status_for_mode()
 
     def _on_map(self, _event=None):
         """
@@ -610,10 +684,14 @@ class RoiConfigApp:
         colors = [_lighten(REGION_COLORS[i % len(REGION_COLORS)], CATCHMENT_LIGHTEN)
                   for i in range(len(self.regions))]
         # Punkte der Flaechen liegen in Canvas-Koordinaten, also inkl. Offset.
+        # Nur Flaechen mit gesetztem Haekchen nehmen Punkte ohne Treffer auf —
+        # ist bei einer Flaeche "snap" ausgeschaltet, wird sie hier uebergangen
+        # und ihr Bereich faellt an die naechste teilnehmende Flaeche (oder
+        # bleibt "ausserhalb", wenn gar keine teilnimmt).
         polys = []
         for region in self.regions:
             pts = region.get("points", [])
-            if len(pts) >= 3:
+            if len(pts) >= 3 and region.get("snap", True):
                 polys.append([(x - self.offset_x, y - self.offset_y) for (x, y) in pts])
             else:
                 polys.append(None)
@@ -717,6 +795,10 @@ class RoiConfigApp:
             self.snap_check.grid_remove()
             self.auto_frame.grid_remove()
 
+        # Pro-Flaeche-Snap-Auswahl passend zum Modus/Schalter neu aufbauen
+        # (blendet sich selbst aus, wenn nicht multi_roi oder snap aus).
+        self._refresh_snap_fields()
+
     def _update_status_for_mode(self):
         mode = self.mode_var.get()
         blank = " (ohne Kamerabild — Raster als Orientierung)" if self.frame_bgr is None else ""
@@ -809,6 +891,7 @@ class RoiConfigApp:
             self._redraw_background()
             self.redraw()
             self._refresh_in_field_options()
+            self._refresh_snap_fields()
             self.status_var.set(
                 f"Fläche '{name}' gespeichert ({len(self.regions)} insgesamt). "
                 f"Weitere Fläche klicken oder Speichern (mind. 2 Flächen nötig)."
@@ -832,6 +915,7 @@ class RoiConfigApp:
             self._redraw_background()
             self.redraw()
             self._refresh_in_field_options()
+            self._refresh_snap_fields()
             self.status_var.set(f"Fläche '{removed['name']}' entfernt.")
 
     def reset_geometry(self):
@@ -1056,6 +1140,9 @@ class RoiConfigApp:
             "mode": saved_mode,
             "classes": selected,
             "reverse_direction": self.reverse_var.get(),
+            # Globaler Schalter bleibt erhalten, damit aeltere Auswertungscode-
+            # Stellen, die nur dieses Feld lesen, weiter funktionieren. Die
+            # Feinsteuerung steckt zusaetzlich je Flaeche in regions[i]["snap"].
             "snap_to_nearest": self.snap_var.get(),
             "points": [],
             "regions": [],
@@ -1067,9 +1154,20 @@ class RoiConfigApp:
         if mode in AUTO_MODES:
             config["regions"] = self.auto_regions
         elif mode == "multi_roi":
+            # Aktuelle Pro-Flaeche-Haekchen uebernehmen, falls die Auswahl
+            # sichtbar war (bei ausgeschaltetem Snap bleibt region["snap"] auf
+            # dem geladenen Wert).
+            for region in self.regions:
+                name = region.get("name")
+                if name in self.snap_field_vars:
+                    region["snap"] = self.snap_field_vars[name].get()
             for region in self.regions:
                 pts_norm = [self._to_normalized(x, y) for (x, y) in region["points"]]
-                config["regions"].append({"name": region["name"], "points": pts_norm})
+                eintrag = {"name": region["name"], "points": pts_norm}
+                # Pro-Flaeche-Zuordnung mitspeichern. Standard True, damit sich
+                # eine Flaeche ohne ausdrueckliche Wahl wie bisher verhaelt.
+                eintrag["snap"] = bool(region.get("snap", True))
+                config["regions"].append(eintrag)
             config["in_field"] = self.in_field_var.get()
         else:
             config["points"] = [self._to_normalized(x, y) for (x, y) in self.points]
@@ -1146,11 +1244,17 @@ class RoiConfigApp:
         self._apply_mode_widgets(mode)
 
         if mode == "multi_roi":
+            # Alter globaler Schalter als Rueckfallwert: fehlt in einer Datei
+            # die Pro-Flaeche-Angabe (aeltere Konfiguration), erben alle
+            # Flaechen den globalen Wert — Verhalten bleibt damit unveraendert.
+            global_snap = bool(config.get("snap_to_nearest", False))
             for region in config.get("regions", []):
                 pts = [self._from_normalized(nx, ny)
                        for (nx, ny) in region.get("points", [])]
                 if len(pts) >= 3:
-                    self.regions.append({"name": region.get("name", "?"), "points": pts})
+                    snap = bool(region.get("snap", global_snap))
+                    self.regions.append({"name": region.get("name", "?"),
+                                         "points": pts, "snap": snap})
         else:
             self.points = [self._from_normalized(nx, ny)
                            for (nx, ny) in config.get("points", [])]
@@ -1166,6 +1270,9 @@ class RoiConfigApp:
         self.snap_var.set(bool(config.get("snap_to_nearest", False)))
 
         self._refresh_in_field_options()
+        # Pro-Flaeche-Liste passend zum geladenen Snap-Zustand aufbauen —
+        # sonst erscheint sie erst, wenn man den Schalter einmal umlegt.
+        self._refresh_snap_fields()
         in_field = config.get("in_field") or ""
         if in_field and any(r["name"] == in_field for r in self.regions):
             self.in_field_var.set(in_field)

@@ -301,28 +301,39 @@ class MultiRoiCounter:
     def _regions_pixel(self, frame_width, frame_height):
         """Alle Flächen einmalig in Pixelkoordinaten umgerechnet — gemeinsam
         genutzt von check_crossing() (dort für beide Positionen) und
-        get_geometry_pixels(), um die Umrechnung nicht mehrfach zu wiederholen."""
+        get_geometry_pixels(), um die Umrechnung nicht mehrfach zu wiederholen.
+
+        Neben Name und Polygon wird das Pro-Flaeche-Snap-Flag mitgefuehrt:
+        nur Flaechen mit snap=True nehmen Punkte ohne Treffer auf. Fehlt das
+        Feld (aeltere Konfiguration), gilt der globale Schalter als
+        Rueckfallwert — dann verhaelt es sich wie bisher.
+        """
         return [
-            (region["name"], [(x * frame_width, y * frame_height) for x, y in region["points"]])
+            (region["name"],
+             [(x * frame_width, y * frame_height) for x, y in region["points"]],
+             bool(region.get("snap", self.snap_to_nearest)))
             for region in self.regions_normalized
         ]
 
     def _region_for_point(self, point, regions_pixel):
         """
         Name der Fläche, die point enthält. Liegt point in keiner Fläche:
-        bei snap_to_nearest=True die Fläche mit dem geringsten Randabstand,
-        sonst OUTSIDE.
+        bei aktivierter Zuordnung die nächste Fläche, die Punkte aufnimmt
+        (Pro-Flaeche-Flag), sonst OUTSIDE.
         """
-        for name, polygon in regions_pixel:
+        for name, polygon, _snap in regions_pixel:
             if point_in_polygon(point, polygon):
                 return name
 
-        if self.snap_to_nearest and regions_pixel:
-            nearest_name, _ = min(
-                regions_pixel,
-                key=lambda item: point_to_polygon_distance(point, item[1])
-            )
-            return nearest_name
+        if self.snap_to_nearest:
+            # Nur Flaechen mit gesetztem Snap-Flag kommen als Ziel infrage.
+            kandidaten = [(name, poly) for name, poly, snap in regions_pixel if snap]
+            if kandidaten:
+                nearest_name, _ = min(
+                    kandidaten,
+                    key=lambda item: point_to_polygon_distance(point, item[1])
+                )
+                return nearest_name
 
         return self.OUTSIDE
 
@@ -358,8 +369,11 @@ class MultiRoiCounter:
         return transition, True
 
     def get_geometry_pixels(self, frame_width, frame_height):
-        """Für die Visualisierung: Liste von (name, [Pixelpunkte]) je Fläche."""
-        return self._regions_pixel(frame_width, frame_height)
+        """Für die Visualisierung: Liste von (name, [Pixelpunkte]) je Fläche.
+        Das interne Snap-Flag wird hier abgestreift — die Zeichenfunktion
+        erwartet Zweitupel."""
+        return [(name, poly)
+                for name, poly, _snap in self._regions_pixel(frame_width, frame_height)]
 
     def summary_lines(self):
         """Liste von Textzeilen für Konsolen-/Overlay-Ausgabe, z. B. 'person: A->B: 3'."""

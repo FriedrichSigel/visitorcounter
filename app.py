@@ -46,6 +46,7 @@ import lora_message
 from roi_config_app import RoiConfigApp, load_first_frame
 from ui_utils import make_scrollable
 from recording import find_usb_mount, free_gb
+import warmup
 
 # Höhe der LoRa-Hinweisbox in Pixeln: klein, solange LoRa aus ist,
 # hoch genug für die komplette Byte-Tabelle, sobald es an ist.
@@ -105,6 +106,14 @@ class MainApp:
         # An/aus, Sende-Intervall (Minuten, Pause nach erfolgreichem Uplink)
         # und Sensor-ID (Byte 1 der Nachricht). Wird beim Start als eigener
         # Subprozess (lora_send_loop.py --live-counts) mitgestartet.
+        # --- Aufwärmlauf (einmal pro Systemstart) ---
+        # Der erste Pipeline-Start nach einem Neustart dauert lange. Die App
+        # faehrt die Pipeline deshalb beim ersten Start nach dem Booten einmal
+        # kurz hoch und wieder herunter, damit spaeter niemand vor einer
+        # scheinbar haengenden Oberflaeche sitzt. Details: warmup.py
+        self.warmup_running = False
+        self.warmup_status_var = tk.StringVar(value="")
+
         # --- Mitschnitt (Tab 3) ---
         # Zeichnet parallel zum Zähllauf ein Video mit eingebrannter Uhrzeit
         # auf, um die Zählergebnisse hinterher am Bildmaterial zu prüfen.
@@ -118,6 +127,21 @@ class MainApp:
         self.lora_enabled_var = tk.BooleanVar(value=False)
         self.lora_interval_var = tk.StringVar(value="5")
         self.lora_sensor_id_var = tk.StringVar(value="1")
+
+        # --- MQTT-Versand (Tab 3) ---
+        # Alternative/Ergänzung zu LoRa: schickt dieselben Zählwerte per MQTT
+        # an den Stadtwerke-Server. Läuft ebenfalls als eigener Subprozess
+        # (mqtt_send_loop.py), der die von core.py geschriebene zaehlung.csv
+        # liest — die Zähl-Pipeline bleibt unberührt. Broker-Adresse ist die
+        # feste IP des Server-Pi; --uebergaenge sendet die volle Übergangs-
+        # matrix (von-Feld → nach-Feld je Klasse) statt des 18-Byte-Frames.
+        self.mqtt_process = None
+        self.mqtt_enabled_var = tk.BooleanVar(value=False)
+        self.mqtt_broker_var = tk.StringVar(value="192.168.1.50")
+        self.mqtt_port_var = tk.StringVar(value="1883")
+        self.mqtt_interval_var = tk.StringVar(value="5")
+        self.mqtt_sensor_id_var = tk.StringVar(value="1")
+        self.mqtt_transitions_var = tk.BooleanVar(value=True)
 
         # --- Sidebar links (1/5 der Fensterbreite) ---
         self.sidebar = ctk.CTkFrame(root, width=SIDEBAR_WIDTH, corner_radius=0)
@@ -155,6 +179,45 @@ class MainApp:
 
         self.root.protocol("WM_DELETE_WINDOW", self._on_close)
         self._poll_output()
+
+        # Aufwärmlauf anstossen, sobald die Oberflaeche steht (verzoegert,
+        # damit das Fenster zuerst sichtbar ist).
+        self.root.after(800, self._maybe_run_warmup)
+
+    def _maybe_run_warmup(self):
+        """
+        Startet den Aufwärmlauf, falls seit dem Systemstart noch keiner lief.
+
+        Laeuft in einem Hintergrund-Thread, damit die Oberflaeche bedienbar
+        bleibt — der Lauf kann beim ersten Mal nach dem Booten bis zu zwei
+        Minuten dauern.
+        """
+        if not warmup.needs_warmup():
+            return
+
+        self.warmup_running = True
+        self.warmup_status_var.set(
+            "Aufwärmlauf läuft — die Pipeline wird einmal kurz gestartet, damit "
+            "spätere Starts schnell gehen. Es öffnet sich kurz ein "
+            "Vorschaufenster. Bitte solange nicht starten.")
+
+        def report(text):
+            # Aus dem Thread heraus nicht direkt in Tk schreiben — ueber die
+            # vorhandene Ausgabe-Queue und ein after() in den Hauptthread.
+            self.output_queue.put(f"[Aufwärmlauf] {text}\n")
+            self.root.after(0, lambda t=text: self.warmup_status_var.set(t))
+
+        def worker():
+            try:
+                warmup.run_warmup(input_value="usb", on_message=report)
+            except Exception as exc:
+                report(f"fehlgeschlagen: {exc}")
+            finally:
+                self.warmup_running = False
+                # Meldung nach kurzer Zeit wieder ausblenden.
+                self.root.after(8000, lambda: self.warmup_status_var.set(""))
+
+        threading.Thread(target=worker, daemon=True).start()
 
     def _show_page(self, name):
         for frame in self.page_frames.values():
@@ -329,6 +392,12 @@ class MainApp:
         ctk.CTkLabel(frame, text="Pipeline starten / stoppen", font=ctk.CTkFont(size=18, weight="bold")).pack(
             anchor="w", pady=(5, 15))
 
+        # Statuszeile des Aufwärmlaufs — nur sichtbar, solange er laeuft bzw.
+        # kurz danach.
+        ctk.CTkLabel(frame, textvariable=self.warmup_status_var,
+                     text_color="#4FC3F7", wraplength=560, justify="left").pack(
+            anchor="w", padx=10, pady=(0, 6))
+
         # --- Mitschnitt (Benchmark) — bewusst ganz oben, weil die Entscheidung
         # "wird dieser Lauf aufgezeichnet?" vor allen anderen Optionen steht.
         rec_frame = ctk.CTkFrame(frame, corner_radius=8)
@@ -445,6 +514,53 @@ class MainApp:
         self.lora_interval_var.trace_add("write", lambda *_: self._refresh_lora_hint())
         self.lora_sensor_id_var.trace_add("write", lambda *_: self._refresh_lora_hint())
         self._on_lora_toggle()   # setzt Feld-Zustände + baut den Hint einmal auf
+
+        # --- MQTT-Versand -------------------------------------------------
+        # Zweiter Übertragungsweg neben LoRa: schickt dieselben Zählwerte per
+        # MQTT an den Stadtwerke-Server. Sinnvoll dort, wo LoRa am Standort
+        # nicht durchkommt (siehe HANDOFF.md/ToDo.md). Eigener Subprozess
+        # (mqtt_send_loop.py), entkoppelt von der Zähl-Pipeline.
+        mqtt_frame = ctk.CTkFrame(frame, corner_radius=8)
+        mqtt_frame.pack(anchor="w", fill="x", pady=(0, 15))
+        ctk.CTkCheckBox(
+            mqtt_frame, text="Daten per MQTT senden",
+            variable=self.mqtt_enabled_var, command=self._on_mqtt_toggle,
+            font=ctk.CTkFont(weight="bold")).pack(anchor="w", padx=12, pady=(10, 6))
+
+        # Broker-Adresse und Port
+        mqtt_row1 = ctk.CTkFrame(mqtt_frame, fg_color="transparent")
+        mqtt_row1.pack(anchor="w", padx=12, pady=(0, 6))
+        ctk.CTkLabel(mqtt_row1, text="Server (Broker):").pack(side="left")
+        self.mqtt_broker_entry = ctk.CTkEntry(
+            mqtt_row1, textvariable=self.mqtt_broker_var, width=140)
+        self.mqtt_broker_entry.pack(side="left", padx=(5, 20))
+        ctk.CTkLabel(mqtt_row1, text="Port:").pack(side="left")
+        self.mqtt_port_entry = ctk.CTkEntry(
+            mqtt_row1, textvariable=self.mqtt_port_var, width=70)
+        self.mqtt_port_entry.pack(side="left", padx=5)
+
+        # Intervall und Sensor-ID
+        mqtt_row2 = ctk.CTkFrame(mqtt_frame, fg_color="transparent")
+        mqtt_row2.pack(anchor="w", padx=12, pady=(0, 6))
+        ctk.CTkLabel(mqtt_row2, text="Sende-Intervall (Minuten):").pack(side="left")
+        self.mqtt_interval_entry = ctk.CTkEntry(
+            mqtt_row2, textvariable=self.mqtt_interval_var, width=60)
+        self.mqtt_interval_entry.pack(side="left", padx=(5, 20))
+        ctk.CTkLabel(mqtt_row2, text="Sensor-ID:").pack(side="left")
+        self.mqtt_sensor_entry = ctk.CTkEntry(
+            mqtt_row2, textvariable=self.mqtt_sensor_id_var, width=60)
+        self.mqtt_sensor_entry.pack(side="left", padx=5)
+
+        # Übergangsmatrix statt 18-Byte-Frame (über MQTT sinnvoll, da keine
+        # Größengrenze). Standard an, weil das der eigentliche Mehrwert ist.
+        self.mqtt_transitions_check = ctk.CTkCheckBox(
+            mqtt_frame,
+            text="Vollständige Übergänge senden (von Fläche zu Fläche, je Klasse)",
+            variable=self.mqtt_transitions_var)
+        self.mqtt_transitions_check.pack(anchor="w", padx=12, pady=(0, 10))
+
+        self._on_mqtt_toggle()   # setzt Feld-Zustände
+
         self._on_recording_toggle()   # setzt Feld-Zustände des Mitschnitts
 
         # Optionales Zeitlimit für den normalen Zähllauf. Leer = kein Limit.
@@ -696,6 +812,110 @@ class MainApp:
             return None
         return interval, sensor_id
 
+    def _on_mqtt_toggle(self):
+        """Aktiviert/deaktiviert die MQTT-Eingabefelder."""
+        # Felder existieren erst nach _build_start_tab — defensiv prüfen.
+        if not hasattr(self, "mqtt_broker_entry"):
+            return
+        state = "normal" if self.mqtt_enabled_var.get() else "disabled"
+        for widget in (self.mqtt_broker_entry, self.mqtt_port_entry,
+                       self.mqtt_interval_entry, self.mqtt_sensor_entry,
+                       self.mqtt_transitions_check):
+            widget.configure(state=state)
+
+    def _validate_mqtt_settings(self):
+        """Prüft Broker, Port, Intervall und Sensor-ID vor dem Start.
+        Rückgabe: dict mit den Werten oder None bei ungültiger Eingabe."""
+        broker = self.mqtt_broker_var.get().strip()
+        if not broker:
+            messagebox.showwarning(
+                "Kein Server angegeben",
+                "Bitte die Adresse des MQTT-Servers (Broker) eintragen — "
+                "die feste IP des Server-Pi.", parent=self.root)
+            return None
+        try:
+            port = int(self.mqtt_port_var.get().strip())
+            if not (1 <= port <= 65535):
+                raise ValueError
+        except ValueError:
+            messagebox.showwarning(
+                "Ungültiger Port",
+                "Der Port muss eine ganze Zahl zwischen 1 und 65535 sein "
+                "(Standard 1883).", parent=self.root)
+            return None
+        try:
+            interval = int(self.mqtt_interval_var.get().strip())
+            if interval <= 0:
+                raise ValueError
+        except ValueError:
+            messagebox.showwarning(
+                "Ungültiges Intervall",
+                "Bitte ein Sende-Intervall in ganzen Minuten (> 0) angeben.",
+                parent=self.root)
+            return None
+        try:
+            sensor_id = int(self.mqtt_sensor_id_var.get().strip())
+            if not (0 <= sensor_id <= 255):
+                raise ValueError
+        except ValueError:
+            messagebox.showwarning(
+                "Ungültige Sensor-ID",
+                "Die Sensor-ID muss eine ganze Zahl zwischen 0 und 255 sein.",
+                parent=self.root)
+            return None
+        return {"broker": broker, "port": port, "interval": interval,
+                "sensor_id": sensor_id,
+                "transitions": self.mqtt_transitions_var.get()}
+
+    def _start_mqtt_sender(self, settings):
+        """Startet mqtt_send_loop.py als eigenen Subprozess. Dessen Ausgabe
+        wird (mit Präfix) in dasselbe Live-Log geleitet."""
+        cmd = [
+            sys.executable, "mqtt_send_loop.py",
+            "--broker", settings["broker"],
+            "--port", str(settings["port"]),
+            "--pause", str(settings["interval"]),
+            "--sensor-id", str(settings["sensor_id"]),
+            "--config", ROI_CONFIG_PATH,
+            "--counts-csv", ZAEHLUNG_CSV,
+            "--pipeline-ok",
+        ]
+        # Entweder die volle Übergangsmatrix oder die kompakten Zählwerte.
+        if settings["transitions"]:
+            cmd.append("--uebergaenge")
+        else:
+            cmd.append("--live-counts")
+        try:
+            self.mqtt_process = subprocess.Popen(
+                cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                text=True, bufsize=1,
+            )
+        except Exception as e:
+            # MQTT-Fehler darf den Zähllauf nicht abbrechen — nur melden.
+            self.output_queue.put(f"[MQTT] Start fehlgeschlagen: {e}\n")
+            self.mqtt_process = None
+            return
+        threading.Thread(target=self._read_mqtt_output, daemon=True).start()
+        art = "Übergänge" if settings["transitions"] else "Zählwerte"
+        self.output_queue.put(
+            f"[MQTT] Sender gestartet ({art}, Server {settings['broker']}:"
+            f"{settings['port']}, Intervall {settings['interval']} min, "
+            f"Sensor-ID {settings['sensor_id']}).\n")
+
+    def _read_mqtt_output(self):
+        for line in self.mqtt_process.stdout:
+            self.output_queue.put(f"[MQTT] {line}")
+        self.output_queue.put("__MQTT_ENDED__")
+
+    def _stop_mqtt_sender(self):
+        """Beendet den MQTT-Subprozess (SIGINT, wie Strg-C), falls er läuft."""
+        if self.mqtt_process is None:
+            return
+        try:
+            self.mqtt_process.send_signal(signal.SIGINT)
+        except Exception:
+            pass
+
     def _start_lora_sender(self, interval_min, sensor_id):
         """Startet lora_send_loop.py --live-counts als eigenen Subprozess.
         Dessen Ausgabe wird (mit Präfix) in dasselbe Live-Log geleitet."""
@@ -753,6 +973,14 @@ class MainApp:
         if self.process is not None:
             messagebox.showinfo("Läuft bereits", "Die Pipeline läuft schon.", parent=self.root)
             return
+        if self.warmup_running:
+            messagebox.showinfo(
+                "Aufwärmlauf läuft",
+                "Die Pipeline wird gerade einmalig aufgewärmt (nach jedem "
+                "Neustart des Geräts). Bitte kurz warten — danach startet der "
+                "Zähllauf deutlich schneller.",
+                parent=self.root)
+            return
 
         # LoRa nur bei normalen Zählläufen (Tab 3), nicht bei der
         # Auto-Config-Datensammlung. Vor dem Start prüfen, damit nicht erst
@@ -761,6 +989,14 @@ class MainApp:
         if not collection and self.lora_enabled_var.get():
             lora_settings = self._validate_lora_settings()
             if lora_settings is None:
+                return
+
+        # MQTT genauso: vor dem Start prüfen. Beide Übertragungswege können
+        # gleichzeitig laufen (z. B. zum Vergleich der Zuverlässigkeit).
+        mqtt_settings = None
+        if not collection and self.mqtt_enabled_var.get():
+            mqtt_settings = self._validate_mqtt_settings()
+            if mqtt_settings is None:
                 return
 
         # Mitschnitt ebenfalls nur bei normalen Zählläufen (Tab 3). Bei der
@@ -824,6 +1060,10 @@ class MainApp:
             interval_min, sensor_id = lora_settings
             self._start_lora_sender(interval_min, sensor_id)
 
+        # MQTT-Sender ebenso — erst nach erfolgreichem core-Start.
+        if mqtt_settings is not None:
+            self._start_mqtt_sender(mqtt_settings)
+
         self.pipeline_status_var.set(f"Status: läuft (PID {self.process.pid})")
         self.start_button.configure(state="disabled")
         self.stop_button.configure(state="normal")
@@ -840,9 +1080,10 @@ class MainApp:
     def _stop_pipeline(self):
         if self.process is None:
             return
-        # LoRa-Sender zuerst beenden — ohne laufende Zählung soll nicht weiter
-        # gesendet werden.
+        # LoRa- und MQTT-Sender zuerst beenden — ohne laufende Zählung soll
+        # nicht weiter gesendet werden.
         self._stop_lora_sender()
+        self._stop_mqtt_sender()
         self.process.send_signal(signal.SIGINT)
         self.pipeline_status_var.set("Status: wird beendet...")
         self.stop_button.configure(state="disabled")
@@ -883,9 +1124,10 @@ class MainApp:
             return
         self.process = None
 
-        # Falls der LoRa-Sender noch läuft (z. B. weil core.py abgestürzt ist
-        # statt regulär gestoppt zu werden), ebenfalls beenden.
+        # Falls LoRa- oder MQTT-Sender noch laufen (z. B. weil core.py
+        # abgestürzt ist statt regulär gestoppt zu werden), ebenfalls beenden.
         self._stop_lora_sender()
+        self._stop_mqtt_sender()
 
         if exit_code is None or exit_code == 0:
             self.pipeline_status_var.set("Status: gestoppt")
@@ -995,6 +1237,11 @@ class MainApp:
                     # freigeben, Rest läuft normal weiter.
                     self.lora_process = None
                     self.log_text.insert("end", "[LoRa] Sender beendet.\n")
+                    self.log_text.see("end")
+                elif line == "__MQTT_ENDED__":
+                    # MQTT-Sender beendet — Referenz freigeben, Rest läuft weiter.
+                    self.mqtt_process = None
+                    self.log_text.insert("end", "[MQTT] Sender beendet.\n")
                     self.log_text.see("end")
                 else:
                     self.log_text.insert("end", line)
