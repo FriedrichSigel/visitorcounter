@@ -1,0 +1,5 @@
+timestamp,display_id,label,direction,is_transition
+2026-07-28 22:08:14.662,car_ID_1,car,in,True
+2026-07-28 22:08:16.284,car_ID_13,car,in,True
+2026-07-28 22:08:17.083,car_ID_15,car,in,True
+2026-07-28 22:08:17.753,car_ID_14,car,in,True
