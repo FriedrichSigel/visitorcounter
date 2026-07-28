@@ -59,6 +59,8 @@ _DEFAULT_ROI_CONFIG = {
     "classes": ["person", "bicycle", "car", "motorcycle", "bus", "truck"],
     "reverse_direction": False,
     "snap_to_nearest": False,
+    # Erst ab dieser Erkennungskonfidenz wird ein Objekt gezählt (0.0-1.0).
+    "min_confidence": 0.5,
     # Nur für mode="multi_roi": Name der Fläche, die als IN-Bereich gilt.
     # Übergang in diese Fläche = IN, heraus = OUT. Wird für den LoRa-Versand
     # gebraucht, damit multi_roi dasselbe IN/OUT-Format nutzen kann.
@@ -107,6 +109,10 @@ COUNTING_SNAP_TO_NEAREST = _roi_config["snap_to_nearest"]
 # Dreht die IN/OUT-Zuordnung um, ohne die Linie selbst zu ändern. Kommt aus
 # roi_config.json (Checkbox in roi_config_app.py).
 REVERSE_COUNTING_DIRECTION = _roi_config["reverse_direction"]
+
+# Erkennungen unterhalb dieser Konfidenz werden nicht gezählt. Aus der
+# Konfiguration mit Rückfall auf 0.5, falls das Feld fehlt (ältere Dateien).
+COUNTING_MIN_CONFIDENCE = float(_roi_config.get("min_confidence", 0.5))
 
 # BGR-Farbtupel fürs Live-Overlay auf dem Videoframe (OpenCV nutzt BGR, nicht RGB).
 # Bewusst für ALLE möglichen Klassen definiert, unabhängig von TRACKED_LABELS —

@@ -395,6 +395,20 @@ class RoiConfigApp:
         self.reverse_check.grid(row=row, column=0, sticky="w", padx=10, pady=(15, 0))
         row += 1
 
+        # Mindest-Konfidenz: erst ab diesem Wert wird ein erkanntes Objekt
+        # gezählt. Objekte, bei denen das Modell unsicherer ist, werden
+        # ignoriert. Wert zwischen 0 und 1; Standard 0.5. Wird in der
+        # roi_config.json als "min_confidence" gespeichert.
+        conf_frame = ctk.CTkFrame(side, fg_color="transparent")
+        conf_frame.grid(row=row, column=0, sticky="w", padx=10, pady=(12, 0))
+        ctk.CTkLabel(conf_frame, text="Mindest-Konfidenz zum Zählen:").pack(
+            side="left")
+        self.confidence_var = tk.StringVar(value="0.5")
+        self.confidence_entry = ctk.CTkEntry(
+            conf_frame, textvariable=self.confidence_var, width=60)
+        self.confidence_entry.pack(side="left", padx=(6, 0))
+        row += 1
+
         self.snap_var = tk.BooleanVar(value=False)
         self.snap_check = ctk.CTkCheckBox(
             side, text="Punkte ohne Treffer der nächsten\nFläche zuordnen (statt 'außerhalb')",
@@ -1134,12 +1148,26 @@ class RoiConfigApp:
             messagebox.showwarning("Fehlt noch", "Bitte mindestens eine Klasse auswählen.", parent=self.root)
             return
 
+        # Mindest-Konfidenz prüfen: Zahl zwischen 0 und 1.
+        try:
+            min_conf = float(self.confidence_var.get().strip().replace(",", "."))
+            if not (0.0 <= min_conf <= 1.0):
+                raise ValueError
+        except (ValueError, AttributeError):
+            messagebox.showwarning(
+                "Ungültige Konfidenz",
+                "Die Mindest-Konfidenz muss eine Zahl zwischen 0 und 1 sein "
+                "(z. B. 0.5).", parent=self.root)
+            return
+
         saved_mode = "multi_roi" if mode in AUTO_MODES else mode
 
         config = {
             "mode": saved_mode,
             "classes": selected,
             "reverse_direction": self.reverse_var.get(),
+            # Erst ab dieser Konfidenz wird ein erkanntes Objekt gezählt.
+            "min_confidence": min_conf,
             # Globaler Schalter bleibt erhalten, damit aeltere Auswertungscode-
             # Stellen, die nur dieses Feld lesen, weiter funktionieren. Die
             # Feinsteuerung steckt zusaetzlich je Flaeche in regions[i]["snap"].
@@ -1267,6 +1295,8 @@ class RoiConfigApp:
                 var.set(cls in saved_classes)
 
         self.reverse_var.set(bool(config.get("reverse_direction", False)))
+        # Mindest-Konfidenz laden; Standard 0.5, wenn nicht vorhanden.
+        self.confidence_var.set(str(config.get("min_confidence", 0.5)))
         self.snap_var.set(bool(config.get("snap_to_nearest", False)))
 
         self._refresh_in_field_options()

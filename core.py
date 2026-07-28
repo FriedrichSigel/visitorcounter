@@ -26,6 +26,7 @@ from config import (
     SNAPSHOT_ONLY, CAMERA_RAW_PATH, LIVE_PREVIEW_HORIZONTAL_FLIP,
     RECORDING_ENABLED, RECORDING_DIR, RECORDING_BITRATE_KBPS,
     RECORDING_SEGMENT_SECONDS, RECORDING_FPS, RECORDING_CONTAINER,
+    COUNTING_MIN_CONFIDENCE,
 )
 from tracking import TrackingState
 from visualization import (
@@ -238,6 +239,12 @@ def app_callback(pad, info, user_data):
 
         bbox       = detection.get_bbox()        # Normalisierte Bounding Box [0.0 – 1.0]
         confidence = detection.get_confidence()  # Konfidenzwert [0.0 – 1.0]
+
+        # Erkennungen unterhalb der eingestellten Mindest-Konfidenz nicht
+        # zählen — das Modell ist sich hier zu unsicher. Schwelle kommt aus
+        # der Konfiguration (Tab 2), Standard 0.5.
+        if confidence is not None and confidence < COUNTING_MIN_CONFIDENCE:
+            continue
 
         # Eindeutige Tracker-ID aus der TRACKER_PIPELINE holen
         # HINWEIS: fällt auf 0 zurück, wenn keine Tracker-ID vorhanden ist. Mehrere
