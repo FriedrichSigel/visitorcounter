@@ -1,6 +1,6 @@
 # ToDo – Personenzähl-Prototyp (Stadtwerke Potsdam)
 
-Stand: 24.07.2026 — Bezug: `core/` (app.py, roi_config_app.py, ui_utils.py, config.py, tracking.py, counting.py, visualization.py, logging_utils.py, csv_utils.py, core.py, auto_config.py, auto_config_clustering.py, lora_message.py, lora_send_loop.py) sowie `tests/` (Kamera- und LoRa-Hardware-Tests)
+Stand: 28.07.2026 — Bezug: `core/` (app.py, roi_config_app.py, ui_utils.py, config.py, tracking.py, counting.py, visualization.py, logging_utils.py, csv_utils.py, core.py, auto_config.py, auto_config_clustering.py, lora_message.py, lora_send_loop.py) sowie `tests/` (Kamera- und LoRa-Hardware-Tests)
 
 **Praxis ab sofort:** Lösungen, die auf recherchierten externen Quellen beruhen,
 werden mit Quellenlink notiert — auch wenn sie noch nicht fertig funktionieren.
@@ -157,10 +157,12 @@ und in Tab 3 der App zuschaltbar.
       LoRa-Versands in Tab 3 blockieren, solange kein IN-Feld gesetzt ist, statt
       Nullwerte zu senden.
 
-## 📡 MQTT-Übertragung + Stadtwerke-Server — gebaut, noch nicht auf der Hardware (24.07.)
+## 📡 MQTT-Übertragung + Stadtwerke-Server — IN BETRIEB, LÄUFT (28.07.)
 
-**Status: fertig entwickelt und getestet, aber vom Nutzer noch nicht auf Sensor
-und Server-Pi in Betrieb genommen.** Ersatz für LoRa am aktuellen Standort.
+**Status: erfolgreich in Betrieb genommen.** Sensor sendet über MQTT an den
+Server-Pi, der Server empfängt, dekodiert und zeigt die Daten im Dashboard an —
+end-to-end auf der echten Hardware bestätigt. Ersatz für LoRa am aktuellen
+Standort.
 
 **Zwei Nachrichtenformate:**
 - **Format 2 (LoRa, 18 Byte):** je Klasse ein IN/OUT-Paar bezogen aufs IN-Feld.
@@ -176,18 +178,30 @@ einen MQTT-Broker bereit) **und** direkt per **lokalem MQTT**. Dashboard mit
 Kennzahlen, Verlaufsdiagramm, Übergangsmatrix, LED je Empfangsweg. SQLite-Ablage.
 Beide Formate laufen parallel, Erkennung automatisch.
 
-- [ ] **MQTT auf dem Sensor in Betrieb nehmen.** `fuer_den_sensor/mqtt_send_loop.py`
-      und `uebergangs_payload.py` auf den Sensor neben `lora_send_loop.py` legen,
-      `pip3 install paho-mqtt`. Start:
-      `python3 mqtt_send_loop.py --broker <server-ip> --uebergaenge --sensor-id 1 --pause 5 --pipeline-ok`
-- [ ] **Server-Pi einrichten.** Nach `EINRICHTUNG_SERVER.md` (feste IP, Mosquitto
-      fürs Netz öffnen, TTN-Zugangsdaten, systemd). SSH-Schlüssel des Pi ist bei
-      GitHub bereits registriert.
-- [ ] **paho-mqtt-Version prüfen.** Bei 2.x bricht `ingest.py` —
-      `pip3 install "paho-mqtt<2.0" --break-system-packages --force-reinstall`.
+- [x] **MQTT auf dem Sensor in Betrieb genommen (28.07.).** Über den Block
+      „Daten per MQTT senden" in Tab 3 der App. Broker = feste Server-IP
+      (192.168.0.50), Port 1883, Sensor-ID passend.
+- [x] **Server-Pi eingerichtet (28.07.).** Eigenes Repo geklont, Mosquitto fürs
+      Netz geöffnet (`/etc/mosquitto/conf.d/netz.conf`: `listener 1883` +
+      `allow_anonymous true`), TTN-Zugangsdaten in `konfiguration.ini`.
+- [x] **paho-mqtt-Version geprüft.** Ist 1.6.1 — passt, kein Downgrade nötig.
+- [x] **tls-Bug in `ingest.py` behoben (28.07.).** `configparser` liefert
+      `tls = false` als **String** „false", und der ist in Python wahr → der
+      MQTT-Empfänger schaltete fälschlich TLS ein und hing still beim Verbinden
+      zum unverschlüsselten Broker (nur „verbinde mit", nie „verbunden"). Fix:
+      Helfer `_als_wahrheitswert()` an beiden tls-Stellen (TTN + MQTT). Sofort-
+      Umgehung ohne Codeänderung: in `konfiguration.ini` `tls =` leer lassen.
+- [x] **Datenbank-Schema-Fehler behoben.** Alte `sensordaten.sqlite` hatte noch
+      kein `felder`/`in_feld` → beim Speichern „table uplinks has no column".
+      Alte DB weggeräumt, Server legt sie mit vollem Schema neu an.
 - [ ] **systemd-Unit anpassen.** `zaehlsensor-server.service` steht noch auf
       Benutzer `fritz`; auf dem Server-Pi heißt der Benutzer `stadtwerke-server`
-      — `User=` und `WorkingDirectory=` ändern.
+      — `User=` und `WorkingDirectory=` ändern. (Für den Dauerbetrieb; im
+      Handbetrieb per `python server.py` läuft es schon.)
+- [ ] **`konfiguration.ini` säubern:** im `[mqtt]`-Abschnitt `benutzer`/`passwort`
+      leer lassen (lokaler Broker läuft anonym) und den in einer Zwischenversion
+      eingetragenen TTN-API-Schlüssel in der TTN-Konsole zurückziehen + neu
+      erzeugen (war kurzzeitig im Klartext sichtbar).
 - [ ] **In der Arbeit begründen:** Format 3 erhöht den Detailgrad bewusst von
       „hinein/hinaus" auf „von wo nach wo". Das ist eine Entwurfsentscheidung,
       keine technische Notwendigkeit — bei sehr kurzen Intervallen beschreibt eine
@@ -234,22 +248,31 @@ Beide Formate laufen parallel, Erkennung automatisch.
 
 ### Genauigkeit & Auswertung (neu, 18.07.)
 - [ ] Ground-Truth-Referenz anlegen: kurzes Video an einem realistischen Standort, Objekte manuell auszählen (je Klasse und Richtung) als Vergleichsmaßstab
-- [ ] Confidence-Schwellwert als Parameter einführen (Ansatzpunkt: `counting.should_count_track()`, plus Wert in `config.py`) — aktuell wird jeder Track gezählt
+- [x] **Confidence-Schwellwert als Parameter eingeführt (28.07.).** Umgesetzt
+      als Filter in `core.py` direkt nach `detection.get_confidence()` (nicht in
+      `should_count_track()`, weil dort schon der Track statt der Einzel-Detection
+      vorliegt) plus Wert `min_confidence` in `roi_config.json`/`config.py` und
+      Eingabefeld in Tab 2. Standard 0.5.
 - [ ] Auswertung fahren: denselben Lauf bei mehreren Schwellen (z. B. 0.3 / 0.4 / 0.5 / 0.6 / 0.7) gegen die Ground Truth stellen; `avg_confidence` aus `ergebniss.csv` nutzen
 - [ ] Fehlerarten getrennt erfassen statt nur Gesamtabweichung: verpasste Objekte, doppelt gezählte (Track-Verlust und Neuvergabe), falsche Klasse, falsche Richtung
 - [ ] Ergebnis als Tabelle/Diagramm für die Arbeit aufbereiten und einen begründeten Standardwert für die Schwelle festlegen
 - [ ] Dabei mitprüfen: hängt die optimale Schwelle vom Zählmodus oder von der Kameraperspektive ab?
 
 ### Konfiguration
-- [ ] **„Nächste Fläche zuordnen" pro Fläche wählbar machen (Nutzerwunsch 24.07.).**
-      Aktuell ist `snap_to_nearest` ein globaler Schalter: entweder werden Punkte
-      ohne Treffer bei *allen* Flächen der nächsten zugeschlagen oder bei keiner.
-      Gewünscht: die Zuordnung soll nur für *ausgewählte* Flächen gelten. Denkbar
-      als Häkchen je Fläche in der Flächenliste in Tab 2; im `roi_config.json`
-      dann statt eines globalen `snap_to_nearest` ein Feld je Region (z. B.
-      `"snap": true`), wobei der alte globale Schalter aus Verträglichkeit weiter
-      gelesen werden sollte. Das Einzugsgebiet-Overlay (`_draw_catchment_overlay`)
-      muss dann nur noch die Flächen mit gesetztem Häkchen einfärben.
+- [x] **„Nächste Fläche zuordnen" pro Fläche wählbar (26.07. umgesetzt).**
+      Globaler Schalter bleibt Hauptschalter; ist er an, erscheint in Tab 2 eine
+      Liste mit einem Häkchen je Fläche. Gespeichert je Region als `"snap"` in
+      `roi_config.json`, der alte globale `snap_to_nearest` bleibt aus
+      Verträglichkeit erhalten. Das Overlay färbt nur noch markierte Flächen ein,
+      und die Zähllogik (`counting.py`) nimmt nur Flächen mit `snap=true` als
+      Ziel für Punkte ohne Treffer.
+- [x] **Mindest-Konfidenz zum Zählen einstellbar (28.07.).** In Tab 2 unter
+      „Richtung umkehren" ein Eingabefeld (Standard 0.5). Erkennungen unterhalb
+      dieser Konfidenz werden nicht gezählt. Gespeichert als `min_confidence` in
+      `roi_config.json`; wirkt in `core.py` direkt nach `get_confidence()`.
+      Damit ist auch der Punkt aus „Genauigkeit & Auswertung" (Confidence-
+      Schwelle konfigurierbar) erledigt — offen bleibt nur, einen begründeten
+      Standardwert aus den Testdaten abzuleiten.
 - [ ] Live-Vorschau in `roi_config_app.py` (Linie/Fläche schon beim Klicken mitzeichnen) — bewusst aus dem MVP rausgelassen
 - [ ] Mehrere unabhängige Zählgeometrien gleichzeitig (z. B. mehrere Eingänge in einem Video) — zu unterscheiden vom bestehenden "Mehrere Flächen"-Modus, der Übergänge *zwischen* Flächen zählt, nicht unabhängige Eingänge
 
@@ -279,12 +302,16 @@ Beide Formate laufen parallel, Erkennung automatisch.
 
 0. **Auswertung des Labortests** — der inhaltlich wichtigste Punkt für die
    Arbeit. Die belastbare Aussage zur Zählgenauigkeit ist das eigentliche
-   Ergebnis, nicht die Lauffähigkeit. Läuft bereits.
-1. **MQTT + Server in Betrieb nehmen**, weil LoRa am Standort ausfällt und der
-   Sensor sonst keinen funktionierenden Übertragungsweg hat. Code ist fertig und
-   getestet, es fehlt die Inbetriebnahme auf der Hardware.
-2. **Die drei Arbeitspakete** — Konfigurationen durchgehen (inkl. „nächste
-   Fläche" pro Fläche), UI-Feinschliff, Genauigkeit/Confidence untersuchen.
+   Ergebnis, nicht die Lauffähigkeit. Läuft bereits. Konkret jetzt: den Lauf bei
+   mehreren Konfidenz-Schwellen gegen die Ground Truth stellen und daraus einen
+   begründeten Standardwert ableiten (das Feld dafür ist jetzt da).
+1. ~~MQTT + Server in Betrieb nehmen~~ — **erledigt (28.07.), läuft.**
+2. **Verbleibende Arbeitspakete** — UI-Feinschliff, Realtest (Betreuer-Antwort
+   abwarten), Genauigkeitsauswertung abschließen. Die Konfig-Wünsche (snap pro
+   Fläche, Konfidenz-Schwelle) sind umgesetzt.
+3. **Für den Dauerbetrieb** (nicht dringend): systemd-Unit auf Benutzer
+   `stadtwerke-server` umstellen, `konfiguration.ini` säubern (siehe
+   MQTT-Abschnitt).
 3. **Bei den UI-Problemen zuerst die Symptome festhalten**, bevor gefixt wird —
    ohne Notiz, welcher Tab und welches Verhalten, geht Zeit beim Reproduzieren
    verloren.

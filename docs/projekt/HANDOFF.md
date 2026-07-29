@@ -1,6 +1,6 @@
 # HANDOFF — Personenzähl-Prototyp (Stadtwerke Potsdam)
 
-**Zuletzt aktualisiert: 24.07.2026 (LoRa am Standort ausgefallen → MQTT+Server gebaut; Labortest erfolgreich; IN-Feld gesetzt)**
+**Zuletzt aktualisiert: 28.07.2026 (MQTT-Weg auf der Hardware in Betrieb; tls-Bug behoben; Konfidenz-Schwelle in Tab 2)**
 *(Dieses Datum bei jeder inhaltlichen Änderung mit hochziehen — siehe Hinweis ganz unten.)*
 
 Diese Datei ist der schnelle Einstieg ins Projekt: Was ist das, wo liegt was,
@@ -140,12 +140,25 @@ Weitere relevante Dateien im Repo:
 `office`/`ausgang`/`Vorlesung`/`Anlage`, `in_field = office`,
 `snap_to_nearest = true`) — der frühere Nullwerte-Fehler ist erledigt.
 
-**MQTT + Stadtwerke-Server (gebaut, noch nicht auf der Hardware):** Ein zweiter
-Pi 5 („stadtwerke-server", eigenes Repo `zaehlsensor-server`) simuliert die
-Empfangsseite — Flask-Dashboard, empfängt über TTN **und** direkt per MQTT.
-Neues **Format 3** (JSON) überträgt die vollständige Übergangsmatrix (von-Feld →
-nach-Feld je Klasse), das alte 18-Byte-Format läuft parallel weiter. Sender:
-`fuer_den_sensor/mqtt_send_loop.py` + `uebergangs_payload.py`.
+**MQTT + Stadtwerke-Server — IN BETRIEB (28.07.):** Ein zweiter Pi 5
+(„stadtwerke-server", eigenes Repo `zaehlsensor-server`) ist die Empfangsseite —
+Flask-Dashboard, empfängt über TTN **und** direkt per MQTT. Sensor sendet über
+Tab 3 der App an die feste Server-IP (192.168.0.50:1883), Server empfängt und
+zeigt an — end-to-end auf der Hardware bestätigt. **Format 3** (JSON) überträgt
+die vollständige Übergangsmatrix (von-Feld → nach-Feld je Klasse), das alte
+18-Byte-Format läuft parallel weiter. Sender: `mqtt_send_loop.py` +
+`uebergangs_payload.py`.
+
+Zwei Stolpersteine bei der Inbetriebnahme, beide behoben und in
+`4a. Bereits gelöste Probleme` dokumentiert: (1) `ingest.py` deutete
+`tls = false` als String und schaltete TLS fälschlich ein → Empfänger hing
+still; Fix per `_als_wahrheitswert()`. (2) Alte `sensordaten.sqlite` ohne die
+neuen Spalten → DB einmal neu anlegen lassen.
+
+**Konfidenz-Schwelle (28.07.):** In Tab 2 lässt sich jetzt eine Mindest-
+Konfidenz einstellen (Standard 0.5, gespeichert als `min_confidence`);
+Erkennungen darunter werden in `core.py` nicht gezählt. Ebenso ist „nächste
+Fläche zuordnen" jetzt pro Fläche wählbar (26.07.).
 
 **Labortest erfolgreich (20.–22.07.):** 228 Datensätze, 34 gezählte Übergänge.
 Auswertung läuft; Vergleichs-Werkzeug (`vergleich/`, Desktop + Tablet-Web)
@@ -204,6 +217,23 @@ Danach/parallel:
 - Live-Bild bei `--input usb` ist gespiegelt (Fix als Option vorhanden, Wirksamkeit unbestätigt)
 
 ## 4a. Bereits gelöste Probleme (nicht nochmal debuggen)
+
+- **MQTT-Empfänger verbindet nicht, ohne Fehler (28.07.).** `configparser`
+  liefert jeden Wert als String; `tls = false` wird zum String „false", der in
+  Python **wahr** ist → der lokale MQTT-Empfänger schaltete TLS ein und hing beim
+  Handshake mit dem unverschlüsselten Broker (Log zeigt nur „verbinde mit", nie
+  „verbunden", kein Traceback). TTN lief nur zufällig, weil dort `tls = true`
+  gewollt ist. Fix: `_als_wahrheitswert()` in `ingest.py` an beiden tls-Stellen.
+  Schnell-Umgehung: `tls =` in `konfiguration.ini` leer lassen. — Nicht mit der
+  paho-Version verwechseln: die war hier 1.6.1 und in Ordnung.
+- **„table uplinks has no column named felder" (28.07.).** Alte
+  `sensordaten.sqlite` stammte aus dem Basis-Schema; `CREATE TABLE IF NOT EXISTS`
+  ergänzt keine fehlenden Spalten. Lösung: alte DB umbenennen
+  (`mv sensordaten.sqlite sensordaten.sqlite.alt`), Server legt sie neu an.
+- **Lokaler Broker + TTN-Zugangsdaten (28.07.).** Im `[mqtt]`-Abschnitt dürfen
+  `benutzer`/`passwort` NICHT gesetzt sein — der lokale Mosquitto läuft mit
+  `allow_anonymous true` und lehnt eine Anmeldung ab. (TTN-Zugangsdaten gehören
+  nur in den `[ttn]`-Abschnitt.)
 
 - **LoRa-Join-Schleife = Funkstrecke, nicht Software (24.07.).** Symptom: alle
   ~148 s ein Join, kein Uplink, jedes Mal neue DevAddr. Ursache: **RSSI −130 dBm**
