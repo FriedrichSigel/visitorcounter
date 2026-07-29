@@ -6,11 +6,11 @@ __pycache__/
 .pytest_cache/
 
 # === Virtuelle Umgebungen ===
-venv_hailo_rpi_examples/
-venv/
-.venv/
-env/
-ENV/
+#venv_hailo_rpi_examples/
+#venv/
+#.venv/
+#env/
+#ENV/
 
 # === Laufzeit-Ausgaben des Sensors (werden bei jedem Lauf neu erzeugt) ===
 #ergebniss.csv
