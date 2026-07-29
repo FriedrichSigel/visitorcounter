@@ -1,0 +1,971 @@
+timestamp,display_id,label,direction,is_transition
+2026-07-28 22:44:37.393,car_ID_4,car,Dresden (kein Wechsel),False
+2026-07-28 22:44:38.290,car_ID_2,car,Potsdam (kein Wechsel),False
+2026-07-28 22:44:38.531,car_ID_3,car,Dresden (kein Wechsel),False
+2026-07-28 22:44:38.899,car_ID_5,car,Dresden (kein Wechsel),False
+2026-07-28 22:44:42.492,car_ID_1,car,Dresden (kein Wechsel),False
+2026-07-28 22:44:42.696,car_ID_7,car,Dresden (kein Wechsel),False
+2026-07-28 22:44:44.164,car_ID_6,car,Potsdam->Berlin,True
+2026-07-28 22:44:44.359,car_ID_10,car,Dresden (kein Wechsel),False
+2026-07-28 22:44:44.572,car_ID_8,car,Potsdam->Dresden,True
+2026-07-28 22:44:45.935,car_ID_11,car,Dresden->Berlin,True
+2026-07-28 22:44:47.074,car_ID_12,car,Potsdam->Dresden,True
+2026-07-28 22:44:47.139,car_ID_14,car,Dresden (kein Wechsel),False
+2026-07-28 22:44:48.832,car_ID_15,car,Dresden->Berlin,True
+2026-07-28 22:44:48.897,car_ID_17,car,Berlin (kein Wechsel),False
+2026-07-28 22:44:51.121,car_ID_16,car,Dresden->Berlin,True
+2026-07-28 22:44:52.044,car_ID_9,car,Potsdam->Dresden,True
+2026-07-28 22:44:52.109,car_ID_18,car,Potsdam->Dresden,True
+2026-07-28 22:44:54.321,car_ID_19,car,Dresden->Berlin,True
+2026-07-28 22:44:55.296,car_ID_13,car,Potsdam->Dresden,True
+2026-07-28 22:44:58.229,car_ID_21,car,Dresden->Berlin,True
+2026-07-28 22:45:00.601,car_ID_20,car,Dresden (kein Wechsel),False
+2026-07-28 22:45:02.430,truck_ID_1,truck,Berlin (kein Wechsel),False
+2026-07-28 22:45:03.077,truck_ID_2,truck,Berlin (kein Wechsel),False
+2026-07-28 22:45:05.806,car_ID_22,car,Dresden->Berlin,True
+2026-07-28 22:45:07.065,car_ID_23,car,Berlin->Potsdam,True
+2026-07-28 22:45:08.405,truck_ID_4,truck,Berlin (kein Wechsel),False
+2026-07-28 22:45:08.438,bus_ID_1,bus,Berlin (kein Wechsel),False
+2026-07-28 22:45:08.968,truck_ID_3,truck,Berlin->Dresden,True
+2026-07-28 22:45:09.303,bus_ID_3,bus,Dresden (kein Wechsel),False
+2026-07-28 22:45:09.779,bus_ID_4,bus,Potsdam (kein Wechsel),False
+2026-07-28 22:45:09.859,bus_ID_2,bus,Dresden->Potsdam,True
+2026-07-28 22:45:10.330,bus_ID_5,bus,Dresden (kein Wechsel),False
+2026-07-28 22:45:10.934,truck_ID_5,truck,Dresden (kein Wechsel),False
+2026-07-28 22:45:13.289,truck_ID_6,truck,Berlin (kein Wechsel),False
+2026-07-28 22:45:14.306,car_ID_25,car,Dresden (kein Wechsel),False
+2026-07-28 22:45:16.233,car_ID_26,car,Dresden (kein Wechsel),False
+2026-07-28 22:45:16.836,truck_ID_7,truck,Berlin (kein Wechsel),False
+2026-07-28 22:45:19.232,car_ID_27,car,Berlin->Dresden,True
+2026-07-28 22:45:21.798,car_ID_29,car,Berlin (kein Wechsel),False
+2026-07-28 22:45:23.130,car_ID_28,car,Berlin->Dresden,True
+2026-07-28 22:45:23.432,car_ID_30,car,Berlin->Dresden,True
+2026-07-28 22:45:24.223,truck_ID_8,truck,Berlin->Dresden,True
+2026-07-28 22:45:26.569,truck_ID_9,truck,Dresden (kein Wechsel),False
+2026-07-28 22:45:27.071,car_ID_33,car,Dresden (kein Wechsel),False
+2026-07-28 22:45:27.771,car_ID_24,car,Potsdam->Berlin,True
+2026-07-28 22:45:29.437,car_ID_34,car,Potsdam->Dresden,True
+2026-07-28 22:45:30.062,car_ID_35,car,Dresden (kein Wechsel),False
+2026-07-28 22:45:30.098,car_ID_32,car,Dresden (kein Wechsel),False
+2026-07-28 22:45:31.999,car_ID_36,car,Dresden->Berlin,True
+2026-07-28 22:45:33.840,car_ID_39,car,Berlin (kein Wechsel),False
+2026-07-28 22:45:34.497,car_ID_38,car,Potsdam->Berlin,True
+2026-07-28 22:45:35.422,car_ID_40,car,Potsdam->Dresden,True
+2026-07-28 22:45:35.421,car_ID_41,car,Berlin (kein Wechsel),False
+2026-07-28 22:45:35.930,car_ID_42,car,Dresden->Berlin,True
+2026-07-28 22:45:36.155,car_ID_43,car,Dresden (kein Wechsel),False
+2026-07-28 22:45:37.802,car_ID_31,car,Potsdam->Dresden,True
+2026-07-28 22:45:42.382,car_ID_46,car,Dresden (kein Wechsel),False
+2026-07-28 22:45:42.901,car_ID_44,car,Berlin (kein Wechsel),False
+2026-07-28 22:45:43.369,car_ID_47,car,Dresden (kein Wechsel),False
+2026-07-28 22:45:44.532,car_ID_48,car,Dresden (kein Wechsel),False
+2026-07-28 22:45:45.427,car_ID_37,car,Berlin (kein Wechsel),False
+2026-07-28 22:45:45.835,car_ID_50,car,Dresden (kein Wechsel),False
+2026-07-28 22:45:46.313,car_ID_45,car,Dresden->Berlin,True
+2026-07-28 22:45:48.433,car_ID_49,car,Dresden->Berlin,True
+2026-07-28 22:45:50.607,car_ID_52,car,Dresden->Berlin,True
+2026-07-28 22:45:50.993,car_ID_56,car,Berlin (kein Wechsel),False
+2026-07-28 22:45:51.097,car_ID_57,car,Berlin (kein Wechsel),False
+2026-07-28 22:45:51.227,car_ID_53,car,Berlin->Potsdam,True
+2026-07-28 22:45:51.964,truck_ID_10,truck,Berlin->Dresden,True
+2026-07-28 22:45:52.061,car_ID_51,car,Dresden->Berlin,True
+2026-07-28 22:45:52.571,truck_ID_11,truck,Berlin->Dresden,True
+2026-07-28 22:45:52.833,car_ID_55,car,Berlin->Potsdam,True
+2026-07-28 22:45:55.563,car_ID_54,car,Potsdam->Dresden,True
+2026-07-28 22:45:56.463,car_ID_58,car,Potsdam->Dresden,True
+2026-07-28 22:45:56.864,car_ID_60,car,Dresden (kein Wechsel),False
+2026-07-28 22:45:58.702,person_ID_2,person,Berlin (kein Wechsel),False
+2026-07-28 22:45:59.008,car_ID_64,car,Dresden (kein Wechsel),False
+2026-07-28 22:45:59.898,person_ID_3,person,Berlin (kein Wechsel),False
+2026-07-28 22:46:00.763,car_ID_62,car,Dresden->Berlin,True
+2026-07-28 22:46:01.234,car_ID_59,car,Potsdam->Dresden,True
+2026-07-28 22:46:01.501,car_ID_65,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:02.296,car_ID_63,car,Potsdam (kein Wechsel),False
+2026-07-28 22:46:02.698,person_ID_1,person,Berlin (kein Wechsel),False
+2026-07-28 22:46:03.012,car_ID_61,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:03.759,car_ID_66,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:03.864,truck_ID_12,truck,Berlin (kein Wechsel),False
+2026-07-28 22:46:04.154,car_ID_69,car,Potsdam (kein Wechsel),False
+2026-07-28 22:46:04.437,car_ID_67,car,Dresden->Berlin,True
+2026-07-28 22:46:06.565,car_ID_72,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:07.135,car_ID_71,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:09.419,car_ID_77,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:09.771,car_ID_75,car,Dresden->Berlin,True
+2026-07-28 22:46:10.141,car_ID_74,car,Berlin->Dresden,True
+2026-07-28 22:46:10.589,car_ID_70,car,Berlin->Dresden,True
+2026-07-28 22:46:10.590,car_ID_78,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:11.555,car_ID_79,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:12.030,car_ID_80,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:12.198,car_ID_82,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:12.605,car_ID_68,car,Berlin->Dresden,True
+2026-07-28 22:46:13.128,car_ID_83,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:14.700,car_ID_87,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:14.833,car_ID_81,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:15.202,car_ID_85,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:15.605,car_ID_84,car,Berlin->Dresden,True
+2026-07-28 22:46:15.640,car_ID_88,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:15.995,car_ID_76,car,Berlin->Dresden,True
+2026-07-28 22:46:16.158,car_ID_89,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:16.190,bus_ID_7,bus,Berlin (kein Wechsel),False
+2026-07-28 22:46:16.573,bus_ID_6,bus,Berlin (kein Wechsel),False
+2026-07-28 22:46:18.136,truck_ID_14,truck,Berlin->Dresden,True
+2026-07-28 22:46:18.370,car_ID_91,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:18.371,car_ID_93,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:18.832,truck_ID_13,truck,Berlin->Dresden,True
+2026-07-28 22:46:19.297,car_ID_86,car,Berlin->Dresden,True
+2026-07-28 22:46:19.330,car_ID_92,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:19.397,car_ID_90,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:22.681,truck_ID_15,truck,Dresden (kein Wechsel),False
+2026-07-28 22:46:23.731,truck_ID_17,truck,Berlin (kein Wechsel),False
+2026-07-28 22:46:24.936,car_ID_98,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:26.266,car_ID_73,car,Potsdam (kein Wechsel),False
+2026-07-28 22:46:27.186,car_ID_99,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:27.404,car_ID_95,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:27.632,car_ID_94,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:27.736,truck_ID_16,truck,Berlin->Dresden,True
+2026-07-28 22:46:27.736,truck_ID_18,truck,Berlin (kein Wechsel),False
+2026-07-28 22:46:27.799,car_ID_97,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:28.393,car_ID_101,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:29.512,car_ID_103,car,Potsdam (kein Wechsel),False
+2026-07-28 22:46:30.163,truck_ID_19,truck,Berlin->Dresden,True
+2026-07-28 22:46:31.700,car_ID_100,car,Berlin->Dresden,True
+2026-07-28 22:46:31.700,car_ID_108,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:32.133,car_ID_105,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:32.337,car_ID_109,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:33.201,truck_ID_20,truck,Dresden (kein Wechsel),False
+2026-07-28 22:46:33.504,car_ID_111,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:33.774,car_ID_96,car,Berlin->Dresden,True
+2026-07-28 22:46:34.020,car_ID_113,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:34.534,car_ID_114,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:34.740,car_ID_115,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:34.839,car_ID_107,car,Berlin->Dresden,True
+2026-07-28 22:46:34.945,car_ID_110,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:36.470,car_ID_117,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:36.951,car_ID_121,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:37.117,car_ID_120,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:38.835,car_ID_104,car,Berlin->Dresden,True
+2026-07-28 22:46:39.341,car_ID_125,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:39.834,car_ID_119,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:39.896,car_ID_102,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:39.896,car_ID_122,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:40.196,car_ID_128,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:40.406,car_ID_127,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:41.360,car_ID_130,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:42.072,car_ID_118,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:42.453,car_ID_132,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:42.834,car_ID_129,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:43.435,car_ID_135,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:43.535,car_ID_131,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:43.535,car_ID_136,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:43.725,car_ID_112,car,Berlin->Dresden,True
+2026-07-28 22:46:43.994,car_ID_133,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:44.026,car_ID_137,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:44.733,car_ID_116,car,Berlin->Dresden,True
+2026-07-28 22:46:45.383,car_ID_139,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:46.665,car_ID_123,car,Berlin->Dresden,True
+2026-07-28 22:46:48.396,car_ID_124,car,Berlin->Dresden,True
+2026-07-28 22:46:48.528,car_ID_141,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:49.043,car_ID_142,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:51.263,car_ID_143,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:51.441,car_ID_134,car,Berlin->Dresden,True
+2026-07-28 22:46:51.636,car_ID_138,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:51.967,car_ID_140,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:52.198,car_ID_144,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:52.233,car_ID_146,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:52.736,car_ID_147,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:52.838,car_ID_148,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:52.838,car_ID_150,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:58.166,car_ID_154,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:58.273,car_ID_151,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:58.432,car_ID_153,car,Berlin (kein Wechsel),False
+2026-07-28 22:46:59.629,car_ID_145,car,Berlin->Dresden,True
+2026-07-28 22:46:59.772,car_ID_156,car,Dresden (kein Wechsel),False
+2026-07-28 22:46:59.972,car_ID_157,car,Berlin (kein Wechsel),False
+2026-07-28 22:47:00.066,car_ID_158,car,Berlin (kein Wechsel),False
+2026-07-28 22:47:01.037,car_ID_126,car,Berlin (kein Wechsel),False
+2026-07-28 22:47:01.036,car_ID_149,car,Berlin->Dresden,True
+2026-07-28 22:47:01.749,car_ID_160,car,Berlin (kein Wechsel),False
+2026-07-28 22:47:02.569,car_ID_163,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:05.105,car_ID_165,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:06.057,car_ID_155,car,Berlin->Dresden,True
+2026-07-28 22:47:07.718,car_ID_152,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:07.834,car_ID_159,car,Berlin->Dresden,True
+2026-07-28 22:47:08.270,car_ID_168,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:09.594,car_ID_170,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:09.805,car_ID_167,car,Berlin->Dresden,True
+2026-07-28 22:47:09.905,car_ID_171,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:11.269,car_ID_164,car,Berlin->Dresden,True
+2026-07-28 22:47:12.740,car_ID_173,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:13.696,car_ID_166,car,Berlin->Dresden,True
+2026-07-28 22:47:14.338,car_ID_174,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:15.006,car_ID_175,car,Potsdam (kein Wechsel),False
+2026-07-28 22:47:15.599,car_ID_172,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:16.066,car_ID_106,car,Potsdam (kein Wechsel),False
+2026-07-28 22:47:16.367,car_ID_177,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:16.838,car_ID_176,car,Potsdam (kein Wechsel),False
+2026-07-28 22:47:17.531,car_ID_179,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:18.201,car_ID_178,car,Potsdam (kein Wechsel),False
+2026-07-28 22:47:18.879,car_ID_181,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:18.879,car_ID_182,car,Potsdam (kein Wechsel),False
+2026-07-28 22:47:19.670,truck_ID_21,truck,Potsdam->Berlin,True
+2026-07-28 22:47:19.670,truck_ID_22,truck,Dresden->Berlin,True
+2026-07-28 22:47:20.438,car_ID_183,car,Berlin (kein Wechsel),False
+2026-07-28 22:47:21.688,car_ID_180,car,Potsdam->Berlin,True
+2026-07-28 22:47:21.716,car_ID_184,car,Potsdam->Dresden,True
+2026-07-28 22:47:21.716,truck_ID_23,truck,Berlin (kein Wechsel),False
+2026-07-28 22:47:23.905,car_ID_185,car,Potsdam->Berlin,True
+2026-07-28 22:47:24.101,car_ID_187,car,Potsdam->Dresden,True
+2026-07-28 22:47:25.135,car_ID_186,car,Potsdam->Dresden,True
+2026-07-28 22:47:25.135,truck_ID_25,truck,Potsdam (kein Wechsel),False
+2026-07-28 22:47:25.171,truck_ID_24,truck,Potsdam (kein Wechsel),False
+2026-07-28 22:47:25.342,bus_ID_8,bus,Potsdam->Dresden,True
+2026-07-28 22:47:25.576,car_ID_190,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:25.690,car_ID_188,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:25.832,car_ID_189,car,Dresden->Berlin,True
+2026-07-28 22:47:28.566,car_ID_192,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:31.006,car_ID_194,car,Potsdam (kein Wechsel),False
+2026-07-28 22:47:32.271,car_ID_193,car,Potsdam->Dresden,True
+2026-07-28 22:47:32.470,truck_ID_26,truck,Potsdam (kein Wechsel),False
+2026-07-28 22:47:33.528,car_ID_191,car,Potsdam->Dresden,True
+2026-07-28 22:47:36.478,car_ID_196,car,Potsdam->Dresden,True
+2026-07-28 22:47:38.139,car_ID_161,car,Berlin (kein Wechsel),False
+2026-07-28 22:47:38.396,car_ID_195,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:39.290,car_ID_197,car,Potsdam->Dresden,True
+2026-07-28 22:47:39.966,car_ID_169,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:40.267,car_ID_162,car,Berlin (kein Wechsel),False
+2026-07-28 22:47:41.326,car_ID_200,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:41.358,car_ID_202,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:41.430,bus_ID_9,bus,Berlin (kein Wechsel),False
+2026-07-28 22:47:41.840,bus_ID_10,bus,Dresden (kein Wechsel),False
+2026-07-28 22:47:42.107,truck_ID_28,truck,Dresden (kein Wechsel),False
+2026-07-28 22:47:42.141,car_ID_204,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:42.141,truck_ID_27,truck,Dresden (kein Wechsel),False
+2026-07-28 22:47:42.698,car_ID_201,car,Berlin->Potsdam,True
+2026-07-28 22:47:42.940,car_ID_199,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:43.008,car_ID_203,car,Berlin (kein Wechsel),False
+2026-07-28 22:47:43.616,car_ID_209,car,Berlin (kein Wechsel),False
+2026-07-28 22:47:43.730,car_ID_208,car,Berlin (kein Wechsel),False
+2026-07-28 22:47:43.890,car_ID_210,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:44.699,car_ID_205,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:44.806,car_ID_207,car,Berlin->Potsdam,True
+2026-07-28 22:47:44.973,car_ID_212,car,Berlin (kein Wechsel),False
+2026-07-28 22:47:45.101,truck_ID_29,truck,Dresden (kein Wechsel),False
+2026-07-28 22:47:45.863,car_ID_198,car,Potsdam->Dresden,True
+2026-07-28 22:47:46.076,car_ID_214,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:46.590,car_ID_211,car,Berlin->Potsdam,True
+2026-07-28 22:47:46.828,car_ID_206,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:46.896,car_ID_215,car,Berlin (kein Wechsel),False
+2026-07-28 22:47:46.930,truck_ID_30,truck,Dresden (kein Wechsel),False
+2026-07-28 22:47:48.161,car_ID_213,car,Berlin (kein Wechsel),False
+2026-07-28 22:47:48.399,car_ID_219,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:48.991,car_ID_217,car,Dresden->Berlin,True
+2026-07-28 22:47:49.375,car_ID_220,car,Berlin (kein Wechsel),False
+2026-07-28 22:47:49.568,car_ID_216,car,Berlin->Potsdam,True
+2026-07-28 22:47:50.664,truck_ID_32,truck,Dresden (kein Wechsel),False
+2026-07-28 22:47:51.035,truck_ID_31,truck,Dresden->Berlin,True
+2026-07-28 22:47:51.199,car_ID_222,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:51.326,car_ID_223,car,Berlin (kein Wechsel),False
+2026-07-28 22:47:51.600,car_ID_221,car,Berlin->Potsdam,True
+2026-07-28 22:47:53.103,truck_ID_34,truck,Dresden (kein Wechsel),False
+2026-07-28 22:47:53.134,truck_ID_33,truck,Dresden (kein Wechsel),False
+2026-07-28 22:47:53.261,car_ID_226,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:55.609,car_ID_218,car,Dresden->Berlin,True
+2026-07-28 22:47:55.739,car_ID_224,car,Berlin (kein Wechsel),False
+2026-07-28 22:47:56.696,car_ID_230,car,Berlin (kein Wechsel),False
+2026-07-28 22:47:57.307,car_ID_225,car,Berlin (kein Wechsel),False
+2026-07-28 22:47:57.602,car_ID_227,car,Berlin->Dresden,True
+2026-07-28 22:47:58.063,car_ID_228,car,Berlin->Dresden,True
+2026-07-28 22:47:58.975,car_ID_236,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:59.141,car_ID_237,car,Berlin (kein Wechsel),False
+2026-07-28 22:47:59.297,truck_ID_35,truck,Dresden->Berlin,True
+2026-07-28 22:47:59.426,car_ID_238,car,Berlin (kein Wechsel),False
+2026-07-28 22:47:59.496,car_ID_229,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:59.596,truck_ID_37,truck,Berlin (kein Wechsel),False
+2026-07-28 22:47:59.632,car_ID_231,car,Dresden (kein Wechsel),False
+2026-07-28 22:47:59.702,truck_ID_38,truck,Berlin (kein Wechsel),False
+2026-07-28 22:48:00.103,car_ID_235,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:00.134,car_ID_234,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:00.800,car_ID_239,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:00.866,car_ID_233,car,Berlin->Dresden,True
+2026-07-28 22:48:01.162,car_ID_242,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:01.979,car_ID_244,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:02.151,car_ID_232,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:02.264,truck_ID_36,truck,Dresden->Berlin,True
+2026-07-28 22:48:02.632,car_ID_243,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:02.698,car_ID_245,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:02.938,car_ID_246,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:03.596,car_ID_241,car,Berlin->Dresden,True
+2026-07-28 22:48:05.165,car_ID_247,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:05.590,car_ID_250,car,Berlin->Dresden,True
+2026-07-28 22:48:05.590,car_ID_252,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:05.765,car_ID_249,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:05.873,car_ID_253,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:06.465,car_ID_251,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:06.672,car_ID_240,car,Berlin->Dresden,True
+2026-07-28 22:48:06.964,car_ID_254,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:07.736,car_ID_255,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:08.095,truck_ID_39,truck,Berlin->Dresden,True
+2026-07-28 22:48:08.705,car_ID_256,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:09.064,car_ID_248,car,Berlin->Dresden,True
+2026-07-28 22:48:09.530,car_ID_260,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:10.353,car_ID_257,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:10.352,car_ID_261,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:10.436,car_ID_262,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:10.837,truck_ID_41,truck,Dresden (kein Wechsel),False
+2026-07-28 22:48:11.572,car_ID_258,car,Berlin->Dresden,True
+2026-07-28 22:48:11.671,truck_ID_40,truck,Berlin->Dresden,True
+2026-07-28 22:48:11.895,truck_ID_42,truck,Berlin (kein Wechsel),False
+2026-07-28 22:48:12.097,car_ID_265,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:12.700,car_ID_264,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:13.167,car_ID_263,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:13.202,car_ID_266,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:14.135,car_ID_267,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:14.269,car_ID_268,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:14.728,truck_ID_44,truck,Berlin (kein Wechsel),False
+2026-07-28 22:48:15.367,car_ID_269,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:16.226,car_ID_271,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:16.906,car_ID_259,car,Berlin->Dresden,True
+2026-07-28 22:48:17.007,car_ID_270,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:17.458,car_ID_272,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:17.995,truck_ID_46,truck,Berlin (kein Wechsel),False
+2026-07-28 22:48:19.060,truck_ID_43,truck,Berlin->Dresden,True
+2026-07-28 22:48:19.971,car_ID_275,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:19.971,car_ID_277,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:21.032,car_ID_276,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:21.109,car_ID_280,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:21.239,car_ID_282,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:21.894,car_ID_284,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:21.931,car_ID_274,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:22.064,truck_ID_48,truck,Dresden (kein Wechsel),False
+2026-07-28 22:48:22.098,car_ID_281,car,Berlin->Dresden,True
+2026-07-28 22:48:22.161,car_ID_279,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:22.258,car_ID_285,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:22.259,truck_ID_47,truck,Berlin->Dresden,True
+2026-07-28 22:48:22.288,car_ID_278,car,Berlin->Dresden,True
+2026-07-28 22:48:23.029,car_ID_287,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:23.029,truck_ID_45,truck,Berlin->Dresden,True
+2026-07-28 22:48:23.431,car_ID_291,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:23.464,car_ID_292,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:23.630,car_ID_288,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:24.330,truck_ID_49,truck,Dresden (kein Wechsel),False
+2026-07-28 22:48:24.595,car_ID_294,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:25.898,car_ID_290,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:26.470,car_ID_299,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:27.124,car_ID_298,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:27.220,car_ID_283,car,Berlin->Dresden,True
+2026-07-28 22:48:28.497,car_ID_301,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:28.694,car_ID_300,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:30.705,car_ID_297,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:30.767,car_ID_302,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:30.994,car_ID_303,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:31.082,car_ID_293,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:31.351,car_ID_286,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:31.760,car_ID_304,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:32.481,car_ID_305,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:33.024,car_ID_307,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:33.600,car_ID_295,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:34.006,car_ID_296,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:34.006,car_ID_306,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:34.006,car_ID_309,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:34.189,car_ID_310,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:34.961,car_ID_311,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:35.342,truck_ID_50,truck,Berlin (kein Wechsel),False
+2026-07-28 22:48:36.372,car_ID_312,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:36.372,car_ID_313,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:37.092,car_ID_316,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:37.531,car_ID_308,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:37.531,car_ID_315,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:38.561,car_ID_317,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:38.561,car_ID_318,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:39.200,car_ID_319,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:40.041,car_ID_321,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:40.128,car_ID_323,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:40.373,car_ID_322,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:41.628,truck_ID_51,truck,Berlin (kein Wechsel),False
+2026-07-28 22:48:41.696,car_ID_326,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:41.831,car_ID_328,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:42.039,car_ID_327,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:43.101,car_ID_330,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:43.147,car_ID_314,car,Berlin->Dresden,True
+2026-07-28 22:48:43.307,car_ID_324,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:43.402,car_ID_325,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:43.467,car_ID_331,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:43.500,truck_ID_52,truck,Berlin (kein Wechsel),False
+2026-07-28 22:48:43.842,truck_ID_53,truck,Dresden (kein Wechsel),False
+2026-07-28 22:48:44.132,car_ID_329,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:44.228,truck_ID_54,truck,Berlin (kein Wechsel),False
+2026-07-28 22:48:44.833,car_ID_332,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:45.143,car_ID_336,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:45.404,car_ID_337,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:45.630,car_ID_334,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:46.139,car_ID_333,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:46.513,car_ID_339,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:46.664,car_ID_273,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:47.305,car_ID_342,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:47.610,car_ID_338,car,Berlin->Dresden,True
+2026-07-28 22:48:47.971,truck_ID_56,truck,Dresden (kein Wechsel),False
+2026-07-28 22:48:48.151,car_ID_335,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:48.370,car_ID_343,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:48.567,car_ID_346,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:49.039,truck_ID_55,truck,Dresden (kein Wechsel),False
+2026-07-28 22:48:49.429,car_ID_320,car,Berlin->Dresden,True
+2026-07-28 22:48:49.430,car_ID_345,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:50.325,car_ID_348,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:50.707,car_ID_349,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:50.779,truck_ID_58,truck,Berlin (kein Wechsel),False
+2026-07-28 22:48:50.992,car_ID_341,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:51.266,car_ID_347,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:51.265,truck_ID_57,truck,Dresden->Berlin,True
+2026-07-28 22:48:51.464,car_ID_340,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:51.793,car_ID_344,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:51.793,truck_ID_60,truck,Berlin (kein Wechsel),False
+2026-07-28 22:48:51.906,truck_ID_59,truck,Berlin->Dresden,True
+2026-07-28 22:48:52.271,car_ID_354,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:52.529,truck_ID_61,truck,Berlin (kein Wechsel),False
+2026-07-28 22:48:52.853,car_ID_353,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:53.244,truck_ID_62,truck,Berlin->Dresden,True
+2026-07-28 22:48:53.424,car_ID_352,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:53.592,car_ID_351,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:53.592,car_ID_355,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:53.692,car_ID_357,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:54.904,car_ID_361,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:55.296,car_ID_362,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:55.767,truck_ID_63,truck,Dresden (kein Wechsel),False
+2026-07-28 22:48:55.960,truck_ID_64,truck,Berlin (kein Wechsel),False
+2026-07-28 22:48:55.992,car_ID_364,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:56.324,car_ID_365,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:56.678,car_ID_350,car,Berlin->Dresden,True
+2026-07-28 22:48:56.932,car_ID_359,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:57.833,car_ID_366,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:58.395,car_ID_369,car,Berlin (kein Wechsel),False
+2026-07-28 22:48:59.302,car_ID_371,car,Dresden (kein Wechsel),False
+2026-07-28 22:48:59.768,car_ID_360,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:00.295,car_ID_368,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:00.403,car_ID_374,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:00.475,person_ID_5,person,Dresden (kein Wechsel),False
+2026-07-28 22:49:00.552,car_ID_367,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:00.827,car_ID_358,car,Berlin->Dresden,True
+2026-07-28 22:49:02.231,car_ID_375,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:02.430,car_ID_363,car,Berlin->Dresden,True
+2026-07-28 22:49:03.210,car_ID_378,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:03.464,car_ID_372,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:03.599,car_ID_377,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:03.702,car_ID_376,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:05.638,car_ID_370,car,Berlin->Dresden,True
+2026-07-28 22:49:06.292,car_ID_380,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:06.842,car_ID_384,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:07.971,car_ID_383,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:08.008,car_ID_379,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:09.075,car_ID_385,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:09.428,person_ID_4,person,Dresden (kein Wechsel),False
+2026-07-28 22:49:09.561,car_ID_382,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:09.671,car_ID_373,car,Berlin->Dresden,True
+2026-07-28 22:49:10.694,car_ID_289,car,Potsdam->Dresden,True
+2026-07-28 22:49:11.036,car_ID_391,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:11.310,car_ID_386,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:11.964,car_ID_390,car,Dresden->Berlin,True
+2026-07-28 22:49:12.378,car_ID_394,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:12.670,car_ID_392,car,Potsdam (kein Wechsel),False
+2026-07-28 22:49:13.268,car_ID_393,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:13.568,car_ID_389,car,Potsdam->Dresden,True
+2026-07-28 22:49:13.642,car_ID_387,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:14.372,car_ID_395,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:14.517,car_ID_396,car,Potsdam (kein Wechsel),False
+2026-07-28 22:49:14.901,car_ID_400,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:15.439,car_ID_403,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:15.501,car_ID_399,car,Potsdam (kein Wechsel),False
+2026-07-28 22:49:15.534,car_ID_398,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:15.862,car_ID_397,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:16.262,car_ID_406,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:16.401,car_ID_402,car,Potsdam->Dresden,True
+2026-07-28 22:49:16.903,car_ID_405,car,Dresden->Berlin,True
+2026-07-28 22:49:17.214,car_ID_407,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:17.828,car_ID_408,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:18.693,car_ID_412,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:18.993,car_ID_410,car,Potsdam (kein Wechsel),False
+2026-07-28 22:49:19.508,car_ID_414,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:19.738,car_ID_401,car,Potsdam->Dresden,True
+2026-07-28 22:49:19.937,car_ID_411,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:20.004,car_ID_404,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:20.142,car_ID_388,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:20.142,car_ID_418,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:20.376,car_ID_416,car,Dresden->Berlin,True
+2026-07-28 22:49:21.272,car_ID_417,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:22.269,car_ID_419,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:22.337,car_ID_422,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:22.641,car_ID_415,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:22.742,car_ID_423,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:23.711,car_ID_421,car,Potsdam->Dresden,True
+2026-07-28 22:49:24.408,car_ID_428,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:24.701,car_ID_426,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:25.369,car_ID_381,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:25.869,car_ID_424,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:26.569,car_ID_431,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:26.665,car_ID_429,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:26.962,car_ID_409,car,Potsdam->Dresden,True
+2026-07-28 22:49:27.197,car_ID_427,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:27.538,person_ID_6,person,Dresden->Potsdam,True
+2026-07-28 22:49:27.539,car_ID_430,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:28.106,person_ID_7,person,Dresden->Potsdam,True
+2026-07-28 22:49:28.107,car_ID_435,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:28.205,car_ID_434,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:28.239,car_ID_413,car,Potsdam->Dresden,True
+2026-07-28 22:49:28.487,car_ID_433,car,Potsdam (kein Wechsel),False
+2026-07-28 22:49:29.373,person_ID_8,person,Potsdam (kein Wechsel),False
+2026-07-28 22:49:29.467,car_ID_436,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:30.032,car_ID_440,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:30.166,car_ID_439,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:30.227,car_ID_420,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:30.354,car_ID_425,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:31.793,car_ID_444,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:32.684,car_ID_432,car,Potsdam (kein Wechsel),False
+2026-07-28 22:49:32.765,car_ID_438,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:32.894,car_ID_446,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:32.993,car_ID_448,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:34.536,truck_ID_66,truck,Berlin->Potsdam,True
+2026-07-28 22:49:34.564,truck_ID_65,truck,Berlin->Potsdam,True
+2026-07-28 22:49:34.602,car_ID_445,car,Berlin->Potsdam,True
+2026-07-28 22:49:35.207,car_ID_447,car,Berlin->Potsdam,True
+2026-07-28 22:49:35.277,car_ID_437,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:35.442,person_ID_10,person,Potsdam (kein Wechsel),False
+2026-07-28 22:49:35.732,car_ID_356,car,Dresden->Berlin,True
+2026-07-28 22:49:35.832,truck_ID_67,truck,Dresden->Berlin,True
+2026-07-28 22:49:36.138,truck_ID_68,truck,Berlin (kein Wechsel),False
+2026-07-28 22:49:36.407,bus_ID_11,bus,Berlin (kein Wechsel),False
+2026-07-28 22:49:36.886,car_ID_451,car,Dresden->Berlin,True
+2026-07-28 22:49:36.947,person_ID_9,person,Potsdam (kein Wechsel),False
+2026-07-28 22:49:37.636,car_ID_449,car,Berlin->Potsdam,True
+2026-07-28 22:49:37.973,car_ID_443,car,Dresden->Berlin,True
+2026-07-28 22:49:39.204,car_ID_452,car,Berlin->Potsdam,True
+2026-07-28 22:49:39.235,person_ID_11,person,Potsdam (kein Wechsel),False
+2026-07-28 22:49:40.605,truck_ID_69,truck,Berlin (kein Wechsel),False
+2026-07-28 22:49:41.088,truck_ID_70,truck,Berlin (kein Wechsel),False
+2026-07-28 22:49:41.866,car_ID_441,car,Dresden->Berlin,True
+2026-07-28 22:49:42.463,car_ID_453,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:43.129,car_ID_457,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:43.419,car_ID_454,car,Berlin->Potsdam,True
+2026-07-28 22:49:43.996,car_ID_456,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:44.503,car_ID_459,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:45.284,car_ID_442,car,Berlin->Potsdam,True
+2026-07-28 22:49:45.494,car_ID_460,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:45.696,car_ID_461,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:45.902,car_ID_462,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:45.902,car_ID_464,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:47.065,car_ID_463,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:47.577,car_ID_467,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:47.977,car_ID_455,car,Dresden->Berlin,True
+2026-07-28 22:49:48.902,car_ID_468,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:48.942,car_ID_469,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:49.565,car_ID_450,car,Dresden->Berlin,True
+2026-07-28 22:49:49.694,truck_ID_71,truck,Berlin (kein Wechsel),False
+2026-07-28 22:49:50.179,car_ID_470,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:50.847,car_ID_466,car,Berlin->Dresden,True
+2026-07-28 22:49:51.536,truck_ID_72,truck,Berlin->Dresden,True
+2026-07-28 22:49:51.862,bus_ID_12,bus,Berlin->Dresden,True
+2026-07-28 22:49:51.977,bus_ID_13,bus,Dresden (kein Wechsel),False
+2026-07-28 22:49:52.327,truck_ID_73,truck,Berlin->Dresden,True
+2026-07-28 22:49:52.399,car_ID_474,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:52.602,car_ID_477,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:52.796,car_ID_473,car,Berlin->Dresden,True
+2026-07-28 22:49:53.005,car_ID_476,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:53.435,car_ID_475,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:53.780,car_ID_465,car,Berlin->Dresden,True
+2026-07-28 22:49:54.198,car_ID_478,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:54.509,car_ID_480,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:54.509,bus_ID_14,bus,Dresden (kein Wechsel),False
+2026-07-28 22:49:54.592,truck_ID_74,truck,Dresden (kein Wechsel),False
+2026-07-28 22:49:54.592,bus_ID_15,bus,Dresden (kein Wechsel),False
+2026-07-28 22:49:55.228,truck_ID_75,truck,Dresden (kein Wechsel),False
+2026-07-28 22:49:55.366,car_ID_471,car,Berlin (kein Wechsel),False
+2026-07-28 22:49:57.409,car_ID_484,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:58.060,car_ID_481,car,Berlin->Dresden,True
+2026-07-28 22:49:58.868,car_ID_472,car,Berlin->Dresden,True
+2026-07-28 22:49:59.433,car_ID_485,car,Berlin->Dresden,True
+2026-07-28 22:49:59.433,car_ID_486,car,Dresden (kein Wechsel),False
+2026-07-28 22:49:59.765,car_ID_482,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:00.040,car_ID_479,car,Berlin->Dresden,True
+2026-07-28 22:50:02.104,car_ID_490,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:02.701,car_ID_488,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:03.185,car_ID_491,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:03.763,car_ID_489,car,Berlin (kein Wechsel),False
+2026-07-28 22:50:04.691,car_ID_492,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:04.926,car_ID_495,car,Berlin (kein Wechsel),False
+2026-07-28 22:50:05.197,car_ID_496,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:05.296,car_ID_458,car,Berlin->Dresden,True
+2026-07-28 22:50:05.297,car_ID_494,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:05.803,car_ID_498,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:06.576,car_ID_497,car,Dresden->Berlin,True
+2026-07-28 22:50:07.099,car_ID_499,car,Potsdam (kein Wechsel),False
+2026-07-28 22:50:07.099,car_ID_500,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:07.156,motorcycle_ID_1,motorcycle,Potsdam (kein Wechsel),False
+2026-07-28 22:50:07.666,car_ID_503,car,Potsdam (kein Wechsel),False
+2026-07-28 22:50:07.769,car_ID_487,car,Berlin->Dresden,True
+2026-07-28 22:50:07.832,car_ID_502,car,Berlin (kein Wechsel),False
+2026-07-28 22:50:08.060,car_ID_504,car,Berlin (kein Wechsel),False
+2026-07-28 22:50:08.332,motorcycle_ID_2,motorcycle,Berlin (kein Wechsel),False
+2026-07-28 22:50:08.431,person_ID_12,person,Dresden (kein Wechsel),False
+2026-07-28 22:50:08.466,car_ID_501,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:11.366,car_ID_506,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:11.820,car_ID_505,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:12.632,car_ID_507,car,Berlin (kein Wechsel),False
+2026-07-28 22:50:12.969,car_ID_510,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:13.600,car_ID_509,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:14.235,car_ID_511,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:14.510,car_ID_513,car,Berlin (kein Wechsel),False
+2026-07-28 22:50:14.896,car_ID_493,car,Potsdam->Dresden,True
+2026-07-28 22:50:17.137,car_ID_508,car,Potsdam->Dresden,True
+2026-07-28 22:50:18.049,car_ID_515,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:19.771,car_ID_518,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:19.901,car_ID_517,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:21.999,car_ID_512,car,Potsdam->Dresden,True
+2026-07-28 22:50:24.204,car_ID_514,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:24.730,car_ID_520,car,Berlin (kein Wechsel),False
+2026-07-28 22:50:26.336,car_ID_516,car,Potsdam->Dresden,True
+2026-07-28 22:50:27.150,car_ID_483,car,Berlin (kein Wechsel),False
+2026-07-28 22:50:27.735,car_ID_519,car,Berlin (kein Wechsel),False
+2026-07-28 22:50:28.036,car_ID_521,car,Berlin->Potsdam,True
+2026-07-28 22:50:29.836,car_ID_522,car,Dresden->Berlin,True
+2026-07-28 22:50:29.837,car_ID_523,car,Berlin->Potsdam,True
+2026-07-28 22:50:30.738,bus_ID_16,bus,Berlin->Dresden,True
+2026-07-28 22:50:30.802,bus_ID_17,bus,Berlin->Dresden,True
+2026-07-28 22:50:31.145,car_ID_526,car,Berlin->Potsdam,True
+2026-07-28 22:50:31.383,car_ID_525,car,Dresden->Berlin,True
+2026-07-28 22:50:31.696,car_ID_527,car,Berlin->Potsdam,True
+2026-07-28 22:50:34.041,car_ID_529,car,Berlin->Potsdam,True
+2026-07-28 22:50:34.734,car_ID_530,car,Berlin (kein Wechsel),False
+2026-07-28 22:50:34.826,car_ID_532,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:38.072,car_ID_524,car,Dresden->Berlin,True
+2026-07-28 22:50:38.796,car_ID_531,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:39.004,car_ID_535,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:40.073,car_ID_533,car,Berlin (kein Wechsel),False
+2026-07-28 22:50:40.564,car_ID_528,car,Dresden->Berlin,True
+2026-07-28 22:50:41.343,car_ID_537,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:42.445,car_ID_538,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:43.908,car_ID_536,car,Berlin->Dresden,True
+2026-07-28 22:50:44.604,car_ID_539,car,Berlin (kein Wechsel),False
+2026-07-28 22:50:45.145,car_ID_540,car,Berlin (kein Wechsel),False
+2026-07-28 22:50:45.332,car_ID_541,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:46.077,car_ID_542,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:46.699,truck_ID_77,truck,Berlin (kein Wechsel),False
+2026-07-28 22:50:46.896,truck_ID_78,truck,Berlin (kein Wechsel),False
+2026-07-28 22:50:46.928,car_ID_534,car,Berlin->Dresden,True
+2026-07-28 22:50:50.365,truck_ID_76,truck,Berlin->Dresden,True
+2026-07-28 22:50:51.231,car_ID_547,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:51.733,car_ID_543,car,Berlin (kein Wechsel),False
+2026-07-28 22:50:51.897,car_ID_548,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:52.017,car_ID_545,car,Berlin (kein Wechsel),False
+2026-07-28 22:50:52.210,car_ID_549,car,Berlin (kein Wechsel),False
+2026-07-28 22:50:52.210,truck_ID_79,truck,Berlin (kein Wechsel),False
+2026-07-28 22:50:52.360,car_ID_546,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:53.271,car_ID_544,car,Berlin->Dresden,True
+2026-07-28 22:50:53.828,car_ID_550,car,Berlin (kein Wechsel),False
+2026-07-28 22:50:53.828,bus_ID_18,bus,Berlin->Dresden,True
+2026-07-28 22:50:53.926,bus_ID_19,bus,Berlin->Dresden,True
+2026-07-28 22:50:54.028,truck_ID_81,truck,Dresden (kein Wechsel),False
+2026-07-28 22:50:54.435,truck_ID_80,truck,Dresden (kein Wechsel),False
+2026-07-28 22:50:55.094,car_ID_554,car,Berlin (kein Wechsel),False
+2026-07-28 22:50:55.337,bus_ID_20,bus,Dresden (kein Wechsel),False
+2026-07-28 22:50:55.507,car_ID_556,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:55.506,car_ID_557,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:55.507,bus_ID_21,bus,Dresden (kein Wechsel),False
+2026-07-28 22:50:55.541,car_ID_555,car,Berlin (kein Wechsel),False
+2026-07-28 22:50:58.462,car_ID_559,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:58.977,car_ID_561,car,Dresden (kein Wechsel),False
+2026-07-28 22:50:59.138,car_ID_553,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:00.030,car_ID_562,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:00.408,car_ID_564,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:00.999,car_ID_552,car,Berlin->Dresden,True
+2026-07-28 22:51:01.262,car_ID_563,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:02.362,car_ID_566,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:03.483,car_ID_551,car,Berlin (kein Wechsel),False
+2026-07-28 22:51:03.792,car_ID_567,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:04.441,car_ID_569,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:04.861,car_ID_570,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:05.090,car_ID_558,car,Berlin->Dresden,True
+2026-07-28 22:51:06.112,car_ID_572,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:06.112,car_ID_574,car,Berlin (kein Wechsel),False
+2026-07-28 22:51:06.930,car_ID_565,car,Berlin->Dresden,True
+2026-07-28 22:51:07.702,car_ID_576,car,Dresden->Berlin,True
+2026-07-28 22:51:08.237,car_ID_573,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:08.958,car_ID_578,car,Berlin (kein Wechsel),False
+2026-07-28 22:51:09.396,car_ID_568,car,Berlin->Dresden,True
+2026-07-28 22:51:09.967,car_ID_580,car,Berlin (kein Wechsel),False
+2026-07-28 22:51:10.451,truck_ID_82,truck,Dresden->Berlin,True
+2026-07-28 22:51:10.531,car_ID_571,car,Berlin (kein Wechsel),False
+2026-07-28 22:51:12.229,bus_ID_22,bus,Dresden (kein Wechsel),False
+2026-07-28 22:51:12.329,car_ID_579,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:13.106,car_ID_575,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:13.155,car_ID_583,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:13.264,truck_ID_83,truck,Dresden (kein Wechsel),False
+2026-07-28 22:51:13.796,car_ID_581,car,Berlin->Dresden,True
+2026-07-28 22:51:14.407,car_ID_586,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:14.577,car_ID_588,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:14.961,car_ID_584,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:16.708,car_ID_560,car,Berlin (kein Wechsel),False
+2026-07-28 22:51:17.600,truck_ID_84,truck,Dresden->Berlin,True
+2026-07-28 22:51:17.663,car_ID_590,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:18.756,car_ID_587,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:20.733,car_ID_585,car,Berlin->Dresden,True
+2026-07-28 22:51:20.836,car_ID_594,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:21.302,car_ID_589,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:21.557,car_ID_593,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:21.860,car_ID_582,car,Berlin (kein Wechsel),False
+2026-07-28 22:51:22.070,car_ID_596,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:22.201,car_ID_595,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:22.612,car_ID_592,car,Berlin->Dresden,True
+2026-07-28 22:51:23.127,car_ID_591,car,Berlin->Dresden,True
+2026-07-28 22:51:25.960,truck_ID_85,truck,Berlin->Dresden,True
+2026-07-28 22:51:26.367,car_ID_597,car,Berlin (kein Wechsel),False
+2026-07-28 22:51:26.401,car_ID_598,car,Berlin (kein Wechsel),False
+2026-07-28 22:51:26.874,car_ID_599,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:26.972,car_ID_600,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:27.008,car_ID_601,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:28.440,car_ID_602,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:29.912,car_ID_604,car,Berlin (kein Wechsel),False
+2026-07-28 22:51:30.467,car_ID_603,car,Berlin (kein Wechsel),False
+2026-07-28 22:51:30.505,car_ID_606,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:31.209,car_ID_605,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:31.930,truck_ID_86,truck,Berlin->Dresden,True
+2026-07-28 22:51:32.162,car_ID_607,car,Berlin (kein Wechsel),False
+2026-07-28 22:51:32.469,truck_ID_87,truck,Berlin->Dresden,True
+2026-07-28 22:51:32.644,car_ID_608,car,Berlin (kein Wechsel),False
+2026-07-28 22:51:33.402,bus_ID_23,bus,Berlin->Dresden,True
+2026-07-28 22:51:33.639,truck_ID_89,truck,Berlin->Dresden,True
+2026-07-28 22:51:33.639,bus_ID_24,bus,Berlin->Dresden,True
+2026-07-28 22:51:33.738,truck_ID_88,truck,Berlin->Dresden,True
+2026-07-28 22:51:34.796,truck_ID_90,truck,Dresden (kein Wechsel),False
+2026-07-28 22:51:35.017,car_ID_614,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:35.961,car_ID_611,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:36.167,car_ID_609,car,Berlin (kein Wechsel),False
+2026-07-28 22:51:36.167,car_ID_610,car,Berlin (kein Wechsel),False
+2026-07-28 22:51:36.371,car_ID_613,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:37.232,car_ID_612,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:40.674,car_ID_619,car,Potsdam (kein Wechsel),False
+2026-07-28 22:51:41.043,truck_ID_91,truck,Berlin->Dresden,True
+2026-07-28 22:51:42.142,car_ID_620,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:43.102,car_ID_577,car,Potsdam->Berlin,True
+2026-07-28 22:51:44.667,car_ID_622,car,Potsdam (kein Wechsel),False
+2026-07-28 22:51:44.874,truck_ID_92,truck,Dresden (kein Wechsel),False
+2026-07-28 22:51:45.172,car_ID_616,car,Berlin (kein Wechsel),False
+2026-07-28 22:51:46.029,car_ID_621,car,Potsdam->Berlin,True
+2026-07-28 22:51:46.674,car_ID_624,car,Berlin (kein Wechsel),False
+2026-07-28 22:51:48.736,car_ID_615,car,Berlin (kein Wechsel),False
+2026-07-28 22:51:50.338,car_ID_627,car,Potsdam->Dresden,True
+2026-07-28 22:51:51.360,car_ID_629,car,Dresden->Berlin,True
+2026-07-28 22:51:51.602,car_ID_630,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:53.057,car_ID_623,car,Potsdam->Dresden,True
+2026-07-28 22:51:53.996,car_ID_626,car,Potsdam->Dresden,True
+2026-07-28 22:51:55.214,car_ID_631,car,Potsdam->Dresden,True
+2026-07-28 22:51:57.241,car_ID_632,car,Potsdam->Dresden,True
+2026-07-28 22:51:58.702,car_ID_634,car,Dresden (kein Wechsel),False
+2026-07-28 22:51:59.799,car_ID_636,car,Berlin (kein Wechsel),False
+2026-07-28 22:52:01.267,car_ID_628,car,Berlin (kein Wechsel),False
+2026-07-28 22:52:01.459,car_ID_635,car,Dresden (kein Wechsel),False
+2026-07-28 22:52:02.125,car_ID_638,car,Dresden (kein Wechsel),False
+2026-07-28 22:52:02.689,car_ID_633,car,Potsdam->Dresden,True
+2026-07-28 22:52:03.105,car_ID_625,car,Berlin (kein Wechsel),False
+2026-07-28 22:52:04.503,car_ID_639,car,Dresden (kein Wechsel),False
+2026-07-28 22:52:05.230,car_ID_640,car,Berlin->Potsdam,True
+2026-07-28 22:52:05.734,car_ID_637,car,Berlin (kein Wechsel),False
+2026-07-28 22:52:07.475,car_ID_641,car,Berlin->Potsdam,True
+2026-07-28 22:52:07.760,car_ID_644,car,Potsdam (kein Wechsel),False
+2026-07-28 22:52:07.861,car_ID_617,car,Dresden->Berlin,True
+2026-07-28 22:52:08.875,car_ID_647,car,Berlin (kein Wechsel),False
+2026-07-28 22:52:08.927,car_ID_645,car,Berlin (kein Wechsel),False
+2026-07-28 22:52:09.157,car_ID_648,car,Dresden (kein Wechsel),False
+2026-07-28 22:52:09.503,car_ID_649,car,Berlin (kein Wechsel),False
+2026-07-28 22:52:10.203,car_ID_650,car,Berlin (kein Wechsel),False
+2026-07-28 22:52:10.235,car_ID_646,car,Berlin->Potsdam,True
+2026-07-28 22:52:10.631,car_ID_618,car,Dresden->Berlin,True
+2026-07-28 22:52:11.743,car_ID_652,car,Berlin (kein Wechsel),False
+2026-07-28 22:52:12.266,car_ID_642,car,Berlin->Potsdam,True
+2026-07-28 22:52:12.266,car_ID_651,car,Berlin->Potsdam,True
+2026-07-28 22:52:13.077,bus_ID_25,bus,Dresden (kein Wechsel),False
+2026-07-28 22:52:13.161,car_ID_654,car,Berlin->Dresden,True
+2026-07-28 22:52:13.668,car_ID_656,car,Potsdam (kein Wechsel),False
+2026-07-28 22:52:13.934,car_ID_653,car,Berlin->Potsdam,True
+2026-07-28 22:52:15.100,truck_ID_94,truck,Dresden->Potsdam,True
+2026-07-28 22:52:15.307,truck_ID_93,truck,Berlin->Potsdam,True
+2026-07-28 22:52:15.640,car_ID_659,car,Potsdam (kein Wechsel),False
+2026-07-28 22:52:15.736,car_ID_658,car,Berlin->Potsdam,True
+2026-07-28 22:52:15.874,car_ID_655,car,Berlin->Potsdam,True
+2026-07-28 22:52:16.194,car_ID_660,car,Dresden (kein Wechsel),False
+2026-07-28 22:52:18.028,car_ID_643,car,Dresden->Berlin,True
+2026-07-28 22:52:19.225,car_ID_662,car,Dresden->Berlin,True
+2026-07-28 22:52:20.208,car_ID_657,car,Dresden->Berlin,True
+2026-07-28 22:52:21.066,truck_ID_95,truck,Berlin (kein Wechsel),False
+2026-07-28 22:52:21.725,car_ID_665,car,Dresden (kein Wechsel),False
+2026-07-28 22:52:23.017,car_ID_663,car,Berlin->Dresden,True
+2026-07-28 22:52:23.465,car_ID_666,car,Berlin (kein Wechsel),False
+2026-07-28 22:52:24.584,car_ID_668,car,Dresden (kein Wechsel),False
+2026-07-28 22:52:25.719,car_ID_671,car,Berlin (kein Wechsel),False
+2026-07-28 22:52:27.188,truck_ID_97,truck,Dresden (kein Wechsel),False
+2026-07-28 22:52:27.699,car_ID_670,car,Berlin->Dresden,True
+2026-07-28 22:52:27.832,car_ID_673,car,Berlin (kein Wechsel),False
+2026-07-28 22:52:28.140,car_ID_669,car,Berlin (kein Wechsel),False
+2026-07-28 22:52:28.300,car_ID_667,car,Berlin->Dresden,True
+2026-07-28 22:52:28.895,truck_ID_96,truck,Berlin->Dresden,True
+2026-07-28 22:52:30.160,truck_ID_99,truck,Berlin (kein Wechsel),False
+2026-07-28 22:52:30.225,car_ID_672,car,Berlin->Dresden,True
+2026-07-28 22:52:30.431,car_ID_664,car,Potsdam (kein Wechsel),False
+2026-07-28 22:52:30.770,car_ID_676,car,Berlin (kein Wechsel),False
+2026-07-28 22:52:31.033,truck_ID_98,truck,Berlin->Dresden,True
+2026-07-28 22:52:31.170,truck_ID_100,truck,Berlin (kein Wechsel),False
+2026-07-28 22:52:31.344,car_ID_679,car,Berlin->Dresden,True
+2026-07-28 22:52:31.426,car_ID_678,car,Dresden (kein Wechsel),False
+2026-07-28 22:52:32.199,truck_ID_101,truck,Dresden (kein Wechsel),False
+2026-07-28 22:52:32.232,car_ID_675,car,Berlin (kein Wechsel),False
+2026-07-28 22:52:32.766,car_ID_682,car,Berlin (kein Wechsel),False
+2026-07-28 22:52:32.866,truck_ID_102,truck,Dresden (kein Wechsel),False
+2026-07-28 22:52:32.995,car_ID_677,car,Dresden (kein Wechsel),False
+2026-07-28 22:52:34.071,car_ID_687,car,Berlin (kein Wechsel),False
+2026-07-28 22:52:34.237,car_ID_688,car,Dresden (kein Wechsel),False
+2026-07-28 22:52:35.718,car_ID_690,car,Berlin (kein Wechsel),False
+2026-07-28 22:52:35.996,car_ID_681,car,Berlin->Dresden,True
+2026-07-28 22:52:36.409,car_ID_683,car,Berlin->Dresden,True
+2026-07-28 22:52:36.439,car_ID_691,car,Dresden (kein Wechsel),False
+2026-07-28 22:52:36.636,truck_ID_103,truck,Dresden (kein Wechsel),False
+2026-07-28 22:52:36.741,car_ID_685,car,Berlin->Dresden,True
+2026-07-28 22:52:37.191,car_ID_689,car,Berlin (kein Wechsel),False
+2026-07-28 22:52:37.704,car_ID_684,car,Dresden (kein Wechsel),False
+2026-07-28 22:52:38.953,car_ID_694,car,Berlin (kein Wechsel),False
+2026-07-28 22:52:39.141,truck_ID_105,truck,Berlin (kein Wechsel),False
+2026-07-28 22:52:39.744,car_ID_698,car,Dresden (kein Wechsel),False
+2026-07-28 22:52:40.129,truck_ID_104,truck,Dresden->Berlin,True
+2026-07-28 22:52:40.498,truck_ID_106,truck,Dresden (kein Wechsel),False
+2026-07-28 22:52:40.903,car_ID_696,car,Berlin->Dresden,True
+2026-07-28 22:52:40.904,car_ID_697,car,Berlin (kein Wechsel),False
+2026-07-28 22:52:41.599,car_ID_699,car,Dresden->Berlin,True
+2026-07-28 22:52:42.007,car_ID_701,car,Dresden (kein Wechsel),False
+2026-07-28 22:52:42.309,car_ID_700,car,Dresden (kein Wechsel),False
+2026-07-28 22:52:43.069,car_ID_693,car,Dresden (kein Wechsel),False
+2026-07-28 22:52:43.573,car_ID_703,car,Berlin (kein Wechsel),False
+2026-07-28 22:52:43.572,car_ID_704,car,Dresden (kein Wechsel),False
+2026-07-28 22:52:43.639,car_ID_702,car,Dresden (kein Wechsel),False
+2026-07-28 22:52:43.777,car_ID_705,car,Dresden (kein Wechsel),False
+2026-07-28 22:52:44.201,truck_ID_107,truck,Dresden (kein Wechsel),False
+2026-07-28 22:52:44.398,car_ID_680,car,Potsdam (kein Wechsel),False
+2026-07-28 22:52:44.833,car_ID_686,car,Berlin->Dresden,True
+2026-07-28 22:52:45.804,truck_ID_108,truck,Berlin (kein Wechsel),False
+2026-07-28 22:52:45.963,car_ID_706,car,Dresden (kein Wechsel),False
+2026-07-28 22:52:46.066,car_ID_708,car,Potsdam (kein Wechsel),False
+2026-07-28 22:52:46.206,car_ID_692,car,Berlin->Dresden,True
+2026-07-28 22:52:47.025,truck_ID_109,truck,Berlin (kein Wechsel),False
+2026-07-28 22:52:47.840,car_ID_661,car,Potsdam->Berlin,True
+2026-07-28 22:52:47.839,car_ID_711,car,Dresden (kein Wechsel),False
+2026-07-28 22:52:49.406,car_ID_707,car,Dresden (kein Wechsel),False
+2026-07-28 22:52:49.857,car_ID_714,car,Potsdam (kein Wechsel),False
+2026-07-28 22:52:49.890,car_ID_709,car,Potsdam->Berlin,True
+2026-07-28 22:52:51.671,truck_ID_110,truck,Berlin (kein Wechsel),False
+2026-07-28 22:52:51.935,car_ID_713,car,Potsdam->Berlin,True
+2026-07-28 22:52:52.244,car_ID_716,car,Dresden (kein Wechsel),False
+2026-07-28 22:52:53.232,car_ID_710,car,Potsdam->Dresden,True
+2026-07-28 22:52:55.225,truck_ID_111,truck,Berlin (kein Wechsel),False
+2026-07-28 22:52:55.369,car_ID_718,car,Potsdam->Berlin,True
+2026-07-28 22:52:56.170,car_ID_717,car,Potsdam->Dresden,True
+2026-07-28 22:52:57.370,car_ID_719,car,Dresden (kein Wechsel),False
+2026-07-28 22:52:58.164,car_ID_712,car,Dresden (kein Wechsel),False
+2026-07-28 22:52:58.297,car_ID_715,car,Potsdam->Dresden,True
+2026-07-28 22:52:59.257,car_ID_720,car,Potsdam->Dresden,True
+2026-07-28 22:52:59.257,car_ID_723,car,Dresden (kein Wechsel),False
+2026-07-28 22:53:00.828,car_ID_722,car,Dresden (kein Wechsel),False
+2026-07-28 22:53:01.128,car_ID_725,car,Dresden (kein Wechsel),False
+2026-07-28 22:53:02.360,car_ID_724,car,Dresden (kein Wechsel),False
+2026-07-28 22:53:03.142,truck_ID_112,truck,Potsdam (kein Wechsel),False
+2026-07-28 22:53:03.523,car_ID_726,car,Potsdam (kein Wechsel),False
+2026-07-28 22:53:03.549,truck_ID_113,truck,Potsdam (kein Wechsel),False
+2026-07-28 22:53:03.959,car_ID_721,car,Potsdam->Dresden,True
+2026-07-28 22:53:06.798,car_ID_729,car,Dresden (kein Wechsel),False
+2026-07-28 22:53:06.833,truck_ID_114,truck,Berlin (kein Wechsel),False
+2026-07-28 22:53:06.995,car_ID_674,car,Berlin (kein Wechsel),False
+2026-07-28 22:53:07.170,truck_ID_115,truck,Berlin (kein Wechsel),False
+2026-07-28 22:53:07.472,car_ID_730,car,Berlin (kein Wechsel),False
+2026-07-28 22:53:07.864,car_ID_728,car,Potsdam->Dresden,True
+2026-07-28 22:53:07.961,car_ID_732,car,Dresden (kein Wechsel),False
+2026-07-28 22:53:08.463,car_ID_695,car,Berlin (kein Wechsel),False
+2026-07-28 22:53:08.741,bus_ID_26,bus,Berlin (kein Wechsel),False
+2026-07-28 22:53:08.836,bus_ID_27,bus,Berlin (kein Wechsel),False
+2026-07-28 22:53:08.991,truck_ID_117,truck,Berlin (kein Wechsel),False
+2026-07-28 22:53:09.903,car_ID_727,car,Dresden (kein Wechsel),False
+2026-07-28 22:53:09.903,car_ID_731,car,Berlin (kein Wechsel),False
+2026-07-28 22:53:10.306,car_ID_734,car,Berlin (kein Wechsel),False
+2026-07-28 22:53:10.306,car_ID_735,car,Dresden (kein Wechsel),False
+2026-07-28 22:53:10.728,bus_ID_28,bus,Berlin (kein Wechsel),False
+2026-07-28 22:53:10.761,bus_ID_29,bus,Berlin (kein Wechsel),False
+2026-07-28 22:53:11.566,truck_ID_116,truck,Berlin (kein Wechsel),False
+2026-07-28 22:53:11.642,car_ID_733,car,Berlin->Potsdam,True
+2026-07-28 22:53:11.812,truck_ID_119,truck,Berlin (kein Wechsel),False
+2026-07-28 22:53:11.872,truck_ID_118,truck,Potsdam (kein Wechsel),False
+2026-07-28 22:53:11.925,car_ID_740,car,Berlin (kein Wechsel),False
+2026-07-28 22:53:11.946,car_ID_736,car,Potsdam (kein Wechsel),False
+2026-07-28 22:53:12.065,car_ID_741,car,Berlin (kein Wechsel),False
+2026-07-28 22:53:13.142,car_ID_738,car,Berlin (kein Wechsel),False
+2026-07-28 22:53:13.186,car_ID_743,car,Berlin (kein Wechsel),False
+2026-07-28 22:53:13.418,car_ID_742,car,Berlin (kein Wechsel),False
+2026-07-28 22:53:13.697,car_ID_739,car,Berlin->Potsdam,True
+2026-07-28 22:53:14.439,car_ID_745,car,Berlin (kein Wechsel),False
+2026-07-28 22:53:15.840,car_ID_744,car,Berlin->Potsdam,True
+2026-07-28 22:53:16.163,car_ID_746,car,Dresden (kein Wechsel),False
+2026-07-28 22:53:16.932,bus_ID_30,bus,Berlin->Dresden,True
+2026-07-28 22:53:17.036,bus_ID_31,bus,Potsdam (kein Wechsel),False
+2026-07-28 22:53:17.390,car_ID_748,car,Berlin (kein Wechsel),False
+2026-07-28 22:53:17.592,car_ID_747,car,Dresden (kein Wechsel),False
+2026-07-28 22:53:18.434,car_ID_749,car,Berlin->Potsdam,True
+2026-07-28 22:53:18.542,car_ID_737,car,Potsdam->Dresden,True
+2026-07-28 22:53:20.207,car_ID_751,car,Berlin (kein Wechsel),False
+2026-07-28 22:53:20.833,car_ID_750,car,Berlin->Potsdam,True
+2026-07-28 22:53:21.619,car_ID_752,car,Dresden->Berlin,True
+2026-07-28 22:53:22.499,car_ID_754,car,Potsdam (kein Wechsel),False
+2026-07-28 22:53:23.061,car_ID_753,car,Dresden->Berlin,True
+2026-07-28 22:53:23.891,truck_ID_120,truck,Berlin (kein Wechsel),False
+2026-07-28 22:53:25.265,car_ID_757,car,Dresden (kein Wechsel),False
+2026-07-28 22:53:25.741,car_ID_756,car,Berlin->Dresden,True
+2026-07-28 22:53:25.899,car_ID_758,car,Dresden (kein Wechsel),False
+2026-07-28 22:53:26.805,car_ID_762,car,Berlin (kein Wechsel),False
+2026-07-28 22:53:27.764,car_ID_760,car,Berlin (kein Wechsel),False
+2026-07-28 22:53:29.438,car_ID_763,car,Berlin->Dresden,True
+2026-07-28 22:53:30.097,car_ID_759,car,Berlin->Dresden,True
+2026-07-28 22:53:30.131,car_ID_766,car,Dresden->Berlin,True
+2026-07-28 22:53:30.696,car_ID_768,car,Dresden (kein Wechsel),False
+2026-07-28 22:53:31.282,car_ID_769,car,Berlin (kein Wechsel),False
+2026-07-28 22:53:31.402,car_ID_761,car,Dresden (kein Wechsel),False
+2026-07-28 22:53:32.402,car_ID_770,car,Berlin (kein Wechsel),False
+2026-07-28 22:53:32.402,car_ID_772,car,Berlin (kein Wechsel),False
+2026-07-28 22:53:32.567,car_ID_764,car,Berlin->Dresden,True
+2026-07-28 22:53:33.764,car_ID_765,car,Berlin->Dresden,True
+2026-07-28 22:53:33.839,car_ID_767,car,Berlin->Dresden,True
+2026-07-28 22:53:34.142,car_ID_755,car,Berlin->Dresden,True
+2026-07-28 22:53:34.215,car_ID_773,car,Dresden (kein Wechsel),False
+2026-07-28 22:53:34.301,car_ID_774,car,Dresden (kein Wechsel),False
+2026-07-28 22:53:34.787,truck_ID_122,truck,Berlin (kein Wechsel),False
+2026-07-28 22:53:35.557,car_ID_771,car,Dresden (kein Wechsel),False
+2026-07-28 22:53:37.904,car_ID_779,car,Potsdam (kein Wechsel),False
+2026-07-28 22:53:37.934,truck_ID_121,truck,Berlin->Dresden,True
+2026-07-28 22:53:38.041,car_ID_776,car,Berlin->Dresden,True
+2026-07-28 22:53:39.438,car_ID_781,car,Dresden (kein Wechsel),False
+2026-07-28 22:53:40.372,car_ID_775,car,Berlin (kein Wechsel),False
+2026-07-28 22:53:40.898,car_ID_780,car,Dresden (kein Wechsel),False
+2026-07-28 22:53:41.419,car_ID_782,car,Dresden (kein Wechsel),False
+2026-07-28 22:53:43.002,car_ID_783,car,Dresden (kein Wechsel),False
+2026-07-28 22:53:44.798,car_ID_777,car,Berlin->Dresden,True
+2026-07-28 22:53:45.321,car_ID_778,car,Berlin->Dresden,True
+2026-07-28 22:53:47.321,truck_ID_123,truck,Berlin->Dresden,True
+2026-07-28 22:53:48.260,truck_ID_124,truck,Dresden (kein Wechsel),False
+2026-07-28 22:53:49.373,car_ID_786,car,Potsdam->Berlin,True
+2026-07-28 22:53:51.194,car_ID_787,car,Potsdam->Berlin,True
+2026-07-28 22:53:51.697,car_ID_788,car,Berlin (kein Wechsel),False
+2026-07-28 22:53:52.590,car_ID_789,car,Dresden (kein Wechsel),False
+2026-07-28 22:53:55.083,car_ID_790,car,Dresden (kein Wechsel),False
+2026-07-28 22:53:56.040,car_ID_792,car,Dresden (kein Wechsel),False
+2026-07-28 22:53:57.203,car_ID_791,car,Dresden->Berlin,True
+2026-07-28 22:53:57.875,car_ID_793,car,Dresden (kein Wechsel),False
+2026-07-28 22:53:58.430,car_ID_795,car,Dresden (kein Wechsel),False
+2026-07-28 22:54:00.204,car_ID_797,car,Dresden (kein Wechsel),False
+2026-07-28 22:54:00.247,car_ID_796,car,Dresden (kein Wechsel),False
+2026-07-28 22:54:00.506,car_ID_794,car,Dresden->Berlin,True
+2026-07-28 22:54:03.905,car_ID_784,car,Berlin (kein Wechsel),False
+2026-07-28 22:54:03.904,car_ID_785,car,Berlin (kein Wechsel),False
+2026-07-28 22:54:03.905,car_ID_798,car,Potsdam->Dresden,True
+2026-07-28 22:54:03.905,car_ID_799,car,Dresden (kein Wechsel),False
+2026-07-28 22:54:03.339,car_ID_800,car,Dresden (kein Wechsel),False
+2026-07-28 22:54:03.137,car_ID_801,car,Dresden (kein Wechsel),False

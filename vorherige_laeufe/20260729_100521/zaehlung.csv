@@ -1,0 +1,7 @@
+timestamp,display_id,label,direction,is_transition
+2026-07-29 10:04:49.088,car_ID_1,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:04:50.222,car_ID_2,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:05:04.255,car_ID_3,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:05:04.290,motorcycle_ID_1,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:05:05.989,bicycle_ID_1,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:05:06.423,person_ID_1,person,Zehlendorf->Stahnsdorf,True

@@ -1,0 +1,2568 @@
+timestamp,display_id,label,direction,is_transition
+2026-07-29 10:05:27.286,car_ID_1,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:05:31.721,car_ID_2,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:05:41.083,person_ID_1,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:06:02.823,car_ID_3,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:06:04.353,motorcycle_ID_1,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:06:04.986,motorcycle_ID_2,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:06:05.086,bicycle_ID_1,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:06:06.157,person_ID_2,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:06:06.188,bicycle_ID_2,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:06:22.164,car_ID_5,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:06:23.453,car_ID_4,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:06:32.021,car_ID_6,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:06:45.124,car_ID_7,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:07:07.423,car_ID_8,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:07:20.125,car_ID_9,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:07:35.661,person_ID_3,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:07:38.458,car_ID_10,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:08:14.529,car_ID_11,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:08:58.898,car_ID_13,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:08:59.065,car_ID_12,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:08:59.830,truck_ID_2,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:09:00.230,car_ID_14,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:09:01.029,bus_ID_1,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 10:09:01.029,truck_ID_1,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:09:04.329,car_ID_15,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:09:04.429,truck_ID_3,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:09:04.697,car_ID_16,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:09:04.765,truck_ID_4,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:09:08.165,car_ID_17,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:09:25.434,car_ID_19,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:09:28.736,car_ID_18,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:09:30.431,car_ID_20,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:09:31.131,truck_ID_5,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:09:48.370,car_ID_21,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:10:24.304,motorcycle_ID_3,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:10:25.407,motorcycle_ID_4,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:10:25.440,person_ID_4,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:10:25.742,motorcycle_ID_5,motorcycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:10:25.805,person_ID_5,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:10:33.573,person_ID_6,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:10:41.437,person_ID_7,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:10:52.641,person_ID_8,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:10:54.242,person_ID_9,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:10:55.472,car_ID_22,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:11:10.175,car_ID_23,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:11:21.939,car_ID_24,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:11:42.873,car_ID_25,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:12:01.115,car_ID_26,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:12:45.317,bicycle_ID_4,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:12:45.349,motorcycle_ID_7,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:12:45.417,motorcycle_ID_6,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:12:46.580,bicycle_ID_3,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:12:46.580,person_ID_11,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:12:55.777,motorcycle_ID_9,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:12:55.912,bicycle_ID_6,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:12:56.012,motorcycle_ID_8,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:12:56.877,person_ID_12,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:12:57.380,bicycle_ID_5,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:12:59.946,car_ID_27,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:00.210,person_ID_10,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:13:01.409,car_ID_28,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:02.809,car_ID_29,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:13:21.378,motorcycle_ID_11,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:21.579,motorcycle_ID_10,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:21.579,person_ID_13,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:21.678,bicycle_ID_8,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:21.713,bicycle_ID_7,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:21.813,person_ID_14,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:22.013,motorcycle_ID_13,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:22.246,motorcycle_ID_12,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:22.413,person_ID_15,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:22.478,bicycle_ID_9,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:13:22.645,bicycle_ID_10,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:24.479,motorcycle_ID_14,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:25.350,bicycle_ID_11,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:13:25.816,person_ID_16,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:13:25.881,person_ID_17,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:13:41.220,motorcycle_ID_16,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:13:41.251,motorcycle_ID_15,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:13:41.491,person_ID_19,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:13:41.553,bicycle_ID_12,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:13:41.885,motorcycle_ID_17,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:13:42.883,person_ID_18,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:13:42.915,person_ID_20,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:13:44.117,bicycle_ID_13,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:13:44.315,person_ID_21,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:13:45.283,bicycle_ID_14,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:13:45.315,motorcycle_ID_18,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:13:45.415,motorcycle_ID_20,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:13:45.415,person_ID_22,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:13:45.947,bicycle_ID_16,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:13:45.947,person_ID_24,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:13:46.151,motorcycle_ID_19,motorcycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:13:46.220,person_ID_25,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:13:46.417,bicycle_ID_15,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:13:46.449,motorcycle_ID_22,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:46.617,motorcycle_ID_21,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:13:47.448,person_ID_26,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:47.586,person_ID_23,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:13:47.586,person_ID_27,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:13:48.192,bicycle_ID_20,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:48.355,motorcycle_ID_25,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:48.748,motorcycle_ID_23,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:48.984,bicycle_ID_18,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:13:49.347,person_ID_28,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:13:49.415,bicycle_ID_21,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:49.482,motorcycle_ID_26,motorcycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:13:49.583,person_ID_30,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:49.615,bicycle_ID_17,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:49.615,motorcycle_ID_27,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:49.715,motorcycle_ID_24,motorcycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:13:49.848,person_ID_29,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:13:50.047,motorcycle_ID_28,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:50.048,person_ID_32,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:50.147,person_ID_31,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:50.247,bicycle_ID_22,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:50.315,bicycle_ID_19,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:13:50.583,person_ID_33,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:50.648,motorcycle_ID_30,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:51.348,bicycle_ID_23,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:51.617,motorcycle_ID_29,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:52.383,person_ID_34,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:53.148,motorcycle_ID_31,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:13:54.951,motorcycle_ID_32,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:14:05.524,car_ID_30,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:14:08.316,car_ID_31,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:14:35.653,car_ID_32,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:14:44.656,car_ID_33,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:14:46.986,truck_ID_6,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:15:38.590,car_ID_34,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:15:54.629,car_ID_35,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:15:55.761,car_ID_36,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:16:23.361,person_ID_35,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:16:26.294,motorcycle_ID_33,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:16:26.926,person_ID_36,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:16:26.994,bicycle_ID_24,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:16:28.259,bicycle_ID_25,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:16:28.891,person_ID_37,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:16:29.259,bicycle_ID_26,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:16:29.423,person_ID_38,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:16:29.459,bicycle_ID_27,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:16:29.924,motorcycle_ID_35,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:16:30.423,motorcycle_ID_34,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:16:43.327,car_ID_37,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:16:47.494,car_ID_38,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:17:05.231,person_ID_39,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:17:07.097,motorcycle_ID_36,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:17:07.332,motorcycle_ID_37,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:17:07.397,bicycle_ID_28,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:17:08.061,person_ID_41,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:17:09.329,person_ID_42,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:17:09.394,motorcycle_ID_38,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:17:09.628,bicycle_ID_29,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:17:10.131,person_ID_40,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:17:10.928,car_ID_39,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:17:11.561,motorcycle_ID_40,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:17:11.828,motorcycle_ID_39,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:17:12.932,bicycle_ID_30,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:17:13.897,motorcycle_ID_41,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:17:13.932,person_ID_43,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:17:13.967,bicycle_ID_31,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:17:14.434,person_ID_45,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:17:14.497,bicycle_ID_32,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:17:14.629,motorcycle_ID_42,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:17:15.164,motorcycle_ID_43,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:17:18.394,car_ID_40,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:17:23.366,person_ID_44,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:17:25.532,person_ID_46,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:18:10.636,car_ID_41,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:18:11.032,truck_ID_7,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:18:11.236,truck_ID_8,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:18:13.435,car_ID_42,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:18:15.132,bus_ID_2,bus,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:18:15.264,car_ID_43,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:18:26.764,car_ID_44,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:18:43.106,car_ID_45,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:18:45.633,car_ID_46,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:18:58.607,person_ID_47,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:19:10.067,person_ID_48,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:19:11.234,motorcycle_ID_44,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:19:12.202,person_ID_49,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:19:13.742,person_ID_50,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:19:15.038,motorcycle_ID_45,motorcycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:19:17.836,person_ID_52,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:19:18.367,bicycle_ID_33,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:19:19.067,person_ID_53,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:19:19.668,motorcycle_ID_46,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:19:19.702,person_ID_51,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:19:21.839,person_ID_54,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:19:26.467,person_ID_55,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:19:51.568,car_ID_47,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:19:58.237,car_ID_48,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:20:18.205,car_ID_49,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:21:16.249,truck_ID_9,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:21:17.578,car_ID_50,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:21:20.576,bicycle_ID_34,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:21:20.742,motorcycle_ID_47,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:21:21.545,motorcycle_ID_49,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:21:21.714,motorcycle_ID_48,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:21:21.946,bicycle_ID_36,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:21:23.009,bicycle_ID_35,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:21:23.608,person_ID_56,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:21:40.810,car_ID_51,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:21:50.479,car_ID_52,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:21:53.212,bicycle_ID_38,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:21:54.444,bicycle_ID_37,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:21:54.444,person_ID_57,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:22:38.013,truck_ID_10,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:22:38.713,car_ID_53,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:22:53.117,car_ID_54,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:23:07.785,car_ID_56,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:23:11.349,car_ID_55,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:23:24.855,car_ID_57,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:23:39.752,bicycle_ID_39,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:23:39.817,person_ID_58,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:23:41.852,person_ID_59,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:23:45.019,bicycle_ID_40,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:23:45.385,bicycle_ID_41,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:23:46.386,car_ID_58,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:23:46.886,person_ID_60,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:23:49.084,car_ID_59,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:24:01.456,car_ID_61,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:24:02.727,car_ID_60,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:24:06.553,car_ID_62,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:24:17.585,person_ID_61,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:24:18.921,person_ID_62,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:24:22.189,car_ID_63,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:24:24.894,bus_ID_3,bus,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:24:28.321,truck_ID_11,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:24:28.386,bus_ID_4,bus,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:24:28.386,truck_ID_12,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:24:28.421,truck_ID_13,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:24:32.687,car_ID_65,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:24:33.557,car_ID_64,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:24:36.262,car_ID_66,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:24:39.226,car_ID_67,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:25:27.528,person_ID_63,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:25:29.329,person_ID_64,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:25:34.057,person_ID_65,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:25:40.596,car_ID_68,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:25:44.925,person_ID_66,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:25:55.837,bicycle_ID_42,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:25:57.128,bicycle_ID_43,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:25:58.295,motorcycle_ID_50,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:25:58.393,person_ID_67,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:26:00.158,person_ID_68,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:26:04.194,bicycle_ID_44,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:26:04.927,person_ID_69,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:26:09.495,car_ID_69,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:26:20.864,car_ID_70,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:26:22.595,truck_ID_14,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:26:22.932,person_ID_70,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:26:23.801,person_ID_71,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:26:26.528,car_ID_71,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:26:29.298,person_ID_72,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:26:33.035,person_ID_73,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:26:34.495,bicycle_ID_45,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:26:34.960,person_ID_74,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:27:10.830,person_ID_75,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:27:11.330,car_ID_72,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:27:12.499,person_ID_76,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:27:13.201,car_ID_73,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:27:28.099,person_ID_77,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:27:33.602,person_ID_78,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:27:35.531,person_ID_79,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:27:53.032,car_ID_74,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:28:05.901,car_ID_75,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:28:09.434,car_ID_76,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:28:11.933,car_ID_77,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:28:14.968,car_ID_78,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:28:15.133,person_ID_80,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:28:18.136,person_ID_81,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:28:22.135,bicycle_ID_46,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:28:22.534,motorcycle_ID_51,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:28:24.070,person_ID_82,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:28:49.003,car_ID_79,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:28:57.139,motorcycle_ID_52,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:28:57.372,bicycle_ID_48,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:28:57.673,bicycle_ID_49,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:28:58.471,bicycle_ID_47,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:28:58.471,person_ID_83,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:29:16.872,car_ID_80,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:29:20.543,car_ID_81,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:29:22.405,car_ID_82,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:29:37.676,person_ID_84,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:29:40.309,person_ID_85,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:29:41.277,bicycle_ID_50,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:29:41.577,person_ID_86,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:29:57.807,motorcycle_ID_53,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:29:57.807,motorcycle_ID_54,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:29:58.406,bicycle_ID_51,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:29:59.409,bicycle_ID_52,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:29:59.408,person_ID_87,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:30:02.213,person_ID_88,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:30:05.610,person_ID_89,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:30:07.009,car_ID_83,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:30:09.109,car_ID_84,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:30:36.512,car_ID_85,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:30:41.481,car_ID_86,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:30:56.117,bicycle_ID_53,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:30:56.509,motorcycle_ID_55,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:30:56.609,person_ID_90,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:31:48.247,motorcycle_ID_56,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:31:48.415,motorcycle_ID_57,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:31:48.747,bicycle_ID_55,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:31:49.415,bicycle_ID_54,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:31:49.516,person_ID_91,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:31:58.483,person_ID_92,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:32:00.383,person_ID_93,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:32:00.880,car_ID_87,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:32:02.448,truck_ID_15,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:32:05.785,person_ID_94,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:32:08.152,person_ID_95,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:32:14.619,person_ID_96,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:32:15.185,person_ID_97,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:32:16.089,person_ID_98,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:32:17.849,person_ID_99,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:32:19.816,person_ID_101,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:32:20.184,person_ID_100,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:32:22.155,person_ID_103,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:32:22.387,person_ID_102,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:32:23.125,car_ID_88,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:32:23.753,person_ID_104,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:32:25.086,person_ID_105,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:32:25.949,car_ID_89,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:32:26.849,person_ID_106,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:32:30.588,person_ID_107,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:32:35.050,car_ID_91,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:32:35.618,person_ID_108,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:32:36.721,car_ID_90,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:32:38.817,car_ID_92,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:32:41.785,person_ID_109,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:32:59.686,car_ID_94,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:32:59.819,car_ID_93,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:33:00.187,truck_ID_17,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:33:01.590,truck_ID_16,truck,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:33:01.919,truck_ID_18,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:33:02.288,car_ID_95,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:33:26.323,car_ID_96,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:33:45.388,person_ID_110,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:33:46.527,person_ID_111,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:33:47.192,bicycle_ID_56,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:33:47.424,person_ID_112,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:33:48.557,person_ID_113,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:33:49.093,person_ID_114,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:34:07.059,person_ID_116,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:34:09.022,bicycle_ID_57,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:34:10.463,bicycle_ID_58,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:34:10.761,motorcycle_ID_58,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:34:11.590,person_ID_117,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:34:11.657,bicycle_ID_59,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:34:13.359,person_ID_115,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:34:14.691,car_ID_97,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:34:17.223,person_ID_118,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:34:18.991,car_ID_98,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:34:21.224,car_ID_99,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:34:22.626,person_ID_119,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:34:23.463,person_ID_120,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:34:24.526,car_ID_100,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:34:31.927,person_ID_121,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:34:51.492,car_ID_101,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:35:05.393,motorcycle_ID_59,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:35:06.893,bicycle_ID_60,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:35:06.925,person_ID_122,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:35:08.226,car_ID_102,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:35:09.093,car_ID_103,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:35:36.665,person_ID_123,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:35:41.869,person_ID_124,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:35:45.295,person_ID_125,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:35:49.433,car_ID_104,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:35:49.966,car_ID_105,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:35:51.895,person_ID_126,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:35:52.831,car_ID_106,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:35:58.071,person_ID_127,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:35:59.931,person_ID_128,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:36:01.464,person_ID_129,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:36:34.001,car_ID_107,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:36:36.598,car_ID_108,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:36:40.469,person_ID_130,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:36:40.641,motorcycle_ID_61,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:36:40.902,person_ID_131,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:36:40.971,motorcycle_ID_60,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:36:41.769,person_ID_132,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:36:44.398,motorcycle_ID_63,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:36:44.533,bicycle_ID_62,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:36:45.299,motorcycle_ID_62,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:36:45.367,person_ID_133,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:36:45.599,bicycle_ID_61,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:37:30.937,bicycle_ID_63,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:37:30.968,person_ID_134,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:37:34.607,car_ID_109,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:37:37.909,motorcycle_ID_64,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:37:38.080,motorcycle_ID_65,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:37:38.144,motorcycle_ID_66,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:37:38.407,bicycle_ID_64,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:37:38.542,motorcycle_ID_67,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:37:38.573,person_ID_136,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:37:38.674,person_ID_135,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:37:39.903,motorcycle_ID_68,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:37:41.004,person_ID_137,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:37:41.936,bicycle_ID_65,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:37:42.336,person_ID_139,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:37:42.904,bicycle_ID_66,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:37:43.369,person_ID_138,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:37:56.737,bicycle_ID_67,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:37:56.769,motorcycle_ID_69,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:37:58.273,person_ID_140,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:37:58.670,bicycle_ID_68,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:38:42.339,car_ID_110,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:38:42.506,car_ID_111,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:38:43.110,truck_ID_20,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:38:44.010,bus_ID_5,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 10:38:44.175,truck_ID_19,truck,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:38:44.414,truck_ID_21,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:38:44.414,car_ID_112,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:38:45.339,car_ID_113,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:38:48.339,car_ID_114,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:39:01.246,car_ID_115,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:39:04.073,car_ID_116,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:39:32.480,truck_ID_22,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:39:32.545,bus_ID_7,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 10:39:32.613,truck_ID_23,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:39:34.014,truck_ID_24,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:39:34.713,bus_ID_6,bus,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:39:37.143,car_ID_118,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:39:37.243,car_ID_117,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:39:37.310,truck_ID_25,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:39:37.477,truck_ID_26,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:40:04.084,motorcycle_ID_71,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:40:04.247,motorcycle_ID_70,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:40:04.416,bicycle_ID_70,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:40:04.879,car_ID_119,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:40:06.075,car_ID_120,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:40:06.275,bicycle_ID_69,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:40:06.276,person_ID_141,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:40:24.245,person_ID_142,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:40:24.578,person_ID_143,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:40:25.145,person_ID_144,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:40:29.679,bicycle_ID_71,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:40:29.877,person_ID_145,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:40:32.918,car_ID_121,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:40:34.848,car_ID_122,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:40:44.845,bicycle_ID_72,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:40:45.081,bicycle_ID_73,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:40:45.813,motorcycle_ID_72,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:40:45.880,person_ID_146,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:40:47.345,person_ID_147,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:40:47.445,bicycle_ID_74,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:40:49.917,bicycle_ID_75,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:40:50.251,person_ID_148,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:41:31.283,person_ID_149,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:41:38.187,bicycle_ID_76,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:41:38.656,person_ID_150,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:41:40.220,bicycle_ID_77,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:41:40.320,bicycle_ID_78,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:41:40.953,person_ID_151,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:41:41.951,person_ID_153,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:41:42.884,person_ID_152,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:41:42.916,bicycle_ID_79,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:41:43.217,motorcycle_ID_73,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:41:47.055,person_ID_154,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:41:49.017,person_ID_155,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:41:50.618,person_ID_156,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:41:54.320,motorcycle_ID_75,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:41:54.423,motorcycle_ID_74,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:41:54.921,bicycle_ID_81,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:41:55.589,person_ID_157,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:41:56.053,bicycle_ID_80,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:42:09.185,car_ID_123,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:42:26.319,person_ID_158,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:42:36.219,person_ID_159,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:42:38.587,person_ID_160,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:42:41.390,person_ID_163,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:42:43.788,person_ID_164,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:42:47.455,person_ID_165,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:42:48.391,person_ID_162,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:42:49.726,person_ID_166,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:42:51.355,person_ID_161,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:43:04.859,person_ID_167,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:43:06.655,person_ID_168,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:43:08.156,person_ID_169,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:43:41.429,car_ID_124,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:43:44.890,car_ID_125,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:43:51.228,car_ID_126,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:43:52.334,car_ID_128,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:43:53.826,car_ID_127,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:43:58.333,bicycle_ID_82,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:43:58.396,motorcycle_ID_76,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:43:58.597,bicycle_ID_83,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:43:58.930,bicycle_ID_84,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:43:59.529,person_ID_170,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:44:00.162,bicycle_ID_85,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:44:00.396,person_ID_171,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:44:01.726,bicycle_ID_86,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:44:02.459,car_ID_129,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:44:02.559,person_ID_172,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:44:02.759,car_ID_130,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:44:03.563,truck_ID_27,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:44:03.563,truck_ID_28,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:44:03.992,person_ID_173,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:44:04.126,bicycle_ID_87,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:44:17.928,car_ID_131,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:44:23.396,car_ID_132,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:44:35.532,car_ID_133,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:44:35.832,truck_ID_29,truck,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:44:36.733,bus_ID_8,bus,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:44:37.961,bus_ID_10,bus,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:44:40.196,bus_ID_9,bus,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:44:40.896,truck_ID_30,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:44:43.833,car_ID_136,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:44:44.033,car_ID_135,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:44:44.065,truck_ID_31,truck,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:44:45.736,car_ID_134,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:44:46.065,truck_ID_33,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:44:46.397,truck_ID_32,truck,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:45:19.931,car_ID_137,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:45:38.204,car_ID_138,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:45:50.166,car_ID_139,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:46:00.901,bicycle_ID_88,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:46:01.034,person_ID_174,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:46:03.533,car_ID_140,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:46:30.002,car_ID_141,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:46:32.538,motorcycle_ID_77,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:46:34.108,person_ID_175,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:46:35.702,bicycle_ID_89,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:46:37.603,motorcycle_ID_78,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:46:37.704,person_ID_176,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:46:39.773,car_ID_142,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:46:43.039,car_ID_143,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:46:43.339,motorcycle_ID_79,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:46:45.335,motorcycle_ID_80,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:46:45.371,bicycle_ID_90,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:46:45.405,person_ID_177,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:47:01.537,car_ID_144,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:47:17.908,person_ID_178,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:47:22.443,motorcycle_ID_81,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:47:22.609,bicycle_ID_91,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:47:22.878,bicycle_ID_92,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:47:23.109,person_ID_179,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:47:23.140,car_ID_145,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:47:45.110,car_ID_147,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:47:45.141,car_ID_146,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:47:45.207,truck_ID_35,truck,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:47:47.675,truck_ID_34,truck,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:48:05.443,bicycle_ID_93,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:48:05.642,bicycle_ID_94,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:48:06.209,motorcycle_ID_82,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:48:07.444,person_ID_180,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:48:07.508,bicycle_ID_95,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:48:07.675,car_ID_148,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:48:08.175,car_ID_149,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:48:09.276,person_ID_181,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:48:09.879,truck_ID_36,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:48:12.281,motorcycle_ID_83,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:48:13.276,bicycle_ID_96,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:48:14.078,motorcycle_ID_85,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:48:14.109,motorcycle_ID_84,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:48:14.343,person_ID_182,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:48:25.145,car_ID_150,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:48:25.177,car_ID_151,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:48:26.980,bus_ID_11,bus,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:48:27.414,truck_ID_38,truck,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:48:28.609,truck_ID_39,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:48:30.409,car_ID_152,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:48:30.544,truck_ID_37,truck,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:48:31.509,car_ID_153,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:48:31.645,car_ID_154,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:48:31.878,truck_ID_40,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:48:32.444,truck_ID_41,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:48:47.514,car_ID_155,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:48:50.910,car_ID_156,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:49:20.015,person_ID_183,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:49:24.480,person_ID_184,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:49:28.717,person_ID_185,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:49:30.851,car_ID_157,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:49:32.815,person_ID_186,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:49:33.615,car_ID_158,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:49:34.615,person_ID_187,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:49:36.548,person_ID_188,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:49:38.917,person_ID_189,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:49:40.448,car_ID_159,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:49:42.380,person_ID_190,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:50:02.881,car_ID_160,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:50:14.321,car_ID_161,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:50:17.151,car_ID_162,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:50:24.483,bicycle_ID_97,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:50:25.051,person_ID_191,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:50:26.983,bicycle_ID_98,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:50:27.151,motorcycle_ID_86,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:50:27.251,person_ID_192,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:50:28.053,motorcycle_ID_87,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:50:28.719,person_ID_193,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:50:29.194,person_ID_194,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:50:29.225,person_ID_195,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:50:29.983,person_ID_197,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:50:30.418,bicycle_ID_100,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:50:30.418,motorcycle_ID_88,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:50:30.783,person_ID_199,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:50:31.183,person_ID_198,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:50:31.251,bicycle_ID_101,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:50:31.518,person_ID_200,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:50:31.783,motorcycle_ID_89,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:50:31.783,motorcycle_ID_90,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:50:31.783,person_ID_196,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:50:31.883,bicycle_ID_99,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:50:32.151,person_ID_201,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:50:32.518,car_ID_163,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:50:57.420,car_ID_164,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:51:00.352,car_ID_165,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:51:31.622,car_ID_166,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:51:38.823,car_ID_167,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:51:56.755,car_ID_168,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:51:56.823,car_ID_169,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:51:56.923,car_ID_170,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:51:58.523,truck_ID_42,truck,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:52:02.796,truck_ID_43,truck,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:53:00.900,motorcycle_ID_91,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:53:01.865,car_ID_172,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:53:02.265,car_ID_171,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:54:04.635,bicycle_ID_102,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:54:04.868,person_ID_202,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:54:05.570,bicycle_ID_103,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:54:05.768,motorcycle_ID_93,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:54:06.102,motorcycle_ID_92,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:54:06.333,bicycle_ID_104,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:54:06.734,person_ID_203,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:54:06.767,bicycle_ID_105,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:54:06.865,person_ID_204,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:54:08.133,motorcycle_ID_94,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:54:08.429,bicycle_ID_106,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:54:09.198,person_ID_206,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:54:09.630,bicycle_ID_108,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:54:09.865,person_ID_205,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:54:10.199,motorcycle_ID_95,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:54:10.299,bicycle_ID_107,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:54:11.098,person_ID_207,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:54:12.165,car_ID_173,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:54:13.431,bicycle_ID_109,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:54:13.498,person_ID_208,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:54:14.199,car_ID_175,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:54:17.273,car_ID_174,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:54:20.430,truck_ID_44,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:54:20.930,car_ID_176,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:54:23.499,car_ID_177,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:54:36.799,car_ID_179,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:54:37.232,truck_ID_45,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:54:37.300,truck_ID_46,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:54:37.900,car_ID_178,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:54:39.935,motorcycle_ID_96,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:54:40.706,motorcycle_ID_99,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:54:40.773,motorcycle_ID_97,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:54:40.871,person_ID_209,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:54:42.068,motorcycle_ID_98,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:54:46.767,bicycle_ID_110,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:54:47.171,person_ID_210,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:54:47.203,motorcycle_ID_101,motorcycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:54:47.570,motorcycle_ID_100,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:55:03.303,car_ID_180,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:55:09.902,car_ID_181,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:55:21.676,car_ID_182,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:55:23.240,car_ID_184,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:55:24.301,truck_ID_47,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:55:24.501,car_ID_185,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:55:24.836,car_ID_183,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:55:34.041,motorcycle_ID_102,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:55:34.602,motorcycle_ID_103,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:55:36.537,person_ID_211,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:55:36.570,bicycle_ID_111,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:55:51.838,car_ID_186,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:55:53.603,car_ID_187,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:55:55.176,car_ID_189,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:55:55.238,car_ID_188,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:55:57.103,truck_ID_48,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:56:24.372,car_ID_190,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:56:24.440,truck_ID_49,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:56:27.147,truck_ID_50,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:56:59.210,person_ID_212,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:57:00.309,person_ID_213,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:57:14.013,car_ID_191,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:57:14.316,bus_ID_12,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 10:57:14.379,truck_ID_51,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 10:57:16.275,bus_ID_13,bus,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:57:17.375,bus_ID_14,bus,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:57:28.711,car_ID_192,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:57:46.319,person_ID_214,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:57:54.044,person_ID_215,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:57:55.111,person_ID_216,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:57:57.377,car_ID_193,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:58:00.380,person_ID_217,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 10:58:02.087,person_ID_218,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:58:06.119,person_ID_219,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:58:11.213,motorcycle_ID_104,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:58:11.281,motorcycle_ID_105,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:58:12.620,person_ID_220,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:58:12.721,bicycle_ID_112,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:58:43.247,bicycle_ID_113,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:58:46.216,bicycle_ID_114,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:58:46.615,person_ID_221,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:58:51.620,motorcycle_ID_106,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:58:51.687,motorcycle_ID_107,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:58:51.891,bicycle_ID_115,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:58:55.218,bicycle_ID_116,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:58:55.588,motorcycle_ID_109,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:58:55.657,motorcycle_ID_108,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:58:57.786,motorcycle_ID_110,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:58:57.983,bicycle_ID_118,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:58:58.320,bicycle_ID_117,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:58:58.690,person_ID_222,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 10:58:58.853,motorcycle_ID_111,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 10:58:58.953,car_ID_194,car,Zehlendorf (kein Wechsel),False
+2026-07-29 10:59:10.484,person_ID_224,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:59:11.116,person_ID_223,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:59:12.186,person_ID_225,person,Zehlendorf (kein Wechsel),False
+2026-07-29 10:59:23.053,car_ID_195,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 10:59:26.185,car_ID_196,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:00:05.919,car_ID_197,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:00:11.620,car_ID_198,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:01:02.228,car_ID_199,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:01:04.422,car_ID_201,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:01:04.522,bus_ID_15,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 11:01:04.792,car_ID_200,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:01:04.923,truck_ID_53,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:01:05.291,truck_ID_52,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:01:18.026,person_ID_226,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:01:19.558,person_ID_227,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:01:21.691,bicycle_ID_119,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:01:21.923,motorcycle_ID_112,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:01:22.023,car_ID_202,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:01:35.263,car_ID_203,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:01:40.960,car_ID_204,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:01:50.593,bicycle_ID_121,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:01:51.161,bicycle_ID_123,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:01:51.228,motorcycle_ID_113,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:01:51.731,bicycle_ID_120,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:01:51.731,person_ID_228,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:01:52.828,person_ID_229,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:01:53.293,bicycle_ID_122,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:01:56.661,car_ID_205,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:01:58.493,car_ID_206,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:02:34.363,car_ID_207,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:02:43.435,person_ID_230,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:02:45.934,bicycle_ID_124,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:02:47.336,bicycle_ID_125,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:02:47.666,bicycle_ID_126,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:02:47.831,person_ID_231,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:02:51.296,person_ID_232,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:03:19.968,person_ID_233,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:03:20.539,bicycle_ID_127,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:03:21.440,motorcycle_ID_114,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:03:23.869,bicycle_ID_128,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:03:23.935,motorcycle_ID_115,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:03:27.766,motorcycle_ID_116,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:03:28.004,person_ID_235,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:03:28.409,bicycle_ID_129,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:03:28.639,person_ID_234,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:03:31.766,person_ID_237,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:03:31.901,motorcycle_ID_117,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:03:32.234,bicycle_ID_130,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:03:32.533,car_ID_208,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:03:34.901,person_ID_238,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:03:35.334,person_ID_236,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:03:35.502,bicycle_ID_131,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:03:36.209,car_ID_210,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:03:36.339,car_ID_209,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:03:37.069,person_ID_239,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:03:37.371,truck_ID_55,truck,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:03:37.601,bus_ID_16,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 11:03:37.833,truck_ID_56,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:03:37.866,bus_ID_17,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 11:03:38.101,truck_ID_54,truck,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:03:38.601,bicycle_ID_132,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:03:38.701,person_ID_241,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:03:38.901,motorcycle_ID_118,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:03:39.765,person_ID_240,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:03:41.001,person_ID_242,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:03:42.904,person_ID_243,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:03:47.401,bicycle_ID_133,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:03:47.902,motorcycle_ID_119,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:03:48.167,person_ID_244,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:03:50.070,person_ID_245,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:03:51.934,person_ID_246,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:04:01.440,motorcycle_ID_120,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:04:01.972,bicycle_ID_134,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:04:03.268,bicycle_ID_135,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:04:05.068,bicycle_ID_136,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:04:05.235,motorcycle_ID_121,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:04:05.735,person_ID_247,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:04:09.267,bus_ID_18,bus,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:04:09.339,bus_ID_19,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 11:04:09.402,truck_ID_57,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:04:24.403,truck_ID_59,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:04:24.403,car_ID_212,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:04:24.468,car_ID_211,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:04:25.206,truck_ID_58,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:04:26.237,truck_ID_60,truck,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:04:26.668,motorcycle_ID_122,motorcycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:04:27.036,person_ID_249,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:04:28.336,person_ID_248,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:04:38.837,car_ID_213,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:04:39.169,truck_ID_62,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:04:39.237,car_ID_214,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:04:39.369,car_ID_216,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:04:40.869,truck_ID_61,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:04:42.172,person_ID_250,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:04:42.570,car_ID_215,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:04:44.137,person_ID_251,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:04:44.237,bicycle_ID_137,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:04:52.304,car_ID_217,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:04:53.573,car_ID_220,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:04:53.673,car_ID_219,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:04:53.708,motorcycle_ID_123,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:04:56.769,car_ID_221,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:04:57.273,car_ID_218,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:05:31.011,person_ID_253,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:05:31.081,bicycle_ID_138,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:05:31.180,person_ID_252,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:05:33.308,person_ID_254,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:05:39.382,person_ID_255,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:05:40.912,person_ID_256,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:05:43.211,person_ID_257,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:05:48.608,person_ID_258,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:05:49.843,person_ID_259,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:05:52.679,person_ID_260,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:06:58.016,person_ID_261,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:07:00.380,bicycle_ID_139,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:07:00.412,person_ID_262,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:07:01.380,bicycle_ID_140,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:07:02.913,bicycle_ID_141,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:07:03.014,person_ID_263,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:07:03.813,car_ID_222,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:07:46.815,bicycle_ID_142,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:07:48.449,person_ID_264,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:07:48.949,person_ID_265,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:07:50.414,person_ID_266,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:07:53.249,person_ID_267,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:08:08.651,bicycle_ID_143,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:08:08.983,person_ID_268,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:08:09.383,bicycle_ID_144,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:08:11.156,bicycle_ID_146,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:08:12.587,person_ID_269,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:08:13.283,bicycle_ID_145,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:08:13.883,truck_ID_63,truck,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:08:13.917,car_ID_224,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:08:13.951,car_ID_223,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:08:14.251,car_ID_225,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:08:14.683,person_ID_270,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:08:14.883,person_ID_271,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:08:14.915,truck_ID_65,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:08:15.384,truck_ID_66,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:08:15.516,car_ID_226,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:08:16.017,truck_ID_67,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:08:16.817,bus_ID_20,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 11:08:17.354,truck_ID_64,truck,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:08:17.588,truck_ID_68,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:08:17.786,car_ID_227,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:08:34.056,car_ID_228,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:08:34.158,truck_ID_69,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:08:34.260,truck_ID_70,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:08:34.752,car_ID_229,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:08:35.685,car_ID_230,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:08:39.453,car_ID_231,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:08:41.520,car_ID_232,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:08:42.153,person_ID_272,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:08:48.256,person_ID_274,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:08:50.185,person_ID_273,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:08:54.686,person_ID_276,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:08:55.553,person_ID_275,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:08:57.454,car_ID_233,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:08:58.186,person_ID_277,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:08:59.453,motorcycle_ID_124,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:09:00.485,motorcycle_ID_125,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:09:00.626,motorcycle_ID_126,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:09:00.853,bicycle_ID_147,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:09:00.885,person_ID_278,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:09:01.489,bicycle_ID_148,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:09:01.489,person_ID_279,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:09:03.126,person_ID_280,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:09:13.186,car_ID_234,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:09:13.386,bus_ID_21,bus,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:09:14.286,car_ID_235,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:09:14.386,bus_ID_22,bus,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:09:16.131,bus_ID_24,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 11:09:16.191,bus_ID_23,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 11:09:16.390,truck_ID_71,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:09:17.025,truck_ID_72,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:09:17.490,person_ID_281,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:09:24.360,motorcycle_ID_127,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:09:24.758,person_ID_282,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:09:55.456,truck_ID_74,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:09:55.588,truck_ID_73,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:09:55.756,car_ID_236,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:09:55.823,car_ID_237,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:10:02.724,car_ID_238,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:10:35.393,car_ID_239,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:11:38.362,car_ID_240,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:11:39.497,bicycle_ID_149,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:11:39.662,motorcycle_ID_129,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:11:40.129,motorcycle_ID_128,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:11:40.129,person_ID_283,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:11:40.162,bicycle_ID_150,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:11:40.261,bicycle_ID_151,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:11:41.496,car_ID_241,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:11:42.735,truck_ID_75,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:11:43.666,car_ID_242,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:11:46.262,car_ID_243,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:12:05.298,car_ID_244,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:12:08.869,motorcycle_ID_130,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:12:09.275,motorcycle_ID_131,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:12:09.532,person_ID_284,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:12:09.699,bicycle_ID_152,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:12:09.966,person_ID_285,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:12:15.766,car_ID_245,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:12:50.307,car_ID_246,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:12:50.374,car_ID_247,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:12:50.440,truck_ID_76,truck,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:12:53.072,truck_ID_77,truck,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:12:58.972,motorcycle_ID_132,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:13:00.433,person_ID_286,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:13:00.868,bicycle_ID_153,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:13:01.469,person_ID_287,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:13:09.073,bicycle_ID_154,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:13:09.873,motorcycle_ID_133,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:13:10.111,motorcycle_ID_134,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:13:10.177,bicycle_ID_156,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:13:10.734,bicycle_ID_155,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:13:11.106,person_ID_288,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:13:11.704,person_ID_289,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:13:31.071,car_ID_248,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:13:31.370,car_ID_249,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:13:31.535,truck_ID_79,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:13:31.970,truck_ID_78,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:13:43.871,car_ID_250,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:14:04.905,car_ID_251,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:14:22.444,car_ID_252,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:14:31.377,car_ID_253,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:14:43.282,car_ID_254,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:14:46.874,car_ID_255,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:15:00.078,motorcycle_ID_135,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:15:00.109,bicycle_ID_157,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:15:00.275,car_ID_256,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:15:01.379,person_ID_290,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:15:13.718,bicycle_ID_158,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:15:14.012,person_ID_291,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:15:14.479,person_ID_292,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:15:14.580,bicycle_ID_159,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:15:15.445,motorcycle_ID_136,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:15:17.146,motorcycle_ID_137,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:15:17.344,bicycle_ID_160,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:15:18.012,motorcycle_ID_138,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:15:18.012,person_ID_293,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:15:46.381,car_ID_257,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:15:48.050,car_ID_258,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:15:49.277,truck_ID_81,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:15:49.309,bus_ID_25,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 11:15:49.477,truck_ID_80,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:15:49.477,car_ID_259,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:15:53.949,car_ID_261,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:15:54.528,car_ID_260,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:16:29.479,car_ID_262,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:17:10.518,person_ID_294,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:17:11.553,person_ID_295,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:17:13.254,person_ID_296,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:17:14.389,person_ID_297,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:17:16.522,person_ID_300,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:17:17.260,person_ID_298,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:17:17.487,person_ID_301,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:17:18.686,person_ID_302,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:17:18.985,person_ID_299,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:17:20.318,person_ID_303,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:17:20.451,person_ID_304,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:17:22.759,person_ID_306,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:17:22.889,person_ID_308,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:17:23.325,person_ID_309,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:17:23.521,person_ID_307,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:17:23.554,person_ID_305,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:17:23.854,person_ID_310,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:17:24.993,person_ID_311,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:17:25.950,person_ID_312,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:17:27.285,person_ID_313,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:17:29.751,person_ID_315,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:17:30.056,car_ID_263,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:17:30.987,car_ID_264,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:17:33.319,person_ID_314,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:17:34.487,person_ID_317,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:17:34.787,person_ID_318,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:17:35.087,person_ID_316,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:17:39.386,person_ID_321,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:17:39.686,person_ID_320,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:17:41.125,person_ID_319,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:17:41.323,person_ID_322,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:17:42.452,car_ID_265,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:17:42.819,person_ID_323,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:17:43.587,car_ID_266,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:17:46.552,car_ID_267,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:18:00.920,car_ID_268,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:18:01.087,truck_ID_82,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:18:01.387,truck_ID_83,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:18:01.487,car_ID_269,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:18:20.453,car_ID_270,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:18:33.321,bicycle_ID_161,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:18:36.395,car_ID_272,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:18:36.462,motorcycle_ID_139,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:18:36.593,car_ID_271,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:18:36.627,person_ID_324,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:18:36.792,motorcycle_ID_140,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:18:38.296,truck_ID_84,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:18:38.791,car_ID_274,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:18:39.422,bus_ID_26,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 11:18:40.154,car_ID_273,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:19:36.528,car_ID_275,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:19:37.895,truck_ID_86,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:19:38.096,truck_ID_85,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:19:38.561,bus_ID_27,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 11:19:39.794,bus_ID_28,bus,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:19:41.361,motorcycle_ID_141,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:19:41.492,bus_ID_29,bus,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:19:41.660,bicycle_ID_162,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:19:42.560,motorcycle_ID_142,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:19:42.799,bicycle_ID_163,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:19:43.067,person_ID_325,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:19:47.964,motorcycle_ID_143,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:19:48.196,person_ID_326,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:19:54.771,person_ID_327,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:19:56.098,bicycle_ID_164,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:19:56.864,person_ID_328,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:19:58.199,person_ID_329,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:19:58.863,motorcycle_ID_144,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:19:59.661,bicycle_ID_165,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:19:59.896,person_ID_330,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:19:59.927,motorcycle_ID_145,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:20:03.664,person_ID_331,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:20:04.397,person_ID_332,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:20:05.361,person_ID_333,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:20:09.326,bicycle_ID_166,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:20:09.798,person_ID_334,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:20:09.865,person_ID_335,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:20:42.631,car_ID_276,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:20:55.037,car_ID_278,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:20:55.070,truck_ID_88,truck,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:20:55.235,car_ID_277,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:20:55.737,truck_ID_87,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:20:56.531,car_ID_279,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:21:36.298,bicycle_ID_167,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:21:39.698,bicycle_ID_168,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:21:39.966,motorcycle_ID_146,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:21:40.335,bicycle_ID_169,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:21:40.799,person_ID_336,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:21:41.000,motorcycle_ID_148,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:21:42.967,person_ID_337,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:21:42.999,motorcycle_ID_147,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:21:43.167,bicycle_ID_170,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:21:43.199,person_ID_339,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:21:43.834,bicycle_ID_171,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:21:48.735,person_ID_338,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:21:52.834,car_ID_280,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:22:01.871,car_ID_281,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:22:05.173,car_ID_282,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:22:41.409,bicycle_ID_172,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:22:41.507,motorcycle_ID_149,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:22:42.312,motorcycle_ID_151,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:22:42.409,motorcycle_ID_150,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:22:43.005,bicycle_ID_173,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:22:43.370,motorcycle_ID_152,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:22:43.605,bicycle_ID_174,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:22:43.705,person_ID_340,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:23:06.841,motorcycle_ID_153,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:23:07.677,bicycle_ID_175,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:23:08.441,bicycle_ID_176,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:23:13.675,motorcycle_ID_154,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:23:14.010,person_ID_341,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:23:18.972,car_ID_283,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:23:24.444,car_ID_284,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:23:53.077,bicycle_ID_177,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:23:53.341,motorcycle_ID_155,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:23:53.541,bicycle_ID_178,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:23:53.709,person_ID_342,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:23:53.809,bicycle_ID_179,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:23:54.177,bicycle_ID_181,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:23:54.210,bicycle_ID_180,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:23:54.341,person_ID_343,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:23:54.441,person_ID_344,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:23:55.845,person_ID_346,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:23:55.945,person_ID_345,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:23:56.685,bicycle_ID_184,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:23:58.677,bicycle_ID_183,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:23:58.741,person_ID_347,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:23:59.877,bicycle_ID_182,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:24:00.041,person_ID_348,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:24:08.980,bicycle_ID_185,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:24:09.045,person_ID_349,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:24:09.680,person_ID_350,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:24:10.045,bicycle_ID_186,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:24:11.142,bicycle_ID_187,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:24:12.710,car_ID_285,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:24:13.378,person_ID_351,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:24:13.542,bicycle_ID_188,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:24:15.913,bicycle_ID_189,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:24:16.380,person_ID_352,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:25:01.844,car_ID_286,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:25:05.479,car_ID_287,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:25:09.912,bus_ID_30,bus,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:25:09.944,car_ID_288,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:25:26.381,motorcycle_ID_156,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:25:26.546,bicycle_ID_190,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:25:28.382,motorcycle_ID_158,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:25:28.517,bicycle_ID_192,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:25:28.646,motorcycle_ID_157,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:25:28.781,bicycle_ID_191,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:25:29.246,person_ID_353,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:25:30.384,car_ID_289,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:25:38.884,bus_ID_31,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 11:25:38.915,car_ID_291,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:25:39.049,car_ID_290,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:25:39.114,truck_ID_89,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:25:42.383,car_ID_292,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:27:10.862,bicycle_ID_194,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:27:10.861,motorcycle_ID_159,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:27:11.023,motorcycle_ID_160,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:27:12.986,person_ID_354,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:27:13.486,bicycle_ID_193,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:27:50.588,truck_ID_90,truck,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:28:45.560,car_ID_293,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:28:46.526,car_ID_294,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:29:03.460,person_ID_355,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:29:12.696,person_ID_356,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:29:20.429,person_ID_358,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:29:22.296,person_ID_357,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:29:30.302,person_ID_359,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:29:31.430,truck_ID_91,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:29:31.530,car_ID_296,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:29:32.033,truck_ID_92,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:29:32.165,car_ID_295,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:29:32.563,person_ID_362,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:29:34.297,person_ID_363,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:29:35.630,person_ID_361,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:29:36.297,person_ID_364,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:29:40.871,person_ID_365,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:29:42.630,person_ID_360,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:29:43.063,person_ID_366,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:29:44.963,person_ID_367,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:29:46.201,person_ID_368,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:30:09.168,car_ID_297,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:30:11.631,car_ID_298,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:30:18.068,car_ID_299,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:31:00.069,car_ID_300,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:31:09.435,car_ID_301,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:31:10.805,car_ID_302,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:31:41.303,motorcycle_ID_161,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:31:43.436,motorcycle_ID_162,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:31:44.103,motorcycle_ID_163,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:32:23.808,car_ID_303,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:32:35.275,car_ID_304,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:32:50.775,car_ID_305,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:33:02.949,car_ID_308,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:33:03.011,truck_ID_94,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:33:03.108,truck_ID_95,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:33:03.508,car_ID_306,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:33:03.843,truck_ID_93,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:33:04.043,car_ID_307,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:33:20.781,car_ID_309,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:33:25.045,car_ID_310,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:33:48.143,bicycle_ID_195,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:33:48.477,motorcycle_ID_164,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:33:49.442,person_ID_369,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:33:49.642,person_ID_370,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:33:50.042,person_ID_371,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:33:50.110,bicycle_ID_196,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:33:50.221,car_ID_311,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:33:53.145,car_ID_312,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:33:56.177,car_ID_313,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:34:28.548,person_ID_372,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:34:36.381,person_ID_373,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:34:42.352,person_ID_374,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:34:51.389,truck_ID_96,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:34:51.955,car_ID_315,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:34:52.516,car_ID_314,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:35:03.020,bus_ID_33,bus,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:35:03.156,bus_ID_32,bus,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:35:03.253,car_ID_316,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:35:04.581,car_ID_318,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:35:04.882,truck_ID_97,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:35:04.917,car_ID_317,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:35:05.350,car_ID_319,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:35:06.218,bus_ID_35,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 11:35:06.252,truck_ID_98,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:35:06.283,bus_ID_34,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 11:35:06.352,truck_ID_99,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:35:06.549,car_ID_320,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:35:27.354,car_ID_321,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:35:28.751,car_ID_322,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:35:29.983,bicycle_ID_197,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:35:29.983,person_ID_375,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:35:56.821,car_ID_323,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:36:06.853,car_ID_324,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:36:09.020,truck_ID_100,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:36:09.252,car_ID_325,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:36:32.689,car_ID_326,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:37:10.827,person_ID_376,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:37:19.159,person_ID_377,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:37:23.924,person_ID_378,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:37:28.492,person_ID_379,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:37:29.927,person_ID_380,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:37:31.628,bicycle_ID_198,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:37:31.661,motorcycle_ID_165,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:37:32.160,bicycle_ID_199,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:37:33.458,person_ID_383,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:37:33.661,person_ID_385,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:37:34.027,motorcycle_ID_166,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:37:34.125,person_ID_386,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:37:34.292,person_ID_384,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:37:34.325,person_ID_381,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:37:34.593,bicycle_ID_200,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:37:34.825,person_ID_388,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:37:35.025,person_ID_387,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:37:35.093,bicycle_ID_201,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:37:35.393,motorcycle_ID_167,motorcycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:37:35.460,bicycle_ID_202,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:37:35.460,motorcycle_ID_168,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:37:35.460,person_ID_382,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:37:35.593,motorcycle_ID_169,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:37:35.729,person_ID_389,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:37:35.960,bicycle_ID_204,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:37:35.960,person_ID_391,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:37:36.061,motorcycle_ID_171,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:37:36.061,car_ID_327,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:37:36.160,motorcycle_ID_170,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:37:36.193,bicycle_ID_205,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:37:36.293,bicycle_ID_207,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:37:36.825,bicycle_ID_208,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:37:37.060,bicycle_ID_206,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:37:37.093,person_ID_393,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:37:37.293,bicycle_ID_203,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:37:37.293,person_ID_390,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:37:37.565,motorcycle_ID_172,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:37:38.129,bicycle_ID_209,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:37:38.129,bicycle_ID_210,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:37:39.164,bicycle_ID_211,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:37:39.432,person_ID_392,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:37:39.661,motorcycle_ID_173,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:37:39.925,person_ID_395,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:37:40.094,person_ID_396,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:37:40.562,bicycle_ID_212,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:37:40.726,person_ID_397,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:37:40.961,motorcycle_ID_174,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:37:41.325,bicycle_ID_213,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:37:41.493,person_ID_394,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:37:41.593,motorcycle_ID_175,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:37:42.693,motorcycle_ID_176,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:37:43.260,person_ID_398,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:37:48.729,car_ID_328,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:37:50.364,bus_ID_36,bus,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:37:52.426,truck_ID_101,truck,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:37:52.494,truck_ID_102,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:38:01.326,car_ID_329,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:38:05.965,person_ID_399,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:38:07.130,car_ID_330,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:38:07.230,motorcycle_ID_177,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:38:07.868,person_ID_400,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:38:09.726,car_ID_332,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:38:10.162,car_ID_333,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:38:10.662,car_ID_331,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:38:11.127,truck_ID_103,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:38:19.328,car_ID_334,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:38:19.662,car_ID_335,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:38:23.498,motorcycle_ID_178,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:38:23.530,bicycle_ID_214,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:38:24.564,motorcycle_ID_179,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:38:24.764,bicycle_ID_215,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:38:24.895,motorcycle_ID_180,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:38:24.995,bicycle_ID_216,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:38:25.427,person_ID_401,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:38:41.596,motorcycle_ID_181,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:38:41.896,person_ID_402,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:39:17.897,car_ID_336,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:39:18.033,car_ID_337,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:39:18.498,truck_ID_104,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:39:18.533,truck_ID_105,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:39:19.298,bus_ID_38,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 11:39:20.366,truck_ID_106,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:39:20.539,bus_ID_37,bus,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:39:20.741,car_ID_338,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:39:21.173,bus_ID_39,bus,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:39:22.398,car_ID_339,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:39:24.199,car_ID_340,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:39:29.066,car_ID_341,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:39:46.538,bicycle_ID_217,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:39:46.603,motorcycle_ID_183,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:39:46.703,person_ID_403,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:39:46.738,motorcycle_ID_182,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:39:47.499,person_ID_404,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:39:48.467,motorcycle_ID_185,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:39:48.735,motorcycle_ID_184,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:39:49.467,person_ID_405,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:39:49.567,bicycle_ID_218,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:39:53.338,car_ID_342,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:40:38.069,car_ID_343,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:40:39.802,car_ID_344,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:41:08.542,car_ID_345,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:41:11.839,person_ID_406,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:41:13.571,person_ID_407,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:41:13.572,car_ID_346,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:41:16.607,person_ID_408,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:41:17.840,person_ID_409,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:41:23.740,person_ID_410,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:41:23.907,person_ID_411,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:41:25.540,bus_ID_40,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 11:41:26.740,person_ID_412,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:41:26.772,person_ID_413,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:41:27.072,truck_ID_107,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:41:27.572,truck_ID_108,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:41:36.276,car_ID_347,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:41:42.944,person_ID_414,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:41:50.241,car_ID_348,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:41:50.473,car_ID_350,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:41:50.509,truck_ID_109,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:41:51.644,truck_ID_110,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:41:51.773,car_ID_349,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:41:52.912,car_ID_352,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:41:53.112,car_ID_351,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:41:54.345,truck_ID_112,truck,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:41:55.674,truck_ID_111,truck,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:42:00.913,car_ID_353,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:42:02.780,car_ID_354,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:42:05.574,car_ID_355,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:42:08.945,car_ID_356,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:42:21.278,motorcycle_ID_186,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:42:21.479,motorcycle_ID_187,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:42:21.614,bicycle_ID_219,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:42:21.678,person_ID_415,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:42:31.146,car_ID_357,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:42:32.147,car_ID_359,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:42:33.375,car_ID_358,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:42:45.411,car_ID_360,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:42:48.817,car_ID_361,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:43:06.884,person_ID_416,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:43:06.948,motorcycle_ID_188,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:43:07.816,person_ID_417,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:43:20.613,car_ID_362,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:44:08.716,car_ID_363,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:44:18.548,bicycle_ID_220,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:44:18.884,motorcycle_ID_189,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:44:19.616,person_ID_418,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:44:22.516,person_ID_419,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:44:25.252,person_ID_420,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:44:31.586,bus_ID_42,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 11:44:33.421,bus_ID_41,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 11:44:33.526,truck_ID_113,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:44:57.789,car_ID_364,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:45:04.619,car_ID_365,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:45:06.756,motorcycle_ID_190,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:45:08.187,person_ID_421,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:45:09.523,person_ID_422,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:45:12.490,person_ID_423,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:46:03.589,car_ID_366,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:46:14.726,motorcycle_ID_191,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:46:17.228,motorcycle_ID_192,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:46:27.091,car_ID_367,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:46:42.930,car_ID_368,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:46:55.827,car_ID_369,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:46:57.461,bicycle_ID_221,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:46:58.192,person_ID_424,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:46:58.260,motorcycle_ID_193,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:47:34.302,car_ID_371,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:47:34.733,bus_ID_44,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 11:47:34.798,bus_ID_43,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 11:47:35.265,car_ID_372,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:47:35.330,car_ID_370,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:36.300,car_ID_374,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:36.533,truck_ID_115,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:36.600,car_ID_373,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:48:37.100,truck_ID_114,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:48:39.902,motorcycle_ID_194,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:39.934,bicycle_ID_222,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:40.637,motorcycle_ID_195,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:40.705,bicycle_ID_223,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:41.204,person_ID_425,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:41.501,person_ID_426,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:41.639,person_ID_428,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:48:42.065,person_ID_427,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:42.233,motorcycle_ID_196,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:42.466,person_ID_430,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:42.834,motorcycle_ID_197,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:43.501,person_ID_429,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:43.736,motorcycle_ID_199,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:43.805,bicycle_ID_224,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:43.901,bicycle_ID_225,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:43.965,person_ID_431,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:44.401,person_ID_432,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:44.501,motorcycle_ID_198,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:45.766,motorcycle_ID_200,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:45.801,bicycle_ID_226,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:46.001,person_ID_433,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:46.469,person_ID_434,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:46.504,motorcycle_ID_202,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:46.873,bicycle_ID_227,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:46.874,person_ID_435,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:47.006,car_ID_375,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:48:47.106,motorcycle_ID_201,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:49:02.502,car_ID_376,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:49:25.373,car_ID_377,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:50:24.142,car_ID_378,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:50:37.613,motorcycle_ID_203,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:50:37.877,bicycle_ID_228,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:50:38.340,person_ID_436,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:50:45.712,motorcycle_ID_204,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:50:45.881,person_ID_437,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:50:45.913,bicycle_ID_229,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:50:47.575,person_ID_438,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:50:52.413,motorcycle_ID_205,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:50:52.543,bicycle_ID_230,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:50:52.543,bicycle_ID_231,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:50:52.743,person_ID_439,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:50:58.040,person_ID_440,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:51:01.512,person_ID_441,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:51:03.179,person_ID_442,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:51:07.376,car_ID_379,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:51:10.279,car_ID_380,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:51:10.580,truck_ID_117,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:51:10.842,person_ID_443,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:51:11.076,truck_ID_116,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:51:12.009,person_ID_445,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:51:12.741,motorcycle_ID_206,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:51:12.977,person_ID_444,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:51:13.708,motorcycle_ID_207,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:52:12.211,motorcycle_ID_208,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:52:12.384,bicycle_ID_232,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:52:12.812,motorcycle_ID_210,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:52:13.048,motorcycle_ID_209,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:52:13.048,person_ID_446,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:52:13.348,person_ID_447,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:52:13.547,bicycle_ID_233,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:53:06.986,person_ID_448,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:53:07.587,bicycle_ID_234,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:53:10.750,car_ID_381,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:53:41.152,car_ID_382,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:53:47.655,bicycle_ID_236,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:53:47.856,motorcycle_ID_211,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:53:48.087,person_ID_449,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:53:48.122,bicycle_ID_235,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:53:48.222,motorcycle_ID_212,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:53:57.153,car_ID_383,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:54:11.889,truck_ID_118,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:54:12.129,truck_ID_119,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:54:12.129,car_ID_384,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:54:12.225,car_ID_385,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:54:14.024,car_ID_386,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:54:23.757,bus_ID_45,bus,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:54:23.889,truck_ID_120,truck,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:54:24.563,bus_ID_46,bus,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:54:25.253,truck_ID_122,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:54:25.421,car_ID_387,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:54:25.521,truck_ID_121,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:54:26.487,bus_ID_47,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 11:54:27.187,car_ID_388,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:54:43.322,motorcycle_ID_213,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:54:43.455,bicycle_ID_237,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:54:43.622,motorcycle_ID_214,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:54:43.687,person_ID_450,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:54:44.487,person_ID_451,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:54:45.455,person_ID_452,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:54:45.791,person_ID_453,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:54:47.155,person_ID_454,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:54:52.255,car_ID_389,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:54:55.796,truck_ID_123,truck,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:55:04.824,car_ID_390,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:55:08.759,person_ID_455,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:55:10.029,motorcycle_ID_215,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:55:11.026,car_ID_391,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:55:14.957,motorcycle_ID_216,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:55:15.430,bicycle_ID_238,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:55:15.795,bicycle_ID_239,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:55:15.927,person_ID_456,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:55:16.291,person_ID_457,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:56:06.926,car_ID_392,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:56:15.730,person_ID_458,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:56:15.898,motorcycle_ID_217,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:56:16.495,car_ID_393,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:56:17.559,motorcycle_ID_218,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:56:17.994,person_ID_459,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:56:18.094,bicycle_ID_240,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:56:23.763,car_ID_394,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:56:23.798,truck_ID_124,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:56:24.562,truck_ID_125,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 11:56:31.931,person_ID_460,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:56:33.929,car_ID_395,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:56:36.296,car_ID_396,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:56:39.502,motorcycle_ID_219,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:56:39.702,person_ID_461,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:56:40.000,motorcycle_ID_220,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:56:46.034,car_ID_397,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:56:46.667,person_ID_462,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:56:46.767,motorcycle_ID_221,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:56:49.898,car_ID_398,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:56:54.165,car_ID_399,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:57:03.229,person_ID_463,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:57:03.933,person_ID_464,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:57:17.801,car_ID_400,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:57:18.433,bicycle_ID_241,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:57:18.568,bicycle_ID_242,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:57:18.601,motorcycle_ID_223,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:57:18.601,person_ID_465,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:57:18.633,motorcycle_ID_222,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:57:19.498,person_ID_466,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:57:21.530,car_ID_401,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:57:23.830,car_ID_402,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:57:41.167,motorcycle_ID_225,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:57:41.366,motorcycle_ID_224,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:57:41.366,person_ID_467,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:57:42.331,bicycle_ID_243,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:57:42.431,person_ID_468,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:57:42.566,motorcycle_ID_226,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 11:57:42.599,car_ID_403,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:58:06.371,person_ID_469,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:58:08.671,person_ID_470,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:58:23.469,car_ID_404,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 11:58:24.401,car_ID_405,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 11:58:37.405,person_ID_471,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:58:38.105,person_ID_472,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:58:42.269,person_ID_473,person,Zehlendorf (kein Wechsel),False
+2026-07-29 11:59:09.771,car_ID_407,car,Zehlendorf (kein Wechsel),False
+2026-07-29 11:59:10.503,car_ID_406,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 11:59:42.040,car_ID_408,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:00:08.412,person_ID_474,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:00:08.645,motorcycle_ID_227,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:00:09.212,bicycle_ID_244,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:00:09.312,person_ID_475,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:00:14.174,car_ID_409,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:00:15.542,truck_ID_126,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:00:16.985,truck_ID_127,truck,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:00:17.080,car_ID_412,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:00:17.148,car_ID_411,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:00:18.017,car_ID_410,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:00:27.010,car_ID_414,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:00:27.711,car_ID_413,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:00:28.644,car_ID_415,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:00:30.010,car_ID_416,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:00:48.944,person_ID_476,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:00:54.116,motorcycle_ID_228,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:00:54.779,person_ID_477,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:01:10.744,car_ID_417,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:01:11.744,bus_ID_49,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 12:01:12.010,truck_ID_128,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 12:01:12.713,bus_ID_48,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 12:01:13.012,bus_ID_50,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 12:01:13.148,truck_ID_129,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:01:15.780,car_ID_418,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:01:31.913,person_ID_478,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:01:36.047,person_ID_479,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:01:42.288,car_ID_419,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:01:43.083,person_ID_480,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:01:45.182,car_ID_420,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:01:46.987,car_ID_421,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:01:49.748,car_ID_422,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:02:06.489,car_ID_423,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:02:07.984,truck_ID_130,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 12:02:08.548,car_ID_425,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:02:09.348,bus_ID_51,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 12:02:09.515,car_ID_424,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:02:25.292,motorcycle_ID_230,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:02:25.423,bicycle_ID_246,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:02:25.584,motorcycle_ID_229,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:02:26.084,bicycle_ID_245,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:02:26.184,person_ID_481,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:02:26.616,person_ID_482,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:02:33.117,car_ID_426,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:02:59.091,car_ID_428,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:03:00.454,car_ID_427,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:03:03.986,car_ID_429,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:03:30.455,truck_ID_132,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 12:03:30.520,truck_ID_131,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 12:03:30.887,car_ID_431,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:03:31.087,car_ID_430,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:03:31.388,motorcycle_ID_231,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:03:32.120,person_ID_483,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:04:01.721,motorcycle_ID_232,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:04:02.389,bicycle_ID_247,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:04:02.756,car_ID_432,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:04:02.789,bicycle_ID_248,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:04:02.921,person_ID_484,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:04:03.190,person_ID_485,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:04:03.621,person_ID_486,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:04:05.121,car_ID_433,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:04:05.589,motorcycle_ID_233,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:04:05.621,bicycle_ID_249,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:04:05.689,bicycle_ID_250,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:04:05.757,bicycle_ID_251,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:04:05.921,motorcycle_ID_234,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:04:05.921,person_ID_487,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:04:06.692,person_ID_488,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:04:08.025,car_ID_434,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:04:09.465,motorcycle_ID_236,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:04:09.529,person_ID_489,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:04:09.660,bicycle_ID_252,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:04:10.122,person_ID_490,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:04:10.222,motorcycle_ID_237,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:04:10.557,motorcycle_ID_235,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:04:12.758,car_ID_435,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:04:16.593,person_ID_491,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:04:16.660,motorcycle_ID_238,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:04:19.625,person_ID_493,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:04:20.924,person_ID_492,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:04:22.523,person_ID_494,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:04:24.622,car_ID_436,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:04:28.858,car_ID_437,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:04:34.425,car_ID_438,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:04:34.691,truck_ID_134,truck,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:04:34.991,car_ID_439,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:04:35.124,truck_ID_133,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:04:35.723,truck_ID_135,truck,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:04:36.358,car_ID_440,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:04:38.164,person_ID_496,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:04:40.758,person_ID_497,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:04:41.991,person_ID_495,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:04:41.991,person_ID_498,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:04:45.396,person_ID_500,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:04:47.162,car_ID_441,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:04:48.092,person_ID_501,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:04:48.592,person_ID_502,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:04:50.591,car_ID_442,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:04:52.897,person_ID_504,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:04:54.059,person_ID_505,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:04:56.224,person_ID_506,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:04:57.324,person_ID_507,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:04:57.892,car_ID_443,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:05:00.328,person_ID_499,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:05:00.995,person_ID_503,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:05:22.996,car_ID_445,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:05:23.064,truck_ID_137,truck,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:05:23.096,truck_ID_136,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:05:23.396,car_ID_444,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:05:35.133,truck_ID_138,truck,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:05:35.400,truck_ID_139,truck,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:05:36.794,car_ID_446,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:05:38.762,bus_ID_52,bus,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:05:39.062,car_ID_447,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:05:39.429,car_ID_448,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:05:40.730,bus_ID_53,bus,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:05:43.829,car_ID_449,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:05:57.898,car_ID_450,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:06:15.631,bicycle_ID_254,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:06:16.195,bicycle_ID_253,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:06:16.364,motorcycle_ID_239,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:06:16.567,motorcycle_ID_240,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:06:16.631,person_ID_508,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:06:17.531,car_ID_451,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:06:19.466,car_ID_452,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:06:27.431,bicycle_ID_255,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:06:27.764,bicycle_ID_256,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:06:28.264,person_ID_509,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:06:31.735,bicycle_ID_257,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:06:31.768,person_ID_510,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:06:44.200,car_ID_453,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:06:44.800,truck_ID_140,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 12:06:53.306,car_ID_454,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:06:54.537,car_ID_455,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:07:08.067,car_ID_456,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:07:08.102,motorcycle_ID_241,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:07:09.167,motorcycle_ID_242,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:07:09.336,bicycle_ID_258,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:07:09.368,motorcycle_ID_243,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:07:09.703,person_ID_511,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:07:10.103,bicycle_ID_259,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:07:11.036,person_ID_513,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:07:11.103,motorcycle_ID_244,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:07:11.137,bicycle_ID_261,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:07:11.205,motorcycle_ID_245,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:07:11.701,person_ID_512,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:07:12.207,bicycle_ID_260,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:07:12.538,person_ID_514,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:07:12.709,motorcycle_ID_246,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:07:19.237,car_ID_457,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:07:54.041,motorcycle_ID_247,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:07:54.272,motorcycle_ID_248,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:07:54.773,bicycle_ID_262,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:07:55.837,bicycle_ID_263,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:07:55.837,motorcycle_ID_249,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:07:56.268,bicycle_ID_264,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:07:56.603,person_ID_515,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:08:10.240,motorcycle_ID_250,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:08:13.173,bicycle_ID_265,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:08:13.408,person_ID_516,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:08:32.842,motorcycle_ID_251,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:08:32.979,motorcycle_ID_252,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:08:34.078,bicycle_ID_266,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:08:34.079,person_ID_517,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:08:34.307,motorcycle_ID_253,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:08:34.638,bicycle_ID_267,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:08:34.773,car_ID_458,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:08:35.106,person_ID_518,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:08:37.074,truck_ID_141,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 12:08:41.942,car_ID_459,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:08:43.439,car_ID_460,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:08:59.139,car_ID_461,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:09:11.976,car_ID_462,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:09:20.712,car_ID_463,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:09:31.143,car_ID_464,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:09:47.943,car_ID_465,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:09:48.111,truck_ID_142,truck,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:09:48.514,car_ID_466,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:09:50.445,truck_ID_143,truck,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:09:50.615,truck_ID_144,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 12:10:25.383,car_ID_467,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:10:28.279,car_ID_468,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:10:44.416,motorcycle_ID_254,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:10:45.116,motorcycle_ID_255,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:10:45.151,motorcycle_ID_256,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:10:45.251,person_ID_519,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:10:45.616,bicycle_ID_268,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:10:45.753,bicycle_ID_269,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:10:51.021,motorcycle_ID_257,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:10:56.381,bicycle_ID_270,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:10:56.381,person_ID_520,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:10:56.583,motorcycle_ID_258,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:10:57.281,car_ID_469,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:11:16.253,motorcycle_ID_259,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:11:16.657,motorcycle_ID_260,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:11:16.819,bicycle_ID_271,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:11:16.851,bicycle_ID_272,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:11:16.916,person_ID_521,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:11:17.052,motorcycle_ID_261,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:11:24.853,person_ID_522,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:11:27.650,person_ID_523,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:11:39.950,person_ID_524,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:11:43.016,person_ID_525,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:11:50.916,person_ID_526,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:12:05.719,person_ID_527,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:12:09.223,motorcycle_ID_262,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:12:09.357,person_ID_528,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:12:09.657,motorcycle_ID_263,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:12:10.823,person_ID_529,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:12:51.722,car_ID_470,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:13:08.555,car_ID_471,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:13:09.023,person_ID_530,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:13:09.756,car_ID_472,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:13:43.457,car_ID_473,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:13:51.193,car_ID_475,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:13:51.458,car_ID_474,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:13:52.058,truck_ID_145,truck,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:14:02.826,car_ID_476,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:14:05.130,car_ID_477,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:14:28.528,person_ID_531,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:14:31.227,person_ID_532,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:14:36.663,bicycle_ID_273,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:14:37.032,person_ID_533,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:14:43.734,car_ID_478,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:14:45.228,bicycle_ID_274,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:14:45.328,person_ID_534,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:14:45.396,motorcycle_ID_264,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:14:46.495,person_ID_535,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:14:47.229,car_ID_479,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:14:58.661,person_ID_536,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:15:02.832,person_ID_537,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:15:04.600,person_ID_538,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:15:06.661,person_ID_539,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:15:06.761,car_ID_480,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:15:15.430,person_ID_540,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:15:19.030,car_ID_482,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:15:20.000,bus_ID_54,bus,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:15:20.533,car_ID_483,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:15:20.765,car_ID_481,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:15:21.398,truck_ID_147,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 12:15:21.497,bus_ID_55,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 12:15:21.765,bus_ID_56,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 12:15:21.798,truck_ID_146,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 12:15:33.066,person_ID_541,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:15:38.934,person_ID_542,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:15:42.466,person_ID_543,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:15:46.473,car_ID_484,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:15:49.231,car_ID_485,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:15:52.867,car_ID_486,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:16:00.500,person_ID_544,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:16:01.742,person_ID_545,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:16:02.104,bicycle_ID_275,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:16:02.104,person_ID_546,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:16:06.167,person_ID_547,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:16:07.703,car_ID_487,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:16:14.433,person_ID_548,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:16:18.573,person_ID_549,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:16:21.736,person_ID_550,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:16:23.968,person_ID_551,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:16:27.901,person_ID_552,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:16:29.271,person_ID_553,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:16:30.704,person_ID_554,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:16:32.337,person_ID_555,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:16:35.501,person_ID_556,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:16:38.202,person_ID_557,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:16:40.637,person_ID_558,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:16:43.634,motorcycle_ID_265,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:16:44.002,person_ID_559,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:16:44.070,person_ID_560,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:16:48.173,person_ID_561,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:16:58.071,person_ID_562,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:17:00.870,person_ID_563,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:17:04.541,person_ID_564,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:17:09.771,person_ID_565,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:17:10.438,bicycle_ID_276,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:17:14.307,person_ID_566,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:17:15.042,person_ID_568,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:17:16.477,bicycle_ID_277,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:17:16.939,person_ID_567,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:17:17.572,car_ID_488,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:17:20.004,person_ID_569,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:17:24.739,person_ID_570,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:17:27.574,person_ID_571,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:17:29.642,person_ID_572,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:17:31.578,bicycle_ID_278,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:17:32.572,person_ID_573,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:17:34.472,person_ID_574,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:17:35.605,bicycle_ID_279,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:17:35.705,motorcycle_ID_266,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:17:36.005,person_ID_576,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:17:36.205,bicycle_ID_280,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:17:36.240,person_ID_575,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:17:40.973,person_ID_577,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:17:55.641,person_ID_578,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:17:57.906,motorcycle_ID_267,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:17:58.205,motorcycle_ID_268,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:17:58.707,bicycle_ID_281,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:17:58.707,person_ID_580,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:18:01.806,car_ID_489,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:18:07.841,car_ID_490,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:18:23.107,car_ID_491,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:18:24.343,truck_ID_148,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 12:18:24.376,bus_ID_58,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 12:18:25.476,truck_ID_149,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 12:18:26.642,bus_ID_57,bus,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:18:44.946,person_ID_581,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:18:48.476,person_ID_579,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:18:49.011,person_ID_582,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:18:52.276,person_ID_584,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:18:53.080,motorcycle_ID_269,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:18:53.617,person_ID_583,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:18:53.817,person_ID_585,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:18:53.982,person_ID_586,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:18:56.776,person_ID_587,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:18:59.544,person_ID_588,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:19:01.412,person_ID_589,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:19:04.312,person_ID_590,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:19:07.678,car_ID_492,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:19:08.045,person_ID_591,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:19:08.910,truck_ID_150,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 12:19:09.044,truck_ID_151,truck,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:19:09.609,car_ID_493,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:19:09.644,person_ID_592,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:19:09.677,car_ID_494,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:19:11.812,person_ID_593,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:19:15.180,person_ID_594,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:19:19.577,person_ID_595,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:19:21.377,motorcycle_ID_270,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:19:21.610,bicycle_ID_282,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:19:21.814,bicycle_ID_283,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:19:22.380,person_ID_597,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:19:25.778,person_ID_599,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:19:26.478,truck_ID_152,truck,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:19:26.736,person_ID_596,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:19:26.800,bicycle_ID_284,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:19:26.800,person_ID_600,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:19:27.579,car_ID_496,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:19:27.646,person_ID_601,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:19:28.078,bicycle_ID_285,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:19:28.913,bicycle_ID_287,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:19:29.146,bicycle_ID_286,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:19:29.178,person_ID_603,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:19:29.484,car_ID_497,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:19:29.682,bicycle_ID_288,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:19:29.717,motorcycle_ID_271,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:19:29.817,person_ID_604,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:19:30.049,motorcycle_ID_272,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:19:30.253,person_ID_598,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:19:30.253,car_ID_495,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:19:30.319,person_ID_605,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:19:30.613,truck_ID_153,truck,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:19:30.613,motorcycle_ID_273,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:19:30.678,bicycle_ID_290,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:19:30.946,bicycle_ID_289,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:19:31.178,bus_ID_59,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 12:19:31.378,bus_ID_60,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 12:19:31.646,truck_ID_154,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 12:19:31.883,car_ID_498,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:19:32.048,car_ID_499,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:19:33.219,person_ID_606,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:19:36.717,person_ID_607,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:19:37.088,person_ID_602,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:19:51.618,person_ID_609,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:20:10.980,person_ID_608,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:20:16.217,car_ID_500,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:20:17.981,car_ID_501,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:20:28.384,person_ID_610,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:20:38.685,person_ID_612,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:20:46.618,person_ID_613,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:20:48.518,person_ID_614,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:20:50.050,car_ID_502,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:21:36.420,motorcycle_ID_274,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:21:37.552,person_ID_615,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:21:37.720,motorcycle_ID_275,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:21:37.720,person_ID_616,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:21:51.821,person_ID_617,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:21:52.253,motorcycle_ID_276,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:21:52.788,person_ID_618,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:21:53.253,person_ID_619,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:22:04.496,person_ID_620,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:22:04.825,person_ID_621,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:22:05.125,motorcycle_ID_277,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:22:05.627,car_ID_503,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:22:39.324,car_ID_504,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:22:43.891,car_ID_505,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:22:50.027,person_ID_622,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:22:51.962,person_ID_623,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:22:54.825,bicycle_ID_291,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:22:55.692,person_ID_624,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:22:57.995,bicycle_ID_292,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:22:58.592,motorcycle_ID_279,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:22:58.693,bicycle_ID_294,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:22:58.725,motorcycle_ID_278,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:22:59.392,bicycle_ID_293,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:22:59.892,person_ID_625,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:23:00.324,bicycle_ID_295,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:23:00.324,person_ID_626,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:23:00.524,car_ID_506,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:24:24.336,car_ID_507,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:24:30.964,truck_ID_155,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 12:24:31.164,car_ID_508,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:24:31.264,truck_ID_156,truck,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:24:31.667,car_ID_509,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:24:44.265,person_ID_627,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:24:44.632,person_ID_628,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:24:51.165,person_ID_629,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:24:51.233,motorcycle_ID_280,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:25:12.467,truck_ID_157,truck,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:25:13.534,car_ID_510,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:25:15.337,truck_ID_158,truck,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:25:25.667,car_ID_511,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:25:26.434,car_ID_512,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:26:27.506,person_ID_611,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:26:29.671,person_ID_630,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:26:32.209,person_ID_631,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:26:32.709,car_ID_513,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:26:44.339,person_ID_632,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:26:50.443,car_ID_514,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:26:52.840,person_ID_633,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:26:56.175,person_ID_634,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:26:58.275,person_ID_635,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:27:01.572,car_ID_515,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:27:02.973,car_ID_517,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:27:04.140,person_ID_636,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:27:05.444,car_ID_516,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:27:05.914,truck_ID_159,truck,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:27:06.014,car_ID_520,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:27:06.548,truck_ID_160,truck,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:27:06.778,car_ID_518,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:27:08.372,car_ID_519,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:27:08.772,truck_ID_161,truck,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:27:08.907,truck_ID_162,truck,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:27:09.140,bus_ID_61,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 12:27:09.407,car_ID_521,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:27:10.972,person_ID_637,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:27:18.544,person_ID_638,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:27:26.412,person_ID_639,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:27:28.413,bicycle_ID_296,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:27:28.612,motorcycle_ID_281,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:27:31.241,bicycle_ID_297,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:27:31.380,person_ID_641,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:27:31.641,person_ID_640,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:27:33.918,person_ID_643,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:27:34.180,person_ID_642,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:27:34.280,motorcycle_ID_282,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:27:34.345,bicycle_ID_298,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:27:35.409,person_ID_644,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:27:38.210,person_ID_645,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:27:40.213,person_ID_646,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:27:44.581,person_ID_647,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:27:46.010,person_ID_648,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:27:50.745,person_ID_649,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:27:52.913,person_ID_650,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:27:55.514,person_ID_651,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:27:57.778,person_ID_652,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:27:59.643,person_ID_653,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:28:02.245,car_ID_522,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:28:03.410,person_ID_654,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:28:06.679,person_ID_655,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:28:11.514,person_ID_656,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:28:24.547,person_ID_657,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:28:30.444,person_ID_658,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:28:44.483,person_ID_659,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:29:06.350,person_ID_660,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:29:08.487,motorcycle_ID_283,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:29:09.287,person_ID_661,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:29:09.422,bicycle_ID_299,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:29:09.652,motorcycle_ID_284,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:29:09.883,bicycle_ID_300,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:29:10.283,person_ID_662,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:29:12.682,car_ID_523,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:29:25.889,car_ID_524,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:29:29.315,car_ID_525,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:29:30.483,car_ID_526,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:29:40.887,person_ID_663,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:29:46.587,car_ID_527,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:29:57.355,person_ID_664,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:30:03.186,bicycle_ID_301,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:30:03.619,person_ID_665,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:30:04.752,person_ID_666,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:30:09.089,person_ID_667,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:30:22.752,truck_ID_163,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 12:30:22.785,car_ID_529,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:30:22.921,truck_ID_164,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 12:30:22.990,bus_ID_62,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 12:30:23.689,car_ID_528,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:30:29.686,motorcycle_ID_285,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:30:31.590,motorcycle_ID_286,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:30:31.791,bicycle_ID_302,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:30:32.186,person_ID_668,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:30:43.719,car_ID_530,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:30:45.587,car_ID_531,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:30:57.757,person_ID_669,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:31:21.756,car_ID_532,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:31:25.227,car_ID_533,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:31:33.657,bicycle_ID_303,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:31:33.893,person_ID_671,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:31:35.024,person_ID_672,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:31:36.189,bicycle_ID_304,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:31:37.090,person_ID_673,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:31:39.029,bicycle_ID_305,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:31:39.428,person_ID_670,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:31:44.890,person_ID_674,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:31:47.390,car_ID_534,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:31:52.827,person_ID_675,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:32:13.691,car_ID_535,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:32:30.068,car_ID_536,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:32:39.428,car_ID_537,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:32:47.802,motorcycle_ID_287,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:32:48.503,motorcycle_ID_289,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:32:48.997,bicycle_ID_307,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:32:49.262,motorcycle_ID_288,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:32:49.862,bicycle_ID_306,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:32:49.862,person_ID_677,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:32:50.997,person_ID_676,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:32:54.666,person_ID_678,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:32:57.699,person_ID_679,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:33:00.161,motorcycle_ID_290,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:33:00.729,motorcycle_ID_291,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:33:00.797,bicycle_ID_308,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:33:00.897,person_ID_681,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:33:01.297,bicycle_ID_309,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:33:01.461,person_ID_680,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:33:12.429,person_ID_682,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:33:13.162,person_ID_683,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:33:25.538,motorcycle_ID_292,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:33:26.535,bicycle_ID_310,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:33:26.535,person_ID_684,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:33:27.041,person_ID_685,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:33:27.074,bicycle_ID_311,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:33:36.401,car_ID_538,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:33:37.331,car_ID_539,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:33:50.131,car_ID_540,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:34:00.132,car_ID_541,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:34:02.535,car_ID_542,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:34:15.933,car_ID_543,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:34:24.902,motorcycle_ID_293,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:34:25.034,bicycle_ID_312,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:34:25.234,person_ID_686,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:34:25.634,truck_ID_165,truck,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:34:25.702,motorcycle_ID_294,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:34:25.802,bicycle_ID_313,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:34:26.105,car_ID_545,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:34:26.533,car_ID_544,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:34:26.733,bus_ID_63,bus,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:34:27.572,car_ID_546,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:35:12.007,car_ID_547,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:35:14.406,car_ID_548,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:35:22.504,bicycle_ID_314,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:35:22.940,bicycle_ID_315,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:35:23.606,motorcycle_ID_295,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:35:23.773,person_ID_687,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:35:23.905,person_ID_688,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:35:25.175,bicycle_ID_316,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:35:26.175,person_ID_690,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:35:26.238,person_ID_689,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:35:27.504,person_ID_691,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:35:28.674,bicycle_ID_317,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:35:29.072,person_ID_692,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:35:31.107,person_ID_693,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:35:34.537,person_ID_694,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:35:37.106,person_ID_695,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:35:40.175,person_ID_696,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:35:42.141,person_ID_697,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:35:43.676,person_ID_698,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:35:46.372,person_ID_699,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:35:47.905,car_ID_549,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:35:49.608,car_ID_550,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:35:51.111,person_ID_700,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:35:58.977,car_ID_551,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:36:01.343,car_ID_552,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:36:03.845,person_ID_701,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:36:06.582,person_ID_702,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:36:24.142,person_ID_703,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:36:27.907,person_ID_704,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:36:31.346,person_ID_705,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:36:33.910,person_ID_706,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:36:36.476,person_ID_707,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:36:40.111,person_ID_708,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:36:41.847,person_ID_709,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:36:47.245,person_ID_710,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:36:49.179,person_ID_711,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:36:57.709,person_ID_712,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:37:07.748,person_ID_713,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:37:10.377,person_ID_714,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:37:12.110,person_ID_715,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:37:13.982,person_ID_716,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:37:15.683,person_ID_717,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:37:16.448,car_ID_553,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:37:16.481,person_ID_718,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:37:19.510,car_ID_554,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:37:22.279,person_ID_719,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:37:23.082,person_ID_721,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:37:27.142,person_ID_722,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:37:32.678,person_ID_720,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:37:36.611,person_ID_723,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:37:40.111,person_ID_724,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:38:13.019,car_ID_555,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:38:23.824,car_ID_556,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:38:24.553,bus_ID_64,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 12:38:24.752,truck_ID_166,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 12:38:24.819,truck_ID_167,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 12:38:25.981,bus_ID_65,bus,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:38:38.683,car_ID_557,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:38:38.917,car_ID_558,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:38:39.117,truck_ID_168,truck,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:38:43.321,truck_ID_169,truck,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:38:50.253,car_ID_559,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:38:50.586,car_ID_560,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:38:58.621,person_ID_725,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:39:04.251,person_ID_726,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:39:05.983,person_ID_727,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:39:27.024,car_ID_562,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:39:27.453,car_ID_561,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:39:27.690,truck_ID_170,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:39:28.189,truck_ID_171,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:39:29.452,car_ID_563,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:39:35.489,person_ID_728,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:39:46.923,car_ID_564,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:39:50.053,car_ID_565,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:40:10.295,person_ID_730,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:40:10.864,person_ID_731,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:40:12.189,person_ID_729,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:40:18.330,person_ID_732,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:40:22.991,person_ID_733,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:40:23.522,car_ID_566,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:40:24.790,person_ID_734,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:40:25.891,person_ID_735,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:40:27.428,car_ID_567,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:40:31.090,person_ID_736,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:40:32.627,person_ID_737,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:40:41.591,person_ID_738,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:40:46.559,person_ID_739,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:40:50.258,car_ID_568,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:40:50.458,car_ID_569,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:40:50.757,person_ID_740,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:40:51.892,person_ID_741,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:40:55.564,person_ID_742,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:41:05.530,person_ID_743,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:41:09.596,person_ID_744,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:41:11.462,person_ID_745,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:41:15.025,person_ID_746,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:41:19.197,person_ID_747,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:41:23.727,person_ID_748,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:41:25.161,person_ID_749,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:41:26.826,person_ID_750,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:41:29.497,person_ID_751,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:41:31.365,person_ID_752,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:41:33.230,person_ID_753,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:41:34.494,person_ID_754,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:41:37.927,person_ID_755,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:41:40.031,person_ID_756,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:41:41.068,person_ID_757,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:41:43.231,person_ID_758,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:41:46.063,person_ID_759,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:41:47.362,motorcycle_ID_296,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:41:47.663,bicycle_ID_318,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:41:48.227,motorcycle_ID_297,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:41:48.863,bicycle_ID_319,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:41:48.863,person_ID_760,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:41:49.962,person_ID_761,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:41:53.868,motorcycle_ID_298,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:41:54.532,bicycle_ID_321,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:41:54.566,motorcycle_ID_300,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:41:55.367,bicycle_ID_320,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:41:55.595,bicycle_ID_322,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:41:55.662,person_ID_763,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:41:55.795,person_ID_762,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:41:55.868,motorcycle_ID_299,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:41:58.963,bicycle_ID_324,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:41:58.995,motorcycle_ID_301,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:41:59.028,person_ID_764,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:41:59.595,person_ID_765,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:42:00.331,bicycle_ID_323,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:42:01.495,person_ID_766,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:42:02.963,person_ID_767,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:42:04.928,car_ID_570,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:42:04.995,person_ID_768,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:42:10.828,person_ID_769,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:42:10.964,motorcycle_ID_302,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:42:11.565,motorcycle_ID_303,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:42:12.565,motorcycle_ID_304,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:42:13.664,bicycle_ID_326,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:42:14.664,motorcycle_ID_306,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:42:14.828,person_ID_772,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:42:14.964,bicycle_ID_325,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:42:15.064,bicycle_ID_327,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:42:15.228,person_ID_771,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:42:15.296,motorcycle_ID_305,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:42:15.464,bicycle_ID_328,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:42:15.668,person_ID_774,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:42:15.763,person_ID_773,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:42:15.828,motorcycle_ID_307,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:42:16.497,bicycle_ID_329,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:42:16.997,motorcycle_ID_308,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:42:17.099,person_ID_775,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:42:18.633,person_ID_770,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:42:20.400,person_ID_776,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:42:22.431,person_ID_777,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:42:26.464,person_ID_778,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:42:28.503,person_ID_779,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:42:31.068,person_ID_780,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:42:35.830,person_ID_781,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:42:45.130,person_ID_783,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:42:46.899,person_ID_784,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:42:47.699,car_ID_571,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:42:48.266,person_ID_785,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:42:50.904,car_ID_572,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:42:52.435,car_ID_573,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:42:53.398,car_ID_575,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:42:53.566,car_ID_574,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:42:58.567,person_ID_782,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:42:58.698,car_ID_576,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:43:14.299,car_ID_577,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:43:19.738,car_ID_578,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:43:20.703,car_ID_579,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:43:29.075,car_ID_581,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:43:29.338,truck_ID_172,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 12:43:29.438,car_ID_580,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:43:29.503,truck_ID_173,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:43:38.076,motorcycle_ID_309,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:43:38.205,bicycle_ID_330,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:43:41.803,motorcycle_ID_310,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:43:41.973,bicycle_ID_331,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:44:05.275,person_ID_786,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:44:07.138,person_ID_787,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:44:11.442,truck_ID_174,truck,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:44:12.178,bus_ID_66,bus,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:44:13.176,bus_ID_67,bus,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:44:13.307,person_ID_788,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:44:16.006,bus_ID_68,bus,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:44:16.670,truck_ID_175,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 12:45:08.344,car_ID_582,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:45:09.078,car_ID_583,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:45:11.073,truck_ID_176,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:45:13.241,car_ID_584,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:45:17.478,car_ID_585,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:45:18.946,truck_ID_177,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:45:22.241,person_ID_790,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:45:22.441,person_ID_789,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:45:23.009,car_ID_586,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:45:25.774,person_ID_793,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:45:26.809,person_ID_792,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:45:27.774,person_ID_794,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:45:28.310,person_ID_795,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:45:31.115,bicycle_ID_332,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:45:31.315,person_ID_796,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:45:31.877,person_ID_797,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:45:34.013,person_ID_791,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:45:34.613,person_ID_800,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:45:35.847,person_ID_799,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:45:38.109,person_ID_802,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:45:38.375,bicycle_ID_333,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:45:39.209,person_ID_803,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:45:39.842,person_ID_804,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:45:40.310,person_ID_801,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:45:41.175,person_ID_805,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:45:42.413,person_ID_806,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:45:42.515,person_ID_807,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:45:43.875,person_ID_808,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:45:44.210,person_ID_809,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:45:44.910,bicycle_ID_334,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:45:45.010,person_ID_810,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:45:46.575,person_ID_813,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:45:47.275,bicycle_ID_336,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:45:47.443,motorcycle_ID_312,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:45:47.611,bicycle_ID_337,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:45:48.145,person_ID_811,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:45:48.279,person_ID_815,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:45:48.444,motorcycle_ID_311,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:45:48.543,bicycle_ID_338,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:45:48.816,bicycle_ID_335,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:45:49.510,person_ID_814,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:45:50.210,person_ID_816,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:45:50.810,person_ID_817,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:45:53.843,person_ID_818,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:45:54.880,person_ID_819,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:45:55.049,bicycle_ID_339,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:45:55.049,person_ID_798,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:45:55.414,person_ID_820,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:45:55.614,person_ID_821,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:45:56.676,person_ID_823,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:45:58.543,person_ID_822,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:45:59.114,bicycle_ID_340,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:45:59.578,motorcycle_ID_313,motorcycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:45:59.578,person_ID_812,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:46:00.044,person_ID_825,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:46:00.076,person_ID_824,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:46:14.379,car_ID_587,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:46:22.647,car_ID_588,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:46:38.945,motorcycle_ID_314,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:46:39.513,person_ID_826,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:46:39.713,motorcycle_ID_315,motorcycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:46:40.580,person_ID_827,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:46:40.946,motorcycle_ID_316,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:46:49.419,motorcycle_ID_318,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:46:49.619,motorcycle_ID_317,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:46:49.921,bicycle_ID_342,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:46:50.018,person_ID_828,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:46:50.084,motorcycle_ID_319,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:46:50.220,bicycle_ID_343,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:46:50.252,person_ID_829,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:46:50.385,bicycle_ID_341,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:47:08.887,car_ID_589,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:47:14.088,car_ID_590,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:47:36.348,car_ID_591,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:47:47.053,car_ID_593,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:47:50.916,car_ID_592,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:47:57.020,car_ID_594,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:48:00.388,bicycle_ID_344,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:48:02.452,bicycle_ID_345,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:48:03.953,motorcycle_ID_320,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:48:06.017,bicycle_ID_346,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:48:33.723,bicycle_ID_347,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:48:33.962,person_ID_830,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:48:36.220,person_ID_831,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:48:36.920,bicycle_ID_349,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:48:38.120,motorcycle_ID_321,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:48:38.389,person_ID_832,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:48:38.420,bicycle_ID_348,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:48:42.590,bus_ID_69,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 12:48:42.722,car_ID_595,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:48:42.823,truck_ID_178,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 12:48:43.392,car_ID_596,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:48:51.457,person_ID_833,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:48:51.687,person_ID_835,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:48:52.088,person_ID_837,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:48:52.620,person_ID_834,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:48:53.592,motorcycle_ID_322,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:48:53.920,bicycle_ID_350,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:48:54.321,person_ID_836,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:48:56.155,person_ID_839,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:48:57.988,person_ID_838,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:49:03.720,person_ID_840,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:49:13.358,person_ID_841,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:49:20.991,car_ID_597,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:49:21.290,car_ID_598,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:49:29.395,car_ID_599,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:49:37.160,bicycle_ID_351,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:49:37.390,person_ID_842,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:49:37.690,bicycle_ID_352,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:49:38.022,person_ID_843,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:49:40.861,bicycle_ID_353,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:49:41.431,bicycle_ID_354,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:49:42.662,person_ID_844,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:49:43.525,car_ID_600,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:49:58.391,bicycle_ID_355,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:49:58.861,bicycle_ID_358,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:49:58.894,motorcycle_ID_324,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:49:59.391,person_ID_845,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:49:59.860,person_ID_846,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:50:00.162,motorcycle_ID_325,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:50:00.662,motorcycle_ID_323,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:50:02.560,person_ID_847,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:50:02.660,bicycle_ID_357,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:50:02.860,motorcycle_ID_326,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:50:03.092,motorcycle_ID_327,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:50:03.428,person_ID_848,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:50:03.626,bicycle_ID_356,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:50:03.791,person_ID_849,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:50:03.959,person_ID_850,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:50:04.127,bicycle_ID_359,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:50:07.133,car_ID_601,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:50:08.599,car_ID_602,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:50:09.727,car_ID_603,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:50:11.992,car_ID_604,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:50:13.427,car_ID_605,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:50:22.127,person_ID_851,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:50:22.392,motorcycle_ID_328,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:50:23.092,person_ID_852,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:50:23.460,bicycle_ID_360,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:50:24.660,motorcycle_ID_329,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:50:25.295,bicycle_ID_362,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:50:26.393,person_ID_853,person,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:50:26.729,bicycle_ID_361,bicycle,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:50:28.827,person_ID_854,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:50:28.928,bicycle_ID_363,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:50:29.260,motorcycle_ID_330,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:50:51.993,motorcycle_ID_331,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:50:52.029,bicycle_ID_365,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:50:52.261,bicycle_ID_364,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:50:52.528,motorcycle_ID_332,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:50:52.728,person_ID_855,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:51:03.468,person_ID_856,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:51:04.068,motorcycle_ID_333,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:51:04.368,car_ID_606,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:51:04.635,bicycle_ID_366,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:51:05.295,car_ID_607,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:51:05.829,motorcycle_ID_334,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:51:05.962,bicycle_ID_367,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:51:06.094,person_ID_857,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:51:07.363,bicycle_ID_368,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:51:08.363,car_ID_608,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:51:08.629,person_ID_858,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:51:08.762,bicycle_ID_369,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:51:09.094,motorcycle_ID_335,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:51:14.603,bicycle_ID_370,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:51:14.634,person_ID_859,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:51:14.798,motorcycle_ID_336,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:51:15.198,bicycle_ID_371,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:51:15.598,bicycle_ID_372,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:51:23.931,car_ID_609,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:51:32.464,person_ID_860,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:51:38.604,person_ID_861,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:51:40.832,person_ID_862,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:51:42.799,bicycle_ID_373,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:51:43.299,person_ID_863,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:51:44.505,person_ID_865,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:51:49.764,person_ID_864,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:51:49.832,person_ID_866,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:52:05.403,car_ID_610,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:52:37.340,car_ID_611,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:52:42.403,car_ID_612,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:52:46.343,car_ID_613,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:52:54.170,person_ID_867,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:52:54.871,person_ID_868,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:52:54.905,motorcycle_ID_337,motorcycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:53:09.272,truck_ID_179,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 12:53:17.005,car_ID_614,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:53:17.037,car_ID_615,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:53:17.238,truck_ID_181,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 12:53:18.637,car_ID_617,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:53:18.805,truck_ID_180,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:53:19.072,truck_ID_182,truck,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:53:20.073,car_ID_616,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:53:24.008,car_ID_618,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:53:25.375,car_ID_619,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:53:39.673,car_ID_620,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:53:41.974,person_ID_869,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:53:43.306,car_ID_621,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:53:52.306,bicycle_ID_374,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:53:52.538,motorcycle_ID_338,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:53:52.673,bicycle_ID_375,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:53:52.906,motorcycle_ID_339,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:53:54.006,person_ID_871,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:53:54.038,car_ID_622,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:53:54.206,bicycle_ID_376,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:53:54.706,motorcycle_ID_340,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:54:01.975,person_ID_870,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:54:03.007,car_ID_623,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:54:10.410,person_ID_872,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:54:12.507,car_ID_624,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:54:13.207,person_ID_873,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:54:16.278,person_ID_874,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:54:20.275,person_ID_875,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:54:21.207,car_ID_625,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:54:21.540,person_ID_876,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:54:22.407,motorcycle_ID_341,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:54:24.112,car_ID_626,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:54:40.042,car_ID_628,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:54:40.715,car_ID_627,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:54:42.541,car_ID_629,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:54:45.176,person_ID_877,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:54:46.276,bicycle_ID_377,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:54:50.214,person_ID_878,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:54:50.613,bicycle_ID_378,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:55:11.142,car_ID_630,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:55:18.021,person_ID_879,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:55:18.210,motorcycle_ID_342,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:55:18.242,person_ID_880,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:55:18.542,bicycle_ID_379,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:55:48.080,car_ID_631,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:56:13.148,car_ID_632,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:56:14.981,car_ID_633,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:56:25.454,car_ID_634,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:56:25.785,car_ID_635,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:56:26.917,bus_ID_70,bus,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:56:28.125,truck_ID_184,truck,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:56:28.850,truck_ID_183,truck,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:56:30.782,bicycle_ID_380,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:56:30.814,motorcycle_ID_343,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:56:31.014,motorcycle_ID_344,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:56:31.814,person_ID_881,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:56:32.649,motorcycle_ID_345,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:56:32.916,bicycle_ID_382,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:56:32.982,bicycle_ID_381,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:56:33.014,person_ID_882,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:56:33.587,person_ID_883,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:56:34.282,motorcycle_ID_346,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:56:34.456,car_ID_636,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:56:35.017,bicycle_ID_383,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:56:35.150,motorcycle_ID_347,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:56:35.517,person_ID_884,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:56:35.850,motorcycle_ID_348,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:56:40.356,car_ID_637,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:56:42.850,car_ID_638,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:56:47.284,car_ID_639,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:56:50.351,car_ID_640,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:56:58.152,motorcycle_ID_349,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:56:58.419,bus_ID_71,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 12:56:58.583,car_ID_641,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:57:00.251,motorcycle_ID_350,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:57:49.889,car_ID_642,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:57:50.689,car_ID_643,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:58:09.787,car_ID_644,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:58:12.890,car_ID_645,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:58:37.524,car_ID_646,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:58:39.191,car_ID_648,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:58:41.959,car_ID_647,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:59:25.694,car_ID_649,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:59:32.530,car_ID_650,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:59:45.827,truck_ID_186,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 12:59:45.859,truck_ID_185,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 12:59:46.459,car_ID_652,car,Zehlendorf (kein Wechsel),False
+2026-07-29 12:59:46.794,car_ID_651,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 12:59:48.060,motorcycle_ID_352,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:59:48.560,motorcycle_ID_354,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:59:49.200,bicycle_ID_386,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:59:49.231,bicycle_ID_385,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:59:49.263,bicycle_ID_387,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:59:49.263,motorcycle_ID_351,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:59:49.263,motorcycle_ID_355,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:59:49.395,bicycle_ID_384,bicycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:59:49.460,person_ID_885,person,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:59:49.495,person_ID_886,person,Zehlendorf (kein Wechsel),False
+2026-07-29 12:59:49.527,bicycle_ID_388,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 12:59:50.060,motorcycle_ID_353,motorcycle,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:59:52.195,car_ID_653,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 12:59:53.228,car_ID_654,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:59:57.831,motorcycle_ID_356,motorcycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:59:58.231,bicycle_ID_389,bicycle,Stahnsdorf (kein Wechsel),False
+2026-07-29 12:59:58.231,person_ID_887,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 13:00:01.864,bicycle_ID_390,bicycle,Zehlendorf (kein Wechsel),False
+2026-07-29 13:00:01.929,motorcycle_ID_357,motorcycle,Zehlendorf (kein Wechsel),False
+2026-07-29 13:00:01.997,person_ID_888,person,Zehlendorf (kein Wechsel),False
+2026-07-29 13:00:31.198,car_ID_655,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 13:00:35.065,car_ID_656,car,Zehlendorf (kein Wechsel),False
+2026-07-29 13:00:45.265,car_ID_657,car,Stahnsdorf (kein Wechsel),False
+2026-07-29 13:00:47.102,truck_ID_187,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 13:00:47.134,car_ID_659,car,Zehlendorf (kein Wechsel),False
+2026-07-29 13:00:48.271,car_ID_660,car,Zehlendorf (kein Wechsel),False
+2026-07-29 13:00:48.303,bus_ID_72,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 13:00:48.335,bus_ID_73,bus,Zehlendorf (kein Wechsel),False
+2026-07-29 13:00:48.635,car_ID_658,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 13:00:49.135,truck_ID_188,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 13:00:51.831,car_ID_661,car,Zehlendorf (kein Wechsel),False
+2026-07-29 13:01:06.036,car_ID_662,car,Zehlendorf (kein Wechsel),False
+2026-07-29 13:01:08.299,truck_ID_189,truck,Zehlendorf (kein Wechsel),False
+2026-07-29 13:01:09.366,car_ID_664,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 13:01:09.399,truck_ID_190,truck,Zehlendorf->Stahnsdorf,True
+2026-07-29 13:01:09.431,car_ID_663,car,Zehlendorf->Stahnsdorf,True
+2026-07-29 13:01:24.101,car_ID_665,car,Stahnsdorf->Zehlendorf,True
+2026-07-29 13:01:30.571,person_ID_889,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 13:01:36.700,person_ID_890,person,Zehlendorf (kein Wechsel),False
+2026-07-29 13:01:47.569,person_ID_891,person,Stahnsdorf (kein Wechsel),False
+2026-07-29 13:01:52.675,person_ID_892,person,Stahnsdorf (kein Wechsel),False
