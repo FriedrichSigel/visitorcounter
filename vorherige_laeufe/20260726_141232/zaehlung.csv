@@ -1,0 +1,18 @@
+timestamp,display_id,label,direction,is_transition
+2026-07-26 14:11:09.733,car_ID_1,car,Potsdam (kein Wechsel),False
+2026-07-26 14:11:11.336,car_ID_2,car,Potsdam->Berln,True
+2026-07-26 14:11:21.342,bicycle_ID_2,bicycle,Potsdam (kein Wechsel),False
+2026-07-26 14:11:21.378,bicycle_ID_3,bicycle,Potsdam (kein Wechsel),False
+2026-07-26 14:11:22.335,person_ID_1,person,Potsdam (kein Wechsel),False
+2026-07-26 14:11:22.368,person_ID_2,person,Potsdam (kein Wechsel),False
+2026-07-26 14:11:23.936,bicycle_ID_4,bicycle,Potsdam->Berln,True
+2026-07-26 14:11:24.141,person_ID_3,person,Potsdam->Berln,True
+2026-07-26 14:11:24.169,bicycle_ID_1,bicycle,Potsdam->Berln,True
+2026-07-26 14:11:24.504,bicycle_ID_5,bicycle,Berln (kein Wechsel),False
+2026-07-26 14:11:25.837,bicycle_ID_7,bicycle,Berln (kein Wechsel),False
+2026-07-26 14:11:25.932,person_ID_4,person,Berln (kein Wechsel),False
+2026-07-26 14:11:26.134,bicycle_ID_8,bicycle,Berln (kein Wechsel),False
+2026-07-26 14:11:26.638,person_ID_5,person,Berln (kein Wechsel),False
+2026-07-26 14:11:26.770,bicycle_ID_6,bicycle,Berln (kein Wechsel),False
+2026-07-26 14:11:26.967,person_ID_6,person,Berln (kein Wechsel),False
+2026-07-26 14:11:56.601,car_ID_3,car,Berln->Potsdam,True

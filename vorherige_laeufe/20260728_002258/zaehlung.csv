@@ -1,0 +1,11 @@
+timestamp,display_id,label,direction,is_transition
+2026-07-28 00:21:32.199,person_ID_1,person,Uni->Ausgang,True
+2026-07-28 00:21:38.124,person_ID_2,person,Ausgang->Mensa,True
+2026-07-28 00:21:39.528,person_ID_4,person,Mensa (kein Wechsel),False
+2026-07-28 00:21:42.793,person_ID_3,person,Mensa->Uni,True
+2026-07-28 00:21:56.162,person_ID_5,person,Uni (kein Wechsel),False
+2026-07-28 00:22:00.158,person_ID_6,person,Uni->Ausgang,True
+2026-07-28 00:22:03.961,person_ID_7,person,Ausgang->Uni,True
+2026-07-28 00:22:09.664,person_ID_8,person,Uni->Mensa,True
+2026-07-28 00:22:15.693,person_ID_9,person,Mensa->Ausgang,True
+2026-07-28 00:22:19.623,person_ID_10,person,Ausgang->Uni,True

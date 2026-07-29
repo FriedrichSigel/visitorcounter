@@ -1,0 +1,3 @@
+display_id,kind,track_id,label,start_x,start_y,end_x,end_y,avg_confidence,first_timestamp,last_timestamp
+car_ID_1,FLUSH,1,car,41,447,129,460,0.4618,2026-07-28 00:25:03.129,2026-07-28 00:25:04.136
+car_ID_2,FLUSH,2,car,882,328,927,350,0.3488,2026-07-28 00:25:07.328,2026-07-28 00:25:08.302
