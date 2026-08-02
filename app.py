@@ -179,8 +179,12 @@ class MainApp:
         ctk.CTkLabel(header, text="Besucherzähler",
                      font=ctk.CTkFont(size=16, weight="bold")).pack(side="left")
         is_dark = ctk.get_appearance_mode() == "Dark"
+        # Einfarbige Textsymbole statt Vollfarb-Emoji (z. B. 🌙): Windows
+        # rendert Vollfarb-Emojis mit eigenem, weißem Hintergrund-Glyph statt
+        # in text_color — auf dem schwarzen Knopf im Light-Mode sah das
+        # kaputt aus.
         self.appearance_button = ctk.CTkButton(
-            header, text="☀" if is_dark else "🌙", width=40, height=40, corner_radius=20,
+            header, text="☀" if is_dark else "☾", width=40, height=40, corner_radius=20,
             font=ctk.CTkFont(size=18),
             # (Wert für Light-Mode, Wert für Dark-Mode): Knopf schwarz im
             # hellen Design, weiß im dunklen Design — jeweils Kontrast zum
@@ -267,7 +271,7 @@ class MainApp:
         is_dark = ctk.get_appearance_mode() == "Dark"
         new_mode = "light" if is_dark else "dark"
         ctk.set_appearance_mode(new_mode)
-        self.appearance_button.configure(text="🌙" if is_dark else "☀")
+        self.appearance_button.configure(text="☾" if is_dark else "☀")
         _save_appearance_mode(new_mode)
 
     def _show_page(self, name):
