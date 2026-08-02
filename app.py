@@ -28,6 +28,7 @@ Nutzung:
 Voraussetzung: customtkinter (pip install customtkinter --break-system-packages).
 """
 
+import argparse
 import csv
 import json
 import os
@@ -104,9 +105,14 @@ ctk.set_default_color_theme("blue")
 
 
 class MainApp:
-    def __init__(self, root):
+    def __init__(self, root, autostart=False):
         self.root = root
         self.root.title("Personenzähl-Steuerung")
+        # --autostart (siehe start_app.sh): startet die Zähl-Pipeline
+        # automatisch mit dem Standard-Input (USB), sobald das Fenster steht
+        # und ein eventueller Aufwärmlauf durch ist. Für den unbeaufsichtigten
+        # Start beim Hochfahren des Geräts.
+        self.autostart = autostart
 
         # Feste Layout-Maße. Die gesamte App leitet ihre Breiten aus WINDOW_WIDTH
         # ab (1/5 Sidebar, 4/5 Content; in Tab 2 davon wiederum 3/5 Frame + 1/5
@@ -228,6 +234,27 @@ class MainApp:
         # Aufwärmlauf anstossen, sobald die Oberflaeche steht (verzoegert,
         # damit das Fenster zuerst sichtbar ist).
         self.root.after(800, self._maybe_run_warmup)
+
+        if self.autostart:
+            self.root.after(1000, self._maybe_autostart_pipeline)
+
+    def _maybe_autostart_pipeline(self):
+        """
+        --autostart: startet die Zähl-Pipeline automatisch, sobald ein
+        eventueller Aufwärmlauf durch ist (self.warmup_running wieder False).
+
+        Läuft normalerweise gar kein Aufwärmlauf mehr, weil start_app.sh vorher
+        schon 'python warmup.py' ausgeführt hat - dann greift dieser Check
+        praktisch sofort. Rein zur Sicherheit (z. B. App manuell während des
+        Bootens neu gestartet) wird trotzdem gewartet, statt die Warnung aus
+        _start_pipeline() für einen laufenden Aufwärmlauf zu riskieren.
+        """
+        if self.warmup_running:
+            self.root.after(1000, self._maybe_autostart_pipeline)
+            return
+        if self.process is not None:
+            return  # lief inzwischen schon (z. B. manuell gestartet)
+        self._start_pipeline()
 
     def _maybe_run_warmup(self):
         """
@@ -1350,8 +1377,15 @@ class MainApp:
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Personenzähl-Steuerung (GUI)")
+    parser.add_argument(
+        "--autostart", action="store_true",
+        help="Zähl-Pipeline nach dem Öffnen automatisch starten (Input: USB). "
+             "Für den unbeaufsichtigten Start beim Hochfahren, siehe start_app.sh.")
+    args = parser.parse_args()
+
     root = ctk.CTk()
-    MainApp(root)
+    MainApp(root, autostart=args.autostart)
     root.mainloop()
 
 
