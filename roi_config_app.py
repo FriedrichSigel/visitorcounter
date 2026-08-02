@@ -347,7 +347,7 @@ class RoiConfigApp:
 
         self.collection_status_var = tk.StringVar(value="Noch keine Punkte gesammelt.")
         ctk.CTkLabel(self.auto_frame, textvariable=self.collection_status_var,
-                     wraplength=210, justify="left", text_color="gray70").grid(
+                     wraplength=210, justify="left", text_color=("gray30", "gray70")).grid(
             row=1, column=0, columnspan=2, sticky="w", padx=10)
         ctk.CTkButton(self.auto_frame, text="Sammel-Status aktualisieren", fg_color="gray30",
                       command=self._refresh_collection_status).grid(
@@ -379,7 +379,7 @@ class RoiConfigApp:
             row=4, column=0, columnspan=2, sticky="we", padx=10, pady=(8, 4))
 
         self.auto_result_var = tk.StringVar(value="")
-        ctk.CTkLabel(self.auto_frame, textvariable=self.auto_result_var, text_color="gray70",
+        ctk.CTkLabel(self.auto_frame, textvariable=self.auto_result_var, text_color=("gray30", "gray70"),
                      wraplength=210, justify="left").grid(row=5, column=0, columnspan=2, sticky="w", padx=10, pady=(0, 8))
 
         ctk.CTkLabel(side, text="Klassen zählen", font=ctk.CTkFont(size=14, weight="bold")).grid(
@@ -432,7 +432,7 @@ class RoiConfigApp:
         # gefüllt (_refresh_snap_fields); die Zustände hängen an
         # self.snap_field_vars, gespeichert wird pro Fläche in region["snap"].
         self.snap_fields_label = ctk.CTkLabel(
-            side, text="Zuordnung gilt für diese Flächen:", text_color="gray70")
+            side, text="Zuordnung gilt für diese Flächen:", text_color=("gray30", "gray70"))
         self.snap_fields_label.grid(row=row, column=0, sticky="w", padx=10, pady=(6, 0))
         self.snap_fields_label.grid_remove()
         row += 1
@@ -469,7 +469,7 @@ class RoiConfigApp:
 
         self.status_var = tk.StringVar()
         ctk.CTkLabel(side, textvariable=self.status_var, wraplength=SIDE_PANEL_WIDTH - 30,
-                     text_color="gray70", justify="left").grid(
+                     text_color=("gray30", "gray70"), justify="left").grid(
             row=row, column=0, sticky="w", padx=10, pady=10)
 
         # Sicherstellen, dass alles gezeichnet wird, sobald das Widget
