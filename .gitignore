@@ -41,6 +41,9 @@ old_track files/
 # als roi_config.example.json einchecken.
 roi_config.json
 
+# Gemerktes UI-Design (hell/dunkel) — geräte-/nutzerspezifisch, nicht ins Repo.
+ui_settings.json
+
 # === Betriebssystem / Editor ===
 .DS_Store
 *.swp
