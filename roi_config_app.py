@@ -436,21 +436,20 @@ class RoiConfigApp:
         self.snap_field_vars = {}   # Flächenname -> BooleanVar
         row += 1
 
-        # IN-Feld-Auswahl (nur multi_roi): bestimmt, welche Fläche als
-        # "IN-Bereich" gilt. Übergang in dieses Feld = IN, heraus = OUT — damit
-        # passt multi_roi in dasselbe IN/OUT-Nachrichtenformat wie Linie/ROI
-        # (für den LoRa-Versand). Wird aus den benannten Flächen befüllt.
-        self.in_field_placeholder = "(kein Feld gewählt)"
-        self.in_field_var = tk.StringVar(value=self.in_field_placeholder)
-        self.in_field_label = ctk.CTkLabel(
-            side, text="IN-Feld (rein = IN, raus = OUT):")
-        self.in_field_label.grid(row=row, column=0, sticky="w", padx=10, pady=(12, 0))
+        # Richtung je Fläche (nur multi_roi): legt fest, welche Flächen als
+        # IN-Bereich gelten und welche als OUT — Übergang aus einem OUT- in
+        # ein IN-Feld = IN, umgekehrt = OUT (für den LoRa-/MQTT-Versand).
+        # Standard: die zuerst angelegte Fläche ist IN, alle weiteren OUT
+        # (siehe close_polygon); hier lässt sich das je Fläche umstellen.
+        self.direction_fields_label = ctk.CTkLabel(
+            side, text="Richtung je Fläche (angehakt = IN, sonst OUT):")
+        self.direction_fields_label.grid(row=row, column=0, sticky="w", padx=10, pady=(12, 0))
+        self.direction_fields_label.grid_remove()
         row += 1
-        self.in_field_menu = ctk.CTkOptionMenu(
-            side, variable=self.in_field_var, values=[self.in_field_placeholder])
-        self.in_field_menu.grid(row=row, column=0, sticky="we", padx=10, pady=(2, 0))
-        self.in_field_label.grid_remove()
-        self.in_field_menu.grid_remove()
+        self.direction_fields_frame = ctk.CTkFrame(side, fg_color="transparent")
+        self.direction_fields_frame.grid(row=row, column=0, sticky="we", padx=10, pady=(0, 0))
+        self.direction_fields_frame.grid_remove()
+        self.direction_field_vars = {}   # Flächenname -> BooleanVar (True = IN)
         row += 1
 
         ctk.CTkButton(side, text="Zurücksetzen", fg_color="gray30", command=self.reset_geometry).grid(
@@ -535,6 +534,51 @@ class RoiConfigApp:
                 region["snap"] = self.snap_field_vars[name].get()
         self._redraw_background()
         self.redraw()
+
+    def _refresh_direction_fields(self):
+        """
+        Baut die Richtungs-Auswahl neu auf: eine Checkbox je benannter
+        Fläche, mit der sich einstellen laesst, ob diese Fläche als IN- oder
+        OUT-Bereich gilt (angehakt = IN). Sichtbar nur im multi_roi-Modus mit
+        mindestens einer Fläche.
+
+        Vorhandene Wahl bleibt erhalten (region["direction"]); neue Flaechen
+        starten auf dem beim Anlegen gesetzten Standard (siehe close_polygon:
+        die zuerst angelegte Fläche IN, alle weiteren OUT).
+        """
+        for child in self.direction_fields_frame.winfo_children():
+            child.destroy()
+        self.direction_field_vars = {}
+
+        sichtbar = (self.mode_var.get() == "multi_roi"
+                    and any(r.get("name") for r in self.regions))
+        if not sichtbar:
+            self.direction_fields_label.grid_remove()
+            self.direction_fields_frame.grid_remove()
+            return
+
+        for region in self.regions:
+            name = region.get("name")
+            if not name:
+                continue
+            ist_in = region.get("direction", "out") == "in"
+            var = tk.BooleanVar(value=ist_in)
+            self.direction_field_vars[name] = var
+            ctk.CTkCheckBox(
+                self.direction_fields_frame, text=f"{name} (IN)", variable=var,
+                command=self._on_direction_field_toggle,
+                checkbox_width=18, checkbox_height=18,
+            ).pack(anchor="w", pady=1)
+
+        self.direction_fields_label.grid()
+        self.direction_fields_frame.grid()
+
+    def _on_direction_field_toggle(self):
+        """Uebernimmt die Richtungs-Haekchen in die Flaechendaten."""
+        for region in self.regions:
+            name = region.get("name")
+            if name in self.direction_field_vars:
+                region["direction"] = "in" if self.direction_field_vars[name].get() else "out"
 
     def _on_map(self, _event=None):
         """
@@ -768,15 +812,6 @@ class RoiConfigApp:
         dabei aber NICHT zurueckgesetzt werden — genau das taete
         on_mode_change ueber reset_geometry.
         """
-        # IN-Feld-Auswahl nur im manuellen multi_roi-Modus zeigen.
-        if mode == "multi_roi":
-            self.in_field_label.grid()
-            self.in_field_menu.grid()
-            self._refresh_in_field_options()
-        else:
-            self.in_field_label.grid_remove()
-            self.in_field_menu.grid_remove()
-
         if mode == "roi":
             self.close_button.grid()
             self.undo_button.grid_remove()
@@ -812,6 +847,8 @@ class RoiConfigApp:
         # Pro-Flaeche-Snap-Auswahl passend zum Modus/Schalter neu aufbauen
         # (blendet sich selbst aus, wenn nicht multi_roi oder snap aus).
         self._refresh_snap_fields()
+        # Richtungs-Auswahl (IN/OUT je Fläche) nur im multi_roi-Modus zeigen.
+        self._refresh_direction_fields()
 
     def _update_status_for_mode(self):
         mode = self.mode_var.get()
@@ -898,29 +935,23 @@ class RoiConfigApp:
             if any(r["name"] == name for r in self.regions):
                 messagebox.showwarning("Name vergeben", f"Der Name '{name}' wird schon verwendet.", parent=self.root)
                 return
-            self.regions.append({"name": name, "points": list(self.current_points)})
+            # Standardrichtung: die zuerst angelegte Fläche ist IN, alle
+            # weiteren sind OUT. Laesst sich danach ueber die Haekchen je
+            # Flaeche aendern (siehe _refresh_direction_fields).
+            direction = "in" if not self.regions else "out"
+            self.regions.append({"name": name, "points": list(self.current_points),
+                                 "direction": direction})
             self.current_points = []
             # Hintergrund mit neu zeichnen: die Einzugsgebiete haengen von den
             # Flaechen ab und aendern sich mit jeder neuen Flaeche.
             self._redraw_background()
             self.redraw()
-            self._refresh_in_field_options()
+            self._refresh_direction_fields()
             self._refresh_snap_fields()
             self.status_var.set(
                 f"Fläche '{name}' gespeichert ({len(self.regions)} insgesamt). "
                 f"Weitere Fläche klicken oder Speichern (mind. 2 Flächen nötig)."
             )
-
-    def _refresh_in_field_options(self):
-        """Befüllt das IN-Feld-Menü mit den aktuellen Flächennamen. Behält die
-        bisherige Auswahl bei, wenn die Fläche noch existiert."""
-        if not hasattr(self, "in_field_menu"):
-            return
-        names = [r["name"] for r in self.regions]
-        values = names if names else [self.in_field_placeholder]
-        self.in_field_menu.configure(values=values)
-        if self.in_field_var.get() not in values:
-            self.in_field_var.set(values[0])
 
     def undo_last_region(self):
         if self.regions:
@@ -928,7 +959,7 @@ class RoiConfigApp:
             # Einzugsgebiete haengen an den Flaechen — mit neu zeichnen.
             self._redraw_background()
             self.redraw()
-            self._refresh_in_field_options()
+            self._refresh_direction_fields()
             self._refresh_snap_fields()
             self.status_var.set(f"Fläche '{removed['name']}' entfernt.")
 
@@ -940,7 +971,7 @@ class RoiConfigApp:
         self.auto_regions = None
         self._redraw_background()
         self.redraw()
-        self._refresh_in_field_options()
+        self._refresh_direction_fields()
         self._update_status_for_mode()
 
     # --- Zeichnen ---
@@ -1128,15 +1159,17 @@ class RoiConfigApp:
                 parent=self.root)
             return
         if mode == "multi_roi":
-            # Für den LoRa-Versand (IN/OUT-Format) muss feststehen, welche
-            # Fläche der IN-Bereich ist.
-            in_field = self.in_field_var.get()
-            if in_field == self.in_field_placeholder or \
-                    not any(r["name"] == in_field for r in self.regions):
+            # Aktuelle Richtungs-Haekchen uebernehmen, damit die Pruefung
+            # unten den zuletzt angeklickten Stand sieht.
+            self._on_direction_field_toggle()
+            # Für den LoRa-/MQTT-Versand (IN/OUT-Format) muss es mindestens
+            # eine IN- und eine OUT-Fläche geben.
+            richtungen = {r.get("direction", "out") for r in self.regions}
+            if "in" not in richtungen or "out" not in richtungen:
                 messagebox.showwarning(
-                    "IN-Feld fehlt",
-                    "Bitte am Ende ein Feld als IN-Bereich auswählen. "
-                    "Übergänge in dieses Feld zählen als IN, heraus als OUT.",
+                    "IN/OUT fehlt",
+                    "Bitte mindestens eine Fläche als IN und mindestens eine "
+                    "als OUT markieren (Haekchen je Fläche).",
                     parent=self.root)
                 return
         if mode in AUTO_MODES and not self.auto_regions:
@@ -1174,9 +1207,11 @@ class RoiConfigApp:
             "snap_to_nearest": self.snap_var.get(),
             "points": [],
             "regions": [],
-            # Nur für multi_roi relevant: Fläche, deren Betreten als IN und
-            # deren Verlassen als OUT gewertet wird (LoRa-Nachrichtenformat).
-            "in_field": "",
+            # Nur für multi_roi relevant: Namen der Flächen, die als
+            # IN-Bereich gelten (Übergang aus einer OUT- in eine IN-Fläche =
+            # IN, umgekehrt = OUT; LoRa-/MQTT-Nachrichtenformat). Jede nicht
+            # genannte Fläche gilt als OUT.
+            "in_field": [],
         }
 
         if mode in AUTO_MODES:
@@ -1195,8 +1230,10 @@ class RoiConfigApp:
                 # Pro-Flaeche-Zuordnung mitspeichern. Standard True, damit sich
                 # eine Flaeche ohne ausdrueckliche Wahl wie bisher verhaelt.
                 eintrag["snap"] = bool(region.get("snap", True))
+                eintrag["direction"] = region.get("direction", "out")
                 config["regions"].append(eintrag)
-            config["in_field"] = self.in_field_var.get()
+            config["in_field"] = [r["name"] for r in self.regions
+                                  if r.get("direction", "out") == "in"]
         else:
             config["points"] = [self._to_normalized(x, y) for (x, y) in self.points]
 
@@ -1276,13 +1313,29 @@ class RoiConfigApp:
             # die Pro-Flaeche-Angabe (aeltere Konfiguration), erben alle
             # Flaechen den globalen Wert — Verhalten bleibt damit unveraendert.
             global_snap = bool(config.get("snap_to_nearest", False))
-            for region in config.get("regions", []):
+            # Alte Konfigurationen kennen "in_field" nur als einzelnen
+            # Flächennamen (String); neue speichern eine Liste. Beides wird
+            # hier als Menge von IN-Feldnamen normalisiert.
+            raw_in_field = config.get("in_field")
+            legacy_in_fields = set(raw_in_field) if isinstance(raw_in_field, list) \
+                else ({raw_in_field} if raw_in_field else set())
+            for i, region in enumerate(config.get("regions", [])):
                 pts = [self._from_normalized(nx, ny)
                        for (nx, ny) in region.get("points", [])]
                 if len(pts) >= 3:
                     snap = bool(region.get("snap", global_snap))
-                    self.regions.append({"name": region.get("name", "?"),
-                                         "points": pts, "snap": snap})
+                    name = region.get("name", "?")
+                    if "direction" in region:
+                        direction = region["direction"]
+                    elif legacy_in_fields:
+                        direction = "in" if name in legacy_in_fields else "out"
+                    else:
+                        # Weder Richtung je Fläche noch ein altes IN-Feld
+                        # vorhanden: Standard wie bei neu angelegten Flächen
+                        # (erste Fläche IN, Rest OUT).
+                        direction = "in" if i == 0 else "out"
+                    self.regions.append({"name": name, "points": pts, "snap": snap,
+                                         "direction": direction})
         else:
             self.points = [self._from_normalized(nx, ny)
                            for (nx, ny) in config.get("points", [])]
@@ -1299,13 +1352,10 @@ class RoiConfigApp:
         self.confidence_var.set(str(config.get("min_confidence", 0.5)))
         self.snap_var.set(bool(config.get("snap_to_nearest", False)))
 
-        self._refresh_in_field_options()
         # Pro-Flaeche-Liste passend zum geladenen Snap-Zustand aufbauen —
         # sonst erscheint sie erst, wenn man den Schalter einmal umlegt.
         self._refresh_snap_fields()
-        in_field = config.get("in_field") or ""
-        if in_field and any(r["name"] == in_field for r in self.regions):
-            self.in_field_var.set(in_field)
+        self._refresh_direction_fields()
 
         self._force_redraw()
         self._describe_loaded_config(config, path)
@@ -1321,7 +1371,11 @@ class RoiConfigApp:
         if mode == "multi_roi":
             names = ", ".join(r["name"] for r in self.regions) or "keine"
             parts.append(f"Flächen: {names}")
-            parts.append(f"IN-Feld: {config.get('in_field') or 'NICHT gesetzt'}")
+            in_names = ", ".join(r["name"] for r in self.regions
+                                 if r.get("direction", "out") == "in") or "keine"
+            out_names = ", ".join(r["name"] for r in self.regions
+                                  if r.get("direction", "out") != "in") or "keine"
+            parts.append(f"IN: {in_names} / OUT: {out_names}")
         else:
             parts.append(f"Punkte: {len(self.points)}")
         parts.append("Klassen: " + (", ".join(config.get("classes", [])) or "keine"))

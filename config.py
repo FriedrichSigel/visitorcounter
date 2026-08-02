@@ -61,10 +61,12 @@ _DEFAULT_ROI_CONFIG = {
     "snap_to_nearest": False,
     # Erst ab dieser Erkennungskonfidenz wird ein Objekt gezählt (0.0-1.0).
     "min_confidence": 0.5,
-    # Nur für mode="multi_roi": Name der Fläche, die als IN-Bereich gilt.
-    # Übergang in diese Fläche = IN, heraus = OUT. Wird für den LoRa-Versand
-    # gebraucht, damit multi_roi dasselbe IN/OUT-Format nutzen kann.
-    "in_field": "",
+    # Nur für mode="multi_roi": Namen der Flächen, die als IN-Bereich gelten
+    # (Liste; ältere Konfigurationen speichern hier einen einzelnen String).
+    # Übergang aus einer OUT- in eine IN-Fläche = IN, umgekehrt = OUT. Wird
+    # für den LoRa-/MQTT-Versand gebraucht, damit multi_roi dasselbe
+    # IN/OUT-Format nutzen kann.
+    "in_field": [],
 }
 
 

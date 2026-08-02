@@ -90,6 +90,8 @@ class KonfigProvider:
             "gesendet_am": datetime.now(timezone.utc).isoformat(timespec="seconds"),
             "umfang": self.umfang,
             "modus": cfg.get("mode"),
+            # "in_field" ist eine Liste von IN-Flächennamen (aeltere
+            # Konfigurationen speichern hier einen einzelnen String).
             "in_feld": cfg.get("in_field"),
             "felder": felder,
             "klassen": cfg.get("classes", []),

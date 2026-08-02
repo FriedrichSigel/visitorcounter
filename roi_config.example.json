@@ -54,5 +54,5 @@
       ]
     }
   ],
-  "in_field": "Berlin"
+  "in_field": ["Berlin"]
 }

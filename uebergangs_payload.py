@@ -23,7 +23,7 @@ Struktur der Nachricht (JSON):
       "intervall_min": 5,
       "status": { "kamera_ok": true, ... },
       "felder": ["office", "ausgang", "Vorlesung", "Anlage"],
-      "in_feld": "office",
+      "in_feld": ["office"],
       "uebergaenge": [
         { "von": "Anlage", "nach": "office", "klasse": "person", "anzahl": 3 },
         ...
@@ -114,17 +114,29 @@ class UebergangsProvider:
             pass
 
     # -- Konfiguration -----------------------------------------------------
+    @staticmethod
+    def _in_felder_normalisieren(raw):
+        """
+        "in_field" aus roi_config.json einheitlich als Liste von Namen lesen.
+
+        Neue Konfigurationen speichern hier eine Liste (mehrere IN-Flächen
+        möglich), ältere einen einzelnen Flächennamen als String.
+        """
+        if isinstance(raw, list):
+            return [n for n in raw if n]
+        return [raw] if raw else []
+
     def _konfiguration_lesen(self):
         try:
             with open(self.config_path) as f:
                 cfg = json.load(f)
         except (OSError, ValueError):
-            return {"felder": [], "in_feld": None, "klassen": [], "modus": None,
+            return {"felder": [], "in_felder": [], "klassen": [], "modus": None,
                     "gelesen": False}
         return {
             "felder": [r.get("name") for r in cfg.get("regions", [])
                        if r.get("name")],
-            "in_feld": cfg.get("in_field"),
+            "in_felder": self._in_felder_normalisieren(cfg.get("in_field")),
             "klassen": cfg.get("classes", []),
             "modus": cfg.get("mode"),
             "gelesen": True,
@@ -206,29 +218,34 @@ class UebergangsProvider:
                 "teilintervall": False,
             },
             "felder": cfg["felder"],
-            "in_feld": cfg["in_feld"],
+            "in_feld": cfg["in_felder"],
             "uebergaenge": uebergaenge,
-            "summen": self._summen_bilden(uebergaenge, cfg["in_feld"]),
+            "summen": self._summen_bilden(uebergaenge, cfg["in_felder"]),
         }
 
     @staticmethod
-    def _summen_bilden(uebergaenge, in_feld):
+    def _summen_bilden(uebergaenge, in_felder):
         """
         Faltet die Übergänge auf das alte IN/OUT-Schema zusammen.
 
         Damit bleiben Nachrichten dieses Formats mit den früheren
-        LoRa-Nachrichten vergleichbar: hinein = Übergang IN das IN-Feld,
-        hinaus = Übergang HERAUS aus dem IN-Feld.
+        LoRa-Nachrichten vergleichbar: hinein = Übergang in eine der
+        IN-Flächen (aus einer Nicht-IN-Fläche), hinaus = Übergang aus einer
+        IN-Fläche heraus (in eine Nicht-IN-Fläche). Übergänge zwischen zwei
+        IN- oder zwei Nicht-IN-Flächen zählen nicht.
         """
         summen = {}
-        if not in_feld:
+        if not in_felder:
             return summen
+        in_set = set(in_felder)
         for u in uebergaenge:
             klasse = u["klasse"]
             eintrag = summen.setdefault(klasse, {"in": 0, "out": 0})
-            if u["nach"] == in_feld and u["von"] != in_feld:
+            von_in = u["von"] in in_set
+            nach_in = u["nach"] in in_set
+            if nach_in and not von_in:
                 eintrag["in"] += u["anzahl"]
-            elif u["von"] == in_feld and u["nach"] != in_feld:
+            elif von_in and not nach_in:
                 eintrag["out"] += u["anzahl"]
         return summen
 

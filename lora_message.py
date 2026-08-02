@@ -261,6 +261,19 @@ def describe_structure(config, interval_minutes=None, sensor_id=1,
 # Damit passt multi_roi in genau dasselbe IN/OUT-Format wie Linie/ROI.
 
 
+def normalize_in_fields(raw):
+    """
+    "in_field" aus roi_config.json einheitlich als Liste von Namen lesen.
+
+    Neue Konfigurationen speichern hier eine Liste (mehrere IN-Flächen
+    möglich), ältere einen einzelnen Flächennamen als String.
+    """
+    if isinstance(raw, list):
+        return [n.strip() for n in raw if n and n.strip()]
+    raw = (raw or "").strip()
+    return [raw] if raw else []
+
+
 def region_names(config):
     """Namen der benannten Flächen aus roi_config.json (Config-Reihenfolge)."""
     names = []
@@ -280,19 +293,21 @@ def parse_transition_direction(direction):
     return frm.strip(), to.strip()
 
 
-def read_inout_from_transitions(path, in_field, active_classes):
+def read_inout_from_transitions(path, in_fields, active_classes):
     """
-    Liest zaehlung.csv und bildet die Übergänge relativ zum IN-Feld auf
-    IN/OUT je Klasse ab.
+    Liest zaehlung.csv und bildet die Übergänge relativ zu den IN-Feldern auf
+    IN/OUT je Klasse ab. in_fields: Name einer IN-Fläche (str, Altformat)
+    oder Liste von IN-Flächennamen.
 
     Rückgabe: (counts_in, counts_out) als dicts {klassenname: anzahl}.
     Fehlt die Datei oder ist kein IN-Feld gesetzt, sind beide leer.
     """
+    in_set = set(normalize_in_fields(in_fields))
     active = set(active_classes)
     counts_in = {c: 0 for c in active}
     counts_out = {c: 0 for c in active}
 
-    if not path or not in_field or not os.path.isfile(path):
+    if not path or not in_set or not os.path.isfile(path):
         return counts_in, counts_out
 
     try:
@@ -307,9 +322,11 @@ def read_inout_from_transitions(path, in_field, active_classes):
                 if pair is None:
                     continue
                 frm, to = pair
-                if to == in_field and frm != in_field:
+                to_in = to in in_set
+                frm_in = frm in in_set
+                if to_in and not frm_in:
                     counts_in[label] += 1
-                elif frm == in_field and to != in_field:
+                elif frm_in and not to_in:
                     counts_out[label] += 1
     except (OSError, csv.Error):
         pass
@@ -350,7 +367,7 @@ def describe_multi_roi_structure(config, interval_minutes=None, sensor_id=1,
     """Hinweis-Text (Tab 3) für multi_roi: nutzt dasselbe 18-Byte-Format wie
     Linie/ROI, IN/OUT werden über das gewählte IN-Feld bestimmt."""
     names = region_names(config)
-    in_field = (config.get("in_field") or "").strip()
+    in_fields = normalize_in_fields(config.get("in_field"))
     active_ordered = _active_in_canonical_order(config.get("classes", []))
     mask = class_bitmask(active_ordered)
 
@@ -359,18 +376,19 @@ def describe_multi_roi_structure(config, interval_minutes=None, sensor_id=1,
                  f"unbestätigt (dasselbe IN/OUT-Format wie Linie/ROI).")
     lines.append("")
 
-    if not in_field:
+    if not in_fields:
         lines.append("⚠ Kein IN-Feld gewählt. In der Konfiguration (Tab 2, "
-                     "Modus 'Mehrere Flächen') am Ende ein Feld als IN-Bereich "
-                     "auswählen — sonst können keine IN/OUT-Werte gesendet "
-                     "werden.")
+                     "Modus 'Mehrere Flächen') mindestens ein Feld als "
+                     "IN-Bereich markieren — sonst können keine IN/OUT-Werte "
+                     "gesendet werden.")
         if names:
             lines.append(f"   Verfügbare Felder: {', '.join(names)}")
         return "\n".join(lines)
 
-    lines.append(f"IN-Feld: '{in_field}'.")
-    lines.append(f"  Übergang  X → {in_field}   = IN")
-    lines.append(f"  Übergang  {in_field} → X   = OUT")
+    in_feld_text = ", ".join(in_fields)
+    lines.append(f"IN-Felder: {in_feld_text}.")
+    lines.append(f"  Übergang  X → ({in_feld_text})   = IN")
+    lines.append(f"  Übergang  ({in_feld_text}) → X   = OUT")
     lines.append("  andere Übergänge werden nicht gewertet.")
     lines.append("")
     lines.append("Aufbau (Header 6 Byte + 6 Klassen x [IN][OUT]):")
@@ -388,7 +406,7 @@ def describe_multi_roi_structure(config, interval_minutes=None, sensor_id=1,
     have_counts = bool(counts_csv)
     if have_counts:
         counts_in, counts_out = read_inout_from_transitions(
-            counts_csv, in_field, config.get("classes", []))
+            counts_csv, in_fields, config.get("classes", []))
     lines.append("Klassen-Slots (feste Reihenfolge) — aktiv laut Konfiguration:")
     for i, name in enumerate(CANONICAL_CLASSES):
         first = HEADER_LEN + 2 * i

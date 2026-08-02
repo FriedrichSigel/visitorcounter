@@ -66,7 +66,7 @@ class VergleichApp:
         self.zaehlung = []       # Liste dicts
         self.ergebniss = []      # Liste dicts
         self.regions = []        # aus roi_config.json
-        self.in_field = None
+        self.in_field = set()
         self.index = 0           # 0-basiert intern
         self.frame_w = DEFAULT_W
         self.frame_h = DEFAULT_H
@@ -274,13 +274,15 @@ class VergleichApp:
 
         # Konfiguration ist optional.
         self.regions = []
-        self.in_field = None
+        self.in_field = set()
         if c_path:
             try:
                 with open(c_path) as f:
                     cfg = json.load(f)
                 self.regions = cfg.get("regions", [])
-                self.in_field = cfg.get("in_field")
+                raw_in_field = cfg.get("in_field")
+                self.in_field = set(raw_in_field) if isinstance(raw_in_field, list) \
+                    else ({raw_in_field} if raw_in_field else set())
             except (OSError, json.JSONDecodeError) as exc:
                 self._status(f"Konfiguration übersprungen: {exc}", AMBER)
 
@@ -515,7 +517,7 @@ class VergleichApp:
             cx = sum(flat[0::2]) / (len(flat) // 2)
             cy = sum(flat[1::2]) / (len(flat) // 2)
             name = region.get("name", "?")
-            if name == self.in_field:
+            if name in self.in_field:
                 name += "  (IN)"
             self.canvas.create_text(cx, cy, text=name, fill="#334", font=self.f_label)
 

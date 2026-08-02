@@ -266,12 +266,12 @@ class LivePayloadProvider:
     def _read_counts(self, cfg, active):
         """Wählt die Zählquelle nach Modus. Rückgabe: (counts_in, counts_out)."""
         if cfg.get("mode") == "multi_roi":
-            in_field = (cfg.get("in_field") or "").strip()
-            if not in_field:
+            in_fields = lora_message.normalize_in_fields(cfg.get("in_field"))
+            if not in_fields:
                 log("  WARN: multi_roi ohne IN-Feld — keine IN/OUT-Werte. "
-                    "In Tab 2 ein IN-Feld wählen.")
+                    "In Tab 2 mindestens ein IN-Feld markieren.")
             return lora_message.read_inout_from_transitions(
-                self.counts_csv, in_field, active)
+                self.counts_csv, in_fields, active)
         return lora_message.read_counts_from_zaehlung(self.counts_csv, active)
 
     @staticmethod

@@ -1,25 +1,25 @@
-"""
-app.py — zentrale Steuer-App: ein Fenster mit Sidebar-Navigation (statt
+﻿"""
+app.py - zentrale Steuer-App: ein Fenster mit Sidebar-Navigation (statt
 Tabs), um die gesamte Pipeline zu bedienen, ohne zwischen mehreren
 Terminals/Skripten zu wechseln. UI-Bibliothek: customtkinter (dunkles
 Design mit blauen Akzenten).
 
-    1. Input             — Videodatei, USB- oder Pi-Kamera wählen
-    2. Konfiguration      — Zählgeometrie setzen (nutzt roi_config_app.RoiConfigApp),
+    1. Input             - Videodatei, USB- oder Pi-Kamera wählen
+    2. Konfiguration      - Zählgeometrie setzen (nutzt roi_config_app.RoiConfigApp),
                             inkl. manueller Verfahren (Linie / ROI / Mehrere Flächen)
                             und der Auto-Verfahren (Clustering / Randraster)
-    3. Start              — core.py als Subprozess starten/stoppen (normaler Zähllauf,
+    3. Start              - core.py als Subprozess starten/stoppen (normaler Zähllauf,
                             standardmäßig OHNE Zeitlimit)
-    4. Live-Auswertung    — Konsolen-Ausgabe live mitlesen + aktuelle Zählerstände
-    5. Auto-Konfiguration — Datensammlung für die Auto-Verfahren: Start-/Endpunkte
+    4. Live-Auswertung    - Konsolen-Ausgabe live mitlesen + aktuelle Zählerstände
+    5. Auto-Konfiguration - Datensammlung für die Auto-Verfahren: Start-/Endpunkte
                             sammeln (mit Zeitlimit), danach in Tab 2 auswerten
                             gleichwertig nebeneinander: Linie, Fläche/ROI,
                             Mehrere Flächen, Auto: Clustering, Auto: Randraster
-    3. Start              — core.py als Subprozess starten/stoppen, inkl.
+    3. Start              - core.py als Subprozess starten/stoppen, inkl.
                             Datensammlung für die Auto-Konfiguration aktivieren
-    4. Live-Auswertung    — Konsolen-Ausgabe live mitlesen + aktuelle Zählerstände
+    4. Live-Auswertung    - Konsolen-Ausgabe live mitlesen + aktuelle Zählerstände
 
-Ersetzt NICHT die einzelnen Skripte — core.py, roi_config_app.py,
+Ersetzt NICHT die einzelnen Skripte - core.py, roi_config_app.py,
 auto_config*.py bleiben eigenständig auf der Kommandozeile nutzbar.
 
 Nutzung:
@@ -132,12 +132,12 @@ class MainApp:
         # Alternative/Ergänzung zu LoRa: schickt dieselben Zählwerte per MQTT
         # an den Stadtwerke-Server. Läuft ebenfalls als eigener Subprozess
         # (mqtt_send_loop.py), der die von core.py geschriebene zaehlung.csv
-        # liest — die Zähl-Pipeline bleibt unberührt. Broker-Adresse ist die
+        # liest - die Zähl-Pipeline bleibt unberührt. Broker-Adresse ist die
         # feste IP des Server-Pi; --uebergaenge sendet die volle Übergangs-
         # matrix (von-Feld → nach-Feld je Klasse) statt des 18-Byte-Frames.
         self.mqtt_process = None
         self.mqtt_enabled_var = tk.BooleanVar(value=False)
-        self.mqtt_broker_var = tk.StringVar(value="192.168.1.50")
+        self.mqtt_broker_var = tk.StringVar(value="192.168.0.50")
         self.mqtt_port_var = tk.StringVar(value="1883")
         self.mqtt_interval_var = tk.StringVar(value="5")
         self.mqtt_sensor_id_var = tk.StringVar(value="1")
@@ -189,7 +189,7 @@ class MainApp:
         Startet den Aufwärmlauf, falls seit dem Systemstart noch keiner lief.
 
         Laeuft in einem Hintergrund-Thread, damit die Oberflaeche bedienbar
-        bleibt — der Lauf kann beim ersten Mal nach dem Booten bis zu zwei
+        bleibt - der Lauf kann beim ersten Mal nach dem Booten bis zu zwei
         Minuten dauern.
         """
         if not warmup.needs_warmup():
@@ -197,12 +197,12 @@ class MainApp:
 
         self.warmup_running = True
         self.warmup_status_var.set(
-            "Aufwärmlauf läuft — die Pipeline wird einmal kurz gestartet, damit "
+            "Aufwärmlauf läuft - die Pipeline wird einmal kurz gestartet, damit "
             "spätere Starts schnell gehen. Es öffnet sich kurz ein "
             "Vorschaufenster. Bitte solange nicht starten.")
 
         def report(text):
-            # Aus dem Thread heraus nicht direkt in Tk schreiben — ueber die
+            # Aus dem Thread heraus nicht direkt in Tk schreiben - ueber die
             # vorhandene Ausgabe-Queue und ein after() in den Hauptthread.
             self.output_queue.put(f"[Aufwärmlauf] {text}\n")
             self.root.after(0, lambda t=text: self.warmup_status_var.set(t))
@@ -235,7 +235,7 @@ class MainApp:
         # noch nicht eingeblendeten (unmapped) Widget gegen eine Größe von 1x1.
         # Ergebnis: Flächen bleiben schwarz oder werden nur teilweise gefüllt
         # (abgeschnittene Kopfleiste bei "Optionales Zeitlimit"), bis ein
-        # <Enter>- oder <Configure>-Ereignis — also z. B. Mauszeiger drüber —
+        # <Enter>- oder <Configure>-Ereignis - also z. B. Mauszeiger drüber -
         # ein Neuzeichnen auslöst. Deshalb hier explizit anstoßen, sobald die
         # Seite tatsächlich sichtbar ist.
         self.root.after(20, lambda: self._redraw_tree(self.page_frames[name]))
@@ -332,7 +332,7 @@ class MainApp:
 
         # Zweite Zeile: bestehende Konfiguration einlesen und anzeigen. Ohne
         # das laesst sich nur schwer pruefen, was auf dem Geraet tatsaechlich
-        # eingestellt ist — man musste die JSON-Datei von Hand oeffnen.
+        # eingestellt ist - man musste die JSON-Datei von Hand oeffnen.
         second = ctk.CTkFrame(frame, fg_color="transparent")
         second.pack(fill="x", pady=(0, 10))
         ctk.CTkButton(second, text="Aktuelle Konfiguration laden",
@@ -349,7 +349,7 @@ class MainApp:
 
     def _load_existing_config(self):
         """
-        Liest roi_config.json und stellt sie in Tab 2 dar — Modus, Geometrie,
+        Liest roi_config.json und stellt sie in Tab 2 dar - Modus, Geometrie,
         Klassen, Richtung, IN-Feld. Damit ist auf einen Blick sichtbar, womit
         das Geraet gerade tatsaechlich zaehlt.
         """
@@ -357,7 +357,7 @@ class MainApp:
         if ok:
             self.config_loaded_var.set(f"Geladen aus {ROI_CONFIG_PATH}")
         else:
-            self.config_loaded_var.set("Nicht geladen — siehe Meldung.")
+            self.config_loaded_var.set("Nicht geladen - siehe Meldung.")
 
     def _load_config_frame(self):
         if not self.input_value:
@@ -392,13 +392,13 @@ class MainApp:
         ctk.CTkLabel(frame, text="Pipeline starten / stoppen", font=ctk.CTkFont(size=18, weight="bold")).pack(
             anchor="w", pady=(5, 15))
 
-        # Statuszeile des Aufwärmlaufs — nur sichtbar, solange er laeuft bzw.
+        # Statuszeile des Aufwärmlaufs - nur sichtbar, solange er laeuft bzw.
         # kurz danach.
         ctk.CTkLabel(frame, textvariable=self.warmup_status_var,
                      text_color="#4FC3F7", wraplength=560, justify="left").pack(
             anchor="w", padx=10, pady=(0, 6))
 
-        # --- Mitschnitt (Benchmark) — bewusst ganz oben, weil die Entscheidung
+        # --- Mitschnitt (Benchmark) - bewusst ganz oben, weil die Entscheidung
         # "wird dieser Lauf aufgezeichnet?" vor allen anderen Optionen steht.
         rec_frame = ctk.CTkFrame(frame, corner_radius=8)
         rec_frame.pack(anchor="w", fill="x", pady=(0, 12))
@@ -410,7 +410,7 @@ class MainApp:
         ctk.CTkLabel(
             rec_frame,
             text="Nur für Benchmark-/Laborläufe. Im Normalbetrieb werden keine "
-                 "Bilddaten gespeichert (Privacy by Design) — diese Option "
+                 "Bilddaten gespeichert (Privacy by Design) - diese Option "
                  "deshalb im Feldeinsatz ausgeschaltet lassen. Aufnahmen nach "
                  "der Auswertung löschen.",
             text_color="#E0A030", wraplength=560, justify="left").pack(
@@ -446,7 +446,7 @@ class MainApp:
             rec_row2, textvariable=self.recording_segment_var, width=70)
         self.recording_segment_entry.pack(side="left", padx=5)
 
-        # Zeigt freien Speicher und geschätzte Reichweite — die eigentliche
+        # Zeigt freien Speicher und geschätzte Reichweite - die eigentliche
         # Frage bei einem Laborlauf ist "wie lange reicht der Platz?".
         self.recording_info_var = tk.StringVar(value="")
         ctk.CTkLabel(rec_frame, textvariable=self.recording_info_var,
@@ -470,7 +470,7 @@ class MainApp:
         # Zwischen Live-Vorschau und Zeitlimit: optionaler Versand der
         # Zählerstände über den LA66-LoRa-Adapter. Läuft als eigener
         # Subprozess (lora_send_loop.py --live-counts), der die von core.py
-        # geschriebene zaehlung.csv liest — die Zähl-Pipeline selbst bleibt
+        # geschriebene zaehlung.csv liest - die Zähl-Pipeline selbst bleibt
         # davon unberührt (bewusst entkoppelt, siehe HANDOFF.md/ToDo.md).
         lora_frame = ctk.CTkFrame(frame, corner_radius=8)
         lora_frame.pack(anchor="w", fill="x", pady=(0, 15))
@@ -490,7 +490,7 @@ class MainApp:
             lora_row, textvariable=self.lora_sensor_id_var, width=60)
         self.lora_sensor_entry.pack(side="left", padx=5)
 
-        # Hinweis mit der Struktur der Nachricht — richtet sich nach der
+        # Hinweis mit der Struktur der Nachricht - richtet sich nach der
         # Konfiguration (roi_config.json). Monospace, damit die Byte-Tabelle
         # ausgerichtet bleibt.
         #
@@ -566,7 +566,7 @@ class MainApp:
         # Optionales Zeitlimit für den normalen Zähllauf. Leer = kein Limit.
         # (Das automatische Stoppen nach fester Zeit war früher an die
         # Auto-Config-Datensammlung gekoppelt und lief versehentlich auch bei
-        # normalen Läufen — das ist jetzt entkoppelt: normale Läufe laufen ohne
+        # normalen Läufen - das ist jetzt entkoppelt: normale Läufe laufen ohne
         # Limit, sofern hier nichts eingetragen wird.)
         dur_frame = ctk.CTkFrame(frame, corner_radius=8)
         dur_frame.pack(anchor="w", fill="x", pady=(0, 15))
@@ -599,7 +599,7 @@ class MainApp:
         ctk.CTkLabel(
             frame,
             text="Hinweis: 'Stoppen' schickt der Pipeline dasselbe Signal wie Ctrl+C "
-                 "im Terminal (SIGINT) — das ist der einzige Shutdown-Weg, der in "
+                 "im Terminal (SIGINT) - das ist der einzige Shutdown-Weg, der in "
                  "core.py zuverlässig sauber funktioniert.",
             text_color="gray60", wraplength=500, justify="left",
         ).pack(anchor="w", pady=10)
@@ -636,7 +636,7 @@ class MainApp:
             messagebox.showinfo(
                 "Nichts gefunden",
                 "Kein eingehängter USB-Datenträger gefunden. Stick anstecken und "
-                "kurz warten, bis er im Dateimanager auftaucht — oder den Ordner "
+                "kurz warten, bis er im Dateimanager auftaucht - oder den Ordner "
                 "von Hand wählen.",
                 parent=self.root)
 
@@ -646,7 +646,7 @@ class MainApp:
             return
         if not self.recording_enabled_var.get():
             self.recording_info_var.set(
-                "Aus. Der Mitschnitt ist nur für Labor-/Benchmarkläufe gedacht — "
+                "Aus. Der Mitschnitt ist nur für Labor-/Benchmarkläufe gedacht - "
                 "im Dauerbetrieb ausgeschaltet lassen.")
             return
 
@@ -659,7 +659,7 @@ class MainApp:
             prefix = f"Ziel: {target}"
 
         # Für die Platzberechnung reicht das nächstgelegene existierende
-        # Elternverzeichnis — der Zielordner wird erst von core.py angelegt.
+        # Elternverzeichnis - der Zielordner wird erst von core.py angelegt.
         probe = target
         while probe and not os.path.isdir(probe):
             parent = os.path.dirname(probe)
@@ -677,7 +677,7 @@ class MainApp:
             gb_per_hour = bitrate * 3600 / 8 / 1_000_000
             hours = max(free - 2.0, 0) / gb_per_hour
             self.recording_info_var.set(
-                f"{prefix}\n{free:.1f} GB frei — reicht für ca. {hours:.1f} Stunden "
+                f"{prefix}\n{free:.1f} GB frei - reicht für ca. {hours:.1f} Stunden "
                 f"({gb_per_hour:.2f} GB/h). 2 GB bleiben als Reserve frei.")
         else:
             self.recording_info_var.set(f"{prefix}\n{free:.1f} GB frei.")
@@ -718,7 +718,7 @@ class MainApp:
     def _on_lora_toggle(self):
         """Aktiviert/deaktiviert die LoRa-Eingabefelder und baut den Hint neu."""
         state = "normal" if self.lora_enabled_var.get() else "disabled"
-        # Felder existieren erst nach _build_start_tab — defensiv prüfen.
+        # Felder existieren erst nach _build_start_tab - defensiv prüfen.
         if hasattr(self, "lora_interval_entry"):
             self.lora_interval_entry.configure(state=state)
             self.lora_sensor_entry.configure(state=state)
@@ -738,7 +738,7 @@ class MainApp:
             return {"mode": "line", "classes": list(lora_message.CANONICAL_CLASSES)}
 
     def _refresh_lora_hint(self):
-        """Baut den Hinweistext mit der Nachrichtenstruktur neu — abhängig von
+        """Baut den Hinweistext mit der Nachrichtenstruktur neu - abhängig von
         der aktuellen Konfiguration, dem gewählten Intervall und der Sensor-ID."""
         if not hasattr(self, "lora_hint_box"):
             return
@@ -771,7 +771,7 @@ class MainApp:
 
     def _set_lora_hint(self, text, height):
         """Schreibt Text in die (sonst schreibgeschützte) Hinweis-Textbox und
-        passt ihre Höhe an — kurz bei ausgeschaltetem LoRa, hoch genug für die
+        passt ihre Höhe an - kurz bei ausgeschaltetem LoRa, hoch genug für die
         vollständige Byte-Tabelle bei eingeschaltetem."""
         box = self.lora_hint_box
         box.configure(state="normal", height=height)
@@ -794,7 +794,7 @@ class MainApp:
                 parent=self.root)
             return None
         if interval < 2:
-            # EU868-Duty-Cycle 1 % — unter ~2 min riskiert man Verstöße.
+            # EU868-Duty-Cycle 1 % - unter ~2 min riskiert man Verstöße.
             if not messagebox.askyesno(
                     "Sehr kurzes Intervall",
                     f"Ein Intervall von {interval} min kann den EU868-Duty-Cycle "
@@ -814,7 +814,7 @@ class MainApp:
 
     def _on_mqtt_toggle(self):
         """Aktiviert/deaktiviert die MQTT-Eingabefelder."""
-        # Felder existieren erst nach _build_start_tab — defensiv prüfen.
+        # Felder existieren erst nach _build_start_tab - defensiv prüfen.
         if not hasattr(self, "mqtt_broker_entry"):
             return
         state = "normal" if self.mqtt_enabled_var.get() else "disabled"
@@ -830,7 +830,7 @@ class MainApp:
         if not broker:
             messagebox.showwarning(
                 "Kein Server angegeben",
-                "Bitte die Adresse des MQTT-Servers (Broker) eintragen — "
+                "Bitte die Adresse des MQTT-Servers (Broker) eintragen - "
                 "die feste IP des Server-Pi.", parent=self.root)
             return None
         try:
@@ -891,7 +891,7 @@ class MainApp:
                 text=True, bufsize=1,
             )
         except Exception as e:
-            # MQTT-Fehler darf den Zähllauf nicht abbrechen — nur melden.
+            # MQTT-Fehler darf den Zähllauf nicht abbrechen - nur melden.
             self.output_queue.put(f"[MQTT] Start fehlgeschlagen: {e}\n")
             self.mqtt_process = None
             return
@@ -925,7 +925,7 @@ class MainApp:
             "--sensor-id", str(sensor_id),
             "--config", ROI_CONFIG_PATH,
             "--counts-csv", ZAEHLUNG_CSV,
-            # Wird nur aufgerufen, nachdem core.py erfolgreich gestartet ist —
+            # Wird nur aufgerufen, nachdem core.py erfolgreich gestartet ist -
             # setzt die Status-Bits für Kamera/Hailo im Frame (Byte 4).
             "--pipeline-ok",
         ]
@@ -935,7 +935,7 @@ class MainApp:
                 text=True, bufsize=1,
             )
         except Exception as e:
-            # LoRa-Fehler darf den Zähllauf nicht abbrechen — nur melden.
+            # LoRa-Fehler darf den Zähllauf nicht abbrechen - nur melden.
             self.output_queue.put(f"[LoRa] Start fehlgeschlagen: {e}\n")
             self.lora_process = None
             return
@@ -977,7 +977,7 @@ class MainApp:
             messagebox.showinfo(
                 "Aufwärmlauf läuft",
                 "Die Pipeline wird gerade einmalig aufgewärmt (nach jedem "
-                "Neustart des Geräts). Bitte kurz warten — danach startet der "
+                "Neustart des Geräts). Bitte kurz warten - danach startet der "
                 "Zähllauf deutlich schneller.",
                 parent=self.root)
             return
@@ -1038,7 +1038,7 @@ class MainApp:
                 env["RECORDING_FPS"] = str(recording_settings["fps"])
                 env["RECORDING_SEGMENT_SECONDS"] = str(recording_settings["segment"])
                 self.collection_hint_var.set(
-                    "● Mitschnitt AKTIV — der genaue Zielordner und die Reichweite "
+                    "● Mitschnitt AKTIV - der genaue Zielordner und die Reichweite "
                     "stehen in der Ausgabe auf Seite 4.")
 
         try:
@@ -1060,7 +1060,7 @@ class MainApp:
             interval_min, sensor_id = lora_settings
             self._start_lora_sender(interval_min, sensor_id)
 
-        # MQTT-Sender ebenso — erst nach erfolgreichem core-Start.
+        # MQTT-Sender ebenso - erst nach erfolgreichem core-Start.
         if mqtt_settings is not None:
             self._start_mqtt_sender(mqtt_settings)
 
@@ -1080,7 +1080,7 @@ class MainApp:
     def _stop_pipeline(self):
         if self.process is None:
             return
-        # LoRa- und MQTT-Sender zuerst beenden — ohne laufende Zählung soll
+        # LoRa- und MQTT-Sender zuerst beenden - ohne laufende Zählung soll
         # nicht weiter gesendet werden.
         self._stop_lora_sender()
         self._stop_mqtt_sender()
@@ -1089,7 +1089,7 @@ class MainApp:
         self.stop_button.configure(state="disabled")
         # Eskalation: Wenn der Prozess nach dem SIGINT nicht innerhalb weniger
         # Sekunden endet (z. B. weil er in nativem Hailo-/GStreamer-Code hängt),
-        # hart nachfassen — erst SIGTERM, dann SIGKILL —, damit kein Zombie
+        # hart nachfassen - erst SIGTERM, dann SIGKILL -, damit kein Zombie
         # zurückbleibt, der die PID/den Status blockiert.
         self.root.after(4000, self._escalate_stop)
 
@@ -1098,7 +1098,7 @@ class MainApp:
             return
         if self.process.poll() is not None:
             return  # sauber beendet, nichts zu tun
-        print("SIGINT wirkungslos — sende SIGTERM.")
+        print("SIGINT wirkungslos - sende SIGTERM.")
         try:
             self.process.terminate()
         except Exception:
@@ -1110,7 +1110,7 @@ class MainApp:
             return
         if self.process.poll() is not None:
             return
-        print("SIGTERM wirkungslos — sende SIGKILL.")
+        print("SIGTERM wirkungslos - sende SIGKILL.")
         try:
             self.process.kill()
         except Exception:
@@ -1118,7 +1118,7 @@ class MainApp:
 
     def _on_process_ended(self, exit_code=None):
         # Idempotent: kann sowohl über das stdout-Signal als auch über den
-        # Liveness-Check (poll()) ausgelöst werden — der zweite Aufruf darf
+        # Liveness-Check (poll()) ausgelöst werden - der zweite Aufruf darf
         # nichts kaputtmachen.
         if self.process is None:
             return
@@ -1139,11 +1139,11 @@ class MainApp:
                 self.pipeline_status_var.set("Status: gestoppt")
             else:
                 self.pipeline_status_var.set(
-                    f"Status: ABGESTÜRZT (Signal {sig}) — siehe Log. "
+                    f"Status: ABGESTÜRZT (Signal {sig}) - siehe Log. "
                     f"Neustart über 'Start' möglich.")
         else:
             self.pipeline_status_var.set(
-                f"Status: ABGESTÜRZT (Exit {exit_code}) — siehe Log. "
+                f"Status: ABGESTÜRZT (Exit {exit_code}) - siehe Log. "
                 f"Neustart über 'Start' möglich.")
 
         self.start_button.configure(state="normal")
@@ -1177,7 +1177,7 @@ class MainApp:
     def _build_autoconfig_tab(self):
         frame = make_scrollable(self.page_frames["5. Auto-Konfiguration"])
 
-        ctk.CTkLabel(frame, text="Auto-Konfiguration — Datensammlung",
+        ctk.CTkLabel(frame, text="Auto-Konfiguration - Datensammlung",
                      font=ctk.CTkFont(size=18, weight="bold")).pack(anchor="w", pady=(5, 8))
 
         ctk.CTkLabel(
@@ -1201,7 +1201,7 @@ class MainApp:
         ctk.CTkLabel(row, text="Dauer (Sekunden, leer = unbegrenzt):").pack(side="left")
         ctk.CTkEntry(row, textvariable=self.collection_duration_var, width=80).pack(side="left", padx=5)
         ctk.CTkLabel(dur_frame,
-                     text="Dieses Zeitlimit gilt nur für die Datensammlung — "
+                     text="Dieses Zeitlimit gilt nur für die Datensammlung - "
                           "normale Zählläufe (Tab 3) laufen ohne Limit.",
                      text_color="gray60", wraplength=560, justify="left").pack(
             anchor="w", padx=12, pady=(0, 10))
@@ -1233,13 +1233,13 @@ class MainApp:
                 if line == "__PROCESS_ENDED__":
                     self._on_process_ended()
                 elif line == "__LORA_ENDED__":
-                    # LoRa-Sender ist beendet (regulär oder Fehler) — Referenz
+                    # LoRa-Sender ist beendet (regulär oder Fehler) - Referenz
                     # freigeben, Rest läuft normal weiter.
                     self.lora_process = None
                     self.log_text.insert("end", "[LoRa] Sender beendet.\n")
                     self.log_text.see("end")
                 elif line == "__MQTT_ENDED__":
-                    # MQTT-Sender beendet — Referenz freigeben, Rest läuft weiter.
+                    # MQTT-Sender beendet - Referenz freigeben, Rest läuft weiter.
                     self.mqtt_process = None
                     self.log_text.insert("end", "[MQTT] Sender beendet.\n")
                     self.log_text.see("end")
@@ -1251,7 +1251,7 @@ class MainApp:
 
         # Liveness-Check: Auch wenn KEIN "__PROCESS_ENDED__" über stdout kam
         # (z. B. weil core.py durch einen nativen C++-Fehler hart abgestürzt
-        # ist — terminate()/std::system_error —, ohne stdout sauber zu
+        # ist - terminate()/std::system_error -, ohne stdout sauber zu
         # schließen), erkennen wir hier direkt am Prozessstatus, dass er weg
         # ist. Ohne diesen Check bliebe die App auf "läuft (PID …)" hängen und
         # ein Neustart wäre blockiert.
