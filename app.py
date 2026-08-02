@@ -180,9 +180,13 @@ class MainApp:
                      font=ctk.CTkFont(size=16, weight="bold")).pack(side="left")
         is_dark = ctk.get_appearance_mode() == "Dark"
         self.appearance_button = ctk.CTkButton(
-            header, text="☀" if is_dark else "🌙", width=28, height=28, corner_radius=14,
-            fg_color="transparent", text_color=("gray10", "gray90"),
-            hover_color=("gray80", "gray28"),
+            header, text="☀" if is_dark else "🌙", width=40, height=40, corner_radius=20,
+            font=ctk.CTkFont(size=18),
+            # (Wert für Light-Mode, Wert für Dark-Mode): Knopf schwarz im
+            # hellen Design, weiß im dunklen Design — jeweils Kontrast zum
+            # Text der umgekehrten Farbe.
+            fg_color=("black", "white"), text_color=("white", "black"),
+            hover_color=("gray20", "gray80"),
             command=self._toggle_appearance_mode,
         )
         self.appearance_button.pack(side="right")
@@ -334,7 +338,7 @@ class MainApp:
         self.file_path_var = tk.StringVar(value="(keine Datei gewählt)")
         self.file_button = ctk.CTkButton(frame, text="Videodatei wählen...", command=self._choose_file)
         self.file_button.pack(anchor="w", padx=10, pady=(15, 5))
-        ctk.CTkLabel(frame, textvariable=self.file_path_var, text_color="gray70").pack(anchor="w", padx=10)
+        ctk.CTkLabel(frame, textvariable=self.file_path_var, text_color=("gray30", "gray70")).pack(anchor="w", padx=10)
 
         self.input_status_var = tk.StringVar(value="Noch kein Input ausgewählt.")
         ctk.CTkLabel(frame, textvariable=self.input_status_var, text_color="#4CAF50",
@@ -375,7 +379,7 @@ class MainApp:
         ctk.CTkButton(top, text="Frame laden (nutzt Input von Seite 1)",
                       command=self._load_config_frame).pack(side="left")
         self.config_status_var = tk.StringVar(value="Noch kein Frame geladen.")
-        ctk.CTkLabel(top, textvariable=self.config_status_var, text_color="gray70").pack(side="left", padx=15)
+        ctk.CTkLabel(top, textvariable=self.config_status_var, text_color=("gray30", "gray70")).pack(side="left", padx=15)
 
         # Zweite Zeile: bestehende Konfiguration einlesen und anzeigen. Ohne
         # das laesst sich nur schwer pruefen, was auf dem Geraet tatsaechlich
@@ -386,7 +390,7 @@ class MainApp:
                       fg_color="gray30", command=self._load_existing_config).pack(side="left")
         self.config_loaded_var = tk.StringVar(value="")
         ctk.CTkLabel(second, textvariable=self.config_loaded_var,
-                     text_color="gray70").pack(side="left", padx=15)
+                     text_color=("gray30", "gray70")).pack(side="left", padx=15)
 
         container = ctk.CTkFrame(frame, fg_color="transparent")
         container.pack(fill="both", expand=True)
@@ -497,7 +501,7 @@ class MainApp:
         # Frage bei einem Laborlauf ist "wie lange reicht der Platz?".
         self.recording_info_var = tk.StringVar(value="")
         ctk.CTkLabel(rec_frame, textvariable=self.recording_info_var,
-                     text_color="gray70", wraplength=560, justify="left").pack(
+                     text_color=("gray30", "gray70"), wraplength=560, justify="left").pack(
             anchor="w", padx=12, pady=(6, 10))
 
         for var in (self.recording_dir_var, self.recording_bitrate_var):
@@ -510,7 +514,7 @@ class MainApp:
             frame,
             text="Hinweis: Die Live-Vorschau kann bei sehr langen Läufen instabil "
                  "werden. Für Dauerläufe die Vorschau deaktiviert lassen.",
-            text_color="gray60", wraplength=560, justify="left",
+            text_color=("gray25", "gray60"), wraplength=560, justify="left",
         ).pack(anchor="w", padx=10, pady=(0, 12))
 
         # --- LoRa-Versand -------------------------------------------------
@@ -549,7 +553,7 @@ class MainApp:
         # lässt den Rest der Seite dadurch in Ruhe. read-only über state.
         self.lora_hint_box = ctk.CTkTextbox(
             lora_frame, height=LORA_HINT_HEIGHT_OFF, wrap="none", activate_scrollbars=True,
-            text_color="gray70", font=ctk.CTkFont(family="Courier", size=11))
+            text_color=("gray30", "gray70"), font=ctk.CTkFont(family="Courier", size=11))
         self.lora_hint_box.pack(anchor="w", fill="x", padx=12, pady=(4, 4))
         self.lora_hint_box.configure(state="disabled")
         ctk.CTkButton(
@@ -648,7 +652,7 @@ class MainApp:
             text="Hinweis: 'Stoppen' schickt der Pipeline dasselbe Signal wie Ctrl+C "
                  "im Terminal (SIGINT) - das ist der einzige Shutdown-Weg, der in "
                  "core.py zuverlässig sauber funktioniert.",
-            text_color="gray60", wraplength=500, justify="left",
+            text_color=("gray25", "gray60"), wraplength=500, justify="left",
         ).pack(anchor="w", pady=10)
 
     def _on_recording_toggle(self):
@@ -1235,7 +1239,7 @@ class MainApp:
                  "  2. Nach Ablauf entsteht auto_config_points.csv.\n"
                  "  3. In Tab 2 das Verfahren (Clustering / Randraster) wählen, "
                  "auswerten und speichern.",
-            justify="left", wraplength=580, text_color="gray70",
+            justify="left", wraplength=580, text_color=("gray30", "gray70"),
         ).pack(anchor="w", padx=6, pady=(0, 14))
 
         # Sammeldauer (= Zeitlimit NUR für die Datensammlung)
@@ -1250,7 +1254,7 @@ class MainApp:
         ctk.CTkLabel(dur_frame,
                      text="Dieses Zeitlimit gilt nur für die Datensammlung - "
                           "normale Zählläufe (Tab 3) laufen ohne Limit.",
-                     text_color="gray60", wraplength=560, justify="left").pack(
+                     text_color=("gray25", "gray60"), wraplength=560, justify="left").pack(
             anchor="w", padx=12, pady=(0, 10))
 
         # Start/Stop
