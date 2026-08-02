@@ -57,6 +57,29 @@ LORA_HINT_HEIGHT_ON = 300
 ZAEHLUNG_CSV = "zaehlung.csv"
 ROI_CONFIG_PATH = "roi_config.json"
 
+# Merkt sich das gewählte Design (hell/dunkel) über App-Neustarts hinweg.
+UI_SETTINGS_PATH = "ui_settings.json"
+
+
+def _load_saved_appearance_mode():
+    """Liest den zuletzt gewählten Appearance-Mode. 'dark' als Standard,
+    falls die Datei fehlt oder unlesbar ist."""
+    try:
+        with open(UI_SETTINGS_PATH) as f:
+            gespeichert = json.load(f).get("appearance_mode")
+    except (OSError, ValueError):
+        return "dark"
+    return gespeichert if gespeichert in ("dark", "light") else "dark"
+
+
+def _save_appearance_mode(mode):
+    try:
+        with open(UI_SETTINGS_PATH, "w") as f:
+            json.dump({"appearance_mode": mode}, f)
+    except OSError:
+        # Nicht schreibbar: Auswahl gilt dann nur für diese Sitzung.
+        pass
+
 PAGE_NAMES = ["1. Input", "2. Konfiguration", "3. Start", "4. Live-Auswertung"]
 if app_config.SHOW_AUTO_CONFIG:
     PAGE_NAMES.append("5. Auto-Konfiguration")
@@ -76,7 +99,7 @@ CONTENT_WIDTH = WINDOW_WIDTH - SIDEBAR_WIDTH  # 4/5 = 1024
 CONFIG_FRAME_WIDTH = 660    # Canvas-Breite (16:9 -> 371 hoch), ~0.52 der Fensterbreite
 CONFIG_PANEL_WIDTH = 300    # Bedienspalte rechts
 
-ctk.set_appearance_mode("dark")
+ctk.set_appearance_mode(_load_saved_appearance_mode())
 ctk.set_default_color_theme("blue")
 
 
@@ -151,8 +174,18 @@ class MainApp:
         self.sidebar.pack(side="left", fill="y")
         self.sidebar.pack_propagate(False)
 
-        ctk.CTkLabel(self.sidebar, text="Personenzählung",
-                     font=ctk.CTkFont(size=16, weight="bold")).pack(padx=20, pady=(25, 30), anchor="w")
+        header = ctk.CTkFrame(self.sidebar, fg_color="transparent")
+        header.pack(fill="x", padx=(20, 10), pady=(25, 30))
+        ctk.CTkLabel(header, text="Besucherzähler",
+                     font=ctk.CTkFont(size=16, weight="bold")).pack(side="left")
+        is_dark = ctk.get_appearance_mode() == "Dark"
+        self.appearance_button = ctk.CTkButton(
+            header, text="☀" if is_dark else "🌙", width=28, height=28, corner_radius=14,
+            fg_color="transparent", text_color=("gray10", "gray90"),
+            hover_color=("gray80", "gray28"),
+            command=self._toggle_appearance_mode,
+        )
+        self.appearance_button.pack(side="right")
 
         self.nav_buttons = {}
         for name in PAGE_NAMES:
@@ -222,6 +255,16 @@ class MainApp:
                 self.root.after(8000, lambda: self.warmup_status_var.set(""))
 
         threading.Thread(target=worker, daemon=True).start()
+
+    def _toggle_appearance_mode(self):
+        """Wechselt zwischen dunklem und hellem Design. Betrifft die gesamte
+        App (customtkinter-Einstellung ist global), inkl. eingebetteter
+        RoiConfigApp in Tab 2."""
+        is_dark = ctk.get_appearance_mode() == "Dark"
+        new_mode = "light" if is_dark else "dark"
+        ctk.set_appearance_mode(new_mode)
+        self.appearance_button.configure(text="🌙" if is_dark else "☀")
+        _save_appearance_mode(new_mode)
 
     def _show_page(self, name):
         for frame in self.page_frames.values():
