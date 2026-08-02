@@ -6,11 +6,14 @@ __pycache__/
 .pytest_cache/
 
 # === Virtuelle Umgebungen ===
-#venv_hailo_rpi_examples/
-#venv/
-#.venv/
-#env/
-#ENV/
+# Nie ins Repo — werden lokal mit `bash create_venv.sh` erzeugt.
+venv_visitorcounter/
+venv_hailo_rpi_examples/
+venv_*/
+venv/
+.venv/
+env/
+ENV/
 
 # === Laufzeit-Ausgaben des Sensors (werden bei jedem Lauf neu erzeugt) ===
 #ergebniss.csv
