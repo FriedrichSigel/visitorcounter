@@ -52,6 +52,15 @@ SNAPSHOT_ONLY = (_env_snapshot_only.lower() == "true") if _env_snapshot_only is 
 # zeigt (mit camera_raw.png vergleichen), dann dauerhaft setzen.
 LIVE_PREVIEW_HORIZONTAL_FLIP = False
 
+# Auto-Konfiguration (automatische Zonenerkennung per Clustering/Randraster,
+# Tab 5 in app.py + die beiden "Auto: ..."-Zählmodi in roi_config_app.py)
+# ist noch nicht ausgereift genug für den Produktiveinsatz. Auf False
+# gesetzt blendet app.py Tab 5 aus und roi_config_app.py die beiden
+# Auto-Zählmodi im Konfigurationsschritt - der Code bleibt dabei komplett
+# erhalten, es wird nur die Sichtbarkeit in der UI umgeschaltet. Für einen
+# späteren Wiedereinstieg einfach auf True setzen.
+SHOW_AUTO_CONFIG = False
+
 _DEFAULT_ROI_CONFIG = {
     "mode": "line",
     "points": [[0.0, 0.5], [1.0, 0.5]],

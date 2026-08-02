@@ -42,6 +42,7 @@ import ctk_dialogs as messagebox   # CustomTkinter-Dialoge im App-Design
 
 import customtkinter as ctk
 
+import config as app_config
 import lora_message
 from roi_config_app import RoiConfigApp, load_first_frame
 from ui_utils import make_scrollable
@@ -56,7 +57,9 @@ LORA_HINT_HEIGHT_ON = 300
 ZAEHLUNG_CSV = "zaehlung.csv"
 ROI_CONFIG_PATH = "roi_config.json"
 
-PAGE_NAMES = ["1. Input", "2. Konfiguration", "3. Start", "4. Live-Auswertung", "5. Auto-Konfiguration"]
+PAGE_NAMES = ["1. Input", "2. Konfiguration", "3. Start", "4. Live-Auswertung"]
+if app_config.SHOW_AUTO_CONFIG:
+    PAGE_NAMES.append("5. Auto-Konfiguration")
 
 # --- Feste Layout-Maße (alles aus der Fensterbreite abgeleitet) ---
 # Das Fenster wird in der Breite nie größer. Aufteilung: 1/5 Sidebar,
@@ -173,7 +176,8 @@ class MainApp:
         self._build_config_tab()
         self._build_start_tab()
         self._build_output_tab()
-        self._build_autoconfig_tab()
+        if app_config.SHOW_AUTO_CONFIG:
+            self._build_autoconfig_tab()
 
         self._show_page(PAGE_NAMES[0])
 

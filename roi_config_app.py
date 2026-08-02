@@ -311,9 +311,15 @@ class RoiConfigApp:
             ("Linie (2 Punkte)", "line"),
             ("Fläche / ROI (3+ Punkte)", "roi"),
             ("Mehrere Flächen (Übergänge)", "multi_roi"),
-            ("Auto: Clustering (DBSCAN)", "auto_cluster"),
-            ("Auto: Randraster", "auto_border"),
         ]
+        # Auto-Konfiguration (Clustering/Randraster) ist derzeit ausgeblendet
+        # (siehe config.SHOW_AUTO_CONFIG) - der restliche Code dafür bleibt
+        # unverändert bestehen, nur diese beiden Radiobuttons entfallen.
+        if app_config.SHOW_AUTO_CONFIG:
+            mode_options += [
+                ("Auto: Clustering (DBSCAN)", "auto_cluster"),
+                ("Auto: Randraster", "auto_border"),
+            ]
         for label, value in mode_options:
             ctk.CTkRadioButton(side, text=label, variable=self.mode_var, value=value,
                                 command=self.on_mode_change).grid(row=row, column=0, sticky="w", padx=20, pady=2)
