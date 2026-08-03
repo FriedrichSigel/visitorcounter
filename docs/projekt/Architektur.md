@@ -1,6 +1,6 @@
 # System- und Softwarearchitektur
 
-**Stand: 03.08.2026.** Technische Referenz für den aktuellen Aufbau — was läuft
+**Stand: 04.08.2026.** Technische Referenz für den aktuellen Aufbau — was läuft
 wo, welches Modul macht was, wie hängen die Teile zusammen. Ergänzt
 `HANDOFF.md` (laufender Projektstand) und
 `../abschlussarbeit/Entwurf_Systemarchitektur_Sensor.md` (akademische
@@ -59,11 +59,16 @@ Zählung — kein manueller Eingriff am Gerät nötig. Details: Abschnitt 5.
 
 ```
 ┌───────────────────────────────────────────────────────────────┐
-│ UI-/Steuerschicht           app.py, roi_config_app.py,         │
-│                              ui_utils.py, ctk_dialogs.py        │
+│ UI-/Steuerschicht           app.py + tabs/-Paket (9 Module),    │
+│                              roi_config_app.py, ui_utils.py,     │
+│                              ctk_dialogs.py                      │
 │  Bündelt den kompletten Arbeitsablauf (Input → Konfiguration    │
 │  → Start/Stopp → Live-Auswertung) ohne Kommandozeile, startet   │
 │  core.py und die Übertragungs-Skripte als Subprozesse.          │
+│  app.py ist seit 03.08. nur noch die Fenster-Klammer (Sidebar,  │
+│  Navigation, Autostart, Design-Umschaltung, 368 Zeilen); jede   │
+│  Seite/jeder Abschnitt lebt als eigenes Mixin in tabs/ (Details │
+│  und Begründung: ../entwicklung/cleancode.md).                  │
 ├───────────────────────────────────────────────────────────────┤
 │ Konfigurationsschicht        config.py, frame_utils.py,         │
 │                              auto_config.py,                    │
@@ -200,7 +205,16 @@ im selben `roi_config.json`-Format.
 `app.py` bündelt den gesamten Ablauf (Input wählen → Frame laden →
 Zählgeometrie setzen → Zähllauf starten/stoppen → Live-Auswertung
 mitverfolgen) über eine Sidebar-Navigation, inkl. Light-/Dark-Mode
-(Auswahl gespeichert in `ui_settings.json`).
+(Auswahl gespeichert in `ui_settings.json`). Fenstertitel: „Besucherzähler-
+Steuerung" (04.08., vorher „Personenzähl-Steuerung").
+
+Alle Dialoge (Warnungen, Fehler, Ja/Nein, Texteingabe) laufen über
+`ctk_dialogs.py` statt `tkinter.messagebox` — folgen seit 04.08. korrekt dem
+Light-/Dark-Mode (vorher fest auf dunklen Hintergrund verdrahtet) und öffnen
+zuverlässig mittig über dem Hauptfenster (`_center()`: Fenster wird vor dem
+Positionieren versteckt und erst danach gezeigt — vermeidet das kurze aber
+sichtbare Erscheinen oben links, ein bekanntes CustomTkinter/Windows-Timing-
+Problem bei `CTkToplevel`).
 
 ---
 
@@ -239,7 +253,8 @@ von `start_app.sh` gestartet wird.
 Vollständige, kommentierte Dateiliste in `HANDOFF.md`, Abschnitt 2. In Kürze:
 
 ```
-app.py, roi_config_app.py, ui_utils.py, ctk_dialogs.py       UI
+app.py, tabs/*.py, roi_config_app.py, ui_utils.py,
+ctk_dialogs.py                                                 UI
 core.py                                                        Pipeline
 tracking.py, counting.py                                       Zähllogik
 logging_utils.py, csv_utils.py, cleanup_utils.py,
