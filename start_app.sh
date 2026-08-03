@@ -22,4 +22,7 @@ source setup_env.sh || exit 1
 
 python warmup.py --input usb
 
-python app.py --autostart
+python app.py 
+
+# python app.py --autostart
+
