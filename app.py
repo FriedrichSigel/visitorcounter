@@ -98,7 +98,7 @@ class MainApp(
 
     def __init__(self, root, autostart=False):
         self.root = root
-        self.root.title("Personenzähl-Steuerung")
+        self.root.title("Besucherzähler-Steuerung")
         # --autostart (siehe start_app.sh): startet die Zähl-Pipeline
         # automatisch mit dem Standard-Input (USB), sobald das Fenster steht
         # und ein eventueller Aufwärmlauf durch ist. Für den unbeaufsichtigten
@@ -352,7 +352,7 @@ class MainApp(
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Personenzähl-Steuerung (GUI)")
+    parser = argparse.ArgumentParser(description="Besucherzähler-Steuerung (GUI)")
     parser.add_argument(
         "--autostart", action="store_true",
         help="Zähl-Pipeline nach dem Öffnen automatisch starten (Input: USB). "

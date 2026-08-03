@@ -29,7 +29,16 @@ _HOVER = {
 
 
 def _center(win, parent, w, h):
-    """Positioniert das Fenster mittig über dem Parent (oder Bildschirm)."""
+    """Positioniert das Fenster mittig über dem Parent (oder Bildschirm).
+
+    win.withdraw()/deiconify() umschließt das Ganze bewusst: CTkToplevel
+    öffnet unter Windows zunächst an einer vom Betriebssystem gewählten
+    Position (meist oben links) und erst DANACH greift unser geometry() -
+    sichtbar als kurzes "Aufblitzen" in der falschen Ecke bzw., je nach
+    Tk-Timing, blieb es teils sogar dort stehen. Verstecken vor dem
+    Positionieren und erst danach wieder anzeigen vermeidet beides.
+    """
+    win.withdraw()
     win.update_idletasks()
     try:
         px = parent.winfo_rootx() + parent.winfo_width() // 2
@@ -39,6 +48,7 @@ def _center(win, parent, w, h):
         x = (win.winfo_screenwidth() - w) // 2
         y = (win.winfo_screenheight() - h) // 2
     win.geometry(f"{w}x{h}+{max(0, x)}+{max(0, y)}")
+    win.deiconify()
 
 
 def _base_dialog(title, message, kind, parent=None):
@@ -47,7 +57,9 @@ def _base_dialog(title, message, kind, parent=None):
     win = ctk.CTkToplevel(parent)
     win.title(title)
     win.resizable(False, False)
-    win.configure(fg_color="#242424")
+    # Kein fest verdrahtetes fg_color mehr (war "#242424", nur fürs dunkle
+    # Design) - CTkToplevel bringt bereits ein Hell-/Dunkel-Farbpaar aus dem
+    # Theme mit und folgt damit automatisch dem aktuellen Appearance-Mode.
 
     # Farbiger Kopfstreifen mit Titel
     header = ctk.CTkFrame(win, fg_color=_ACCENT.get(kind, "#3B7DD8"), corner_radius=0, height=44)
