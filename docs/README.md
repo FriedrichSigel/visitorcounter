@@ -81,6 +81,9 @@ Limitationen) verwertbar.
   Fläche statt einem einzelnen IN-Feld, Auto-Konfiguration per Schalter
   ausgeblendet (nicht gelöscht), Light-Mode mit gespeicherter Auswahl,
   Autostart beim Hochfahren (`start_app.sh` + `warmup.py` + `--autostart`)
+- `cleancode.md` (03.08.) — `app.py` (vorher 1393 Zeilen) nach
+  Clean-Code-Prinzipien in `app.py` + `tabs/`-Paket (9 Module, je < 220
+  Zeilen) aufgeteilt
 - `DIAGNOSE_UND_FIX.md` — diagnostizierte und behobene Fehler
 - `Datenfluss_Verifikation_20260715.md` — Nachweis, dass die Daten korrekt
   durch die Kette laufen
