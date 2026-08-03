@@ -11,6 +11,7 @@ den früheren Ablageorten (`basic_pipelines/Commando/`, `basic_pipelines/core/`,
 | Ich will … | Datei |
 |---|---|
 | das Projekt verstehen (Einstieg) | [`projekt/HANDOFF.md`](projekt/HANDOFF.md) |
+| System-/Softwarearchitektur nachschlagen (Schichten, Datenfluss) | [`projekt/Architektur.md`](projekt/Architektur.md) |
 | wissen, was als Nächstes zu tun ist | [`projekt/ToDo.md`](projekt/ToDo.md) |
 | an der Abschlussarbeit schreiben | [`abschlussarbeit/Gliederung_DSRM_v2.md`](abschlussarbeit/Gliederung_DSRM_v2.md) |
 | ein Gerät neu aufsetzen | [`einrichtung/GERAETE_EINRICHTUNG.md`](einrichtung/GERAETE_EINRICHTUNG.md) |
@@ -23,6 +24,11 @@ Die zwei zentralen, ständig gepflegten Dateien.
 - **`HANDOFF.md`** — Einstieg ins Projekt: worum geht's, wo liegt was, was
   funktioniert, was ist als Nächstes dran. Enthält auch den Bezug zur
   Bachelorarbeit (Kapitelzuordnung).
+- **`Architektur.md`** — technische Referenz für den aktuellen Aufbau:
+  Systemarchitektur (Hardware/Netzwerk), Softwareschichten, Datenfluss,
+  Konfigurationskette, Autostart. Aktueller Stand, keine Historie (die steht
+  in `entwicklung/`); akademische Einordnung nach Sensormodellen steht in
+  `abschlussarbeit/Entwurf_Systemarchitektur_Sensor.md`.
 - **`ToDo.md`** — Implementierungsstand, offene Punkte, Priorisierung.
 
 Beide bei inhaltlichen Änderungen mit aktualisieren (Datum oben mitziehen).
