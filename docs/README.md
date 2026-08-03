@@ -71,6 +71,10 @@ Limitationen) verwertbar.
 
 - `AENDERUNGEN-UI.md`, `AENDERUNGEN-autoconfig.md`,
   `AENDERUNGEN-autoconfig Tabs.md`, `AENDERUNGEN-zwischenspeicher.md`
+- `AENDERUNGEN-mehrere-inout-lightmode-autostart.md` (03.08.) — IN/OUT je
+  Fläche statt einem einzelnen IN-Feld, Auto-Konfiguration per Schalter
+  ausgeblendet (nicht gelöscht), Light-Mode mit gespeicherter Auswahl,
+  Autostart beim Hochfahren (`start_app.sh` + `warmup.py` + `--autostart`)
 - `DIAGNOSE_UND_FIX.md` — diagnostizierte und behobene Fehler
 - `Datenfluss_Verifikation_20260715.md` — Nachweis, dass die Daten korrekt
   durch die Kette laufen

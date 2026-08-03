@@ -1,6 +1,6 @@
 # HANDOFF — Personenzähl-Prototyp (Stadtwerke Potsdam)
 
-**Zuletzt aktualisiert: 28.07.2026 (MQTT-Weg auf der Hardware in Betrieb; tls-Bug behoben; Konfidenz-Schwelle in Tab 2)**
+**Zuletzt aktualisiert: 03.08.2026 (IN/OUT je Fläche statt einem IN-Feld; Auto-Konfiguration per Schalter ausgeblendet; Light-Mode; Autostart beim Hochfahren)**
 *(Dieses Datum bei jeder inhaltlichen Änderung mit hochziehen — siehe Hinweis ganz unten.)*
 
 Diese Datei ist der schnelle Einstieg ins Projekt: Was ist das, wo liegt was,
@@ -60,6 +60,8 @@ core/                   ← Hauptordner auf dem Pi, läuft aktuell dort
 ├── auto_config_clustering.py   ← Paket 3+4: DBSCAN-Clustering ODER Randraster + Cluster→Zählgeometrie (GUI-frei, nutzt frame_utils)
 ├── lora_message.py             ← LoRa-Nachrichtenformat (18-Byte v2): Frame bauen, IN/OUT aus zaehlung.csv lesen, Hinweistext für Tab 3, decode_frame() als Referenz-Decoder. Nur Standardbibliothek.
 ├── lora_send_loop.py           ← LoRa-Sender, läuft als eigener Subprozess (--live-counts). Liest nur zaehlung.csv, sendet per AT+SENDB an den LA66.
+├── warmup.py                    ← Aufwärmlauf (einmal pro Systemstart): core.py --input usb --use-frame kurz hochfahren, dann sauber beenden — macht spätere Starts schnell
+├── start_app.sh                 ← Autostart-Einstiegspunkt (03.08.): venv aktivieren, warmup.py, dann app.py --autostart. Wird von einem Desktop-Autostart-Eintrag beim Hochfahren ausgeführt
 │
 ├── docs/                       ← GESAMTE Dokumentation, thematisch sortiert (Wegweiser: docs/README.md)
 │   ├── projekt/                    HANDOFF.md (diese Datei) + ToDo.md — der laufende Stand
@@ -92,7 +94,8 @@ kompletter Befehlsablauf dort. Die Einzelskripte (`core.py`, `roi_config_app.py`
 Kommandozeile nutzbar, `app.py` bündelt sie nur.
 
 Weitere relevante Dateien im Repo:
-- `roi_config.json` — von `roi_config_app.py` oder `auto_config_clustering.py --save` geschrieben, von `config.py` beim Start gelesen. Enthält `mode` ("line", "roi" oder "multi_roi"), `points` (2 Punkte bei Linie, 3+ bei einzelner Fläche), `regions` (nur bei "multi_roi": Liste benannter Flächen `{"name", "points"}`), `classes`, `reverse_direction`, `snap_to_nearest` (nur "multi_roi": Punkte außerhalb aller Flächen der nächstgelegenen zuordnen). Alle Koordinaten normalisiert 0.0-1.0. Fehlt die Datei, greifen Defaults in `config.py` (horizontale Linie, alle 6 Klassen).
+- `roi_config.json` — von `roi_config_app.py` oder `auto_config_clustering.py --save` geschrieben, von `config.py` beim Start gelesen. Enthält `mode` ("line", "roi" oder "multi_roi"), `points` (2 Punkte bei Linie, 3+ bei einzelner Fläche), `regions` (nur bei "multi_roi": Liste benannter Flächen `{"name", "points", "direction": "in"|"out", "snap"}`), `classes`, `reverse_direction`, `snap_to_nearest` (nur "multi_roi": Punkte außerhalb aller Flächen der nächstgelegenen zuordnen), `in_field` (nur "multi_roi", **seit 03.08. eine Liste** von IN-Flächennamen statt eines einzelnen Strings — mehrere IN-Flächen gleichzeitig möglich, ältere Konfigurationen mit einzelnem String werden automatisch als Ein-Element-Liste gelesen). Alle Koordinaten normalisiert 0.0-1.0. Fehlt die Datei, greifen Defaults in `config.py` (horizontale Linie, alle 6 Klassen).
+- `ui_settings.json` — seit 03.08., von `app.py` geschrieben: merkt sich die gewählte Design-Variante (hell/dunkel) über App-Neustarts hinweg. Geräte-/nutzerspezifisch, nicht im Repo (`.gitignore`), analog zu `roi_config.json`.
 - `ergebniss.csv` — **Zwischenspeicher aller Tracks des aktuellen Laufs** (wird beim Start frisch angelegt, siehe `vorherige_laeufe/` unten). Eine Zeile pro abgeschlossenem Track. Spalten: display_id, kind (FLUSH/FINALIZE), track_id, label, start_x/y, end_x/y, **avg_confidence** (über alle Frames des Tracks gemittelte Erkennungskonfidenz 0.0-1.0, leer wenn kein Wert vorlag), first/last_timestamp. Nur Klassen aus `TRACKED_LABELS`. Für spätere Auswertung, z. B. Nearest-Neighbor-Clustering der Start-/Endpunkte. **`ergebniss.txt` gibt es nicht mehr** — die maschinenlesbare CSV ist die einzige Track-Ausgabe.
 - `zaehlung.csv` — ein Eintrag pro Zähl-Ereignis (timestamp, display_id, label, direction, **is_transition**). `is_transition=False` kennzeichnet Fälle, die protokolliert aber NICHT gezählt wurden (z. B. bei `multi_roi`: Start und Ende im selben Bereich, "A (kein Wechsel)")
 - `vorherige_laeufe/<Zeitstempel>/` — beim Start eines echten Zähllaufs (nicht im Snapshot-Modus) verschiebt `cleanup_utils.archive_previous_run()` alle Artefakte des Vorlaufs hierher (ergebniss.csv, zaehlung.csv, Bewegungsbilder, auto_config_points.csv, Kontrollbilder). **Bewahrt** bleiben `roi_config.json` und `camera_raw.png`. Sauberer Erststart erzeugt keinen Ordner.
@@ -160,6 +163,25 @@ Konfidenz einstellen (Standard 0.5, gespeichert als `min_confidence`);
 Erkennungen darunter werden in `core.py` nicht gezählt. Ebenso ist „nächste
 Fläche zuordnen" jetzt pro Fläche wählbar (26.07.).
 
+**Vier UI-/Betriebsänderungen (03.08.), Details in
+`../entwicklung/AENDERUNGEN-mehrere-inout-lightmode-autostart.md`:**
+1. **IN/OUT je Fläche statt einem einzelnen IN-Feld.** In Tab 2 (Modus
+   „Mehrere Flächen") legt jetzt eine Checkbox je Fläche fest, ob sie IN oder
+   OUT ist (Standard: zuerst angelegte Fläche IN, Rest OUT) — nicht mehr nur
+   ein Dropdown mit genau einer IN-Fläche. Speichern ohne mindestens eine
+   IN- und eine OUT-Fläche wird verhindert, damit der frühere stille
+   Nullwerte-Fehler (fehlendes IN-Feld) gar nicht mehr auftreten kann.
+2. **Auto-Konfiguration ausgeblendet, nicht gelöscht.** Neuer Schalter
+   `config.SHOW_AUTO_CONFIG` (Standard `False`) blendet Tab 5 und die beiden
+   „Auto: …"-Zählmodi in Tab 2 aus der UI aus. Code bleibt vollständig
+   erhalten, zum Reaktivieren den Schalter umlegen.
+3. **Light-Mode.** Umschalt-Knopf oben in der Sidebar, Auswahl wird in
+   `ui_settings.json` gespeichert und beim nächsten Start geladen.
+4. **Autostart beim Hochfahren.** `start_app.sh` + Desktop-Autostart-Eintrag
+   öffnen beim Booten automatisch ein Terminal, wärmen die Pipeline einmalig
+   auf (`warmup.py`) und starten `app.py --autostart`, das dann selbst mit
+   USB-Input zu zählen beginnt — kein manueller Klick am Gerät mehr nötig.
+
 **Labortest erfolgreich (20.–22.07.):** 228 Datensätze, 34 gezählte Übergänge.
 Auswertung läuft; Vergleichs-Werkzeug (`vergleich/`, Desktop + Tablet-Web)
 gebaut.
@@ -218,6 +240,17 @@ Danach/parallel:
 
 ## 4a. Bereits gelöste Probleme (nicht nochmal debuggen)
 
+- **`start_app.sh: Permission denied` auf dem Pi (03.08.).** Die Datei war im
+  Git-Repository ohne Ausführungsrecht (`100644`) abgelegt — unter Windows
+  erzeugt, wo es kein Unix-Dateirecht gibt. Fix:
+  `git update-index --chmod=+x start_app.sh` + Commit, damit das Recht ab
+  jetzt bei jedem `git pull` erhalten bleibt (nicht erneut `chmod` auf jedem
+  Gerät nötig, sobald der Commit gezogen wurde).
+- **Mond-Symbol (🌙) im Light-Mode-Knopf sah kaputt aus (03.08.).**
+  Vollfarb-Emoji werden unter Windows mit eigenem, `text_color`-unabhängigem
+  Hintergrund-Glyph gerendert — auf dem farbigen Knopf ein sichtbarer
+  Bruch. Fix: einfarbiges Textsymbol (☾) statt Vollfarb-Emoji, folgt damit
+  wie ☀ der normalen Textfarbe.
 - **MQTT-Empfänger verbindet nicht, ohne Fehler (28.07.).** `configparser`
   liefert jeden Wert als String; `tls = false` wird zum String „false", der in
   Python **wahr** ist → der lokale MQTT-Empfänger schaltete TLS ein und hing beim
@@ -279,7 +312,7 @@ Danach/parallel:
 - **`std::system_error: Invalid argument` bei Langläufen**: Inzwischen eingegrenzt auf die **Live-Vorschau** (`--use-frame`), nicht auf das Zeitlimit oder das Tracking (siehe 4a). Ohne View läuft die Pipeline durch. Offen bleibt die eigentliche native Ursache (vermutlich Ressourcenerschöpfung in der Hailo/GStreamer-Ebene bei aktivem View-Fenster) — für den unbeaufsichtigten Dauerbetrieb ist ein Prozess-Watchdog (systemd `Restart=on-failure`) vorgesehen; die App-seitige saubere Absturzerkennung ist dafür schon vorhanden. Falls der Crash je ohne View auftritt: Thread-/FD-Zahl während des Laufs beobachten (`ls /proc/$(pgrep -f core.py)/task | wc -l`).
 - **🔴 Live-Bild bei `--input usb` ist horizontal gespiegelt.** Vom Nutzer per Screenshot bestätigt: `camera_raw.png` (Referenzaufnahme) zeigt die Szene korrekt, das "User Frame"-Live-Fenster zeigt sie gespiegelt — **obwohl beide jetzt aus derselben Pipeline stammen** (seit dem Snapshot-Fix oben), was zunächst überraschend war. Aufgeklärt durch einen Nutzer-Screenshot einer Fehlermeldung, die Hailos tatsächlichen GStreamer-Pipeline-String zeigte: enthält explizit `videoflip name=videoflip video-direction=horiz` — Hailos eigene Pipeline-Konstruktion für `--input usb` spiegelt also aktiv, bestätigt statt nur vermutet. Warum der Snapshot (der denselben Frame VOR diesem Flip-Schritt aus dem Buffer liest, siehe `SNAPSHOT_ONLY`-Code in `core.py`) trotzdem unspiegelt bleibt: unser Snapshot greift auf `get_numpy_from_buffer()` zu, was vermutlich VOR dem `videoflip`-Element in der Pipeline sitzt. Fix bereitgestellt, aber **Wirksamkeit unbestätigt**: `LIVE_PREVIEW_HORIZONTAL_FLIP = True` in `config.py` spiegelt NUR das "User Frame"-Anzeigefenster zurück (nach unseren eigenen Overlays, betrifft die Zähllogik nicht). Laut jüngstem Nutzer-Feedback ("Das Bild ist immer noch gespiegelt") entweder noch nicht ausprobiert oder wirkungslos — als Nächstes klären, ob der Schalter überhaupt aktiviert wurde, bevor tiefer gesucht wird.
   Untersuchte Alternativen (siehe Chatverlauf): V4L2-Treiber-Flip (`v4l2-ctl --list-ctrls`, auf diesem Gerät vermutlich nicht vorhanden, ungetestet), `v4l2loopback` mit vorgeschaltetem spiegelnden GStreamer-Pipeline (funktioniert sicher, aber deutlich mehr Aufwand), ein `--hflip`/`--vflip`-CLI-Flag in hailo-apps existiert nur als **unfertiger, nicht gemergter Pull Request** und deckt ohnehin nur die Pi-Kamera ab, nicht USB.
-- **UI (CustomTkinter) laut Nutzer noch verbesserungsbedürftig** — konkrete Punkte noch nicht spezifiziert. Bereits behoben: Emoji im Sidebar-Titel entfernt (wurde als Platzhalter-Kästchen dargestellt), `CTkCheckBox` akzeptiert kein `justify` (Absturz behoben). Nächster Schritt: Nutzer nach konkreten Kritikpunkten fragen (Layout? Farben? Bedienbarkeit? Größen?).
+- **UI (CustomTkinter) laut Nutzer noch verbesserungsbedürftig** — konkrete Punkte noch nicht spezifiziert. Bereits behoben: Emoji im Sidebar-Titel entfernt (wurde als Platzhalter-Kästchen dargestellt), `CTkCheckBox` akzeptiert kein `justify` (Absturz behoben), Light-Mode ergänzt inkl. dunklerer grauer Hinweistexte für Lesbarkeit auf hellem Hintergrund (03.08., siehe Abschnitt 3). Nächster Schritt: Nutzer nach weiteren konkreten Kritikpunkten fragen (Layout? Bedienbarkeit? Größen?).
 - **Datensammlung (`AUTO_CONFIG_COLLECTION_ENABLED`-Workflow) muss laut Nutzer nochmal angepasst werden** — konkrete Punkte noch nicht spezifiziert, im nächsten Gespräch klären.
 - **`tests/kamera/camera_test.py` (eigenständiges Kamera-Diagnoseskript, keine Hailo-Abhängigkeit) bereitgestellt, aber Ergebnis vom Nutzer noch nicht zurückgemeldet** — sobald verfügbar, hilft das einzugrenzen, ob verbleibende Kamera-Probleme an der Kamera/dem Treiber liegen oder spezifisch an der Hailo-Pipeline.
 

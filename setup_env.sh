@@ -13,9 +13,10 @@
 # Danach ist der PYTHONPATH für die aktuelle Terminal-Sitzung gesetzt und die
 # venv aktiv. Start der App: python app.py
 
-# Name der virtuellen Umgebung. Standard: die vom Hailo-Setup erzeugte venv.
-# Per Umgebungsvariable überschreibbar:  VENV_NAME=meinvenv source setup_env.sh
-VENV_NAME="${VENV_NAME:-venv_hailo_rpi_examples}"
+# Name der virtuellen Umgebung. Standard: die projekteigene venv (siehe
+# create_venv.sh). Per Umgebungsvariable überschreibbar:
+# VENV_NAME=meinvenv source setup_env.sh
+VENV_NAME="${VENV_NAME:-venv_visitorcounter}"
 
 # --- Prüfen, ob das Skript gesourced wird (sonst wirkt export nicht) ---
 is_sourced() {

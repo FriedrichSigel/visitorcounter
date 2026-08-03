@@ -117,6 +117,7 @@ beendet das Projekt Subprozesse grundsätzlich SIGINT-zuerst. Außerdem: Der
 | 3.2 | `git clone git@github.com:FriedrichSigel/personenzaehlung.git` | Code aufs Gerät | ✅ (Repo vorhanden) |
 | 3.3 | `pip install customtkinter --break-system-packages` | GUI-Framework für `app.py` / `roi_config_app.py` | ✅ |
 | 3.4 | Start Standardweg: `python app.py` (Seite 1 Input → 2 Konfiguration → 3 Start → 4 Live-Auswertung) | Betrieb ohne Kommandozeile | ✅ |
+| 3.5 | Autostart einrichten (03.08.): `chmod +x start_app.sh`, dann `~/.config/autostart/visitorcounter.desktop` anlegen (Inhalt und Erklärung siehe `../entwicklung/AENDERUNGEN-mehrere-inout-lightmode-autostart.md`, Abschnitt 4) | Terminal öffnet sich beim Hochfahren automatisch, wärmt die Pipeline auf und startet die Zählung ohne manuellen Klick | ✅ |
 
 > **LÜCKE — bitte ausfüllen:** weitere pip-Pakete, die über `hailo-rpi5-examples`
 > hinaus nötig waren (OpenCV/Pillow kommen i. d. R. über die Hailo-venv mit;
@@ -178,6 +179,7 @@ core-Projekt
 [ ] Repo klonen
 [ ] pip install customtkinter --break-system-packages
 [ ] python app.py  →  alle vier Seiten erreichbar
+[ ] Autostart einrichten: chmod +x start_app.sh + ~/.config/autostart/visitorcounter.desktop
 
 LoRa (Details: EINRICHTUNG_LA66.md)
 [ ] pip install pyserial --break-system-packages

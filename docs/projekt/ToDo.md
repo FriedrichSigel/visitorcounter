@@ -1,6 +1,6 @@
 # ToDo – Personenzähl-Prototyp (Stadtwerke Potsdam)
 
-Stand: 28.07.2026 — Bezug: `core/` (app.py, roi_config_app.py, ui_utils.py, config.py, tracking.py, counting.py, visualization.py, logging_utils.py, csv_utils.py, core.py, auto_config.py, auto_config_clustering.py, lora_message.py, lora_send_loop.py) sowie `tests/` (Kamera- und LoRa-Hardware-Tests)
+Stand: 03.08.2026 — Bezug: `core/` (app.py, roi_config_app.py, ui_utils.py, config.py, tracking.py, counting.py, visualization.py, logging_utils.py, csv_utils.py, core.py, auto_config.py, auto_config_clustering.py, lora_message.py, lora_send_loop.py, warmup.py) sowie `tests/` (Kamera- und LoRa-Hardware-Tests)
 
 **Praxis ab sofort:** Lösungen, die auf recherchierten externen Quellen beruhen,
 werden mit Quellenlink notiert — auch wenn sie noch nicht fertig funktionieren.
@@ -144,18 +144,20 @@ und in Tab 3 der App zuschaltbar.
       (`docs/ttn_payload_decoder.js`) hat die alten Frames deshalb falsch
       interpretiert (Intervall 0, alle Status-Bits aus) — die Zählwerte selbst
       waren immer korrekt.** Uplinks vor dieser Korrektur entsprechend bewerten.
-- [ ] **Auto-Modi ohne IN-Feld.** `auto_cluster`/`auto_border` speichern als
-      `multi_roi`, setzen aber noch kein `in_field` — die Auswahl erscheint nur
-      im manuellen Modus. Nachziehen, falls auch diese Modi per LoRa senden
-      sollen.
+- [x] **Auto-Modi ohne IN-Feld — durch Ausblenden erledigt (03.08.).** Die
+      beiden Auto-Modi sind über `config.SHOW_AUTO_CONFIG = False` aktuell aus
+      der UI ausgeblendet (Code bleibt erhalten), betrifft LoRa/MQTT also
+      derzeit nicht. Bei Reaktivierung erneut prüfen. Details:
+      `entwicklung/AENDERUNGEN-mehrere-inout-lightmode-autostart.md`.
 - [ ] Verhalten über längere Zeit im Feld beobachten (Duty-Cycle, Paketverluste,
       Sequenznummern-Überlauf bei 255).
-- [ ] **Fehlendes IN-Feld sichtbarer machen.** Steht `multi_roi` ohne
-      `in_field`, sendet der Sender formal korrekte Frames mit lauter Nullen und
-      loggt nur eine Warnzeile. Im Betrieb ist das leicht zu übersehen (genau so
-      passiert, siehe Abschnitt „Sofort erledigen"). Überlegen: Start des
-      LoRa-Versands in Tab 3 blockieren, solange kein IN-Feld gesetzt ist, statt
-      Nullwerte zu senden.
+- [x] **Fehlendes IN-Feld sichtbarer machen — gelöst über Speicher-Validierung
+      (03.08.).** `multi_roi` speichert jetzt nicht mehr ohne gültige
+      IN/OUT-Aufteilung (mindestens eine Fläche IN, mindestens eine OUT wird
+      beim Speichern erzwungen) — der stille Nullwerte-Fall kann dadurch gar
+      nicht mehr entstehen. `in_field` ist außerdem auf eine Liste umgestellt
+      (mehrere IN-Flächen möglich, Standard: zuerst angelegte Fläche = IN).
+      Details: `entwicklung/AENDERUNGEN-mehrere-inout-lightmode-autostart.md`.
 
 ## 📡 MQTT-Übertragung + Stadtwerke-Server — IN BETRIEB, LÄUFT (28.07.)
 
@@ -232,6 +234,18 @@ Beide Formate laufen parallel, Erkennung automatisch.
 - [x] Performance-Tests auf Laptop und Raspberry Pi 5 (8 GB) dokumentiert
 - [x] **Dokumentation und Tests neu strukturiert (18.07.)** — alle Markdown-Dokumente aus den früheren Ablageorten (`basic_pipelines/Commando/`, `basic_pipelines/core/`, `basic_pipelines/lora_hardware_test/`) in `docs/` zusammengeführt und thematisch sortiert (`projekt/`, `abschlussarbeit/`, `einrichtung/`, `lora/`, `entwicklung/`), Wegweiser in `docs/README.md`. Test- und Diagnoseskripte nach `tests/` (`kamera/`, `lora_hardware/`) mit eigener `tests/README.md`. Veraltete Doppelfassungen von HANDOFF/ToDo entfernt.
 - [x] Code in privatem GitHub-Repository versioniert
+- [x] **IN/OUT je Fläche im Mehrere-Flächen-Modus (03.08.).** Statt eines
+      einzelnen IN-Feld-Dropdowns eine Checkbox je Fläche; Standard: zuerst
+      angelegte Fläche IN, Rest OUT. Speichern ohne mindestens eine IN- und
+      eine OUT-Fläche wird verhindert. Details:
+      `entwicklung/AENDERUNGEN-mehrere-inout-lightmode-autostart.md`.
+- [x] **Light-Mode ergänzt, Auswahl bleibt über Neustarts erhalten (03.08.).**
+      Umschalt-Knopf in der Sidebar, Speicherung in `ui_settings.json`.
+- [x] **Autostart beim Hochfahren (03.08.).** `start_app.sh` +
+      Desktop-Autostart-Eintrag: Terminal öffnet sich automatisch, aktiviert
+      die venv, wärmt die Pipeline einmalig auf (`warmup.py`) und startet
+      `app.py --autostart`, das dann selbst die Zählung mit USB-Input
+      beginnt — kein manuelles Klicken am Gerät mehr nötig.
 
 ## 🔧 In Arbeit, noch nicht zuverlässig
 
