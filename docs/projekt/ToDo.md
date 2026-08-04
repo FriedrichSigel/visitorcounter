@@ -1,6 +1,6 @@
 # ToDo – Personenzähl-Prototyp (Stadtwerke Potsdam)
 
-Stand: 03.08.2026 — Bezug: `core/` (app.py, roi_config_app.py, ui_utils.py, config.py, tracking.py, counting.py, visualization.py, logging_utils.py, csv_utils.py, core.py, auto_config.py, auto_config_clustering.py, lora_message.py, lora_send_loop.py, warmup.py) sowie `tests/` (Kamera- und LoRa-Hardware-Tests)
+Stand: 04.08.2026 — Bezug: `core/` (app.py, roi_config_app.py, ui_utils.py, config.py, tracking.py, counting.py, visualization.py, logging_utils.py, csv_utils.py, core.py, auto_config.py, auto_config_clustering.py, lora_message.py, lora_send_loop.py, warmup.py) sowie `tests/` (Kamera- und LoRa-Hardware-Tests)
 
 **Praxis ab sofort:** Lösungen, die auf recherchierten externen Quellen beruhen,
 werden mit Quellenlink notiert — auch wenn sie noch nicht fertig funktionieren.
@@ -209,6 +209,82 @@ Beide Formate laufen parallel, Erkennung automatisch.
       keine technische Notwendigkeit — bei sehr kurzen Intervallen beschreibt eine
       Nachricht mit genau einem Übergang faktisch eine einzelne Person, daher ist
       die Intervalllänge auch eine Frage der Datensparsamkeit.
+- [x] **MQTT sendete seit der IN/OUT-je-Fläche-Umstellung nichts mehr an
+      (04.08.), Ursache im Server gefunden und behoben.** `in_field`
+      kommt vom Sensor seit 03.08. als Liste statt String; der Server
+      (`stadtwerke-server/datenbank.py`) band den Rohwert direkt als
+      SQLite-Parameter (`in_feld TEXT`) — eine Python-Liste lässt sich dort
+      nicht binden, `sqlite3.InterfaceError` unbehandelt in `ingest.py`,
+      `paho-mqtt` schluckt das nur als Log-Zeile. Nachrichten kamen nachweislich
+      an (`mosquitto_pub`/`sub`-Test bestätigt), scheiterten aber beim
+      Speichern. Fix: `_in_feld_text()`-Normalisierung vor dem Insert
+      (`datenbank.py`, zwei Stellen) plus Mengen-Vergleich statt
+      String-Vergleich in `dekoder.py::_summen_aus_uebergaengen()`. Getestet
+      end-to-end (`decode_json` → `uplink_speichern`) mit Listen-Format.
+      **Noch zu tun:** Fix liegt bisher nur lokal, muss noch auf den
+      Server-Pi (git push/pull, je nachdem wie das Server-Repo dort verwaltet
+      wird).
+
+## 🗺️ Urbane Datenplattform Potsdam — Datenveröffentlichung (04.08., Recherche)
+
+Ziel: die vom Sensor/Server bereitgestellten Daten in einem Format anbieten,
+das zu den bestehenden Datensätzen auf
+[ckan.urbanedatenplattform-potsdam.de](https://ckan.urbanedatenplattform-potsdam.de)
+passt. Recherche-Stand:
+
+- **Plattform läuft auf CKAN**, Standard-CKAN-API verfügbar
+  (`docs.ckan.org/en/2.11/api/`). 17 thematische Gruppen, u. a. „Verkehr" (8
+  Datensätze), „SWP" (5, Stadtwerke Potsdam), sowie eine eigene **„LoRaWAN"-
+  Gruppe, die aktuell noch KEINE Datensätze enthält** — für die Arbeit
+  erwähnenswert (früher/einziger LoRaWAN-Sensordatensatz auf der Plattform,
+  falls wir dort veröffentlichen).
+- **Übliches Format-Bündel:** die meisten Geo-Datensätze bieten dieselbe
+  Formatpalette parallel an: CSV, XLS, GeoJSON, JSON, Parquet, SHP, KML,
+  FlatGeobuf, GPX. Für einen Zählsensor sind davon realistisch nur
+  **CSV + JSON (+ optional GeoJSON für den Standort)** relevant — die
+  Geo-Exportformate (SHP/KML/GPX/FlatGeobuf) passen zu Flächen-/Routendaten,
+  nicht zu einer Zeitreihe.
+- **Vergleichbarer Zähldatensatz „Verkehrszählungen"** (Gruppe „Verkehr", LHP):
+  ist selbst nur ein **Standort-Index** (Spalten: `Geo Point`, `Geo Shape`,
+  `OBJECTID`, `KPNR`, `Name`, `ODP`, `Zählpläne`) — die eigentlichen
+  Zeitreihen liegen als ZIP-Archive hinter einem Link je Zählstelle
+  (`Zählpläne`-Spalte). Übertragen auf uns: ein Datensatz „unsere Sensoren"
+  (ein Punkt je Sensor/Eingang, mit Standort + Link zu den Zählwerten) plus
+  ein zweiter, laufend aktualisierter Datensatz mit den eigentlichen
+  Zählwerten.
+- **Wichtigster Fund: „Parking Echtzeit"** (Gruppe „Verkehr", ebenfalls LHP)
+  registriert als CSV-Ressource keine hochgeladene Datei, sondern eine
+  **live abrufbare URL** auf Stadtwerke-Potsdam-eigener Infrastruktur
+  (`https://cs1-swp.westeurope.cloudapp.azure.com:8443/parking_csv`) — CKAN
+  zeigt/verlinkt diese Live-Quelle, statt dass jemand die Datei manuell
+  aktuell halten muss. **Das ist bereits unser Fall:** `server.py` hat mit
+  `/api/export.csv` und `/api/uebersicht` (JSON) schon passende Endpunkte —
+  diese könnten direkt nach diesem Muster als CKAN-Ressourcen-URLs
+  eingetragen werden, ohne zusätzlichen Exportmechanismus zu bauen.
+- **Metadaten bei bestehenden Datensätzen eher dünn:** Lizenz meist „keine
+  Lizenz angegeben", Update-Frequenz selten dokumentiert, Spaltenbeschreibungen
+  fehlen oft auf der Übersichtsseite (nur in den Dateien selbst). Für unseren
+  Datensatz lohnt es sich, das **besser** zu machen (Lizenz, Update-Takt,
+  Spaltenbeschreibung mit angeben) — im Sinne von Kapitel 6/7 als positives
+  Abgrenzungsmerkmal dokumentierbar.
+- [ ] **Nächster Schritt (offen):** entscheiden, ob wir einen eigenen
+      Datensatz in der Gruppe „Verkehr" oder „LoRaWAN" anlegen wollen, welche
+      Formate wir tatsächlich anbieten (CSV + JSON reicht vermutlich),
+      Kontakt für Veröffentlichung: `smartcity@swp-potsdam.de`.
+
+## 💡 Ideen / Überlegungen (noch nicht entschieden, nicht umsetzen ohne Rücksprache)
+
+- [ ] **Zusätzliche MQTT-Statusmeldungen** (04.08., reine Überlegung von
+      Friedrich, noch nicht spezifiziert): über die reinen Zählwerte hinaus
+      Ereignis-Nachrichten senden, z. B. wenn die Konfiguration (`roi_config.json`)
+      geändert wurde, oder wenn der Sensor abgestürzt war und wieder hochfährt
+      (Neustart-/Recovery-Meldung). Format 4 (Konfiguration) und Format 5
+      (LoRa-Kontrolle) existieren im Server (`dekoder.py`) bereits als
+      Sonderformate — eine „Sensor neu gestartet"-Meldung wäre vermutlich ein
+      weiteres, eigenes Format. Vor der Umsetzung klären: welche Ereignisse
+      genau, wie oft (Flut von Meldungen bei instabiler Verbindung vermeiden?),
+      und ob das eher in `warmup.py`/`app.py` (Sensorseite) oder rein
+      serverseitig (aus Verbindungsabbrüchen ableiten) ansetzen sollte.
 
 ## ✅ Bereits funktionsfähig
 
