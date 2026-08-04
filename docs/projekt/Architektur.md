@@ -204,9 +204,36 @@ im selben `roi_config.json`-Format.
 
 `app.py` bündelt den gesamten Ablauf (Input wählen → Frame laden →
 Zählgeometrie setzen → Zähllauf starten/stoppen → Live-Auswertung
-mitverfolgen) über eine Sidebar-Navigation, inkl. Light-/Dark-Mode
-(Auswahl gespeichert in `ui_settings.json`). Fenstertitel: „Besucherzähler-
-Steuerung" (04.08., vorher „Personenzähl-Steuerung").
+mitverfolgen) über eine Sidebar-Navigation, inkl. Light-/Dark-Mode. Fenstertitel:
+„Besucherzähler-Steuerung" (04.08., vorher „Personenzähl-Steuerung").
+
+**Alle Bedienelemente außer der Zählgeometrie sind stromausfallsicher
+persistiert (04.08.):** `tabs/settings_store.py` schreibt bei **jeder**
+Änderung sofort (nicht erst beim Beenden) nach `app_settings.json` —
+Input-Quelle (Tab 1), sämtliche Optionen auf Tab 3 (Mitschnitt, Live-Vorschau,
+LoRa, MQTT, Zeitlimit) und der Appearance-Mode (vorher `ui_settings.json`, das
+nur das Design gespeichert hat). Structure:
+
+```
+app_settings.json
+   input_mode, input_file_path
+   recording_enabled/dir/bitrate/fps/segment
+   use_frame
+   lora_enabled/interval/sensor_id
+   mqtt_enabled/broker/port/interval/sensor_id/transitions
+   run_duration
+   appearance_mode
+```
+
+Fehlt die Datei (frisches Gerät) oder fehlen einzelne Schlüssel (nach einem
+Update), legt `settings_store.load_settings()` sie beim Start sofort mit den
+aktuellen Default-Werten neu an — dieselben Werte, die vorher fest im Code
+standen, gelten unverändert als Vorbelegung. `MainApp._wire_settings_autosave()`
+hängt dazu einen Schreib-Trace an jede betroffene tk-Variable. Die
+Zählgeometrie (Tab 2) bleibt bewusst getrennt in `roi_config.json` (siehe
+oben) — sie wird beim Start ebenfalls automatisch, aber still in den Tab-2-
+Editor geladen (`ConfigTabMixin._build_config_tab()`), ohne dass etwas
+angeklickt werden muss.
 
 Alle Dialoge (Warnungen, Fehler, Ja/Nein, Texteingabe) laufen über
 `ctk_dialogs.py` statt `tkinter.messagebox` — folgen seit 04.08. korrekt dem

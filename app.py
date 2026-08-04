@@ -30,7 +30,6 @@ Aufbau dieser Datei:
 """
 
 import argparse
-import json
 import queue
 import threading
 import tkinter as tk
@@ -40,6 +39,7 @@ import ctk_dialogs as messagebox   # CustomTkinter-Dialoge im App-Design
 
 import config as app_config
 import warmup
+from tabs import settings_store
 from tabs.constants import WINDOW_WIDTH, WINDOW_HEIGHT, SIDEBAR_WIDTH, CONTENT_WIDTH
 from tabs.input_tab import InputTabMixin
 from tabs.config_tab import ConfigTabMixin
@@ -51,35 +51,17 @@ from tabs.start_tab import StartTabMixin
 from tabs.output_tab import OutputTabMixin
 from tabs.autoconfig_tab import AutoConfigTabMixin
 
-# Merkt sich das gewählte Design (hell/dunkel) über App-Neustarts hinweg.
-UI_SETTINGS_PATH = "ui_settings.json"
-
-
-def _load_saved_appearance_mode():
-    """Liest den zuletzt gewählten Appearance-Mode. 'dark' als Standard,
-    falls die Datei fehlt oder unlesbar ist."""
-    try:
-        with open(UI_SETTINGS_PATH) as f:
-            gespeichert = json.load(f).get("appearance_mode")
-    except (OSError, ValueError):
-        return "dark"
-    return gespeichert if gespeichert in ("dark", "light") else "dark"
-
-
-def _save_appearance_mode(mode):
-    try:
-        with open(UI_SETTINGS_PATH, "w") as f:
-            json.dump({"appearance_mode": mode}, f)
-    except OSError:
-        # Nicht schreibbar: Auswahl gilt dann nur für diese Sitzung.
-        pass
-
-
 PAGE_NAMES = ["1. Input", "2. Konfiguration", "3. Start", "4. Live-Auswertung"]
 if app_config.SHOW_AUTO_CONFIG:
     PAGE_NAMES.append("5. Auto-Konfiguration")
 
-ctk.set_appearance_mode(_load_saved_appearance_mode())
+# Einmalig beim Modul-Import geladen: bestimmt sowohl den Appearance-Mode
+# (muss VOR dem ersten ctk.CTk() feststehen) als auch die Startwerte aller
+# Bedienelemente in MainApp.__init__ (siehe dort). Fehlt app_settings.json,
+# legt load_settings() sie mit den aktuellen Default-Werten neu an.
+_settings = settings_store.load_settings()
+
+ctk.set_appearance_mode(_settings["appearance_mode"])
 ctk.set_default_color_theme("blue")
 
 
@@ -105,6 +87,13 @@ class MainApp(
         # Start beim Hochfahren des Geräts.
         self.autostart = autostart
 
+        # Zuletzt gespeicherte Einstellungen (siehe tabs/settings_store.py) -
+        # dienen unten als Startwert jedes Bedienelements, das mit dem
+        # Stromausfall überstehen soll (Input-Quelle, alles auf Seite 3,
+        # Design). self.settings wird danach bei JEDER Änderung eines dieser
+        # Elemente aktualisiert und neu geschrieben (_wire_settings_autosave).
+        self.settings = _settings
+
         # Feste Layout-Maße. Die gesamte App leitet ihre Breiten aus WINDOW_WIDTH
         # ab (1/5 Sidebar, 4/5 Content; in Tab 2 davon wiederum 3/5 Frame + 1/5
         # Konfig). Das Fenster wird in der Breite NICHT vergrößerbar gemacht,
@@ -119,11 +108,14 @@ class MainApp(
         self.lora_process = None     # subprocess.Popen von lora_send_loop.py (nur wenn LoRa aktiv)
         self.output_queue = queue.Queue()
 
-        # Auto-Config-Datensammlung (Tab 5): Sammeldauer als Zeitlimit.
+        # Auto-Config-Datensammlung (Tab 5): Sammeldauer als Zeitlimit. Nicht
+        # Teil von app_settings.json (siehe settings_store.py) - Tab 5 ist
+        # ein einmaliger Sammelvorgang, kein Dauerzustand wie die übrigen
+        # Seite-3-Optionen.
         self.collection_duration_var = tk.StringVar(value="300")
         # Optionales Zeitlimit für normale Zählläufe (Tab 3). Leer = kein Limit
         # (Standard). Nur setzen, wer einen Lauf bewusst zeitlich begrenzen will.
-        self.run_duration_var = tk.StringVar(value="")
+        self.run_duration_var = tk.StringVar(value=self.settings["run_duration"])
 
         # --- LoRa-Versand (Tab 3) ---
         # An/aus, Sende-Intervall (Minuten, Pause nach erfolgreichem Uplink)
@@ -141,15 +133,15 @@ class MainApp(
         # Zeichnet parallel zum Zähllauf ein Video mit eingebrannter Uhrzeit
         # auf, um die Zählergebnisse hinterher am Bildmaterial zu prüfen.
         # Wird core.py über Umgebungsvariablen mitgegeben (siehe config.py).
-        self.recording_enabled_var = tk.BooleanVar(value=False)
-        self.recording_dir_var = tk.StringVar(value="auto")
-        self.recording_bitrate_var = tk.StringVar(value="2000")
-        self.recording_fps_var = tk.StringVar(value="15")
-        self.recording_segment_var = tk.StringVar(value="600")
+        self.recording_enabled_var = tk.BooleanVar(value=self.settings["recording_enabled"])
+        self.recording_dir_var = tk.StringVar(value=self.settings["recording_dir"])
+        self.recording_bitrate_var = tk.StringVar(value=self.settings["recording_bitrate"])
+        self.recording_fps_var = tk.StringVar(value=self.settings["recording_fps"])
+        self.recording_segment_var = tk.StringVar(value=self.settings["recording_segment"])
 
-        self.lora_enabled_var = tk.BooleanVar(value=False)
-        self.lora_interval_var = tk.StringVar(value="5")
-        self.lora_sensor_id_var = tk.StringVar(value="1")
+        self.lora_enabled_var = tk.BooleanVar(value=self.settings["lora_enabled"])
+        self.lora_interval_var = tk.StringVar(value=self.settings["lora_interval"])
+        self.lora_sensor_id_var = tk.StringVar(value=self.settings["lora_sensor_id"])
 
         # --- MQTT-Versand (Tab 3) ---
         # Alternative/Ergänzung zu LoRa: schickt dieselben Zählwerte per MQTT
@@ -159,12 +151,12 @@ class MainApp(
         # feste IP des Server-Pi; --uebergaenge sendet die volle Übergangs-
         # matrix (von-Feld → nach-Feld je Klasse) statt des 18-Byte-Frames.
         self.mqtt_process = None
-        self.mqtt_enabled_var = tk.BooleanVar(value=False)
-        self.mqtt_broker_var = tk.StringVar(value="192.168.0.50")
-        self.mqtt_port_var = tk.StringVar(value="1883")
-        self.mqtt_interval_var = tk.StringVar(value="5")
-        self.mqtt_sensor_id_var = tk.StringVar(value="1")
-        self.mqtt_transitions_var = tk.BooleanVar(value=True)
+        self.mqtt_enabled_var = tk.BooleanVar(value=self.settings["mqtt_enabled"])
+        self.mqtt_broker_var = tk.StringVar(value=self.settings["mqtt_broker"])
+        self.mqtt_port_var = tk.StringVar(value=self.settings["mqtt_port"])
+        self.mqtt_interval_var = tk.StringVar(value=self.settings["mqtt_interval"])
+        self.mqtt_sensor_id_var = tk.StringVar(value=self.settings["mqtt_sensor_id"])
+        self.mqtt_transitions_var = tk.BooleanVar(value=self.settings["mqtt_transitions"])
 
         # --- Sidebar links (1/5 der Fensterbreite) ---
         self.sidebar = ctk.CTkFrame(root, width=SIDEBAR_WIDTH, corner_radius=0)
@@ -216,6 +208,11 @@ class MainApp(
         self._build_output_tab()
         if app_config.SHOW_AUTO_CONFIG:
             self._build_autoconfig_tab()
+
+        # Erst jetzt existieren alle Variablen (werden in den _build_*_tab()-
+        # Aufrufen oben angelegt) - ab hier speichert jede Änderung sofort in
+        # app_settings.json, siehe _wire_settings_autosave().
+        self._wire_settings_autosave()
 
         self._show_page(PAGE_NAMES[0])
 
@@ -290,7 +287,49 @@ class MainApp(
         new_mode = "light" if is_dark else "dark"
         ctk.set_appearance_mode(new_mode)
         self.appearance_button.configure(text="☾" if is_dark else "☀")
-        _save_appearance_mode(new_mode)
+        self.settings["appearance_mode"] = new_mode
+        settings_store.save_settings(self.settings)
+
+    # -----------------------------------------------------------------
+    # Einstellungen automatisch speichern (Stromausfall-sicher: siehe
+    # tabs/settings_store.py - jede Änderung wird sofort geschrieben,
+    # nicht erst beim Beenden).
+    # -----------------------------------------------------------------
+    def _wire_settings_autosave(self):
+        """Hängt an jede in app_settings.json persistierte tk-Variable einen
+        Schreib-Trace, der den neuen Wert sofort speichert."""
+        self._settings_vars = {
+            "input_mode": self.input_mode_var,
+            "input_file_path": self.file_path_var,
+            "recording_enabled": self.recording_enabled_var,
+            "recording_dir": self.recording_dir_var,
+            "recording_bitrate": self.recording_bitrate_var,
+            "recording_fps": self.recording_fps_var,
+            "recording_segment": self.recording_segment_var,
+            "use_frame": self.use_frame_var,
+            "lora_enabled": self.lora_enabled_var,
+            "lora_interval": self.lora_interval_var,
+            "lora_sensor_id": self.lora_sensor_id_var,
+            "mqtt_enabled": self.mqtt_enabled_var,
+            "mqtt_broker": self.mqtt_broker_var,
+            "mqtt_port": self.mqtt_port_var,
+            "mqtt_interval": self.mqtt_interval_var,
+            "mqtt_sensor_id": self.mqtt_sensor_id_var,
+            "mqtt_transitions": self.mqtt_transitions_var,
+            "run_duration": self.run_duration_var,
+        }
+        for key, var in self._settings_vars.items():
+            var.trace_add("write", lambda *_args, k=key, v=var: self._on_setting_changed(k, v))
+
+    def _on_setting_changed(self, key, var):
+        try:
+            value = var.get()
+        except Exception:
+            # z. B. leeres Zahlenfeld während des Tippens - überspringen statt
+            # mit einem ungültigen Zwischenstand zu speichern.
+            return
+        self.settings[key] = value
+        settings_store.save_settings(self.settings)
 
     def _show_page(self, name):
         for frame in self.page_frames.values():

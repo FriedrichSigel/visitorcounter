@@ -33,7 +33,7 @@ class StartTabMixin:
         # "wird dieser Lauf aufgezeichnet?" vor allen anderen Optionen steht.
         self._build_recording_section(frame)
 
-        self.use_frame_var = tk.BooleanVar(value=True)
+        self.use_frame_var = tk.BooleanVar(value=self.settings["use_frame"])
         ctk.CTkCheckBox(frame, text="Live-Vorschau anzeigen (--use-frame)",
                         variable=self.use_frame_var).pack(anchor="w", padx=10, pady=(0, 4))
         ctk.CTkLabel(

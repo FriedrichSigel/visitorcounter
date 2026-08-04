@@ -25,14 +25,19 @@ class InputTabMixin:
         ctk.CTkLabel(frame, text="Input-Quelle wählen", font=ctk.CTkFont(size=18, weight="bold")).pack(
             anchor="w", pady=(5, 15))
 
-        self.input_mode_var = tk.StringVar(value="usb")
+        # Startwerte kommen aus app_settings.json (siehe tabs/settings_store.py) -
+        # damit steht beim Öffnen wieder derselbe Input wie vor dem letzten
+        # Beenden bzw. einem Stromausfall.
+        self.input_mode_var = tk.StringVar(value=self.settings.get("input_mode", "usb"))
         for text, value in [("USB-Kamera (--input usb)", "usb"),
                              ("Raspberry-Pi-Kamera (--input rpi)", "rpi"),
                              ("Videodatei", "file")]:
             ctk.CTkRadioButton(frame, text=text, variable=self.input_mode_var, value=value,
                                 command=self._on_input_mode_change).pack(anchor="w", padx=10, pady=3)
 
-        self.file_path_var = tk.StringVar(value="(keine Datei gewählt)")
+        saved_file_path = self.settings.get("input_file_path", "")
+        self.file_path_var = tk.StringVar(
+            value=saved_file_path if saved_file_path else "(keine Datei gewählt)")
         self.file_button = ctk.CTkButton(frame, text="Videodatei wählen...", command=self._choose_file)
         self.file_button.pack(anchor="w", padx=10, pady=(15, 5))
         ctk.CTkLabel(frame, textvariable=self.file_path_var, text_color=("gray30", "gray70")).pack(anchor="w", padx=10)

@@ -41,7 +41,9 @@ old_track files/
 # als roi_config.example.json einchecken.
 roi_config.json
 
-# Gemerktes UI-Design (hell/dunkel) — geräte-/nutzerspezifisch, nicht ins Repo.
+# Gemerkte App-Einstellungen (Input, Seite-3-Optionen, Design) — geräte-/
+# nutzerspezifisch, nicht ins Repo. Vorher ui_settings.json (nur Design).
+app_settings.json
 ui_settings.json
 
 # === Betriebssystem / Editor ===

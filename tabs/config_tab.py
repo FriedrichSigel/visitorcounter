@@ -46,6 +46,14 @@ class ConfigTabMixin:
         # Canvas das Fenster nicht breiter zieht.
         self.roi_config_widget = RoiConfigApp(container, frame_width=CONFIG_FRAME_WIDTH)
 
+        # Beim Start automatisch die zuletzt gespeicherte Zählgeometrie in
+        # den Editor laden (still, ohne Warnung, falls es noch keine gibt -
+        # z. B. beim allerersten Start eines frisch aufgesetzten Geräts).
+        # roi_config.json selbst bleibt dabei unverändert; core.py liest sie
+        # ohnehin unabhängig von dieser Anzeige.
+        if self.roi_config_widget.load_config(silent=True):
+            self.config_loaded_var.set(f"Automatisch geladen aus {ROI_CONFIG_PATH}")
+
     def _load_existing_config(self):
         """
         Liest roi_config.json und stellt sie in Tab 2 dar - Modus, Geometrie,
