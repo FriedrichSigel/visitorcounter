@@ -30,6 +30,7 @@ Aufbau dieser Datei:
 """
 
 import argparse
+import os
 import queue
 import threading
 import tkinter as tk
@@ -40,7 +41,7 @@ import ctk_dialogs as messagebox   # CustomTkinter-Dialoge im App-Design
 import config as app_config
 import warmup
 from tabs import settings_store
-from tabs.constants import WINDOW_WIDTH, WINDOW_HEIGHT, SIDEBAR_WIDTH, CONTENT_WIDTH
+from tabs.constants import WINDOW_WIDTH, WINDOW_HEIGHT, SIDEBAR_WIDTH, CONTENT_WIDTH, ROI_CONFIG_PATH
 from tabs.input_tab import InputTabMixin
 from tabs.config_tab import ConfigTabMixin
 from tabs.recording_controls import RecordingControlsMixin
@@ -219,12 +220,31 @@ class MainApp(
         self.root.protocol("WM_DELETE_WINDOW", self._on_close)
         self._poll_output()
 
+        # Noch keine Zählgeometrie gespeichert (z. B. ganz neues Gerät): die
+        # App soll trotzdem einfach starten (Seite 1 "Input" ist ohnehin
+        # PAGE_NAMES[0], also schon zu sehen) - nur auf die fehlende
+        # Konfiguration hinweisen und die Pipeline NICHT automatisch starten,
+        # weil sie sonst mit einer bedeutungslosen Default-Geometrie zählen
+        # würde (siehe config.py _DEFAULT_ROI_CONFIG).
+        self.config_missing = not os.path.isfile(ROI_CONFIG_PATH)
+        if self.config_missing:
+            self.root.after(300, self._warn_missing_config)
+
         # Aufwärmlauf anstossen, sobald die Oberflaeche steht (verzoegert,
         # damit das Fenster zuerst sichtbar ist).
         self.root.after(800, self._maybe_run_warmup)
 
-        if self.autostart:
+        if self.autostart and not self.config_missing:
             self.root.after(1000, self._maybe_autostart_pipeline)
+
+    def _warn_missing_config(self):
+        messagebox.showwarning(
+            "Konfiguration fehlt",
+            "Bitte Besucherzähler konfigurieren.\n\n"
+            "Es wurde noch keine Zählgeometrie gespeichert. Auf Seite 2 "
+            "(Konfiguration) einen Frame laden, Zählmodus und -fläche(n) "
+            "setzen und speichern - danach lässt sich die Pipeline starten.",
+            parent=self.root)
 
     def _maybe_autostart_pipeline(self):
         """
