@@ -42,6 +42,7 @@ Verwendung:
 """
 
 import argparse
+import json
 import os
 import signal
 import subprocess
@@ -66,6 +67,11 @@ DEFAULT_TIMEOUT_SECONDS = 240
 
 # Wie lange das Fenster stehen bleibt, nachdem die ersten Bilder da sind.
 SETTLE_SECONDS = 1.0
+
+# Von app.py/tabs/settings_store.py gepflegte Einstellungsdatei — hier nur
+# gelesen, um den zuletzt gewählten Input zu kennen (siehe current_input()).
+SETTINGS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                             "app_settings.json")
 
 
 def current_boot_id():
@@ -111,6 +117,35 @@ def needs_warmup():
     if not boot_id:
         return False
     return last_warmup_boot_id() != boot_id
+
+
+def current_input():
+    """
+    Liefert den zuletzt in der App gewählten Input (siehe Tab 1,
+    tabs/settings_store.py), damit der Aufwärmlauf denselben Eingang wie der
+    darauffolgende echte Zähllauf verwendet, statt fest USB anzunehmen —
+    genau wie vor der Autostart-Automatisierung, als der erste Lauf nach dem
+    Booten immer manuell mit dem tatsächlich eingestellten Input gestartet
+    wurde.
+
+    Fällt auf "usb" zurück, wenn app_settings.json fehlt/unlesbar ist, der
+    Modus "file" ohne (noch) vorhandene Datei ist, oder der Modus unbekannt
+    ist — ein Aufwärmlauf ohne gültigen Input ist sinnlos, USB ist der
+    plausibelste Standard (auch der Vorgabewert in den App-Settings selbst).
+    """
+    try:
+        with open(SETTINGS_FILE) as f:
+            settings = json.load(f)
+    except (OSError, ValueError):
+        return "usb"
+
+    mode = settings.get("input_mode", "usb")
+    if mode == "file":
+        path = settings.get("input_file_path", "")
+        return path if path and os.path.isfile(path) else "usb"
+    if mode in ("usb", "rpi"):
+        return mode
+    return "usb"
 
 
 def run_warmup(input_value="usb", timeout=DEFAULT_TIMEOUT_SECONDS,
@@ -203,6 +238,41 @@ def run_warmup(input_value="usb", timeout=DEFAULT_TIMEOUT_SECONDS,
     return False
 
 
+def run_warmup_all(explicit_input=None, timeout=DEFAULT_TIMEOUT_SECONDS,
+                   on_message=None, script_dir=None):
+    """
+    Wärmt nacheinander BEIDE Wege auf: die USB-Kamera (Standard-Hardware)
+    UND den aktuell in der App gewählten Input (siehe current_input()),
+    falls der sich von USB unterscheidet. Beide sollen nach dem Booten warm
+    sein, nicht nur der zuerst genutzte — z. B. wenn zwar aktuell ein
+    Testvideo eingestellt ist, aber später doch mit der USB-Kamera
+    gearbeitet wird (oder umgekehrt).
+
+    explicit_input: wenn gesetzt (z. B. --input auf der Kommandozeile),
+    wird NUR dieser eine Input aufgewärmt statt der Kombination — für den
+    Fall, dass jemand bewusst einen bestimmten Eingang testen will.
+
+    Rückgabe: True, wenn ALLE Läufe erfolgreich waren (mind. einer bei
+    explizitem Input).
+    """
+    if explicit_input is not None:
+        inputs = [explicit_input]
+    else:
+        inputs = ["usb"]
+        aktueller = current_input()
+        if aktueller and aktueller not in inputs:
+            inputs.append(aktueller)
+
+    alles_ok = True
+    for i, wert in enumerate(inputs, start=1):
+        def sag(text, wert=wert, i=i):
+            if on_message:
+                on_message(f"[{i}/{len(inputs)}: {wert}] {text}")
+        alles_ok = run_warmup(input_value=wert, timeout=timeout,
+                              on_message=sag, script_dir=script_dir) and alles_ok
+    return alles_ok
+
+
 def _stop_process(process, say):
     """
     Beendet core.py stufenweise: SIGINT, dann SIGTERM, dann SIGKILL.
@@ -240,8 +310,11 @@ def _stop_process(process, say):
 def main():
     parser = argparse.ArgumentParser(
         description="Wärmt die Pipeline einmal pro Systemstart auf.")
-    parser.add_argument("--input", default="usb",
-                        help="Eingang für den Aufwärmlauf (Standard: usb)")
+    parser.add_argument("--input", default=None,
+                        help="Nur diesen einen Eingang aufwärmen. Ohne Angabe "
+                             "werden NACHEINANDER USB UND der zuletzt in der "
+                             "App gewählte Input (app_settings.json) "
+                             "aufgewärmt, falls sie sich unterscheiden.")
     parser.add_argument("--force", action="store_true",
                         help="auch dann laufen, wenn schon aufgewärmt wurde")
     parser.add_argument("--timeout", type=int, default=DEFAULT_TIMEOUT_SECONDS,
@@ -262,7 +335,7 @@ def main():
               "(Mit --force trotzdem ausführen.)")
         return 0
 
-    ok = run_warmup(input_value=args.input, timeout=args.timeout)
+    ok = run_warmup_all(explicit_input=args.input, timeout=args.timeout)
     return 0 if ok else 1
 
 

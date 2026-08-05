@@ -269,7 +269,11 @@ class MainApp(
 
         def worker():
             try:
-                warmup.run_warmup(input_value="usb", on_message=report)
+                # Wärmt USB UND den aktuell in Tab 1 gewählten Input
+                # nacheinander auf (siehe warmup.run_warmup_all) - beide
+                # sollen nach dem Booten schnell starten, nicht nur der
+                # zuerst genutzte.
+                warmup.run_warmup_all(on_message=report)
             except Exception as exc:
                 report(f"fehlgeschlagen: {exc}")
             finally:
