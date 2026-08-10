@@ -96,6 +96,32 @@ Kurzfassung — Details stehen im Kopfkommentar von `recording.py`:
   `openh264enc`, sonst `avenc_mpeg4`. Der Pi 5 hat keinen
   Hardware-H.264-Encoder mehr, das Encoding läuft auf der CPU.
 
+### Leistungs-Kennzahlen (`benchmark.py`, seit 10.08.)
+
+Läuft der Mitschnitt tatsächlich (Tee erfolgreich in die Pipeline
+eingehängt, nicht nur `RECORDING_ENABLED` gesetzt), legt `core.py` am
+Lauf-Ende zusätzlich zum Video einen Benchmark-Bericht ins selbe Verzeichnis:
+`<name>_<zeitstempel>_benchmark.json` (maschinenlesbar) und `...benchmark.txt`
+(kurze Zusammenfassung). Enthalten:
+
+- **Frame-Verarbeitungszeit** (min/max/Durchschnitt in ms) und die daraus
+  berechnete effektive Bildrate über den gesamten Lauf — gemessen als
+  Abstand zwischen zwei Aufrufen von `app_callback()`, deckt also die
+  gesamte Pipeline ab (Hailo-Inferenz + eigener Code), nicht nur eigenen
+  Code.
+- **Leere Puffer** und **mögliche Aussetzer** (Frames, die > 3× länger als
+  der bisherige Durchschnitt brauchten) — eine Heuristik aus Sicht des
+  eigenen Callbacks, **kein vollständiger GStreamer-Drop-Zähler**: ein vor
+  dem Callback verworfener Frame taucht darin nicht auf.
+- **CPU-Auslastung, SoC-Temperatur, Leistungsaufnahme** des Raspberry Pi —
+  im Hintergrund-Thread abgetastet (`/proc/stat` bzw. `vcgencmd`), jede
+  Sekunde. Ohne diese Werkzeuge (z. B. kein Raspberry Pi) steht dort
+  "nicht verfügbar" statt eines falschen Werts.
+- **Hailo-Beschleuniger-Auslastung** — **experimentell**, best-effort über
+  HailoRT's `HAILO_MONITOR`-Umgebungsvariable. **Nicht an echter Hardware
+  verifiziert.** Liefert im Zweifel "nicht verfügbar" statt eines geratenen
+  Werts — vor Verwendung in der Arbeit am realen Gerät gegenprüfen.
+
 ### Einstellungen (`config.py`, alle per Umgebungsvariable)
 
 | Variable | Standard | Bedeutung |

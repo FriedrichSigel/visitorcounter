@@ -112,6 +112,43 @@ auf dem Gerät. Dieselben sechs Klassen sind zusätzlich hart als
 nicht Teil dieses Repos) für die feste Byte-Reihenfolge im 18-Byte-Frame
 verankert (`lora_message.py`, `CANONICAL_CLASSES`).
 
+### Abgleich mit dem Ultralytics-Leitfaden "Steps of a CV Project"
+
+Geprüft gegen `docs.ultralytics.com/de/guides/steps-of-a-cv-project`
+(externe Quelle, im Entwurfskapitel `ba_kapitel_3_4_5.md:191` als
+"Gestaltungsrichtlinien von Ultralytics für Computer-Vision-Projekte" (vgl.
+Jocher et al. 2023) referenziert). Der Leitfaden beschreibt einen
+vollständigen ML-Projektzyklus (Ziel definieren → Daten sammeln/annotieren →
+Splitten/Augmentieren → Training → Evaluation/Feintuning → Test →
+Deployment → Monitoring/Wartung). Abgleich Schritt für Schritt, was davon in
+diesem Repo tatsächlich stattfindet:
+
+| Schritt laut Leitfaden | In diesem Projekt umgesetzt? | Beleg |
+|---|---|---|
+| 1. Projektziel/Aufgabe festlegen, Modell für Aufgabe + Deployment-Umgebung wählen | **ja** — Aufgabe ist Objekterkennung, Modellwahl fiel auf ein **vortrainiertes** YOLOv8m statt Training von Grund auf (Transfer-/Direktnutzung, keine eigene Trainingsentscheidung im Sinne von "eigenes Modell trainiert") | Abschnitt 2 oben: kein `.hef`, kein Trainingscode; Klassen sind die **Standard-COCO-Klassen** (`person, bicycle, car, motorcycle, bus, truck`), kein eigenes Klassenschema |
+| 2. Daten sammeln + annotieren | **nein, entfällt** — es wird kein eigener Trainingsdatensatz gesammelt/annotiert; das Modell nutzt die vortrainierten COCO-Gewichte | keine Annotationsdateien, kein Datensatz-Ordner, kein Annotationswerkzeug im Repo |
+| 3. Datensplit + Augmentierung vor dem Training | **nein, entfällt** (kein Training) | — |
+| 4. Modelltraining (Umgebung, GPU, Trainingsschleife) | **nein** — kein `train.py`, keine Epochen-/Trainings-Konfiguration, kein GPU-Trainingscode irgendwo im Repo | durchsucht: keine Treffer für `train`, `epochs` in `*.py` |
+| 5. Evaluation/Feintuning (Precision/Recall/F1, Hyperparameter-Suche) | **nein, im Sinne klassischer ML-Metriken nicht umgesetzt** — es gibt **keine** Precision-/Recall-/F1-Berechnung im Code. Stattdessen ein **eigener, anwendungsspezifischer Parameter**: `min_confidence`/`COUNTING_MIN_CONFIDENCE`, ein Schwellwert-Filter auf die Erkennungskonfidenz vor dem Zählen | `config.py:126`, angewendet in `core.py` direkt nach `detection.get_confidence()` (siehe `ARCHITEKTUR_IST.md` Abschnitt 4); Herkunft/Zweck dokumentiert in `docs/projekt/ToDo.md:341-344` |
+| 6. Modelltest auf ungesehenen Testdaten (Cross-Validation, Over-/Underfitting) | **nein, entfällt** (kein trainiertes/feingetuntes Modell) — stattdessen ein **eigenes, anderes Prüfkonzept**: manuelle Ground-Truth-Auszählung eines realen Videos zum Abgleich der End-to-End-**Zähl**genauigkeit (nicht der Modell-Erkennungsgüte selbst) | `docs/projekt/ToDo.md:340`: "Ground-Truth-Referenz anlegen ... als Vergleichsmaßstab" — laut demselben Dokument **als offener Punkt (`[ ]`) markiert, nicht abgeschlossen**; Werkzeug dafür vorbereitet: `tests/vergleich_app.py` |
+| 7. Deployment (Modell in Zielformat exportieren: ONNX/TensorRT/CoreML) | **nicht in diesem Repo** — die Hailo-spezifische `.hef`-Kompilierung liegt außerhalb dieses Repos (siehe Abschnitt 2 oben); kein Export-Code (`onnx`, `tensorrt`, `coreml`) im Repo gefunden | durchsucht: keine Treffer in `*.py` |
+| 8. Monitoring/Wartung/Dokumentation nach Deployment (Drift-Erkennung, regelmäßiges Neu-Training, Doku) | **teilweise** — kein automatisches Drift-Monitoring oder Neu-Training-Mechanismus im Code; **Dokumentation** dagegen umfangreich vorhanden (gesamter `docs/`-Baum, siehe `ARCHITEKTUR_IST.md`/`IMPLEMENTIERUNG_IST.md` selbst) | kein Retraining-/Monitoring-Code gefunden; `docs/` als Gegenbeleg für den Dokumentationsteil |
+
+**Einordnung:** Der Ultralytics-Leitfaden beschreibt den Zyklus für ein
+**eigenes, zu trainierendes** CV-Modell. Dieses Projekt **trainiert kein
+eigenes Modell** — es setzt ein vortrainiertes YOLOv8m auf Hailo-8-Hardware
+ein (Schritte 2-4 und 6-7 des Leitfadens entfallen dadurch strukturell,
+nicht aus Nachlässigkeit). Übernommen wurden erkennbar die **Rahmen-
+Prinzipien** (Schritt 1: Aufgaben-/Modellwahl bewusst getroffen und
+begründet; sinngemäß Schritt 5/6: ein Schwellwert-Parameter zur
+Qualitätskontrolle plus ein geplanter, aber noch offener Ground-Truth-
+Abgleich; Schritt 8: Dokumentation). Das entspricht eher einer **angepassten
+Anwendung der Leitgedanken auf ein Edge-Deployment-Szenario mit
+vortrainiertem Modell** als einer wörtlichen Schritt-für-Schritt-Befolgung
+des vollen Trainingszyklus — für die Arbeit ist diese Unterscheidung
+(Trainings-Leitfaden vs. Deployment-mit-Fremdmodell-Realität) vermutlich
+selbst ein dokumentierenswerter Punkt.
+
 ---
 
 ## 3. Pipeline- und Datenfluss-Referenz (für ein Diagramm aufbereitet)
@@ -141,6 +178,52 @@ einzige Ausnahme innerhalb der Fremdcode-Grenze: `core.py` konfiguriert das
 Fremd-Pipeline-Element `hailo_tracker` per `set_property("class-id", -1)`
 nach dessen Erzeugung (`core.py:354-356`) — eine Parametrisierung des
 Fremdelements, kein eigener Pipeline-Code.
+
+### Abgleich mit dem offiziellen Hailo-Entwicklerguide
+
+Geprüft gegen `hailo-ai/hailo-apps`, `doc/developer_guide/app_development.md`
+(externes Dokument, nicht Teil dieses Repos — Abgleich per Einzelbeleg im
+eigenen Code, keine wörtliche Zitatprüfung des Guide-Originaltexts).
+
+| Vorgabe des Guides | Umsetzung | Beleg |
+|---|---|---|
+| "Development Path 1" (Callback-basiert) statt eigener `GStreamerApp`-Unterklasse mit `get_pipeline_string()` | `core.py` nutzt die vorgefertigte Pipeline-Klasse `GStreamerDetectionApp`, keine eigene Pipeline-Topologie | `core.py:22` |
+| Eigene Datenklasse von `app_callback_class` erben, um Zustand über Frames zu halten | `TrackingState` erbt exakt davon | `tracking.py:17,31` |
+| Callback muss nicht-blockierend sein, lange Aufgaben auslagern | LoRa-/MQTT-Versand laufen als **eigene Subprozesse** (`subprocess.Popen`), nicht im Callback | `tabs/lora_controls.py`, `tabs/mqtt_controls.py` |
+| Metadaten über `hailo.get_roi_from_buffer()` lesen | identisch umgesetzt | `core.py:228` |
+| Callback gibt `Gst.PadProbeReturn.OK` zurück | identisch | `core.py:317` |
+| `gi.require_version('Gst', '1.0')` vor dem GStreamer-Import | identisch | `core.py:14-16` |
+| Pipeline-Architektur-Patterns (Single Network/Wrapped/Cascaded/Parallel/Tiled) als Entscheidungsgrundlage | explizit referenziert und mit Begründung übernommen ("Single Network", erweitert um `hailotracker`) | `docs/abschlussarbeit/Entwurf_Systemarchitektur_Sensor.md`, Abschnitt B, mit Quellenangabe auf denselben Guide |
+
+**Über die reine Callback-Empfehlung hinausgehend (bewusst, mit Quelle
+belegt, keine Abweichung vom Grundprinzip):** Der Guide favorisiert
+Callback-Logik gegenüber eigenen GStreamer-Elementen für die Anwendungslogik.
+`core.py` greift an zwei Stellen zusätzlich **nach** der Pipeline-Erzeugung
+direkt auf das Pipeline-Objekt zu (per `pipeline.get_by_name(...)`, nicht
+über `get_pipeline_string()`):
+- Umkonfiguration von `hailo_tracker` (`class-id=-1`, `core.py:354-356`,
+  mit Quellenangabe auf einen Hailo-Community-Forumsbeitrag im Kommentar).
+- Umbiegen des `hailo_display`-Sinks auf `fakesink` + optionaler
+  Mitschnitt-`tee` (`core.py:377-386`, ebenfalls mit
+  Community-Forums-Quellenangabe im Kommentar).
+
+Beide Eingriffe sind Parametrisierungen/Umverdrahtungen bestehender
+Fremdelemente nach deren Erzeugung, kein eigener Pipeline-String — insofern
+kein Widerspruch zum "Path 1"-Prinzip, aber auch kein rein deklaratives
+Callback-only-Vorgehen.
+
+**Ein nicht abschließend geklärter Punkt:** Eine automatisierte
+Zusammenfassung des externen Guide-Textes (nicht wörtliches Zitat) enthielt
+den Hinweis, die Frame-Zählung laufe automatisch im Framework und solle
+nicht manuell inkrementiert werden. `core.py:196` ruft jedoch explizit
+`user_data.increment()` auf `TrackingState` auf (geerbt von
+`app_callback_class`, `tracking.py:31`). Dieses Muster entspricht dem in den
+offiziellen Hailo-Beispielskripten (z. B. `detection.py` in
+`hailo-rpi5-examples`) durchgängig verwendeten Boilerplate — die oben
+genannte Zusammenfassung ist daher wahrscheinlich ungenau, wurde aber
+**nicht am Original-Markdown des Guides wortwörtlich gegengeprüft**.
+**NICHT VERIFIZIERT (nur durch erneutes Lesen des Original-Guide-Texts
+klärbar).**
 
 ---
 
@@ -488,3 +571,9 @@ Vor Übernahme in die Arbeit an realem Gerät bzw. im Server-Repo zu prüfen:
    Desktop-Autostart-Eintrag** auf dem/den Produktivgerät(en) tatsächlich in
    der dokumentierten Form existiert — die `.desktop`-Datei liegt nicht im
    Repo (siehe `ARCHITEKTUR_IST.md` Abschnitt 8).
+9. **Genaue Aussage des Hailo-Entwicklerguides zur Frame-Zählung** (Abschnitt
+   3, "Abgleich mit dem offiziellen Hailo-Entwicklerguide") — am
+   Original-Markdown (`hailo-ai/hailo-apps`,
+   `doc/developer_guide/app_development.md`) wortwörtlich gegenprüfen, ob
+   `user_data.increment()` (`core.py:196`) tatsächlich dem empfohlenen Muster
+   entspricht oder einer veralteten Praxis folgt.

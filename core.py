@@ -36,6 +36,7 @@ from visualization import (
 from logging_utils import build_log_entry
 from cleanup_utils import archive_previous_run
 from recording import build_recording_bin, resolve_target_dir, estimate_hours
+from benchmark import BenchmarkSession
 
 
 # -----------------------------------------------------------------------------------------------
@@ -62,26 +63,31 @@ class MyDetectionApp(GStreamerDetectionApp):
 def _build_recording_sink():
     """
     Bereitet den Aufnahme-Bin vor: Zielordner prüfen, Reichweite abschätzen,
-    Bin bauen. Gibt None zurück, wenn die Aufnahme nicht möglich ist — der
-    Zähllauf startet dann trotzdem, nur eben ohne Video. Ein fehlender USB-Stick
-    darf keinen Messlauf verhindern.
+    Bin bauen. Gibt (None, None) zurück, wenn die Aufnahme nicht möglich ist —
+    der Zähllauf startet dann trotzdem, nur eben ohne Video. Ein fehlender
+    USB-Stick darf keinen Messlauf verhindern.
+
+    Rückgabe: (recording_bin, target_dir) — target_dir wird zusätzlich
+    gebraucht, um den Benchmark-Bericht (siehe benchmark.py) am Lauf-Ende
+    neben das Video zu legen.
     """
     target_dir, note = resolve_target_dir(RECORDING_DIR)
     print(note)
     if target_dir is None:
-        return None
+        return None, None
 
     hours = estimate_hours(target_dir, RECORDING_BITRATE_KBPS)
     if hours is not None:
         print(f"  Reichweite bei dieser Bitrate: ca. {hours:.1f} Stunden")
 
-    return build_recording_bin(
+    bin_ = build_recording_bin(
         target_dir,
         bitrate_kbps=RECORDING_BITRATE_KBPS,
         segment_seconds=RECORDING_SEGMENT_SECONDS,
         fps=RECORDING_FPS,
         container=RECORDING_CONTAINER,
     )
+    return bin_, target_dir
 
 
 def _attach_recording_tee(pipeline, hailo_display, recording_bin):
@@ -190,8 +196,17 @@ def _finish_recording(pipeline):
 # -----------------------------------------------------------------------------------------------
 def app_callback(pad, info, user_data):
     buffer = info.get_buffer()
+    # Nur bei aktivem Benchmark-Mitschnitt gesetzt (siehe __main__ unten,
+    # user_data.benchmark) — sonst None, dann messen die folgenden Zeilen
+    # nichts (kein Overhead im Normalbetrieb).
+    benchmark = getattr(user_data, "benchmark", None)
     if buffer is None:
+        if benchmark is not None:
+            benchmark.timing.mark_empty_buffer()
         return Gst.PadProbeReturn.OK   # Ungültigen Buffer überspringen
+
+    if benchmark is not None:
+        benchmark.timing.mark_frame()
 
     user_data.increment()
     current_frame = user_data.get_count()
@@ -374,6 +389,13 @@ if __name__ == "__main__":
     # Zählpipeline selbst bleibt dadurch unverändert — sie bekommt weder ein
     # zusätzliches Element in ihren Verarbeitungspfad noch eine zweite
     # Kameraöffnung, die ohnehin nicht möglich wäre.
+    # Benchmark-Bericht (siehe benchmark.py) — nur angelegt, wenn der
+    # Mitschnitt unten tatsächlich erfolgreich eingehängt wird: kein
+    # Benchmark ohne zugehöriges Video. recording_dir wird gebraucht, um den
+    # Bericht am Lauf-Ende neben das Video zu legen.
+    benchmark_session = None
+    recording_dir = None
+
     hailo_display = app.pipeline.get_by_name("hailo_display")
     if hailo_display is not None:
         fakesink = Gst.ElementFactory.make("fakesink", "hailo_display_fakesink")
@@ -381,9 +403,14 @@ if __name__ == "__main__":
         hailo_display.set_property("video-sink", fakesink)
 
         if RECORDING_ENABLED:
-            recording_bin = _build_recording_sink()
+            recording_bin, recording_dir = _build_recording_sink()
             if recording_bin is not None:
-                _attach_recording_tee(app.pipeline, hailo_display, recording_bin)
+                if _attach_recording_tee(app.pipeline, hailo_display, recording_bin):
+                    benchmark_session = BenchmarkSession()
+                    user_data.benchmark = benchmark_session
+                    benchmark_session.start()
+                else:
+                    recording_dir = None  # Bin nicht eingehaengt -> kein Bericht ohne Video
     else:
         print("WARNUNG: Display-Element 'hailo_display' nicht gefunden — "
               "es öffnen sich vermutlich weiterhin zwei Fenster.")
@@ -446,3 +473,14 @@ if __name__ == "__main__":
         img = draw_movement_image(summary_width, summary_height, user_data.flushed_objects)
         path = save_flush_image(img)
         print(f"Bewegungsbild (Flush) gespeichert als {path}")
+
+        # Benchmark-Bericht (siehe benchmark.py) — nur vorhanden, wenn oben
+        # tatsächlich ein Mitschnitt lief. Stoppt zuerst den Hintergrund-
+        # Sampler (CPU/Temperatur/Leistung), schreibt danach den Bericht
+        # neben das Video.
+        if benchmark_session is not None:
+            benchmark_session.stop()
+            if recording_dir is not None:
+                report_path = benchmark_session.write_report(recording_dir)
+                if report_path:
+                    print(f"Benchmark-Bericht gespeichert als {report_path}")
