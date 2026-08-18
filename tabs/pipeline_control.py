@@ -63,10 +63,21 @@ class PipelineControlMixin:
             if mqtt_settings is None:
                 return
 
-        # Mitschnitt ebenfalls nur bei normalen Zählläufen (Tab 3). Bei der
-        # Auto-Config-Datensammlung wäre er nutzlos und würde nur CPU kosten.
+        # Debug-Funktionen (Mitschnitt, Live-Vorschau, Zeitlimit, Debug-
+        # Dateien) sind nur aktiv, wenn der Debug-Hauptschalter (Tab 3) an
+        # ist - unabhängig vom Zustand der einzelnen Checkboxen darunter.
+        # Erzwungen HIER statt nur über die Sichtbarkeit der Widgets, damit
+        # eine im Labor gesetzte, aber ausgeblendete Checkbox nicht
+        # versehentlich in einen Feldeinsatz mitgenommen wird. Nicht bei der
+        # Auto-Config-Datensammlung (Tab 5) relevant, die hat ihre eigene,
+        # unabhängige Sammeldauer/-logik.
+        debug_active = not collection and self.debug_enabled_var.get()
+
+        # Mitschnitt ebenfalls nur bei normalen Zählläufen (Tab 3) UND
+        # aktivem Debug-Schalter. Bei der Auto-Config-Datensammlung wäre er
+        # nutzlos und würde nur CPU kosten.
         recording_settings = None
-        if not collection and self.recording_enabled_var.get():
+        if debug_active and self.recording_enabled_var.get():
             recording_settings = self._validate_recording_settings()
             if recording_settings is None:
                 return
@@ -86,14 +97,21 @@ class PipelineControlMixin:
                 f"⚠ Datensammlung AKTIV (Sammeldauer: {duration or 'unbegrenzt'}s). "
                 f"Danach in Tab 2 auswerten (Clustering / Randraster).")
         else:
-            # Normaler Zähllauf: KEIN Zeitlimit, außer der Nutzer trägt in Tab 3
-            # ausdrücklich eines ein. Keine Datensammlung.
-            if self.use_frame_var.get():
+            # Normaler Zähllauf: KEIN Zeitlimit, außer der Nutzer trägt bei
+            # aktivem Debug-Schalter in Tab 3 ausdrücklich eines ein. Keine
+            # Datensammlung.
+            if debug_active and self.use_frame_var.get():
                 cmd.append("--use-frame")
-            run_duration = self.run_duration_var.get().strip()
+            run_duration = self.run_duration_var.get().strip() if debug_active else ""
             if run_duration:
                 env["RUN_DURATION_SECONDS"] = run_duration
             self.collection_hint_var.set("")
+
+            # Debug-Dateien (ergebniss.csv, Bewegungsbilder) — zaehlung.csv
+            # ist davon NICHT betroffen (siehe config.DEBUG_FILES_ENABLED),
+            # die wird immer geschrieben.
+            env["DEBUG_FILES_ENABLED"] = (
+                "true" if (debug_active and self.debug_files_var.get()) else "false")
 
             if recording_settings is not None:
                 env["RECORDING_ENABLED"] = "true"

@@ -325,6 +325,9 @@ class MainApp(
         self._settings_vars = {
             "input_mode": self.input_mode_var,
             "input_file_path": self.file_path_var,
+            "debug_enabled": self.debug_enabled_var,
+            "debug_files_enabled": self.debug_files_var,
+            "verbose_console_enabled": self.verbose_console_var,
             "recording_enabled": self.recording_enabled_var,
             "recording_dir": self.recording_dir_var,
             "recording_bitrate": self.recording_bitrate_var,

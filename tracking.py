@@ -20,7 +20,7 @@ from config import (
     FRAMES_UNTIL_GONE, TRACKED_LABELS,
     COUNTING_POINTS, COUNTING_REGIONS, COUNTING_ENABLED, COUNTING_MODE,
     REVERSE_COUNTING_DIRECTION, COUNTING_SNAP_TO_NEAREST,
-    AUTO_CONFIG_COLLECTION_ENABLED, MAX_FLUSHED_OBJECTS,
+    AUTO_CONFIG_COLLECTION_ENABLED, MAX_FLUSHED_OBJECTS, DEBUG_FILES_ENABLED,
 )
 from counting import build_counter, should_count_track
 from logging_utils import log_track_event_csv, log_count_event
@@ -207,7 +207,11 @@ class TrackingState(app_callback_class):
                     data = class_tracks.pop(tid)
                     self._attach_avg_confidence(data)
                     self.flushed_objects.append({"id": tid, **data})
-                    log_track_event_csv("FLUSH", tid, data)
+                    # ergebniss.csv ist eine Debug-Datei (siehe config.py) —
+                    # zaehlung.csv (_check_counting() unten) ist es NICHT und
+                    # wird deshalb unabhängig davon immer geschrieben.
+                    if DEBUG_FILES_ENABLED:
+                        log_track_event_csv("FLUSH", tid, data)
                     if AUTO_CONFIG_COLLECTION_ENABLED:
                         log_track_for_collection(data)
                     self._check_counting(data)
@@ -247,9 +251,12 @@ class TrackingState(app_callback_class):
         ]
 
         # Alle verbleibenden (nie geflushten) Tracks nach ergebniss.csv schreiben
+        # (Debug-Datei — zaehlung.csv über _check_counting() ist davon nicht
+        # betroffen, siehe Kommentar in flush_stale()).
         for item in remaining_list:
             self._attach_avg_confidence(item)
-            log_track_event_csv("FINALIZE", item["id"], item)
+            if DEBUG_FILES_ENABLED:
+                log_track_event_csv("FINALIZE", item["id"], item)
             if AUTO_CONFIG_COLLECTION_ENABLED:
                 log_track_for_collection(item)
             self._check_counting(item)
@@ -260,7 +267,9 @@ class TrackingState(app_callback_class):
             print(f"({item['display_id']}; {item['start']}; {item['end']})")
 
         # Bewegungsbild der FINALIZE-Tracks (beim Programmende noch aktiv gewesen)
-        if self.frame_width and self.frame_height:
+        if not DEBUG_FILES_ENABLED:
+            print("Debug-Dateien deaktiviert — kein Finalize-Bewegungsbild geschrieben.")
+        elif self.frame_width and self.frame_height:
             img = draw_movement_image(self.frame_width, self.frame_height, remaining_list)
             path = save_finalize_image(img)
             print(f"Bewegungsbild (Finalize) gespeichert als {path}")

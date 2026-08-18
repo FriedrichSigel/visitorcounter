@@ -333,6 +333,18 @@ passt. Recherche-Stand:
       ob im Bericht `"hailo_beschleuniger": {"verfuegbar": true, ...}` steht
       oder eine Begründung für "nicht verfügbar". Details:
       `entwicklung/Mitschnitt_Benchmark_und_Datenschutz.md`.
+- [x] **Debug-Hauptschalter in Tab 3 (10.08.).** Mitschnitt, Live-Vorschau,
+      optionales Zeitlimit, Debug-Dateien (`ergebniss.csv`, Bewegungsbilder,
+      Benchmark-Bericht) und die detaillierte Konsolenausgabe
+      (Frame-/Detection-Zeilen) sind jetzt hinter "Debug-Funktionen
+      aktivieren" versteckt, Standard AUS (sauberer Feldbetrieb). LoRa/MQTT
+      bleiben davon unberührt, immer sichtbar. `zaehlung.csv` wird bewusst
+      **immer** geschrieben (LoRa/MQTT und Tab 4 lesen daraus) —
+      ausdrücklich NICHT Teil des Debug-Schalters. Erzwungen sowohl über die
+      UI-Sichtbarkeit als auch nochmal beim tatsächlichen Pipeline-Start
+      (`tabs/pipeline_control.py`), damit eine im Labor aktivierte, aber
+      ausgeblendete Option nicht versehentlich in den Feldeinsatz mitgenommen
+      wird.
 
 ## 🔧 In Arbeit, noch nicht zuverlässig
 

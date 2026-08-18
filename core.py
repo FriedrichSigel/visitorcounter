@@ -26,7 +26,7 @@ from config import (
     SNAPSHOT_ONLY, CAMERA_RAW_PATH, LIVE_PREVIEW_HORIZONTAL_FLIP,
     RECORDING_ENABLED, RECORDING_DIR, RECORDING_BITRATE_KBPS,
     RECORDING_SEGMENT_SECONDS, RECORDING_FPS, RECORDING_CONTAINER,
-    COUNTING_MIN_CONFIDENCE,
+    COUNTING_MIN_CONFIDENCE, DEBUG_FILES_ENABLED,
 )
 from tracking import TrackingState
 from visualization import (
@@ -470,9 +470,12 @@ if __name__ == "__main__":
         summary_width = user_data.frame_width or SUMMARY_CANVAS_WIDTH
         summary_height = user_data.frame_height or SUMMARY_CANVAS_HEIGHT
 
-        img = draw_movement_image(summary_width, summary_height, user_data.flushed_objects)
-        path = save_flush_image(img)
-        print(f"Bewegungsbild (Flush) gespeichert als {path}")
+        if DEBUG_FILES_ENABLED:
+            img = draw_movement_image(summary_width, summary_height, user_data.flushed_objects)
+            path = save_flush_image(img)
+            print(f"Bewegungsbild (Flush) gespeichert als {path}")
+        else:
+            print("Debug-Dateien deaktiviert — kein Flush-Bewegungsbild geschrieben.")
 
         # Benchmark-Bericht (siehe benchmark.py) — nur vorhanden, wenn oben
         # tatsächlich ein Mitschnitt lief. Stoppt zuerst den Hintergrund-

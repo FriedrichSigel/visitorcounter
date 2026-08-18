@@ -48,7 +48,7 @@ class OutputTabMixin:
                     self.mqtt_process = None
                     self.log_text.insert("end", "[MQTT] Sender beendet.\n")
                     self.log_text.see("end")
-                else:
+                elif self._should_show_console_line(line):
                     self.log_text.insert("end", line)
                     self.log_text.see("end")
         except queue.Empty:
@@ -67,6 +67,20 @@ class OutputTabMixin:
 
         self._refresh_counts()
         self.root.after(500, self._poll_output)
+
+    def _should_show_console_line(self, line):
+        """
+        Blendet die "Frame count:"/"Detection:"-Zeilen aus core.py aus,
+        solange nicht Debug UND "Frame-/Detection-Zeilen anzeigen" (Tab 3)
+        beides aktiv sind — reduziert die Konsole im Normalbetrieb auf das
+        Wesentliche (Status, Warnungen, [LoRa]/[MQTT]-Zeilen), ohne core.py
+        selbst anzufassen oder etwas davon wegzulassen, was tatsächlich
+        gebraucht wird.
+        """
+        if self.debug_enabled_var.get() and self.verbose_console_var.get():
+            return True
+        stripped = line.lstrip()
+        return not (stripped.startswith("Frame count:") or stripped.startswith("Detection:"))
 
     def _refresh_counts(self):
         if not os.path.isfile(ZAEHLUNG_CSV):

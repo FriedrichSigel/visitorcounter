@@ -207,6 +207,20 @@ RECORDING_FPS = int(os.environ.get("RECORDING_FPS", "15"))
 # komplett unlesbar, obwohl die Bilddaten auf der Platte liegen.
 RECORDING_CONTAINER = os.environ.get("RECORDING_CONTAINER", "mkv")
 
+# Debug-Dateien: ergebniss.csv (Track-Zwischenspeicher) und die
+# Bewegungsbilder (Flush/Finalize). Standard AN, damit core.py beim direkten
+# Kommandozeilenaufruf ohne app.py (z. B. manuelle Tests) unverändert wie
+# bisher alles schreibt. app.py setzt dies über die Umgebungsvariable
+# ausdrücklich auf "false", wenn in Tab 3 "Debug-Funktionen" ausgeschaltet
+# ist (Normalbetrieb im Feld).
+#
+# WICHTIG: zaehlung.csv ist davon bewusst NICHT betroffen — die liest
+# LoRa/MQTT für den Versand und Tab 4 für die Zählerstands-Anzeige, die wird
+# unabhängig von diesem Schalter immer geschrieben (siehe tracking.py,
+# _check_counting()/log_count_event(), nicht in diesem Schalter enthalten).
+_env_debug_files = os.environ.get("DEBUG_FILES_ENABLED")
+DEBUG_FILES_ENABLED = (_env_debug_files.lower() == "true") if _env_debug_files is not None else True
+
 
 # Ob die Zähllogik aktiv ist. False = nur Tracking wie bisher, keine Zählung.
 COUNTING_ENABLED = True

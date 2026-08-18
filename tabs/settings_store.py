@@ -24,6 +24,13 @@ SETTINGS_PATH = "app_settings.json"
 DEFAULTS = {
     "input_mode": "usb",
     "input_file_path": "",
+    # Debug-Hauptschalter (Tab 3): steuert, ob Mitschnitt/Live-Vorschau/
+    # Zeitlimit/Debug-Dateien/detaillierte Konsole überhaupt zugänglich sind.
+    # Standard AUS = sauberer Feldbetrieb ohne versehentlich aktive
+    # Labor-Optionen.
+    "debug_enabled": False,
+    "debug_files_enabled": False,
+    "verbose_console_enabled": False,
     "recording_enabled": False,
     "recording_dir": "auto",
     "recording_bitrate": "2000",
