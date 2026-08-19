@@ -246,9 +246,17 @@ class RoiConfigApp:
     per grid() platziert werden.
     """
 
-    def __init__(self, master, frame_width=None):
+    def __init__(self, master, frame_width=None, classes=None):
         self.master = master
         self.root = master
+
+        # Klassenliste: normalerweise die feste Standardliste (ALL_CLASSES,
+        # COCO-Teilmenge). app.py kann stattdessen eine eigene Liste
+        # übergeben, wenn auf Seite 1 eine Klassen-JSON-Datei zum gewählten
+        # .hef-Modell angegeben wurde (siehe tabs/input_tab.py,
+        # tabs/config_tab.py) - .hef-Dateien selbst enthalten keine
+        # standardisiert auslesbare Klassenliste.
+        self.classes = classes if classes else ALL_CLASSES
 
         # Anzeigebreite des Frames. Standard DISPLAY_WIDTH (Standalone-Betrieb);
         # app.py übergibt beim Einbetten die feste 3/5-Breite, damit der Canvas
@@ -387,7 +395,7 @@ class RoiConfigApp:
         row += 1
 
         self.class_vars = {}
-        for cls in ALL_CLASSES:
+        for cls in self.classes:
             var = tk.BooleanVar(value=True)
             ctk.CTkCheckBox(side, text=cls, variable=var).grid(row=row, column=0, sticky="w", padx=20, pady=2)
             self.class_vars[cls] = var

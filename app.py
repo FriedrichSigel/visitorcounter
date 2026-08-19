@@ -326,6 +326,7 @@ class MainApp(
             "input_mode": self.input_mode_var,
             "input_file_path": self.file_path_var,
             "model_hef_path": self.model_hef_path_var,
+            "model_labels_path": self.model_labels_path_var,
             "debug_enabled": self.debug_enabled_var,
             "debug_files_enabled": self.debug_files_var,
             "verbose_console_enabled": self.verbose_console_var,

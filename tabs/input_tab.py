@@ -87,6 +87,34 @@ class InputTabMixin:
                      text_color=("gray30", "gray70"), wraplength=560, justify="left").pack(
             anchor="w", padx=12, pady=(0, 10))
 
+        # Klassenliste des Modells: .hef-Dateien enthalten selbst keine
+        # standardisiert auslesbare Klassenliste (siehe Begründung in der
+        # ToDo-Datei), daher optional separat als JSON-Datei angebbar (Liste
+        # von Klassennamen, z. B. ["person", "dog"]). Ohne Angabe gilt
+        # weiterhin die feste Standardliste (roi_config_app.ALL_CLASSES).
+        ctk.CTkLabel(
+            model_frame,
+            text="Optional dazu: JSON-Datei mit der Klassenliste des Modells "
+                 "(Liste von Namen, z. B. [\"person\", \"dog\"]). Ohne Angabe "
+                 "gilt die Standardliste: person, bicycle, car, motorcycle, "
+                 "bus, truck.",
+            text_color=("gray30", "gray70"), wraplength=560, justify="left",
+        ).pack(anchor="w", padx=12, pady=(0, 8))
+
+        saved_labels_path = self.settings.get("model_labels_path", "")
+        self.model_labels_path_var = tk.StringVar(
+            value=saved_labels_path if saved_labels_path else "(Standardklassen)")
+
+        labels_row = ctk.CTkFrame(model_frame, fg_color="transparent")
+        labels_row.pack(anchor="w", fill="x", padx=12, pady=(0, 10))
+        ctk.CTkButton(labels_row, text="Klassen-JSON wählen...", width=150,
+                      command=self._choose_labels).pack(side="left")
+        ctk.CTkButton(labels_row, text="Zurücksetzen", width=110, fg_color="gray30",
+                      command=self._reset_labels).pack(side="left", padx=(8, 0))
+        ctk.CTkLabel(model_frame, textvariable=self.model_labels_path_var,
+                     text_color=("gray30", "gray70"), wraplength=560, justify="left").pack(
+            anchor="w", padx=12, pady=(0, 10))
+
     def _choose_model(self):
         path = filedialog.askopenfilename(
             title="HEF-Modelldatei wählen",
@@ -96,6 +124,16 @@ class InputTabMixin:
 
     def _reset_model(self):
         self.model_hef_path_var.set("(Standardmodell)")
+
+    def _choose_labels(self):
+        path = filedialog.askopenfilename(
+            title="Klassen-JSON-Datei wählen",
+            filetypes=[("JSON", "*.json"), ("Alle Dateien", "*.*")])
+        if path:
+            self.model_labels_path_var.set(path)
+
+    def _reset_labels(self):
+        self.model_labels_path_var.set("(Standardklassen)")
 
     def _on_input_mode_change(self):
         mode = self.input_mode_var.get()

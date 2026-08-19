@@ -28,6 +28,11 @@ DEFAULTS = {
     # hailo_apps selbst auswählt (--hef-path wird dann gar nicht erst
     # übergeben, siehe tabs/pipeline_control.py).
     "model_hef_path": "",
+    # Optionale JSON-Datei mit den Klassennamen des gewählten Modells (Tab 1)
+    # - .hef-Dateien enthalten selbst keine standardisiert auslesbare
+    # Klassenliste, daher separat. Leer = Standardklassen (COCO-Teilmenge,
+    # siehe roi_config_app.ALL_CLASSES).
+    "model_labels_path": "",
     # Debug-Hauptschalter (Tab 3): steuert, ob Mitschnitt/Live-Vorschau/
     # Zeitlimit/Debug-Dateien/detaillierte Konsole überhaupt zugänglich sind.
     # Standard AUS = sauberer Feldbetrieb ohne versehentlich aktive

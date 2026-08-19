@@ -3,6 +3,7 @@ tabs/config_tab.py — Seite 2: Zählgeometrie konfigurieren (bettet
 RoiConfigApp komplett ein). Siehe tabs/__init__.py für die Mixin-Begründung.
 """
 
+import json
 import tkinter as tk
 
 import customtkinter as ctk
@@ -44,7 +45,9 @@ class ConfigTabMixin:
         container.pack(fill="both", expand=True)
         # Frame-Anzeigebreite fest an die 3/5-Layoutspalte binden, damit der
         # Canvas das Fenster nicht breiter zieht.
-        self.roi_config_widget = RoiConfigApp(container, frame_width=CONFIG_FRAME_WIDTH)
+        self.roi_config_widget = RoiConfigApp(
+            container, frame_width=CONFIG_FRAME_WIDTH,
+            classes=self._load_model_classes())
 
         # Beim Start automatisch die zuletzt gespeicherte Zählgeometrie in
         # den Editor laden (still, ohne Warnung, falls es noch keine gibt -
@@ -53,6 +56,24 @@ class ConfigTabMixin:
         # ohnehin unabhängig von dieser Anzeige.
         if self.roi_config_widget.load_config(silent=True):
             self.config_loaded_var.set(f"Automatisch geladen aus {ROI_CONFIG_PATH}")
+
+    def _load_model_classes(self):
+        """
+        Liest die auf Seite 1 optional angegebene Klassen-JSON-Datei zum
+        gewählten .hef-Modell (Liste von Namen). Fehlt die Angabe oder ist
+        die Datei ungültig, gilt None - RoiConfigApp fällt dann auf die feste
+        Standardliste zurück (roi_config_app.ALL_CLASSES).
+        """
+        path = self.settings.get("model_labels_path", "")
+        if not path:
+            return None
+        try:
+            with open(path, encoding="utf-8") as f:
+                data = json.load(f)
+            classes = [str(c) for c in data if str(c).strip()]
+            return classes or None
+        except (OSError, ValueError, TypeError):
+            return None
 
     def _load_existing_config(self):
         """

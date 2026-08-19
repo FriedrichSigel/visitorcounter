@@ -356,6 +356,16 @@ passt. Recherche-Stand:
       Änderung, nur `tabs/pipeline_control.py` hängt die Option beim Start an.
       Gewähltes Modell muss zur erkannten Hailo-Architektur passen (z. B.
       hailo8) — das prüft die App nicht, das macht `hailo_apps` beim Start.
+- [x] **Klassenliste für eigenes Modell optional per JSON (19.08.).** `.hef`-
+      Dateien enthalten selbst keine standardisiert auslesbare Klassenliste
+      (kein einheitliches Metadatenfeld über alle Modelle hinweg) — deshalb
+      kein automatisches Auslesen aus der `.hef`, sondern in Tab 1 zusätzlich
+      zur `.hef`-Auswahl eine optionale JSON-Datei angebbar (einfache Liste
+      von Namen, z. B. `["person", "dog"]`). `RoiConfigApp` (Tab 2, "Klassen
+      zählen") nimmt diese Liste dann statt der festen Standardliste. Ohne
+      Angabe bzw. bei ungültiger Datei bleibt die Standardliste **weiterhin**
+      `person, bicycle, car, motorcycle, bus, truck`
+      (`roi_config_app.ALL_CLASSES`).
 
 ## 🔧 In Arbeit, noch nicht zuverlässig
 
