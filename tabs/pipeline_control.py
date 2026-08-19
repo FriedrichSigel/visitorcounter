@@ -85,6 +85,18 @@ class PipelineControlMixin:
         cmd = [sys.executable, "core.py", "--input", self.input_value]
         env = os.environ.copy()
 
+        # Erkennungsmodell (Tab 1): --hef-path ist ein von hailo_apps selbst
+        # definiertes CLI-Argument (core.py braucht dafür keine eigene
+        # Argumentverarbeitung, siehe tabs/input_tab.py). Nur übergeben, wenn
+        # tatsächlich eine Datei gewählt wurde - ohne das Argument wählt
+        # hailo_apps automatisch sein Standardmodell zur erkannten
+        # Hailo-Architektur, das gilt auch für die Auto-Config-Datensammlung
+        # (Tab 5), deshalb außerhalb des if/else unten.
+        model_path = getattr(self, "model_hef_path_var", None)
+        model_path = model_path.get().strip() if model_path is not None else ""
+        if model_path and os.path.isfile(model_path):
+            cmd += ["--hef-path", model_path]
+
         if collection:
             # Auto-Config-Datensammlung: aktiviert das Punkte-Sammeln und nutzt
             # die Sammeldauer als Zeitlimit. Live-Vorschau bewusst AUS (stabiler

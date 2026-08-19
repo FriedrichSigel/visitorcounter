@@ -24,6 +24,10 @@ SETTINGS_PATH = "app_settings.json"
 DEFAULTS = {
     "input_mode": "usb",
     "input_file_path": "",
+    # Pfad zu einer .hef-Modelldatei (Tab 1). Leer = Standardmodell, das
+    # hailo_apps selbst auswählt (--hef-path wird dann gar nicht erst
+    # übergeben, siehe tabs/pipeline_control.py).
+    "model_hef_path": "",
     # Debug-Hauptschalter (Tab 3): steuert, ob Mitschnitt/Live-Vorschau/
     # Zeitlimit/Debug-Dateien/detaillierte Konsole überhaupt zugänglich sind.
     # Standard AUS = sauberer Feldbetrieb ohne versehentlich aktive

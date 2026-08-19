@@ -1,6 +1,6 @@
 # ToDo – Personenzähl-Prototyp (Stadtwerke Potsdam)
 
-Stand: 10.08.2026 — Bezug: `core/` (app.py, roi_config_app.py, ui_utils.py, config.py, tracking.py, counting.py, visualization.py, logging_utils.py, csv_utils.py, core.py, auto_config.py, auto_config_clustering.py, lora_message.py, lora_send_loop.py, warmup.py, benchmark.py) sowie `tests/` (Kamera- und LoRa-Hardware-Tests)
+Stand: 19.08.2026 — Bezug: `core/` (app.py, roi_config_app.py, ui_utils.py, config.py, tracking.py, counting.py, visualization.py, logging_utils.py, csv_utils.py, core.py, auto_config.py, auto_config_clustering.py, lora_message.py, lora_send_loop.py, warmup.py, benchmark.py) sowie `tests/` (Kamera- und LoRa-Hardware-Tests)
 
 **Praxis ab sofort:** Lösungen, die auf recherchierten externen Quellen beruhen,
 werden mit Quellenlink notiert — auch wenn sie noch nicht fertig funktionieren.
@@ -345,6 +345,17 @@ passt. Recherche-Stand:
       (`tabs/pipeline_control.py`), damit eine im Labor aktivierte, aber
       ausgeblendete Option nicht versehentlich in den Feldeinsatz mitgenommen
       wird.
+- [x] **Erkennungsmodell auf Seite 1 wählbar (19.08.).** Bisher wurde das
+      `.hef`-Modell ausschließlich von `hailo_apps` automatisch bestimmt
+      (siehe `ARCHITEKTUR_IST.md` Abschnitt 2 — kein `.hef` im eigenen Code).
+      Tab 1 hat jetzt einen Abschnitt "Erkennungsmodell": eigene `.hef`-Datei
+      wählen oder auf "Zurücksetzen" das automatisch gewählte Standardmodell
+      behalten. Nutzt `--hef-path`, ein von `hailo_apps` selbst definiertes
+      CLI-Argument (`hailo_app_python/core/common/core.py`, am Guide-Quelltext
+      verifiziert, nicht geraten) — `core.py` selbst brauchte dafür keine
+      Änderung, nur `tabs/pipeline_control.py` hängt die Option beim Start an.
+      Gewähltes Modell muss zur erkannten Hailo-Architektur passen (z. B.
+      hailo8) — das prüft die App nicht, das macht `hailo_apps` beim Start.
 
 ## 🔧 In Arbeit, noch nicht zuverlässig
 

@@ -8,7 +8,9 @@
       "Bash(timeout 12 python -u -)",
       "Bash(echo '{\"mode\":\"line\",\"points\":[[0.0,0.5],[1.0,0.5]],\"regions\":[],\"classes\":[\"person\"],\"reverse_direction\":false,\"snap_to_nearest\":false,\"min_confidence\":0.5,\"in_field\":[]}')",
       "Bash(timeout 20 python -u -)",
-      "Bash(rm -f roi_config.json app_settings.json)"
+      "Bash(rm -f roi_config.json app_settings.json)",
+      "Bash(python -c \"import hailo_apps; print\\(hailo_apps.__file__\\)\")",
+      "Bash(pip show *)"
     ]
   }
 }

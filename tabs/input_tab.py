@@ -46,7 +46,56 @@ class InputTabMixin:
         ctk.CTkLabel(frame, textvariable=self.input_status_var, text_color="#4CAF50",
                      font=ctk.CTkFont(weight="bold")).pack(anchor="w", padx=10, pady=20)
 
+        self._build_model_section(frame)
+
         self._on_input_mode_change()
+
+    def _build_model_section(self, frame):
+        """
+        Erkennungsmodell (.hef-Datei) wählen. Leer/"(Standardmodell)" heißt:
+        --hef-path wird beim Start gar nicht erst übergeben, dann wählt
+        hailo_apps selbst das zur erkannten Hailo-Architektur passende
+        Standardmodell (siehe tabs/pipeline_control.py). --hef-path ist ein
+        von hailo_apps selbst definiertes, offizielles CLI-Argument
+        (hailo_app_python/core/common/core.py) - core.py muss dafür nicht
+        angepasst werden, core.py übergibt nur die zusätzliche Option beim
+        Start des Subprozesses weiter.
+        """
+        model_frame = ctk.CTkFrame(frame, corner_radius=8)
+        model_frame.pack(anchor="w", fill="x", pady=(0, 15))
+        ctk.CTkLabel(model_frame, text="Erkennungsmodell",
+                     font=ctk.CTkFont(weight="bold")).pack(anchor="w", padx=12, pady=(10, 4))
+        ctk.CTkLabel(
+            model_frame,
+            text="Optional: eigene .hef-Modelldatei statt des von Hailo automatisch "
+                 "gewählten Standardmodells (muss zur erkannten Hailo-Architektur "
+                 "passen, z. B. hailo8).",
+            text_color=("gray30", "gray70"), wraplength=560, justify="left",
+        ).pack(anchor="w", padx=12, pady=(0, 8))
+
+        saved_model_path = self.settings.get("model_hef_path", "")
+        self.model_hef_path_var = tk.StringVar(
+            value=saved_model_path if saved_model_path else "(Standardmodell)")
+
+        row = ctk.CTkFrame(model_frame, fg_color="transparent")
+        row.pack(anchor="w", fill="x", padx=12, pady=(0, 10))
+        ctk.CTkButton(row, text="HEF-Datei wählen...", width=150,
+                      command=self._choose_model).pack(side="left")
+        ctk.CTkButton(row, text="Zurücksetzen", width=110, fg_color="gray30",
+                      command=self._reset_model).pack(side="left", padx=(8, 0))
+        ctk.CTkLabel(model_frame, textvariable=self.model_hef_path_var,
+                     text_color=("gray30", "gray70"), wraplength=560, justify="left").pack(
+            anchor="w", padx=12, pady=(0, 10))
+
+    def _choose_model(self):
+        path = filedialog.askopenfilename(
+            title="HEF-Modelldatei wählen",
+            filetypes=[("HEF-Modell", "*.hef"), ("Alle Dateien", "*.*")])
+        if path:
+            self.model_hef_path_var.set(path)
+
+    def _reset_model(self):
+        self.model_hef_path_var.set("(Standardmodell)")
 
     def _on_input_mode_change(self):
         mode = self.input_mode_var.get()
