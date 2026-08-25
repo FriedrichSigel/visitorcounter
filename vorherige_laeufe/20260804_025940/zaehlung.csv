@@ -1,0 +1,13 @@
+timestamp,display_id,label,direction,is_transition
+2026-08-04 02:52:58.163,person_ID_1,person,Potsdam (kein Wechsel),False
+2026-08-04 02:53:01.569,person_ID_2,person,Potsdam (kein Wechsel),False
+2026-08-04 02:53:05.073,person_ID_3,person,Potsdam (kein Wechsel),False
+2026-08-04 02:53:06.914,person_ID_4,person,Berlin (kein Wechsel),False
+2026-08-04 02:53:12.711,person_ID_5,person,Berlin->Potsdam,True
+2026-08-04 02:53:16.027,person_ID_6,person,Potsdam (kein Wechsel),False
+2026-08-04 02:54:52.375,person_ID_7,person,Potsdam (kein Wechsel),False
+2026-08-04 02:56:11.019,person_ID_8,person,Potsdam (kein Wechsel),False
+2026-08-04 02:56:16.316,person_ID_9,person,Berlin (kein Wechsel),False
+2026-08-04 02:56:36.592,person_ID_10,person,Berlin (kein Wechsel),False
+2026-08-04 02:56:46.948,person_ID_11,person,Potsdam (kein Wechsel),False
+2026-08-04 02:56:49.025,person_ID_12,person,Potsdam (kein Wechsel),False

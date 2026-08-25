@@ -1,0 +1,193 @@
+timestamp,display_id,label,direction,is_transition
+2026-08-18 17:30:57.559,bicycle_ID_1,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:30:58.863,bicycle_ID_2,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:30:58.863,bicycle_ID_4,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:30:59.132,motorcycle_ID_1,motorcycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:30:59.132,motorcycle_ID_3,motorcycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:30:59.260,bicycle_ID_6,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:30:59.499,bicycle_ID_5,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:30:59.630,bicycle_ID_3,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:00.030,motorcycle_ID_2,motorcycle,Parkplatz->Südeingang,True
+2026-08-18 17:31:00.660,person_ID_2,person,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:00.989,person_ID_1,person,Parkplatz->Südeingang,True
+2026-08-18 17:31:01.027,person_ID_3,person,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:01.160,motorcycle_ID_4,motorcycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:01.226,bicycle_ID_9,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:01.462,bicycle_ID_8,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:02.330,motorcycle_ID_5,motorcycle,Parkplatz->Südeingang,True
+2026-08-18 17:31:02.632,bicycle_ID_10,bicycle,Südeingang (kein Wechsel),False
+2026-08-18 17:31:03.529,person_ID_4,person,Südeingang->Nordeingang,True
+2026-08-18 17:31:03.560,bicycle_ID_7,bicycle,Südeingang (kein Wechsel),False
+2026-08-18 17:31:04.229,motorcycle_ID_6,motorcycle,Südeingang (kein Wechsel),False
+2026-08-18 17:31:04.563,person_ID_5,person,Parkplatz->Südeingang,True
+2026-08-18 17:31:04.597,bicycle_ID_11,bicycle,Südeingang (kein Wechsel),False
+2026-08-18 17:31:08.062,car_ID_1,car,Südeingang->Parkplatz,True
+2026-08-18 17:31:12.474,person_ID_6,person,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:12.768,person_ID_7,person,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:14.260,bicycle_ID_12,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:14.666,motorcycle_ID_7,motorcycle,Südeingang (kein Wechsel),False
+2026-08-18 17:31:15.032,person_ID_8,person,Parkplatz->Südeingang,True
+2026-08-18 17:31:16.228,person_ID_9,person,Südeingang (kein Wechsel),False
+2026-08-18 17:31:23.633,car_ID_2,car,Südeingang->Parkplatz,True
+2026-08-18 17:31:31.527,bicycle_ID_14,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:31.828,bicycle_ID_13,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:32.097,motorcycle_ID_8,motorcycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:33.228,bicycle_ID_16,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:33.531,motorcycle_ID_9,motorcycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:33.765,person_ID_10,person,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:33.861,car_ID_3,car,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:34.295,bicycle_ID_15,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:35.200,car_ID_5,car,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:36.596,car_ID_4,car,Parkplatz->Südeingang,True
+2026-08-18 17:31:36.929,motorcycle_ID_10,motorcycle,Südeingang (kein Wechsel),False
+2026-08-18 17:31:37.295,person_ID_11,person,Parkplatz->Südeingang,True
+2026-08-18 17:31:37.995,car_ID_6,car,Parkplatz->Südeingang,True
+2026-08-18 17:31:38.163,car_ID_7,car,Nordeingang (kein Wechsel),False
+2026-08-18 17:31:43.128,motorcycle_ID_11,motorcycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:43.297,bicycle_ID_17,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:44.531,motorcycle_ID_13,motorcycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:44.599,bicycle_ID_19,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:44.964,bicycle_ID_18,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:45.429,person_ID_14,person,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:46.165,person_ID_13,person,Parkplatz->Südeingang,True
+2026-08-18 17:31:46.560,motorcycle_ID_15,motorcycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:46.664,bicycle_ID_21,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:46.859,bicycle_ID_20,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:47.101,person_ID_15,person,Südeingang->Nordeingang,True
+2026-08-18 17:31:47.234,motorcycle_ID_12,motorcycle,Parkplatz->Südeingang,True
+2026-08-18 17:31:47.265,person_ID_17,person,Parkplatz->Südeingang,True
+2026-08-18 17:31:47.297,person_ID_16,person,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:47.562,motorcycle_ID_16,motorcycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:47.727,motorcycle_ID_14,motorcycle,Parkplatz->Südeingang,True
+2026-08-18 17:31:47.828,car_ID_8,car,Nordeingang (kein Wechsel),False
+2026-08-18 17:31:48.897,person_ID_18,person,Südeingang (kein Wechsel),False
+2026-08-18 17:31:48.959,bicycle_ID_22,bicycle,Südeingang (kein Wechsel),False
+2026-08-18 17:31:49.100,person_ID_12,person,Nordeingang->Südeingang,True
+2026-08-18 17:31:49.334,motorcycle_ID_17,motorcycle,Südeingang (kein Wechsel),False
+2026-08-18 17:31:51.131,person_ID_19,person,Südeingang (kein Wechsel),False
+2026-08-18 17:31:56.160,person_ID_20,person,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:57.698,motorcycle_ID_18,motorcycle,Südeingang (kein Wechsel),False
+2026-08-18 17:31:57.896,person_ID_21,person,Südeingang (kein Wechsel),False
+2026-08-18 17:31:58.061,motorcycle_ID_19,motorcycle,Südeingang (kein Wechsel),False
+2026-08-18 17:31:59.266,bicycle_ID_23,bicycle,Südeingang->Parkplatz,True
+2026-08-18 17:31:59.431,person_ID_22,person,Südeingang->Parkplatz,True
+2026-08-18 17:31:59.630,person_ID_23,person,Parkplatz (kein Wechsel),False
+2026-08-18 17:31:59.961,bicycle_ID_24,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:32:01.331,person_ID_24,person,Parkplatz (kein Wechsel),False
+2026-08-18 17:32:02.928,person_ID_25,person,Parkplatz (kein Wechsel),False
+2026-08-18 17:32:10.997,person_ID_26,person,Parkplatz (kein Wechsel),False
+2026-08-18 17:32:10.997,bicycle_ID_25,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:32:11.406,motorcycle_ID_20,motorcycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:32:11.732,person_ID_27,person,Parkplatz (kein Wechsel),False
+2026-08-18 17:32:12.428,motorcycle_ID_21,motorcycle,Parkplatz->Südeingang,True
+2026-08-18 17:32:12.528,bicycle_ID_26,bicycle,Südeingang (kein Wechsel),False
+2026-08-18 17:32:14.235,bicycle_ID_27,bicycle,Südeingang (kein Wechsel),False
+2026-08-18 17:32:14.398,person_ID_28,person,Südeingang->Nordeingang,True
+2026-08-18 17:32:42.977,car_ID_9,car,Parkplatz->Südeingang,True
+2026-08-18 17:32:43.367,bus_ID_2,bus,Südeingang (kein Wechsel),False
+2026-08-18 17:32:43.913,bus_ID_1,bus,Südeingang (kein Wechsel),False
+2026-08-18 17:32:44.183,car_ID_10,car,Südeingang->Nordeingang,True
+2026-08-18 17:32:48.372,car_ID_11,car,Parkplatz->Südeingang,True
+2026-08-18 17:32:59.075,person_ID_31,person,Parkplatz (kein Wechsel),False
+2026-08-18 17:33:00.873,person_ID_32,person,Parkplatz (kein Wechsel),False
+2026-08-18 17:33:01.344,person_ID_29,person,Parkplatz (kein Wechsel),False
+2026-08-18 17:33:04.276,person_ID_30,person,Parkplatz (kein Wechsel),False
+2026-08-18 17:33:11.844,person_ID_35,person,Parkplatz (kein Wechsel),False
+2026-08-18 17:33:11.874,person_ID_33,person,Parkplatz->Südeingang,True
+2026-08-18 17:33:12.901,bicycle_ID_28,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:33:16.678,car_ID_12,car,Parkplatz->Nordeingang,True
+2026-08-18 17:33:18.481,person_ID_37,person,Südeingang (kein Wechsel),False
+2026-08-18 17:33:19.705,person_ID_34,person,Parkplatz->Südeingang,True
+2026-08-18 17:33:22.278,motorcycle_ID_22,motorcycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:33:22.580,bicycle_ID_29,bicycle,Südeingang->Parkplatz,True
+2026-08-18 17:33:22.613,person_ID_39,person,Parkplatz (kein Wechsel),False
+2026-08-18 17:33:23.006,person_ID_38,person,Südeingang (kein Wechsel),False
+2026-08-18 17:33:23.915,motorcycle_ID_23,motorcycle,Südeingang (kein Wechsel),False
+2026-08-18 17:33:23.947,person_ID_36,person,Südeingang->Nordeingang,True
+2026-08-18 17:33:24.875,person_ID_40,person,Südeingang (kein Wechsel),False
+2026-08-18 17:33:25.208,car_ID_13,car,Parkplatz->Nordeingang,True
+2026-08-18 17:33:26.241,motorcycle_ID_24,motorcycle,Südeingang->Nordeingang,True
+2026-08-18 17:33:27.534,person_ID_41,person,Nordeingang (kein Wechsel),False
+2026-08-18 17:33:28.643,car_ID_14,car,Südeingang->Parkplatz,True
+2026-08-18 17:33:30.283,car_ID_15,car,Parkplatz->Nordeingang,True
+2026-08-18 17:33:31.186,car_ID_17,car,Parkplatz (kein Wechsel),False
+2026-08-18 17:33:32.561,car_ID_16,car,Parkplatz->Nordeingang,True
+2026-08-18 17:33:38.274,person_ID_42,person,Südeingang->Parkplatz,True
+2026-08-18 17:33:38.379,bicycle_ID_30,bicycle,Südeingang->Parkplatz,True
+2026-08-18 17:33:38.883,person_ID_43,person,Parkplatz (kein Wechsel),False
+2026-08-18 17:33:40.477,person_ID_44,person,Parkplatz (kein Wechsel),False
+2026-08-18 17:33:42.075,car_ID_18,car,Südeingang->Parkplatz,True
+2026-08-18 17:33:45.308,car_ID_20,car,Parkplatz (kein Wechsel),False
+2026-08-18 17:33:46.677,car_ID_19,car,Parkplatz->Nordeingang,True
+2026-08-18 17:33:54.444,person_ID_46,person,Parkplatz (kein Wechsel),False
+2026-08-18 17:33:54.511,bicycle_ID_31,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:33:56.881,bicycle_ID_32,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:33:58.744,motorcycle_ID_25,motorcycle,Parkplatz->Südeingang,True
+2026-08-18 17:33:59.110,person_ID_45,person,Parkplatz->Nordeingang,True
+2026-08-18 17:34:04.782,motorcycle_ID_26,motorcycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:34:06.079,person_ID_47,person,Parkplatz (kein Wechsel),False
+2026-08-18 17:34:06.775,bicycle_ID_33,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:34:07.042,car_ID_21,car,Südeingang->Parkplatz,True
+2026-08-18 17:34:07.114,bicycle_ID_34,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:34:07.648,person_ID_49,person,Südeingang (kein Wechsel),False
+2026-08-18 17:34:07.746,person_ID_48,person,Parkplatz->Südeingang,True
+2026-08-18 17:34:07.780,motorcycle_ID_28,motorcycle,Parkplatz->Südeingang,True
+2026-08-18 17:34:08.107,motorcycle_ID_27,motorcycle,Parkplatz->Südeingang,True
+2026-08-18 17:34:08.609,car_ID_22,car,Südeingang->Parkplatz,True
+2026-08-18 17:34:09.040,bicycle_ID_35,bicycle,Südeingang (kein Wechsel),False
+2026-08-18 17:34:09.210,person_ID_50,person,Südeingang (kein Wechsel),False
+2026-08-18 17:34:16.977,car_ID_23,car,Parkplatz->Südeingang,True
+2026-08-18 17:34:30.244,car_ID_24,car,Parkplatz->Südeingang,True
+2026-08-18 17:34:38.238,motorcycle_ID_29,motorcycle,Südeingang (kein Wechsel),False
+2026-08-18 17:34:40.280,person_ID_51,person,Südeingang->Parkplatz,True
+2026-08-18 17:34:44.242,car_ID_25,car,Südeingang->Parkplatz,True
+2026-08-18 17:34:45.541,car_ID_26,car,Parkplatz (kein Wechsel),False
+2026-08-18 17:34:47.610,car_ID_27,car,Südeingang->Parkplatz,True
+2026-08-18 17:34:54.108,car_ID_28,car,Parkplatz->Südeingang,True
+2026-08-18 17:35:01.310,car_ID_29,car,Parkplatz->Südeingang,True
+2026-08-18 17:35:02.474,bicycle_ID_36,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:35:02.772,motorcycle_ID_30,motorcycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:35:02.803,bicycle_ID_37,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:35:05.412,person_ID_52,person,Parkplatz (kein Wechsel),False
+2026-08-18 17:35:06.104,motorcycle_ID_31,motorcycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:35:06.203,bicycle_ID_38,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:35:06.642,person_ID_53,person,Parkplatz (kein Wechsel),False
+2026-08-18 17:35:07.110,car_ID_30,car,Parkplatz->Südeingang,True
+2026-08-18 17:35:07.390,person_ID_54,person,Parkplatz (kein Wechsel),False
+2026-08-18 17:35:07.683,motorcycle_ID_32,motorcycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:35:08.657,bicycle_ID_39,bicycle,Parkplatz->Südeingang,True
+2026-08-18 17:35:09.140,person_ID_55,person,Südeingang (kein Wechsel),False
+2026-08-18 17:35:09.807,motorcycle_ID_33,motorcycle,Südeingang (kein Wechsel),False
+2026-08-18 17:35:10.642,person_ID_56,person,Südeingang (kein Wechsel),False
+2026-08-18 17:35:16.675,motorcycle_ID_35,motorcycle,Südeingang (kein Wechsel),False
+2026-08-18 17:35:17.178,bicycle_ID_40,bicycle,Südeingang (kein Wechsel),False
+2026-08-18 17:35:17.311,motorcycle_ID_36,motorcycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:35:17.375,bicycle_ID_42,bicycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:35:17.445,motorcycle_ID_34,motorcycle,Südeingang->Parkplatz,True
+2026-08-18 17:35:17.611,bicycle_ID_41,bicycle,Südeingang->Parkplatz,True
+2026-08-18 17:35:18.186,person_ID_57,person,Südeingang->Parkplatz,True
+2026-08-18 17:35:28.506,car_ID_31,car,Südeingang->Parkplatz,True
+2026-08-18 17:35:29.418,car_ID_32,car,Parkplatz (kein Wechsel),False
+2026-08-18 17:35:40.346,motorcycle_ID_37,motorcycle,Südeingang->Parkplatz,True
+2026-08-18 17:35:40.443,bicycle_ID_44,bicycle,Südeingang (kein Wechsel),False
+2026-08-18 17:35:40.644,person_ID_58,person,Südeingang->Parkplatz,True
+2026-08-18 17:35:40.644,bicycle_ID_43,bicycle,Südeingang->Parkplatz,True
+2026-08-18 17:35:41.142,motorcycle_ID_38,motorcycle,Parkplatz (kein Wechsel),False
+2026-08-18 17:35:43.909,car_ID_33,car,Parkplatz->Südeingang,True
+2026-08-18 17:35:58.252,car_ID_35,car,Südeingang->Parkplatz,True
+2026-08-18 17:35:59.979,car_ID_34,car,Parkplatz->Südeingang,True
+2026-08-18 17:36:02.610,person_ID_59,person,Südeingang->Parkplatz,True
+2026-08-18 17:36:04.380,car_ID_37,car,Südeingang (kein Wechsel),False
+2026-08-18 17:36:05.276,bus_ID_4,bus,Parkplatz (kein Wechsel),False
+2026-08-18 17:36:05.378,car_ID_38,car,Parkplatz (kein Wechsel),False
+2026-08-18 17:36:05.622,car_ID_36,car,Südeingang->Parkplatz,True
+2026-08-18 17:36:05.982,bus_ID_3,bus,Parkplatz (kein Wechsel),False
+2026-08-18 17:36:06.890,car_ID_39,car,Parkplatz (kein Wechsel),False
+2026-08-18 17:36:08.345,bicycle_ID_45,bicycle,Südeingang (kein Wechsel),False
+2026-08-18 17:36:08.476,motorcycle_ID_39,motorcycle,Südeingang (kein Wechsel),False
+2026-08-18 17:36:08.611,motorcycle_ID_40,motorcycle,Südeingang (kein Wechsel),False
+2026-08-18 17:36:09.778,person_ID_60,person,Südeingang->Parkplatz,True
+2026-08-18 17:36:10.345,car_ID_40,car,Südeingang->Parkplatz,True
+2026-08-18 17:36:10.345,bicycle_ID_46,bicycle,Südeingang->Parkplatz,True
+2026-08-18 17:36:33.788,car_ID_41,car,Parkplatz (kein Wechsel),False
+2026-08-18 17:36:33.789,car_ID_42,car,Südeingang (kein Wechsel),False

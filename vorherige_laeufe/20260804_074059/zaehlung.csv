@@ -1,0 +1,6 @@
+timestamp,display_id,label,direction,is_transition
+2026-08-04 07:39:21.171,bicycle_ID_1,bicycle,Berlin (kein Wechsel),False
+2026-08-04 07:39:23.230,bicycle_ID_2,bicycle,Berlin->Potsdam,True
+2026-08-04 07:39:23.799,person_ID_1,person,Berlin->Potsdam,True
+2026-08-04 07:39:23.828,car_ID_1,car,Berlin->Potsdam,True
+2026-08-04 07:39:24.633,car_ID_2,car,Potsdam (kein Wechsel),False

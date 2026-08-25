@@ -1,0 +1,5 @@
+timestamp,display_id,label,direction,is_transition
+2026-08-04 03:00:17.014,person_ID_1,person,Potsdam (kein Wechsel),False
+2026-08-04 03:00:20.851,person_ID_2,person,Potsdam (kein Wechsel),False
+2026-08-04 03:00:22.238,person_ID_3,person,Potsdam (kein Wechsel),False
+2026-08-04 03:00:26.023,person_ID_4,person,Potsdam (kein Wechsel),False

@@ -1,0 +1,561 @@
+timestamp,display_id,label,direction,is_transition
+2026-08-05 10:18:19.729,car_ID_2,car,Berlin (kein Wechsel),False
+2026-08-05 10:18:20.294,car_ID_1,car,Potsdam (kein Wechsel),False
+2026-08-05 10:18:21.026,bus_ID_1,bus,Berlin (kein Wechsel),False
+2026-08-05 10:18:21.059,truck_ID_1,truck,Berlin (kein Wechsel),False
+2026-08-05 10:18:21.426,car_ID_3,car,Potsdam (kein Wechsel),False
+2026-08-05 10:18:24.287,bus_ID_2,bus,Berlin->Potsdam,True
+2026-08-05 10:18:25.119,car_ID_4,car,Berlin (kein Wechsel),False
+2026-08-05 10:18:27.417,person_ID_1,person,Potsdam (kein Wechsel),False
+2026-08-05 10:18:28.449,person_ID_2,person,Potsdam (kein Wechsel),False
+2026-08-05 10:18:35.213,person_ID_3,person,Potsdam->Berlin,True
+2026-08-05 10:18:36.348,person_ID_4,person,Berlin (kein Wechsel),False
+2026-08-05 10:18:38.678,person_ID_5,person,Berlin (kein Wechsel),False
+2026-08-05 10:18:39.779,car_ID_5,car,Potsdam (kein Wechsel),False
+2026-08-05 10:18:40.512,motorcycle_ID_1,motorcycle,Potsdam (kein Wechsel),False
+2026-08-05 10:18:40.614,bicycle_ID_1,bicycle,Potsdam (kein Wechsel),False
+2026-08-05 10:18:40.884,person_ID_6,person,Berlin (kein Wechsel),False
+2026-08-05 10:18:42.077,car_ID_6,car,Potsdam->Berlin,True
+2026-08-05 10:18:42.112,person_ID_7,person,Berlin (kein Wechsel),False
+2026-08-05 10:18:44.377,bicycle_ID_2,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:18:45.277,person_ID_9,person,Berlin (kein Wechsel),False
+2026-08-05 10:18:45.313,person_ID_8,person,Berlin (kein Wechsel),False
+2026-08-05 10:18:45.877,motorcycle_ID_2,motorcycle,Potsdam->Berlin,True
+2026-08-05 10:18:46.978,motorcycle_ID_3,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:18:47.315,car_ID_7,car,Berlin (kein Wechsel),False
+2026-08-05 10:18:49.943,person_ID_10,person,Berlin (kein Wechsel),False
+2026-08-05 10:18:54.912,person_ID_11,person,Berlin->Potsdam,True
+2026-08-05 10:18:58.346,car_ID_8,car,Berlin->Potsdam,True
+2026-08-05 10:18:59.647,person_ID_12,person,Potsdam (kein Wechsel),False
+2026-08-05 10:19:13.082,car_ID_9,car,Potsdam->Berlin,True
+2026-08-05 10:19:22.676,bicycle_ID_3,bicycle,Berlin->Potsdam,True
+2026-08-05 10:19:23.177,person_ID_13,person,Berlin->Potsdam,True
+2026-08-05 10:19:34.012,bicycle_ID_4,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:19:34.046,motorcycle_ID_4,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:19:34.577,bicycle_ID_6,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:19:35.276,bicycle_ID_5,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:19:35.346,person_ID_14,person,Berlin->Potsdam,True
+2026-08-05 10:19:35.420,motorcycle_ID_5,motorcycle,Berlin->Potsdam,True
+2026-08-05 10:19:35.646,bicycle_ID_7,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:19:35.813,motorcycle_ID_6,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:20:00.849,motorcycle_ID_7,motorcycle,Berlin->Potsdam,True
+2026-08-05 10:20:01.285,person_ID_15,person,Berlin->Potsdam,True
+2026-08-05 10:20:50.020,car_ID_10,car,Potsdam->Berlin,True
+2026-08-05 10:20:59.956,car_ID_11,car,Berlin->Potsdam,True
+2026-08-05 10:21:17.856,person_ID_17,person,Potsdam (kein Wechsel),False
+2026-08-05 10:21:17.990,bicycle_ID_8,bicycle,Potsdam (kein Wechsel),False
+2026-08-05 10:21:19.457,motorcycle_ID_8,motorcycle,Potsdam (kein Wechsel),False
+2026-08-05 10:21:19.728,bicycle_ID_9,bicycle,Potsdam (kein Wechsel),False
+2026-08-05 10:21:20.321,bicycle_ID_10,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:21:20.520,motorcycle_ID_9,motorcycle,Potsdam->Berlin,True
+2026-08-05 10:21:21.091,bicycle_ID_11,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:21:21.551,motorcycle_ID_10,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:21:21.889,person_ID_16,person,Potsdam (kein Wechsel),False
+2026-08-05 10:21:22.588,motorcycle_ID_11,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:21:23.521,person_ID_18,person,Potsdam (kein Wechsel),False
+2026-08-05 10:21:23.589,car_ID_13,car,Berlin (kein Wechsel),False
+2026-08-05 10:21:25.420,car_ID_12,car,Potsdam->Berlin,True
+2026-08-05 10:21:29.223,person_ID_19,person,Potsdam (kein Wechsel),False
+2026-08-05 10:21:29.757,car_ID_14,car,Berlin (kein Wechsel),False
+2026-08-05 10:21:30.191,person_ID_20,person,Berlin (kein Wechsel),False
+2026-08-05 10:21:31.920,person_ID_21,person,Berlin (kein Wechsel),False
+2026-08-05 10:21:35.257,person_ID_22,person,Berlin (kein Wechsel),False
+2026-08-05 10:21:46.857,person_ID_23,person,Berlin->Potsdam,True
+2026-08-05 10:21:51.158,person_ID_24,person,Berlin (kein Wechsel),False
+2026-08-05 10:21:57.121,bicycle_ID_12,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:21:59.027,person_ID_26,person,Berlin (kein Wechsel),False
+2026-08-05 10:21:59.091,person_ID_25,person,Berlin->Potsdam,True
+2026-08-05 10:21:59.690,bicycle_ID_13,bicycle,Berlin->Potsdam,True
+2026-08-05 10:22:06.591,person_ID_27,person,Berlin (kein Wechsel),False
+2026-08-05 10:22:07.658,person_ID_28,person,Berlin (kein Wechsel),False
+2026-08-05 10:22:52.125,person_ID_29,person,Potsdam (kein Wechsel),False
+2026-08-05 10:22:53.627,person_ID_30,person,Potsdam (kein Wechsel),False
+2026-08-05 10:22:55.496,person_ID_31,person,Potsdam (kein Wechsel),False
+2026-08-05 10:23:02.761,person_ID_32,person,Berlin (kein Wechsel),False
+2026-08-05 10:23:58.364,car_ID_16,car,Berlin (kein Wechsel),False
+2026-08-05 10:23:58.432,car_ID_17,car,Berlin (kein Wechsel),False
+2026-08-05 10:23:58.665,bus_ID_3,bus,Berlin (kein Wechsel),False
+2026-08-05 10:23:58.733,bus_ID_4,bus,Berlin (kein Wechsel),False
+2026-08-05 10:23:59.033,car_ID_15,car,Berlin->Potsdam,True
+2026-08-05 10:24:00.797,person_ID_33,person,Berlin (kein Wechsel),False
+2026-08-05 10:24:00.865,truck_ID_2,truck,Berlin->Potsdam,True
+2026-08-05 10:24:01.000,bus_ID_5,bus,Potsdam (kein Wechsel),False
+2026-08-05 10:24:01.067,motorcycle_ID_12,motorcycle,Potsdam (kein Wechsel),False
+2026-08-05 10:24:01.198,person_ID_34,person,Berlin->Potsdam,True
+2026-08-05 10:24:01.533,motorcycle_ID_13,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:24:02.063,motorcycle_ID_14,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:24:02.201,bicycle_ID_15,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:24:02.699,motorcycle_ID_15,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:24:03.401,bicycle_ID_17,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:24:03.530,motorcycle_ID_17,motorcycle,Berlin->Potsdam,True
+2026-08-05 10:24:03.634,person_ID_35,person,Berlin->Potsdam,True
+2026-08-05 10:24:03.732,bicycle_ID_14,bicycle,Berlin->Potsdam,True
+2026-08-05 10:24:04.033,motorcycle_ID_18,motorcycle,Potsdam (kein Wechsel),False
+2026-08-05 10:24:04.135,motorcycle_ID_16,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:24:04.202,bicycle_ID_18,bicycle,Berlin->Potsdam,True
+2026-08-05 10:24:04.433,bicycle_ID_16,bicycle,Berlin->Potsdam,True
+2026-08-05 10:24:04.695,motorcycle_ID_19,motorcycle,Berlin->Potsdam,True
+2026-08-05 10:24:04.964,person_ID_36,person,Berlin->Potsdam,True
+2026-08-05 10:24:06.596,truck_ID_3,truck,Berlin (kein Wechsel),False
+2026-08-05 10:24:08.265,car_ID_18,car,Berlin->Potsdam,True
+2026-08-05 10:24:10.334,truck_ID_4,truck,Potsdam (kein Wechsel),False
+2026-08-05 10:24:10.409,car_ID_20,car,Berlin->Potsdam,True
+2026-08-05 10:24:10.472,car_ID_19,car,Berlin->Potsdam,True
+2026-08-05 10:24:14.167,car_ID_21,car,Berlin (kein Wechsel),False
+2026-08-05 10:24:15.796,truck_ID_5,truck,Berlin->Potsdam,True
+2026-08-05 10:24:19.196,car_ID_22,car,Berlin->Potsdam,True
+2026-08-05 10:24:32.966,car_ID_24,car,Potsdam (kein Wechsel),False
+2026-08-05 10:24:33.566,truck_ID_6,truck,Potsdam (kein Wechsel),False
+2026-08-05 10:24:33.934,car_ID_23,car,Potsdam->Berlin,True
+2026-08-05 10:24:37.898,bus_ID_6,bus,Potsdam->Berlin,True
+2026-08-05 10:24:38.035,truck_ID_7,truck,Berlin (kein Wechsel),False
+2026-08-05 10:24:41.234,car_ID_25,car,Potsdam->Berlin,True
+2026-08-05 10:24:42.300,car_ID_26,car,Berlin->Potsdam,True
+2026-08-05 10:24:56.099,car_ID_27,car,Berlin->Potsdam,True
+2026-08-05 10:25:01.034,bicycle_ID_19,bicycle,Potsdam (kein Wechsel),False
+2026-08-05 10:25:01.098,motorcycle_ID_20,motorcycle,Potsdam (kein Wechsel),False
+2026-08-05 10:25:01.406,person_ID_37,person,Potsdam (kein Wechsel),False
+2026-08-05 10:25:03.798,person_ID_38,person,Potsdam->Berlin,True
+2026-08-05 10:25:04.067,motorcycle_ID_21,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:25:04.497,person_ID_40,person,Berlin (kein Wechsel),False
+2026-08-05 10:25:05.168,person_ID_39,person,Berlin (kein Wechsel),False
+2026-08-05 10:25:05.368,bicycle_ID_20,bicycle,Potsdam->Berlin,True
+2026-08-05 10:25:41.240,car_ID_28,car,Berlin->Potsdam,True
+2026-08-05 10:25:41.507,person_ID_41,person,Berlin (kein Wechsel),False
+2026-08-05 10:25:42.006,motorcycle_ID_22,motorcycle,Berlin->Potsdam,True
+2026-08-05 10:25:42.738,person_ID_43,person,Berlin (kein Wechsel),False
+2026-08-05 10:25:44.467,person_ID_44,person,Berlin (kein Wechsel),False
+2026-08-05 10:25:49.074,person_ID_42,person,Berlin (kein Wechsel),False
+2026-08-05 10:25:50.641,person_ID_46,person,Berlin (kein Wechsel),False
+2026-08-05 10:25:51.406,person_ID_45,person,Berlin (kein Wechsel),False
+2026-08-05 10:25:59.271,car_ID_29,car,Berlin (kein Wechsel),False
+2026-08-05 10:26:03.838,person_ID_48,person,Potsdam (kein Wechsel),False
+2026-08-05 10:26:05.569,person_ID_49,person,Potsdam (kein Wechsel),False
+2026-08-05 10:26:07.407,person_ID_47,person,Berlin->Potsdam,True
+2026-08-05 10:26:12.906,person_ID_50,person,Potsdam (kein Wechsel),False
+2026-08-05 10:26:14.106,car_ID_30,car,Potsdam->Berlin,True
+2026-08-05 10:26:18.071,person_ID_51,person,Potsdam (kein Wechsel),False
+2026-08-05 10:26:39.420,bicycle_ID_22,bicycle,Potsdam (kein Wechsel),False
+2026-08-05 10:26:40.407,person_ID_52,person,Potsdam (kein Wechsel),False
+2026-08-05 10:26:40.407,bicycle_ID_23,bicycle,Potsdam (kein Wechsel),False
+2026-08-05 10:26:40.605,motorcycle_ID_24,motorcycle,Potsdam (kein Wechsel),False
+2026-08-05 10:26:41.008,bicycle_ID_24,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:26:41.206,car_ID_31,car,Berlin->Potsdam,True
+2026-08-05 10:26:41.640,bicycle_ID_25,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:26:42.707,bicycle_ID_21,bicycle,Potsdam->Berlin,True
+2026-08-05 10:26:43.170,motorcycle_ID_25,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:26:43.439,person_ID_53,person,Potsdam->Berlin,True
+2026-08-05 10:26:43.439,motorcycle_ID_23,motorcycle,Potsdam->Berlin,True
+2026-08-05 10:26:44.040,car_ID_32,car,Berlin (kein Wechsel),False
+2026-08-05 10:26:56.679,car_ID_35,car,Berlin (kein Wechsel),False
+2026-08-05 10:26:57.811,car_ID_33,car,Potsdam->Berlin,True
+2026-08-05 10:26:59.444,car_ID_34,car,Potsdam->Berlin,True
+2026-08-05 10:27:19.275,car_ID_36,car,Berlin->Potsdam,True
+2026-08-05 10:27:55.777,motorcycle_ID_26,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:27:55.810,bicycle_ID_27,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:27:56.412,motorcycle_ID_27,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:27:56.941,motorcycle_ID_28,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:27:57.041,bicycle_ID_28,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:27:57.544,person_ID_54,person,Berlin->Potsdam,True
+2026-08-05 10:27:58.009,bicycle_ID_26,bicycle,Berlin->Potsdam,True
+2026-08-05 10:28:17.610,car_ID_37,car,Berlin->Potsdam,True
+2026-08-05 10:28:18.444,car_ID_38,car,Potsdam (kein Wechsel),False
+2026-08-05 10:28:34.448,motorcycle_ID_29,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:28:34.778,bicycle_ID_29,bicycle,Berlin->Potsdam,True
+2026-08-05 10:28:35.251,person_ID_55,person,Berlin->Potsdam,True
+2026-08-05 10:28:39.680,car_ID_39,car,Berlin->Potsdam,True
+2026-08-05 10:29:12.411,car_ID_40,car,Potsdam->Berlin,True
+2026-08-05 10:29:16.310,car_ID_41,car,Potsdam->Berlin,True
+2026-08-05 10:29:33.645,car_ID_42,car,Potsdam->Berlin,True
+2026-08-05 10:29:58.818,person_ID_56,person,Potsdam (kein Wechsel),False
+2026-08-05 10:30:00.582,person_ID_57,person,Potsdam (kein Wechsel),False
+2026-08-05 10:30:00.714,person_ID_58,person,Potsdam->Berlin,True
+2026-08-05 10:30:02.082,bicycle_ID_30,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:30:03.048,person_ID_59,person,Berlin (kein Wechsel),False
+2026-08-05 10:30:27.749,car_ID_43,car,Berlin->Potsdam,True
+2026-08-05 10:30:42.952,car_ID_44,car,Potsdam->Berlin,True
+2026-08-05 10:30:54.283,car_ID_45,car,Potsdam->Berlin,True
+2026-08-05 10:31:12.083,car_ID_46,car,Berlin->Potsdam,True
+2026-08-05 10:31:14.854,car_ID_47,car,Berlin->Potsdam,True
+2026-08-05 10:31:20.684,car_ID_48,car,Berlin->Potsdam,True
+2026-08-05 10:31:40.352,car_ID_49,car,Potsdam->Berlin,True
+2026-08-05 10:31:51.021,car_ID_50,car,Berlin->Potsdam,True
+2026-08-05 10:31:52.888,car_ID_51,car,Potsdam->Berlin,True
+2026-08-05 10:32:01.889,car_ID_52,car,Berlin->Potsdam,True
+2026-08-05 10:32:36.558,car_ID_53,car,Berlin->Potsdam,True
+2026-08-05 10:32:49.524,bicycle_ID_31,bicycle,Potsdam (kein Wechsel),False
+2026-08-05 10:32:49.728,motorcycle_ID_30,motorcycle,Potsdam (kein Wechsel),False
+2026-08-05 10:32:50.925,bicycle_ID_32,bicycle,Potsdam (kein Wechsel),False
+2026-08-05 10:32:53.091,bicycle_ID_33,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:32:53.559,motorcycle_ID_31,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:32:54.054,car_ID_54,car,Berlin->Potsdam,True
+2026-08-05 10:32:54.123,person_ID_60,person,Potsdam->Berlin,True
+2026-08-05 10:33:05.725,truck_ID_8,truck,Potsdam->Berlin,True
+2026-08-05 10:33:06.554,car_ID_56,car,Potsdam->Berlin,True
+2026-08-05 10:33:07.524,car_ID_55,car,Potsdam->Berlin,True
+2026-08-05 10:33:12.326,car_ID_57,car,Berlin->Potsdam,True
+2026-08-05 10:33:46.626,bicycle_ID_34,bicycle,Potsdam (kein Wechsel),False
+2026-08-05 10:33:46.863,bicycle_ID_35,bicycle,Potsdam (kein Wechsel),False
+2026-08-05 10:33:47.725,car_ID_58,car,Berlin (kein Wechsel),False
+2026-08-05 10:33:47.826,person_ID_61,person,Potsdam (kein Wechsel),False
+2026-08-05 10:33:50.863,car_ID_60,car,Potsdam (kein Wechsel),False
+2026-08-05 10:33:51.193,motorcycle_ID_32,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:33:52.334,car_ID_59,car,Potsdam->Berlin,True
+2026-08-05 10:33:53.125,bicycle_ID_36,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:33:53.997,car_ID_61,car,Potsdam->Berlin,True
+2026-08-05 10:33:55.093,person_ID_62,person,Berlin (kein Wechsel),False
+2026-08-05 10:34:13.126,bus_ID_7,bus,Potsdam (kein Wechsel),False
+2026-08-05 10:34:13.727,truck_ID_10,truck,Berlin (kein Wechsel),False
+2026-08-05 10:34:13.796,truck_ID_9,truck,Berlin (kein Wechsel),False
+2026-08-05 10:34:14.528,car_ID_63,car,Berlin (kein Wechsel),False
+2026-08-05 10:34:14.964,bus_ID_8,bus,Berlin (kein Wechsel),False
+2026-08-05 10:34:15.664,car_ID_62,car,Potsdam->Berlin,True
+2026-08-05 10:34:16.664,person_ID_63,person,Berlin->Potsdam,True
+2026-08-05 10:34:17.595,person_ID_64,person,Berlin->Potsdam,True
+2026-08-05 10:34:34.928,car_ID_64,car,Potsdam (kein Wechsel),False
+2026-08-05 10:34:40.127,car_ID_65,car,Potsdam (kein Wechsel),False
+2026-08-05 10:34:42.365,car_ID_66,car,Potsdam (kein Wechsel),False
+2026-08-05 10:34:44.296,car_ID_67,car,Potsdam (kein Wechsel),False
+2026-08-05 10:34:57.598,car_ID_68,car,Potsdam (kein Wechsel),False
+2026-08-05 10:35:04.964,car_ID_69,car,Potsdam->Berlin,True
+2026-08-05 10:35:05.631,car_ID_70,car,Potsdam (kein Wechsel),False
+2026-08-05 10:35:07.365,bicycle_ID_37,bicycle,Berlin->Potsdam,True
+2026-08-05 10:35:07.433,person_ID_65,person,Berlin->Potsdam,True
+2026-08-05 10:35:09.829,car_ID_71,car,Berlin (kein Wechsel),False
+2026-08-05 10:35:10.298,car_ID_73,car,Berlin (kein Wechsel),False
+2026-08-05 10:35:10.434,truck_ID_12,truck,Berlin->Potsdam,True
+2026-08-05 10:35:10.631,truck_ID_11,truck,Berlin->Potsdam,True
+2026-08-05 10:35:10.930,car_ID_72,car,Potsdam (kein Wechsel),False
+2026-08-05 10:35:14.729,car_ID_74,car,Berlin->Potsdam,True
+2026-08-05 10:35:16.868,car_ID_77,car,Berlin (kein Wechsel),False
+2026-08-05 10:35:17.599,car_ID_76,car,Berlin->Potsdam,True
+2026-08-05 10:35:22.631,car_ID_75,car,Potsdam->Berlin,True
+2026-08-05 10:35:23.634,car_ID_78,car,Berlin->Potsdam,True
+2026-08-05 10:35:54.537,car_ID_79,car,Potsdam->Berlin,True
+2026-08-05 10:36:05.401,person_ID_66,person,Potsdam (kein Wechsel),False
+2026-08-05 10:36:06.238,person_ID_67,person,Potsdam (kein Wechsel),False
+2026-08-05 10:36:07.238,person_ID_68,person,Potsdam (kein Wechsel),False
+2026-08-05 10:36:07.475,person_ID_69,person,Potsdam->Berlin,True
+2026-08-05 10:36:08.239,person_ID_70,person,Potsdam (kein Wechsel),False
+2026-08-05 10:36:08.904,motorcycle_ID_33,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:36:09.235,bicycle_ID_38,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:36:09.569,person_ID_72,person,Potsdam->Berlin,True
+2026-08-05 10:36:10.070,person_ID_71,person,Berlin (kein Wechsel),False
+2026-08-05 10:36:10.837,motorcycle_ID_34,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:36:11.038,bicycle_ID_39,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:36:12.070,person_ID_73,person,Berlin (kein Wechsel),False
+2026-08-05 10:36:23.472,motorcycle_ID_35,motorcycle,Potsdam (kein Wechsel),False
+2026-08-05 10:36:24.900,person_ID_74,person,Potsdam (kein Wechsel),False
+2026-08-05 10:36:27.105,person_ID_75,person,Berlin (kein Wechsel),False
+2026-08-05 10:36:27.503,car_ID_80,car,Berlin (kein Wechsel),False
+2026-08-05 10:36:28.002,truck_ID_13,truck,Berlin (kein Wechsel),False
+2026-08-05 10:36:28.138,truck_ID_14,truck,Potsdam (kein Wechsel),False
+2026-08-05 10:36:28.502,bicycle_ID_40,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:36:28.638,car_ID_81,car,Berlin->Potsdam,True
+2026-08-05 10:36:28.703,car_ID_82,car,Potsdam (kein Wechsel),False
+2026-08-05 10:36:29.438,person_ID_76,person,Berlin (kein Wechsel),False
+2026-08-05 10:36:40.803,bicycle_ID_41,bicycle,Potsdam (kein Wechsel),False
+2026-08-05 10:36:40.938,person_ID_77,person,Potsdam (kein Wechsel),False
+2026-08-05 10:36:42.139,person_ID_78,person,Potsdam (kein Wechsel),False
+2026-08-05 10:36:44.141,person_ID_80,person,Potsdam (kein Wechsel),False
+2026-08-05 10:36:44.539,bicycle_ID_42,bicycle,Potsdam->Berlin,True
+2026-08-05 10:36:44.837,person_ID_79,person,Potsdam->Berlin,True
+2026-08-05 10:36:45.873,bicycle_ID_43,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:36:46.439,person_ID_81,person,Berlin (kein Wechsel),False
+2026-08-05 10:36:47.104,bicycle_ID_44,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:36:48.303,bicycle_ID_45,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:36:49.003,person_ID_82,person,Berlin (kein Wechsel),False
+2026-08-05 10:37:09.772,bicycle_ID_48,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:37:09.808,motorcycle_ID_37,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:37:09.909,bicycle_ID_47,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:37:09.909,motorcycle_ID_36,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:37:10.842,person_ID_83,person,Berlin->Potsdam,True
+2026-08-05 10:37:11.209,bicycle_ID_46,bicycle,Berlin->Potsdam,True
+2026-08-05 10:37:46.478,truck_ID_16,truck,Berlin (kein Wechsel),False
+2026-08-05 10:37:46.542,car_ID_84,car,Berlin (kein Wechsel),False
+2026-08-05 10:37:46.774,truck_ID_15,truck,Berlin->Potsdam,True
+2026-08-05 10:37:47.144,car_ID_83,car,Berlin->Potsdam,True
+2026-08-05 10:38:08.644,bicycle_ID_50,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:38:09.345,motorcycle_ID_38,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:38:09.613,person_ID_84,person,Berlin->Potsdam,True
+2026-08-05 10:38:10.010,motorcycle_ID_39,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:38:10.054,bicycle_ID_49,bicycle,Berlin->Potsdam,True
+2026-08-05 10:38:10.151,motorcycle_ID_40,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:38:11.213,bicycle_ID_51,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:38:11.512,bicycle_ID_52,bicycle,Berlin->Potsdam,True
+2026-08-05 10:38:12.078,person_ID_85,person,Berlin->Potsdam,True
+2026-08-05 10:38:37.776,person_ID_86,person,Potsdam (kein Wechsel),False
+2026-08-05 10:38:39.578,person_ID_87,person,Berlin (kein Wechsel),False
+2026-08-05 10:38:40.047,bicycle_ID_53,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:38:40.379,motorcycle_ID_41,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:38:41.647,person_ID_88,person,Berlin (kein Wechsel),False
+2026-08-05 10:38:59.782,motorcycle_ID_42,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:38:59.952,bicycle_ID_54,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:39:00.050,person_ID_89,person,Berlin (kein Wechsel),False
+2026-08-05 10:39:00.249,bicycle_ID_55,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:39:00.583,bicycle_ID_56,bicycle,Berlin->Potsdam,True
+2026-08-05 10:39:00.645,person_ID_90,person,Berlin->Potsdam,True
+2026-08-05 10:39:08.115,bus_ID_9,bus,Berlin (kein Wechsel),False
+2026-08-05 10:39:08.147,truck_ID_17,truck,Berlin (kein Wechsel),False
+2026-08-05 10:39:11.215,bus_ID_10,bus,Berlin->Potsdam,True
+2026-08-05 10:39:26.850,car_ID_85,car,Potsdam->Berlin,True
+2026-08-05 10:39:30.452,car_ID_86,car,Potsdam->Berlin,True
+2026-08-05 10:39:30.551,car_ID_87,car,Berlin (kein Wechsel),False
+2026-08-05 10:39:30.646,truck_ID_18,truck,Berlin (kein Wechsel),False
+2026-08-05 10:39:30.885,bus_ID_12,bus,Berlin (kein Wechsel),False
+2026-08-05 10:39:30.951,truck_ID_19,truck,Berlin (kein Wechsel),False
+2026-08-05 10:39:31.186,bus_ID_11,bus,Berlin (kein Wechsel),False
+2026-08-05 10:39:34.047,car_ID_89,car,Potsdam->Berlin,True
+2026-08-05 10:39:34.085,car_ID_88,car,Potsdam->Berlin,True
+2026-08-05 10:39:34.584,truck_ID_20,truck,Berlin (kein Wechsel),False
+2026-08-05 10:39:35.584,truck_ID_21,truck,Berlin (kein Wechsel),False
+2026-08-05 10:39:45.048,truck_ID_22,truck,Berlin (kein Wechsel),False
+2026-08-05 10:39:45.455,car_ID_90,car,Berlin (kein Wechsel),False
+2026-08-05 10:39:45.786,car_ID_91,car,Berlin (kein Wechsel),False
+2026-08-05 10:39:45.984,truck_ID_23,truck,Berlin->Potsdam,True
+2026-08-05 10:40:03.783,person_ID_91,person,Potsdam (kein Wechsel),False
+2026-08-05 10:40:42.988,car_ID_92,car,Berlin (kein Wechsel),False
+2026-08-05 10:40:44.654,truck_ID_25,truck,Berlin (kein Wechsel),False
+2026-08-05 10:40:44.688,truck_ID_24,truck,Berlin->Potsdam,True
+2026-08-05 10:41:36.790,car_ID_94,car,Berlin (kein Wechsel),False
+2026-08-05 10:41:36.958,car_ID_93,car,Potsdam->Berlin,True
+2026-08-05 10:41:37.259,bus_ID_13,bus,Berlin (kein Wechsel),False
+2026-08-05 10:41:37.359,truck_ID_27,truck,Berlin (kein Wechsel),False
+2026-08-05 10:41:37.922,bus_ID_14,bus,Berlin (kein Wechsel),False
+2026-08-05 10:41:37.957,truck_ID_26,truck,Berlin (kein Wechsel),False
+2026-08-05 10:41:59.490,motorcycle_ID_43,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:41:59.591,bicycle_ID_57,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:42:01.359,bicycle_ID_58,bicycle,Berlin->Potsdam,True
+2026-08-05 10:42:01.890,person_ID_92,person,Berlin->Potsdam,True
+2026-08-05 10:42:05.022,car_ID_95,car,Potsdam (kein Wechsel),False
+2026-08-05 10:42:06.324,person_ID_93,person,Berlin (kein Wechsel),False
+2026-08-05 10:42:06.791,car_ID_96,car,Potsdam->Berlin,True
+2026-08-05 10:42:06.991,bus_ID_15,bus,Berlin (kein Wechsel),False
+2026-08-05 10:42:27.097,car_ID_97,car,Berlin->Potsdam,True
+2026-08-05 10:42:56.428,person_ID_94,person,Potsdam (kein Wechsel),False
+2026-08-05 10:42:58.061,person_ID_95,person,Berlin (kein Wechsel),False
+2026-08-05 10:42:59.362,bicycle_ID_59,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:42:59.431,motorcycle_ID_44,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:42:59.592,motorcycle_ID_45,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:43:00.829,person_ID_96,person,Berlin (kein Wechsel),False
+2026-08-05 10:43:00.861,car_ID_98,car,Berlin (kein Wechsel),False
+2026-08-05 10:43:02.831,motorcycle_ID_46,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:43:03.098,bicycle_ID_60,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:43:04.393,bicycle_ID_61,bicycle,Berlin->Potsdam,True
+2026-08-05 10:43:04.998,person_ID_97,person,Berlin->Potsdam,True
+2026-08-05 10:43:20.195,car_ID_99,car,Berlin (kein Wechsel),False
+2026-08-05 10:43:23.932,car_ID_100,car,Berlin->Potsdam,True
+2026-08-05 10:43:33.863,car_ID_101,car,Berlin (kein Wechsel),False
+2026-08-05 10:43:34.630,motorcycle_ID_47,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:43:34.764,person_ID_98,person,Berlin (kein Wechsel),False
+2026-08-05 10:43:44.163,car_ID_102,car,Potsdam->Berlin,True
+2026-08-05 10:44:07.234,person_ID_99,person,Potsdam (kein Wechsel),False
+2026-08-05 10:44:10.264,person_ID_100,person,Berlin (kein Wechsel),False
+2026-08-05 10:44:10.701,motorcycle_ID_48,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:44:14.132,car_ID_103,car,Potsdam->Berlin,True
+2026-08-05 10:44:23.333,bus_ID_16,bus,Potsdam (kein Wechsel),False
+2026-08-05 10:44:25.006,bus_ID_17,bus,Potsdam->Berlin,True
+2026-08-05 10:44:27.402,bus_ID_18,bus,Potsdam->Berlin,True
+2026-08-05 10:44:58.135,car_ID_104,car,Berlin->Potsdam,True
+2026-08-05 10:45:32.467,car_ID_106,car,Berlin (kein Wechsel),False
+2026-08-05 10:45:32.872,car_ID_105,car,Potsdam->Berlin,True
+2026-08-05 10:45:57.207,car_ID_107,car,Potsdam->Berlin,True
+2026-08-05 10:45:59.468,car_ID_109,car,Berlin (kein Wechsel),False
+2026-08-05 10:45:59.743,car_ID_108,car,Berlin->Potsdam,True
+2026-08-05 10:46:12.470,motorcycle_ID_49,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:46:12.773,bicycle_ID_62,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:46:13.338,person_ID_101,person,Berlin (kein Wechsel),False
+2026-08-05 10:46:13.703,bicycle_ID_63,bicycle,Berlin->Potsdam,True
+2026-08-05 10:46:13.734,person_ID_102,person,Berlin->Potsdam,True
+2026-08-05 10:46:22.575,person_ID_103,person,Potsdam (kein Wechsel),False
+2026-08-05 10:46:26.107,bicycle_ID_64,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:46:26.539,person_ID_104,person,Berlin (kein Wechsel),False
+2026-08-05 10:46:58.814,car_ID_110,car,Potsdam->Berlin,True
+2026-08-05 10:46:59.644,car_ID_111,car,Berlin->Potsdam,True
+2026-08-05 10:47:01.639,car_ID_112,car,Potsdam (kein Wechsel),False
+2026-08-05 10:47:25.043,car_ID_113,car,Berlin->Potsdam,True
+2026-08-05 10:48:08.648,person_ID_105,person,Potsdam (kein Wechsel),False
+2026-08-05 10:48:11.080,person_ID_106,person,Potsdam (kein Wechsel),False
+2026-08-05 10:48:46.282,car_ID_114,car,Potsdam (kein Wechsel),False
+2026-08-05 10:48:48.881,car_ID_116,car,Berlin (kein Wechsel),False
+2026-08-05 10:48:49.282,car_ID_115,car,Potsdam->Berlin,True
+2026-08-05 10:49:11.618,person_ID_107,person,Potsdam (kein Wechsel),False
+2026-08-05 10:49:13.950,person_ID_108,person,Berlin (kein Wechsel),False
+2026-08-05 10:49:15.250,bicycle_ID_65,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:49:15.351,person_ID_109,person,Berlin (kein Wechsel),False
+2026-08-05 10:49:17.655,car_ID_117,car,Berlin (kein Wechsel),False
+2026-08-05 10:49:48.520,person_ID_110,person,Berlin (kein Wechsel),False
+2026-08-05 10:49:48.851,motorcycle_ID_51,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:49:48.983,motorcycle_ID_50,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:49:49.388,bicycle_ID_67,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:49:50.618,person_ID_111,person,Berlin->Potsdam,True
+2026-08-05 10:49:50.787,bicycle_ID_66,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:50:00.088,motorcycle_ID_53,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:50:00.754,motorcycle_ID_52,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:50:00.754,car_ID_118,car,Potsdam (kein Wechsel),False
+2026-08-05 10:50:00.886,bicycle_ID_68,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:50:01.852,person_ID_112,person,Berlin (kein Wechsel),False
+2026-08-05 10:50:02.021,motorcycle_ID_54,motorcycle,Berlin->Potsdam,True
+2026-08-05 10:50:02.084,bicycle_ID_69,bicycle,Berlin->Potsdam,True
+2026-08-05 10:50:02.118,motorcycle_ID_55,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:50:02.590,person_ID_114,person,Potsdam (kein Wechsel),False
+2026-08-05 10:50:03.620,bicycle_ID_70,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:50:03.721,person_ID_113,person,Berlin->Potsdam,True
+2026-08-05 10:50:03.820,motorcycle_ID_56,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:50:04.351,car_ID_119,car,Potsdam->Berlin,True
+2026-08-05 10:50:08.919,car_ID_120,car,Berlin (kein Wechsel),False
+2026-08-05 10:50:10.721,car_ID_121,car,Potsdam (kein Wechsel),False
+2026-08-05 10:50:31.987,car_ID_122,car,Potsdam->Berlin,True
+2026-08-05 10:50:37.454,car_ID_123,car,Berlin->Potsdam,True
+2026-08-05 10:50:51.353,truck_ID_28,truck,Potsdam (kein Wechsel),False
+2026-08-05 10:50:51.523,truck_ID_29,truck,Potsdam (kein Wechsel),False
+2026-08-05 10:50:53.622,car_ID_124,car,Berlin (kein Wechsel),False
+2026-08-05 10:50:54.590,truck_ID_31,truck,Berlin (kein Wechsel),False
+2026-08-05 10:50:55.322,truck_ID_30,truck,Potsdam->Berlin,True
+2026-08-05 10:50:58.355,car_ID_125,car,Potsdam->Berlin,True
+2026-08-05 10:51:06.123,car_ID_126,car,Potsdam (kein Wechsel),False
+2026-08-05 10:51:09.193,truck_ID_32,truck,Potsdam->Berlin,True
+2026-08-05 10:51:43.459,motorcycle_ID_57,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:51:43.895,motorcycle_ID_58,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:51:44.360,car_ID_128,car,Berlin (kein Wechsel),False
+2026-08-05 10:51:44.392,bicycle_ID_72,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:51:44.592,person_ID_115,person,Berlin->Potsdam,True
+2026-08-05 10:51:45.193,person_ID_116,person,Berlin (kein Wechsel),False
+2026-08-05 10:51:45.225,bicycle_ID_71,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:51:45.426,car_ID_127,car,Berlin->Potsdam,True
+2026-08-05 10:51:55.226,car_ID_129,car,Berlin (kein Wechsel),False
+2026-08-05 10:53:24.766,car_ID_130,car,Berlin->Potsdam,True
+2026-08-05 10:54:15.667,person_ID_117,person,Berlin (kein Wechsel),False
+2026-08-05 10:54:15.903,motorcycle_ID_59,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:54:16.001,bicycle_ID_73,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:54:16.531,motorcycle_ID_60,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 10:54:17.802,person_ID_118,person,Berlin (kein Wechsel),False
+2026-08-05 10:54:17.802,bicycle_ID_74,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:54:24.470,car_ID_131,car,Berlin (kein Wechsel),False
+2026-08-05 10:54:24.470,car_ID_132,car,Berlin (kein Wechsel),False
+2026-08-05 10:54:25.070,bus_ID_20,bus,Berlin (kein Wechsel),False
+2026-08-05 10:54:25.138,truck_ID_33,truck,Berlin->Potsdam,True
+2026-08-05 10:54:26.269,bus_ID_19,bus,Berlin->Potsdam,True
+2026-08-05 10:54:26.369,car_ID_133,car,Potsdam (kein Wechsel),False
+2026-08-05 10:54:28.171,car_ID_134,car,Berlin->Potsdam,True
+2026-08-05 10:54:41.203,car_ID_136,car,Potsdam (kein Wechsel),False
+2026-08-05 10:54:43.269,car_ID_135,car,Potsdam->Berlin,True
+2026-08-05 10:55:01.040,person_ID_119,person,Potsdam (kein Wechsel),False
+2026-08-05 10:55:02.041,person_ID_120,person,Potsdam (kein Wechsel),False
+2026-08-05 10:55:03.672,person_ID_121,person,Potsdam (kein Wechsel),False
+2026-08-05 10:55:13.302,person_ID_122,person,Berlin (kein Wechsel),False
+2026-08-05 10:55:30.503,person_ID_123,person,Berlin (kein Wechsel),False
+2026-08-05 10:55:31.122,person_ID_124,person,Potsdam (kein Wechsel),False
+2026-08-05 10:55:33.773,person_ID_125,person,Berlin (kein Wechsel),False
+2026-08-05 10:55:35.307,person_ID_128,person,Potsdam (kein Wechsel),False
+2026-08-05 10:55:35.341,bicycle_ID_75,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:55:35.874,person_ID_126,person,Berlin (kein Wechsel),False
+2026-08-05 10:55:36.304,person_ID_129,person,Berlin (kein Wechsel),False
+2026-08-05 10:55:36.576,person_ID_127,person,Potsdam (kein Wechsel),False
+2026-08-05 10:55:38.086,person_ID_130,person,Potsdam (kein Wechsel),False
+2026-08-05 10:55:39.405,person_ID_131,person,Berlin (kein Wechsel),False
+2026-08-05 10:55:58.907,car_ID_137,car,Berlin (kein Wechsel),False
+2026-08-05 10:56:25.675,car_ID_138,car,Berlin->Potsdam,True
+2026-08-05 10:56:41.176,car_ID_139,car,Potsdam->Berlin,True
+2026-08-05 10:56:44.744,car_ID_140,car,Berlin (kein Wechsel),False
+2026-08-05 10:56:47.712,truck_ID_34,truck,Berlin (kein Wechsel),False
+2026-08-05 10:56:48.445,bus_ID_21,bus,Berlin (kein Wechsel),False
+2026-08-05 10:56:48.546,car_ID_141,car,Potsdam->Berlin,True
+2026-08-05 10:56:48.876,bus_ID_22,bus,Berlin (kein Wechsel),False
+2026-08-05 10:56:48.979,car_ID_142,car,Berlin (kein Wechsel),False
+2026-08-05 10:58:03.884,car_ID_143,car,Berlin (kein Wechsel),False
+2026-08-05 10:58:04.084,car_ID_144,car,Berlin (kein Wechsel),False
+2026-08-05 10:58:04.446,truck_ID_36,truck,Berlin->Potsdam,True
+2026-08-05 10:58:04.716,truck_ID_35,truck,Berlin->Potsdam,True
+2026-08-05 10:58:46.052,bus_ID_24,bus,Berlin (kein Wechsel),False
+2026-08-05 10:58:46.087,truck_ID_37,truck,Berlin (kein Wechsel),False
+2026-08-05 10:58:46.586,truck_ID_38,truck,Berlin (kein Wechsel),False
+2026-08-05 10:58:46.853,car_ID_145,car,Potsdam (kein Wechsel),False
+2026-08-05 10:58:47.251,bus_ID_23,bus,Berlin->Potsdam,True
+2026-08-05 10:58:48.186,bus_ID_25,bus,Potsdam (kein Wechsel),False
+2026-08-05 10:59:01.158,car_ID_147,car,Potsdam (kein Wechsel),False
+2026-08-05 10:59:01.230,person_ID_132,person,Potsdam (kein Wechsel),False
+2026-08-05 10:59:01.324,car_ID_146,car,Potsdam->Berlin,True
+2026-08-05 10:59:02.486,car_ID_149,car,Potsdam (kein Wechsel),False
+2026-08-05 10:59:03.620,car_ID_148,car,Potsdam->Berlin,True
+2026-08-05 10:59:05.419,car_ID_150,car,Potsdam->Berlin,True
+2026-08-05 10:59:09.149,car_ID_151,car,Berlin (kein Wechsel),False
+2026-08-05 10:59:14.087,bicycle_ID_76,bicycle,Potsdam (kein Wechsel),False
+2026-08-05 10:59:14.350,person_ID_134,person,Potsdam (kein Wechsel),False
+2026-08-05 10:59:14.652,person_ID_135,person,Potsdam (kein Wechsel),False
+2026-08-05 10:59:15.990,person_ID_137,person,Berlin (kein Wechsel),False
+2026-08-05 10:59:16.021,person_ID_136,person,Potsdam (kein Wechsel),False
+2026-08-05 10:59:17.520,bicycle_ID_77,bicycle,Berlin (kein Wechsel),False
+2026-08-05 10:59:18.688,person_ID_138,person,Berlin (kein Wechsel),False
+2026-08-05 10:59:32.323,car_ID_152,car,Berlin (kein Wechsel),False
+2026-08-05 11:00:19.458,person_ID_139,person,Potsdam (kein Wechsel),False
+2026-08-05 11:00:20.520,person_ID_140,person,Berlin (kein Wechsel),False
+2026-08-05 11:00:23.292,motorcycle_ID_61,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 11:00:24.694,person_ID_141,person,Berlin (kein Wechsel),False
+2026-08-05 11:00:25.959,car_ID_153,car,Potsdam->Berlin,True
+2026-08-05 11:00:31.522,person_ID_142,person,Berlin (kein Wechsel),False
+2026-08-05 11:00:35.725,bicycle_ID_78,bicycle,Berlin (kein Wechsel),False
+2026-08-05 11:00:36.427,motorcycle_ID_62,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 11:00:36.892,person_ID_143,person,Berlin (kein Wechsel),False
+2026-08-05 11:00:37.022,bicycle_ID_79,bicycle,Berlin (kein Wechsel),False
+2026-08-05 11:00:39.161,person_ID_144,person,Berlin (kein Wechsel),False
+2026-08-05 11:00:40.522,person_ID_145,person,Berlin (kein Wechsel),False
+2026-08-05 11:00:40.991,car_ID_154,car,Berlin->Potsdam,True
+2026-08-05 11:00:52.059,person_ID_146,person,Berlin->Potsdam,True
+2026-08-05 11:00:53.460,person_ID_147,person,Potsdam (kein Wechsel),False
+2026-08-05 11:00:53.994,person_ID_148,person,Potsdam (kein Wechsel),False
+2026-08-05 11:00:54.261,person_ID_149,person,Potsdam (kein Wechsel),False
+2026-08-05 11:00:54.560,person_ID_150,person,Berlin (kein Wechsel),False
+2026-08-05 11:00:55.860,person_ID_152,person,Potsdam (kein Wechsel),False
+2026-08-05 11:00:56.294,person_ID_151,person,Potsdam (kein Wechsel),False
+2026-08-05 11:01:13.561,person_ID_153,person,Potsdam (kein Wechsel),False
+2026-08-05 11:01:38.662,motorcycle_ID_63,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 11:01:38.732,person_ID_154,person,Berlin (kein Wechsel),False
+2026-08-05 11:01:51.196,car_ID_155,car,Berlin->Potsdam,True
+2026-08-05 11:01:55.796,car_ID_156,car,Berlin->Potsdam,True
+2026-08-05 11:02:07.565,person_ID_155,person,Potsdam (kein Wechsel),False
+2026-08-05 11:02:12.234,bicycle_ID_80,bicycle,Berlin (kein Wechsel),False
+2026-08-05 11:02:12.496,person_ID_156,person,Berlin (kein Wechsel),False
+2026-08-05 11:02:13.134,motorcycle_ID_64,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 11:02:13.363,person_ID_157,person,Berlin (kein Wechsel),False
+2026-08-05 11:02:13.564,motorcycle_ID_65,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 11:02:19.203,bicycle_ID_81,bicycle,Berlin (kein Wechsel),False
+2026-08-05 11:02:19.701,motorcycle_ID_66,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 11:02:20.133,person_ID_158,person,Berlin (kein Wechsel),False
+2026-08-05 11:02:20.433,bicycle_ID_83,bicycle,Berlin (kein Wechsel),False
+2026-08-05 11:02:20.799,person_ID_159,person,Berlin (kein Wechsel),False
+2026-08-05 11:02:20.799,bicycle_ID_82,bicycle,Berlin (kein Wechsel),False
+2026-08-05 11:02:49.896,person_ID_160,person,Berlin (kein Wechsel),False
+2026-08-05 11:03:23.002,car_ID_157,car,Potsdam (kein Wechsel),False
+2026-08-05 11:03:25.935,bus_ID_26,bus,Berlin (kein Wechsel),False
+2026-08-05 11:03:26.638,car_ID_158,car,Potsdam->Berlin,True
+2026-08-05 11:03:33.239,car_ID_159,car,Potsdam->Berlin,True
+2026-08-05 11:03:37.767,motorcycle_ID_67,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 11:03:38.106,bicycle_ID_84,bicycle,Berlin (kein Wechsel),False
+2026-08-05 11:03:38.403,bicycle_ID_85,bicycle,Berlin (kein Wechsel),False
+2026-08-05 11:03:38.837,person_ID_161,person,Berlin (kein Wechsel),False
+2026-08-05 11:04:04.504,car_ID_160,car,Berlin (kein Wechsel),False
+2026-08-05 11:04:08.606,car_ID_161,car,Berlin->Potsdam,True
+2026-08-05 11:04:11.240,motorcycle_ID_68,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 11:04:11.507,bicycle_ID_87,bicycle,Berlin (kein Wechsel),False
+2026-08-05 11:04:11.871,bicycle_ID_86,bicycle,Berlin (kein Wechsel),False
+2026-08-05 11:04:11.936,person_ID_162,person,Berlin (kein Wechsel),False
+2026-08-05 11:04:12.004,motorcycle_ID_69,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 11:04:12.139,motorcycle_ID_70,motorcycle,Berlin (kein Wechsel),False
+2026-08-05 11:04:12.174,person_ID_163,person,Berlin (kein Wechsel),False
+2026-08-05 11:04:39.008,truck_ID_39,truck,Potsdam (kein Wechsel),False
+2026-08-05 11:04:43.740,bus_ID_27,bus,Potsdam->Berlin,True
+2026-08-05 11:05:09.576,car_ID_162,car,Berlin->Potsdam,True
+2026-08-05 11:05:54.141,car_ID_163,car,Berlin->Potsdam,True
+2026-08-05 11:05:55.980,car_ID_164,car,Berlin->Potsdam,True
+2026-08-05 11:06:14.416,car_ID_165,car,Berlin (kein Wechsel),False
+2026-08-05 11:07:02.283,car_ID_166,car,Berlin->Potsdam,True
+2026-08-05 11:07:03.782,truck_ID_41,truck,Berlin (kein Wechsel),False
+2026-08-05 11:07:03.849,car_ID_167,car,Berlin (kein Wechsel),False
+2026-08-05 11:07:03.982,car_ID_168,car,Berlin (kein Wechsel),False
+2026-08-05 11:07:04.783,truck_ID_40,truck,Berlin (kein Wechsel),False
+2026-08-05 11:07:05.116,bus_ID_28,bus,Potsdam (kein Wechsel),False
+2026-08-05 11:07:37.186,car_ID_169,car,Berlin->Potsdam,True
+2026-08-05 11:07:38.318,car_ID_170,car,Berlin (kein Wechsel),False
+2026-08-05 11:07:52.432,person_ID_133,person,Potsdam (kein Wechsel),False
+2026-08-05 11:07:52.433,car_ID_171,car,Berlin (kein Wechsel),False

@@ -1,0 +1,6 @@
+timestamp,display_id,label,direction,is_transition
+2026-08-19 10:33:03.849,person_ID_1,person,außerhalb (kein Wechsel),False
+2026-08-19 10:33:08.711,person_ID_2,person,außerhalb (kein Wechsel),False
+2026-08-19 10:33:10.476,bus_ID_1,bus,außerhalb (kein Wechsel),False
+2026-08-19 10:33:10.711,car_ID_1,car,außerhalb (kein Wechsel),False
+2026-08-19 10:33:11.145,person_ID_3,person,Potsdam->außerhalb,True
