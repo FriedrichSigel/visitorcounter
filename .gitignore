@@ -30,6 +30,12 @@ camera_raw.png
 # Archiv vorheriger Läufe (vom Start-Cleanup angelegt)
 vorherige_laeufe/
 
+# === Dokumentation (intern, nicht für public Repo) ===
+docs/
+
+# === Beispiel-/Testausgabe mit echten Gerätedaten ===
+output.json
+
 # Altbestände / manuell abgelegte Track-Dateien
 old_track files/
 *_altes_format_*.csv
