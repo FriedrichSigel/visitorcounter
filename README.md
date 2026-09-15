@@ -23,6 +23,28 @@ Die drei nicht-pip-Bausteine (`hailo`, `hailo_apps`, `gi`) sind der Grund, warum
 die virtuelle Umgebung Zugriff auf die System-/SDK-Pakete braucht
 (`--system-site-packages` oder die vom Hailo-Setup erzeugte venv).
 
+## Ersteinrichtung eines neuen Geräts (von Grund auf)
+
+Reihenfolge für ein komplett neues Raspberry Pi 5 + Hailo-8-Setup:
+
+1. **Hailo initialisieren** — Pi OS (64-bit) aufsetzen, System updaten, PCIe-
+   Speed über `raspi-config` auf Gen3 stellen, dann `sudo apt install
+   hailo-all` und mit `hailortcli fw-control identify` verifizieren, dass
+   `Device Architecture: HAILO8` erscheint.
+2. **Framework + dieses Repo klonen** — `hailo-rpi5-examples` (liefert
+   `setup_env.sh` und die Basis-Pipeline) sowie dieses Repository.
+3. **Abhängigkeiten installieren** — siehe „Installation" unten
+   (`pip install -r requirements.txt` in der Hailo-venv).
+4. **Hardware verbinden** — USB-Kamera, LoRa-Modul (LA66 USB Adapter) und
+   LTE-Stick per USB an den Pi anschließen.
+
+Ausführliche Schritt-für-Schritt-Befehle (inkl. Fixes für bekannte
+Stolpersteine bei der Hailo-Installation) sind absichtlich nicht Teil dieses
+öffentlichen READMEs, da sie stark geräte-/setup-spezifisch sind — die
+LoRa-Modul-Einrichtung ist in
+[`tests/lora_hardware/Anleitung_LA66_TTN_Verbindung.md`](tests/lora_hardware/Anleitung_LA66_TTN_Verbindung.md)
+dokumentiert.
+
 ## Installation (nur mit diesem Ordner)
 
 ```bash
