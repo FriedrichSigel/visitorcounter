@@ -50,7 +50,7 @@ Elternverzeichnis oder im `$HOME`.
 source setup_env.sh
 
 # Steuer-App starten (empfohlen — bündelt alles über eine Oberfläche)
-python app.py
+python core/app.py
 ```
 
 Die App führt durch fünf Seiten: Input wählen → Konfiguration (Zählgeometrie)
@@ -60,30 +60,39 @@ USB-Kamera.
 Einzelne Bestandteile lassen sich auch direkt starten:
 
 ```bash
-python core.py --input usb              # nur die Zähl-Pipeline
-python roi_config_app.py --input usb    # nur das Zählgeometrie-Werkzeug
-python auto_config_clustering.py --input camera_raw.png --border --save
+python core/core.py --input usb                     # nur die Zähl-Pipeline
+python config_tool/roi_config_app.py --input usb     # nur das Zählgeometrie-Werkzeug
+python config_tool/auto_config_clustering.py --input camera_raw.png --border --save
 ```
 
 ## Module (Kurzüberblick)
 
-| Datei | Aufgabe |
-|---|---|
-| `app.py` | Zentrale Steuer-App (GUI, fünf Seiten) |
-| `core.py` | Pipeline-Steuerung, Frame-Callback |
-| `tracking.py` | Track-Verwaltung, Flush/Finalize, avg_confidence |
-| `counting.py` | Zähllogik (Linie / ROI / Mehrere Flächen) |
-| `visualization.py` | Live-Overlay + Bewegungsbilder |
-| `logging_utils.py` | Schreibt `ergebniss.csv` und `zaehlung.csv` |
-| `csv_utils.py` | Schema-Schutz der CSV-Dateien |
-| `cleanup_utils.py` | Start-Cleanup (archiviert Vorlauf-Artefakte) |
-| `config.py` | Zentrale Konstanten, lädt `roi_config.json` |
-| `roi_config_app.py` | Zählgeometrie-Werkzeug (auch in app.py eingebettet) |
-| `ctk_dialogs.py` | CustomTkinter-Dialoge (dunkles Design) |
-| `ui_utils.py` | Gemeinsame GUI-Hilfsfunktionen |
-| `frame_utils.py` | GUI-freie Frame-/Auflösungsbeschaffung |
-| `auto_config.py` | Datensammlung + Batch-Einteilung |
-| `auto_config_clustering.py` | DBSCAN / Randraster → Zählgeometrie |
+Die Python-Dateien sind nach Funktionsbereich in Unterordnern sortiert:
+
+| Ordner | Datei | Aufgabe |
+|---|---|---|
+| `core/` | `app.py` | Zentrale Steuer-App (GUI, fünf Seiten) |
+| `core/` | `core.py` | Pipeline-Steuerung, Frame-Callback |
+| `core/` | `tracking.py` | Track-Verwaltung, Flush/Finalize, avg_confidence |
+| `core/` | `counting.py` | Zähllogik (Linie / ROI / Mehrere Flächen) |
+| `core/` | `recording.py` | Benchmark-Mitschnitt (Video, nur Laborläufe) |
+| `core/` | `config.py` | Zentrale Konstanten, lädt `roi_config.json` |
+| `config_tool/` | `roi_config_app.py` | Zählgeometrie-Werkzeug (auch in app.py eingebettet) |
+| `config_tool/` | `auto_config.py` | Datensammlung + Batch-Einteilung |
+| `config_tool/` | `auto_config_clustering.py` | DBSCAN / Randraster → Zählgeometrie |
+| `config_tool/` | `ctk_dialogs.py` | CustomTkinter-Dialoge (dunkles Design) |
+| `lora/` | `lora_message.py`, `lora_send_loop.py` | LoRa-Zählnachricht + Sendeschleife |
+| `lora/` | `konfig_payload.py`, `uebergangs_payload.py`, `lora_spiegel.py` | Zusatzformate / MQTT-Spiegelung |
+| `lora/` | `mqtt_send_loop.py` | Gegenstück zu `lora_send_loop.py`, über MQTT |
+| `utils/` | `visualization.py` | Live-Overlay + Bewegungsbilder |
+| `utils/` | `logging_utils.py` | Schreibt `ergebniss.csv` und `zaehlung.csv` |
+| `utils/` | `csv_utils.py` | Schema-Schutz der CSV-Dateien |
+| `utils/` | `cleanup_utils.py` | Start-Cleanup (archiviert Vorlauf-Artefakte) |
+| `utils/` | `ui_utils.py` | Gemeinsame GUI-Hilfsfunktionen |
+| `utils/` | `frame_utils.py` | GUI-freie Frame-/Auflösungsbeschaffung |
+| `utils/` | `warmup.py` | Aufwärmlauf beim Systemstart |
+| `utils/` | `benchmark.py` | Leistungskennzahlen für Benchmark-/Laborläufe |
+| `tabs/` | — | Einzelne Seiten der Steuer-App (Mixins), eingebunden von `core/app.py` |
 
 ## Ausgaben
 

@@ -5,6 +5,7 @@ tabs/recording_controls.py und tabs/lora_controls.py. Siehe tabs/__init__.py
 für die Mixin-Begründung.
 """
 
+import os
 import signal
 import subprocess
 import sys
@@ -127,8 +128,10 @@ class MqttControlsMixin:
     def _start_mqtt_sender(self, settings):
         """Startet mqtt_send_loop.py als eigenen Subprozess. Dessen Ausgabe
         wird (mit Präfix) in dasselbe Live-Log geleitet."""
+        mqtt_send_loop_path = os.path.join(
+            os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "lora", "mqtt_send_loop.py")
         cmd = [
-            sys.executable, "mqtt_send_loop.py",
+            sys.executable, mqtt_send_loop_path,
             "--broker", settings["broker"],
             "--port", str(settings["port"]),
             "--pause", str(settings["interval"]),

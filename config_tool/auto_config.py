@@ -25,7 +25,17 @@ enthalten — bewusst als nächster, separater Schritt.
 
 import csv
 import os
+import sys
 from datetime import datetime
+
+# core/, lora/, config_tool/ und utils/ liegen als Geschwisterordner nebeneinander;
+# ihre Module importieren sich flach untereinander (import config, import lora_message, ...),
+# darum müssen beim Direktstart alle vier auf sys.path stehen.
+_ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+for _sub in ("", "core", "lora", "config_tool", "utils"):
+    _p = os.path.join(_ROOT_DIR, _sub) if _sub else _ROOT_DIR
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
 
 from csv_utils import ensure_current_schema
 

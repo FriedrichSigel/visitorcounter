@@ -23,6 +23,6 @@ cd "$(dirname "$0")" || exit 1
 
 source setup_env.sh || exit 1
 
-python warmup.py
+python utils/warmup.py
 
-python app.py --autostart
+python core/app.py --autostart

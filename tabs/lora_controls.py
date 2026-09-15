@@ -7,6 +7,7 @@ tabs/__init__.py für die Mixin-Begründung.
 """
 
 import json
+import os
 import signal
 import subprocess
 import sys
@@ -175,8 +176,10 @@ class LoraControlsMixin:
     def _start_lora_sender(self, interval_min, sensor_id):
         """Startet lora_send_loop.py --live-counts als eigenen Subprozess.
         Dessen Ausgabe wird (mit Präfix) in dasselbe Live-Log geleitet."""
+        lora_send_loop_path = os.path.join(
+            os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "lora", "lora_send_loop.py")
         cmd = [
-            sys.executable, "lora_send_loop.py", "--live-counts",
+            sys.executable, lora_send_loop_path, "--live-counts",
             "--pause", str(interval_min),
             "--sensor-id", str(sensor_id),
             "--config", ROI_CONFIG_PATH,

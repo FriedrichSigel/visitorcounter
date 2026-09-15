@@ -34,6 +34,16 @@ import signal
 import subprocess
 import sys
 import tkinter as tk
+
+# core/, lora/, config_tool/ und utils/ liegen als Geschwisterordner nebeneinander;
+# ihre Module importieren sich flach untereinander (import config, import lora_message, ...),
+# darum müssen beim Direktstart alle vier auf sys.path stehen.
+_ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+for _sub in ("", "core", "lora", "config_tool", "utils"):
+    _p = os.path.join(_ROOT_DIR, _sub) if _sub else _ROOT_DIR
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
+
 import ctk_dialogs as messagebox   # CustomTkinter-Dialoge, messagebox-kompatible API
 import ctk_dialogs as simpledialog # askstring liegt ebenfalls hier
 
@@ -165,7 +175,8 @@ def _capture_snapshot_via_core(input_value, timeout=SNAPSHOT_TIMEOUT_SECONDS):
 
     env = os.environ.copy()
     env["CORE_SNAPSHOT_ONLY"] = "true"
-    cmd = [sys.executable, "core.py", "--input", input_value, "--use-frame"]
+    core_path = os.path.join(_ROOT_DIR, "core", "core.py")
+    cmd = [sys.executable, core_path, "--input", input_value, "--use-frame"]
 
     print(f"Nehme Referenzbild über core.py auf ({' '.join(cmd)}) — "
           f"das kann beim allerersten Start deutlich länger dauern "

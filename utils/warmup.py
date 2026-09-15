@@ -50,6 +50,15 @@ import sys
 import threading
 import time
 
+# core/, lora/, config_tool/ und utils/ liegen als Geschwisterordner nebeneinander;
+# ihre Module importieren sich flach untereinander (import config, import lora_message, ...),
+# darum müssen beim Direktstart alle vier auf sys.path stehen.
+_ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+for _sub in ("", "core", "lora", "config_tool", "utils"):
+    _p = os.path.join(_ROOT_DIR, _sub) if _sub else _ROOT_DIR
+    if _p not in sys.path:
+        sys.path.insert(0, _p)
+
 # Markerdatei mit der Boot-ID des letzten Aufwärmlaufs. Liegt neben dem Code,
 # damit sie unabhängig vom Aufrufort gefunden wird.
 MARKER_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
@@ -167,8 +176,8 @@ def run_warmup(input_value="usb", timeout=DEFAULT_TIMEOUT_SECONDS,
             except Exception:
                 pass
 
-    script_dir = script_dir or os.path.dirname(os.path.abspath(__file__))
-    core_path = os.path.join(script_dir, "core.py")
+    script_dir = script_dir or _ROOT_DIR
+    core_path = os.path.join(script_dir, "core", "core.py")
     if not os.path.exists(core_path):
         say(f"Aufwärmlauf nicht möglich: {core_path} nicht gefunden.")
         return False

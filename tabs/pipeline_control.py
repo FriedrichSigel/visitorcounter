@@ -82,7 +82,8 @@ class PipelineControlMixin:
             if recording_settings is None:
                 return
 
-        cmd = [sys.executable, "core.py", "--input", self.input_value]
+        core_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "core", "core.py")
+        cmd = [sys.executable, core_path, "--input", self.input_value]
         env = os.environ.copy()
 
         # Erkennungsmodell (Tab 1): --hef-path ist ein von hailo_apps selbst
