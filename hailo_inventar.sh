@@ -47,9 +47,13 @@ echo "System-Python: $(python3 -V 2>&1)"
 
 trenner "Hailo — apt-Pakete"
 # hailo-all ist ein Metapaket; die eigentliche Software steckt in den anderen.
-if dpkg -l | grep -qi hailo; then
-    dpkg-query -W -f='${Package}\t${Version}\t${Status}\n' \
-        'hailo*' 'python3-hailo*' 2>/dev/null | grep -v 'not-installed' || true
+# Achtung: `dpkg -l | grep -q` ist hier unbrauchbar — grep -q steigt frueh aus,
+# dpkg bekommt SIGPIPE und mit `set -o pipefail` schlaegt die ganze Pipeline
+# fehl, obwohl Treffer vorliegen. Deshalb erst in eine Variable einlesen.
+HAILO_PKGS="$(dpkg-query -W -f='${Package}\t${Version}\t${Status}\n' \
+    'hailo*' 'python3-hailo*' 2>/dev/null | grep -v 'not-installed')"
+if [ -n "$HAILO_PKGS" ]; then
+    echo "$HAILO_PKGS"
 else
     echo "(keine Hailo-apt-Pakete installiert)"
 fi
@@ -260,7 +264,8 @@ entferne_hailo() {
     echo "und die vom Installer abgelegten Dateien."
     echo
 
-    if dpkg -l 2>/dev/null | grep -qi hailo; then
+    # Nicht `dpkg -l | grep -q` verwenden — siehe Kommentar oben (SIGPIPE + pipefail).
+    if [ -n "$(dpkg-query -W -f='${Package}\n' 'hailo*' 'python3-hailo*' 2>/dev/null)" ]; then
         if frage "apt-Pakete 'hailo*' entfernen?"; then
             sudo apt remove --purge -y 'hailo*' 'python3-hailo*'
             sudo apt autoremove --purge -y
@@ -283,7 +288,7 @@ entferne_hailo() {
         frage "/usr/lib/aarch64-linux-gnu/hailo loeschen?" && sudo rm -rf /usr/lib/aarch64-linux-gnu/hailo
     fi
 
-    if dkms status 2>/dev/null | grep -qi hailo; then
+    if [ -n "$(dkms status 2>/dev/null | grep -i hailo || true)" ]; then
         echo
         echo "  DKMS-Treiber hailo_pci gefunden."
         if frage "DKMS-Treiber deinstallieren?"; then
