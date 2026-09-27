@@ -1,18 +1,52 @@
-# Besucherzählsensor — core
+# Besucherzählsensor
 
 Computer-Vision-basierter Sensor zur automatisierten Besucherzählung auf
-Raspberry Pi 5 mit Hailo-8-Beschleuniger. Dieser Ordner ist eigenständig
-lauffähig — er enthält die komplette Anwendung (Objekterkennung, Tracking,
+Raspberry Pi 5 mit Hailo-8-Beschleuniger. Das Repository ist eigenständig
+lauffähig — es enthält die komplette Anwendung (Objekterkennung, Tracking,
 Zähllogik, Konfigurations-GUI, LoRaWAN-Anbindung).
+
+## Versionsstand
+
+Alle Python-Abhängigkeiten sind exakt gepinnt, damit jedes Gerät identisch
+aufgebaut wird. Stand der Tabelle: **27.09.2026** — jeweils die zu diesem
+Zeitpunkt aktuellste Veröffentlichung.
+
+| Komponente | Version | Bezug |
+|---|---|---|
+| Python | 3.13.x (Pi OS trixie) | System; aktuellste Reihe ist 3.14.x |
+| numpy | 2.5.3 | pip (`requirements.txt`) |
+| opencv-python | 5.0.0.93 | pip |
+| Pillow | 12.3.0 | pip |
+| customtkinter | 6.0.0 | pip |
+| scikit-learn | 1.9.1 | pip |
+| scipy | 1.18.1 | pip |
+| hailo-apps-infra (`hailo_apps`) | 26.03.1 | pip aus Git (`create_venv.sh`) |
+| hailort / hailo-tappas-core / `hailo` | Version des Pi-OS-Pakets | apt (`hailo-all`) |
+| PyGObject (`gi`), GStreamer 1.0 | Version des Pi-OS-Pakets | apt |
+
+Die apt-Pakete werden bewusst nicht gepinnt — sie müssen zum Kernel und zum
+PCIe-Treiber des jeweiligen Pi-OS-Stands passen und kommen deshalb immer aus
+der Distribution.
+
+**Aktualisieren:** `pip list --outdated` in der aktivierten venv, neue
+Versionen in [`requirements.txt`](requirements.txt) eintragen, diese Tabelle
+nachziehen. Für `hailo_apps` das neueste Release unter
+<https://github.com/hailo-ai/hailo-apps-infra/releases> nachsehen und den Tag
+in [`create_venv.sh`](create_venv.sh) (`HAILO_APPS_VERSION`) setzen.
+
+> **Hinweis:** Die Versionen sind auf Aktualität gewählt, nicht auf geprüfte
+> Kompatibilität untereinander. Insbesondere die Kombination aus einem neuen
+> `hailo_apps` und der PyGObject-Version des Systems ist eine bekannte
+> Bruchstelle — siehe [Bekannte Stolpersteine](#bekannte-stolpersteine).
 
 ## Voraussetzungen (System)
 
 - Raspberry Pi 5 mit Hailo-8 (Firmware 4.23.0 getestet)
-- Raspberry Pi OS (64-bit), Debian 13 "trixie", Python 3.13
-- **Hailo-Systempakete installiert** — kommen NICHT über `requirements.txt`,
-  sondern per `apt` direkt von Raspberry Pi OS:
+- Raspberry Pi OS (64-bit), Debian 13 "trixie"
+- **Hailo-Systempakete** — kommen NICHT über `requirements.txt`, sondern per
+  `apt` direkt von Raspberry Pi OS:
   ```bash
-  sudo apt install -y hailo-all
+  sudo apt update && sudo apt install -y hailo-all
   ```
   Das Metapaket zieht `hailort`, `hailo-tappas-core`, `hailort-pcie-driver`,
   `python3-hailort` und `python3-hailo-tappas` mit. Verifizieren:
@@ -23,7 +57,7 @@ Zähllogik, Konfigurations-GUI, LoRaWAN-Anbindung).
   System-Pakete:
   ```bash
   sudo apt install -y python3-gi python3-gst-1.0 gstreamer1.0-plugins-good \
-                       python3-tk python3-pil python3-pil.imagetk python3-venv
+                      python3-tk python3-pil python3-pil.imagetk python3-venv
   ```
   `python3-pil.imagetk` ist kein optionales Extra — ohne das Paket fehlt
   `PIL.ImageTk`, und die GUI startet nicht. `python3-venv` wird für den
@@ -35,28 +69,17 @@ im nächsten Schritt automatisch per `pip` aus dem offiziellen
 `hailo-apps-infra`-Repository installiert — ein separates Klonen von
 `hailo-rpi5-examples` oder `hailo-apps` ist für den Betrieb **nicht** nötig.
 
-## Ersteinrichtung eines neuen Geräts (von Grund auf)
-
-Reihenfolge für ein komplett neues Raspberry Pi 5 + Hailo-8-Setup:
+## Ersteinrichtung eines neuen Geräts
 
 1. **Hailo initialisieren** — Pi OS (64-bit) aufsetzen, System updaten, PCIe-
-   Speed über `raspi-config` (Advanced Options → PCIe Speed) auf Gen3
-   stellen, neu starten, dann `sudo apt install hailo-all` und mit
+   Speed über `raspi-config` (Advanced Options → PCIe Speed) auf Gen3 stellen,
+   neu starten, dann `sudo apt install hailo-all` und mit
    `hailortcli fw-control identify` verifizieren.
-2. **Dieses Repo klonen** — kein weiteres Hailo-Repo nötig, siehe oben.
-3. **Abhängigkeiten installieren** — siehe „Installation" unten
-   (`bash create_venv.sh` erledigt venv + `requirements.txt` + `hailo_apps`
-   in einem Schritt).
+2. **Repo klonen** — kein weiteres Hailo-Repo nötig, siehe oben.
+3. **Abhängigkeiten installieren** — siehe [Installation](#installation).
 4. **Hardware verbinden** — USB-Kamera, LoRa-Modul (LA66 USB Adapter, meldet
    sich als `/dev/ttyUSB0` über den im Kernel enthaltenen `cp210x`-Treiber,
-   kein manueller Treiber nötig) und LTE-Stick per USB an den Pi anschließen.
-
-Ausführliche Schritt-für-Schritt-Befehle (inkl. Fixes für bekannte
-Stolpersteine bei der Hailo-Installation) sind absichtlich nicht Teil dieses
-öffentlichen READMEs, da sie stark geräte-/setup-spezifisch sind — die
-LoRa-Modul-Einrichtung ist in
-[`tests/lora_hardware/Anleitung_LA66_TTN_Verbindung.md`](tests/lora_hardware/Anleitung_LA66_TTN_Verbindung.md)
-dokumentiert.
+   kein manueller Treiber nötig) und LTE-Stick per USB anschliessen.
 
 ## Installation
 
@@ -73,13 +96,20 @@ source setup_env.sh
 ```
 
 `create_venv.sh` legt `venv_visitorcounter` mit `--system-site-packages` an
-(damit `hailo`/`gi` aus dem System sichtbar bleiben), installiert
+(damit `hailo` und `gi` aus dem System sichtbar bleiben), installiert
 `requirements.txt` und danach `hailo_apps` per `pip` direkt aus
-`hailo-apps-infra` (Tag konfigurierbar über `HAILO_APPS_VERSION`, Standard
-siehe Kopf des Skripts). Am Ende läuft ein Selbsttest aller Importe
-(`numpy`, `cv2`, `hailo`, `hailo_apps`, …) — schlägt `hailo_apps` dort fehl,
-sag Bescheid, dafür gibt es einen `.pth`-Fallback über `HAILO_VENV=<pfad>`
-auf eine bestehende `hailo-rpi5-examples`-venv.
+`hailo-apps-infra`. Am Ende läuft ein Selbsttest aller Importe (`numpy`,
+`cv2`, `hailo`, `hailo_apps`, …).
+
+Eine andere `hailo_apps`-Version installieren:
+
+```bash
+HAILO_APPS_VERSION=25.7.0 bash create_venv.sh
+```
+
+Schlägt die Online-Installation fehl, bindet das Skript als Rückfall eine
+bestehende `hailo-rpi5-examples`-venv per `.pth` ein — Pfad dafür über
+`HAILO_VENV=<pfad>` setzen.
 
 ## Nutzung
 
@@ -98,10 +128,49 @@ USB-Kamera.
 Einzelne Bestandteile lassen sich auch direkt starten:
 
 ```bash
-python core/core.py --input usb                     # nur die Zähl-Pipeline
+python core/core.py --input usb                      # nur die Zähl-Pipeline
 python config_tool/roi_config_app.py --input usb     # nur das Zählgeometrie-Werkzeug
 python config_tool/auto_config_clustering.py --input camera_raw.png --border --save
 ```
+
+## Bekannte Stolpersteine
+
+**Pipeline friert nach dem ersten Frame ein.** Ursache ist in aller Regel eine
+Exception im GStreamer-Frame-Callback: ein Pad-Probe-Callback, der eine
+Exception wirft, gibt effektiv `PadProbeReturn.DROP` zurück, wodurch jeder
+Buffer verworfen wird. Der Traceback erscheint dabei nur einmal, es sieht also
+nach einem einmaligen Fehler aus, obwohl jeder Frame scheitert. Erste Prüfung:
+
+```bash
+python core/core.py --input usb 2>&1 | head -40
+```
+
+Ein bekannter Fall ist `AttributeError: 'StructureWrapper' object has no
+attribute 'get_value'` aus `hailo_apps/.../buffer_utils.py`: neuere PyGObject-
+Versionen liefern `Gst.Structure` als `StructureWrapper`, den der Hailo-Helper
+nicht kennt. Hier hilft eine `hailo_apps`-Version, die zur PyGObject-Version
+des Systems passt.
+
+**Setups zweier Geräte vergleichen.** Wenn dasselbe Repo auf einem Gerät
+läuft und auf einem anderen nicht, auf beiden einen Abzug erzeugen und diffen:
+
+```bash
+cd ~/visitorcounter && source setup_env.sh
+{
+  echo "### OS";     head -3 /etc/os-release; uname -a
+  echo "### apt";    dpkg -l | grep -E 'hailo|python3-gi|gir1.2-gst|python3-gst|libgst' | awk '{print $2, $3}'
+  echo "### python"; python -V; python -c "import gi; print('pygobject', gi.__version__)"
+  echo "### hailo";  hailortcli fw-control identify 2>&1 | grep -Ei 'firmware|architecture'
+  echo "### pip";    pip freeze | sort
+} > ~/abzug_$(hostname).txt 2>&1
+```
+
+**Kamera prüfen.** Die Pipeline fordert MJPG 1280x720 @ 30 fps an; dass die
+Kamera das diskret anbietet, zeigt `v4l2-ctl -d /dev/video0 --list-formats-ext`.
+
+**Start über SSH.** Die Pipeline endet in `fpsdisplaysink → autovideosink` und
+braucht ein Display. Ohne gesetztes `DISPLAY` blockiert der Sink:
+`DISPLAY=:0 python core/core.py --input usb`.
 
 ## Autostart beim Booten
 
@@ -109,7 +178,7 @@ Kein systemd-Service, sondern ein Desktop-Autostart-Eintrag + Autologin:
 
 1. **Autologin einrichten** (`sudo raspi-config` → System Options → Boot /
    Autologin → Desktop Autologin). Auf Raspberry Pi OS "trixie" ist die
-   Desktop-Session standardmäßig `rpd-labwc` (Wayland/labwc statt LXDE).
+   Desktop-Session standardmässig `rpd-labwc` (Wayland/labwc statt LXDE).
 2. **Autostart-Eintrag anlegen**: `~/.config/autostart/visitorcounter.desktop`
    ```ini
    [Desktop Entry]
@@ -176,7 +245,8 @@ die gezählten Ereignisse gegen das Bildmaterial prüfen lassen.
 > Diese Funktion ist **standardmässig aus**, wird bei jedem App-Start
 > zurückgesetzt und ist **ausschliesslich für Laborläufe** vorgesehen — nicht
 > für den Feldeinsatz. Regeln zum Umgang mit dem Material:
-> [`docs/entwicklung/Mitschnitt_Benchmark_und_Datenschutz.md`](docs/entwicklung/Mitschnitt_Benchmark_und_Datenschutz.md)
+> `docs/entwicklung/Mitschnitt_Benchmark_und_Datenschutz.md` (nicht im
+> öffentlichen Repo, siehe [Dokumentation](#dokumentation))
 
 ## Konfiguration
 
@@ -189,18 +259,18 @@ Ersteinrichten seine eigene.
 
 ## Dokumentation
 
-Die gesamte Dokumentation liegt in `docs/`, thematisch sortiert. Wegweiser mit
-Kurzbeschreibung jeder Datei: **[`docs/README.md`](docs/README.md)**.
+Die ausführliche Projektdokumentation liegt in `docs/` und ist **nicht Teil
+dieses öffentlichen Repositories** — sie enthält geräte- und
+standortspezifische Angaben. Aufbau:
 
 | Ordner | Inhalt |
 |---|---|
 | `docs/projekt/` | Einstieg (`HANDOFF.md`) und offene Punkte (`ToDo.md`) — der laufende Stand |
 | `docs/abschlussarbeit/` | Gliederung, Statusbericht, Zeitplan, Architekturentwurf, Abbildungen |
 | `docs/einrichtung/` | Gerät aufsetzen, LA66 einrichten, eigenes Git-Repository |
-| `docs/entwicklung/` | Änderungshistorie, Analysen — u. a. **Mitschnitt: Benchmark vs. Normalbetrieb** |
+| `docs/entwicklung/` | Änderungshistorie, gelöste Probleme, Analysen — u. a. Mitschnitt: Benchmark vs. Normalbetrieb |
 | `docs/lora/` | Verbindliche Nachrichtenformat-Spezifikation, Integrations-Changelog, Recherche |
-| `docs/entwicklung/` | Änderungshistorie, gelöste Probleme, Analysen |
 
-`tests/` enthält Diagnose- und Hardware-Testskripte, die **nicht** zum
-Normalbetrieb gehören (Kamera-Test, LoRa-Hardware-Erprobung, TTN-Decoder) —
-siehe [`tests/README.md`](tests/README.md).
+Ebenfalls nicht im öffentlichen Repo: `tests/` mit Diagnose- und
+Hardware-Testskripten, die **nicht** zum Normalbetrieb gehören (Kamera-Test,
+LoRa-Hardware-Erprobung, TTN-Decoder).

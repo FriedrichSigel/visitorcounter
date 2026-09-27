@@ -1,27 +1,33 @@
-# Python-Abhängigkeiten des Besucherzählsensors (core).
+# Python-Abhängigkeiten des Besucherzählsensors.
 #
 # Installation in die aktivierte venv:
 #   pip install -r requirements.txt
 #
+# Versionsstand: 27.09.2026 — jeweils die zu diesem Zeitpunkt aktuellste
+# Veröffentlichung auf PyPI, exakt gepinnt für reproduzierbare Geräte-Setups.
+# Zum Aktualisieren: `pip list --outdated` in der venv, dann hier anpassen
+# und in der Versionstabelle der README.md nachziehen.
+#
 # WICHTIG — nicht per pip installierbar (kommen mit der Hailo-Installation,
 # siehe README.md / setup_env.sh):
-#   - hailo, hailo_apps        (Hailo-Python-SDK + App-Framework)
+#   - hailo                     (HailoRT-Python-Bindings, via apt: hailo-all)
+#   - hailo_apps                (App-Framework, via create_venv.sh aus Git)
 #   - gi / PyGObject, GStreamer (System-Pakete, via apt)
 # Die venv muss deshalb mit Zugriff auf die System-/SDK-Pakete laufen
-# (--system-site-packages ODER die vom Hailo-Setup erzeugte venv nutzen).
+# (--system-site-packages, siehe create_venv.sh).
 
 # --- Bildverarbeitung / Numerik ---
-numpy<2.0.0            # <2.0, weil hailort/opencv-Builds noch NumPy-1.x-ABI erwarten
-opencv-python          # cv2 — Frame-Handling, Zeichnen, Kamerazugriff
-Pillow                 # PIL — Bewegungsbilder, Vorschau im Konfig-Tool
+numpy==2.5.3               # Array-Backend für Frames und Auswertung
+opencv-python==5.0.0.93    # cv2 — Frame-Handling, Zeichnen, Kamerazugriff
+Pillow==12.3.0             # PIL — Bewegungsbilder, Vorschau im Konfig-Tool
 
-# --- GUI (app.py, roi_config_app.py, ctk_dialogs.py) ---
-customtkinter          # dunkles UI-Design, Dialoge
-# tkinter selbst ist Teil der Standardbibliothek (ggf. apt: python3-tk)
+# --- GUI (core/app.py, config_tool/roi_config_app.py, ctk_dialogs.py) ---
+customtkinter==6.0.0       # dunkles UI-Design, Dialoge
+# tkinter selbst ist Teil der Standardbibliothek (apt: python3-tk)
 
-# --- Auto-Konfiguration (auto_config_clustering.py) ---
-scikit-learn           # DBSCAN-Clustering der Track-Start-/Endpunkte
-scipy                  # ConvexHull für die Flächenbildung
+# --- Auto-Konfiguration (config_tool/auto_config_clustering.py) ---
+scikit-learn==1.9.1        # DBSCAN-Clustering der Track-Start-/Endpunkte
+scipy==1.18.1              # ConvexHull für die Flächenbildung
 
 # --- optional, nur für die Tests ---
 # pytest

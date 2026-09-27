@@ -13,15 +13,15 @@
 #
 # Umgebungsvariablen:
 #   VENV_NAME            Name der zu erzeugenden venv (Standard: venv_visitorcounter)
-#   HAILO_APPS_VERSION   Git-Tag des hailo-apps-infra-Repos (Standard: 25.7.0 —
-#                        die Version, gegen die dieses Projekt entwickelt wurde)
+#   HAILO_APPS_VERSION   Git-Tag des hailo-apps-infra-Repos (Standard: 26.03.1 —
+#                        aktuellstes Release, Stand 27.09.2026)
 #   HAILO_VENV           Nur als Rückfall: Pfad zu einer bestehenden Hailo-venv,
 #                        falls die Online-Installation von hailo_apps scheitert.
 
 set -euo pipefail
 
 VENV_NAME="${VENV_NAME:-venv_visitorcounter}"
-HAILO_APPS_VERSION="${HAILO_APPS_VERSION:-25.7.0}"
+HAILO_APPS_VERSION="${HAILO_APPS_VERSION:-26.03.1}"
 HAILO_VENV="${HAILO_VENV:-$HOME/hailo-rpi5-examples/venv_hailo_rpi_examples}"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
