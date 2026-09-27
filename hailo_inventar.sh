@@ -7,10 +7,12 @@
 #   bash hailo_inventar.sh                  # nur anzeigen (Standard, ändert nichts)
 #   bash hailo_inventar.sh --abzug          # anzeigen + in Datei schreiben (für Gerätevergleich)
 #   bash hailo_inventar.sh --plan-entfernen # zeigt die Deinstallationsbefehle, führt sie NICHT aus
-#   bash hailo_inventar.sh --entfernen      # führt die Deinstallation nach Rückfrage aus
+#   bash hailo_inventar.sh --entfernen      # stufenweise Deinstallation, nach Rückfrage
+#   bash hailo_inventar.sh --entfernen-hailo     # nur Hailo-Reste (inkl. /usr/local/hailo)
+#   bash hailo_inventar.sh --entfernen-gstreamer # nur GStreamer-apt-Pakete (mit Trockenlauf)
 #
-# Ohne Schalter wird nichts verändert. `--entfernen` fragt vor jedem Schritt
-# einzeln nach und lässt sich jederzeit mit "n" überspringen.
+# Ohne Schalter wird nichts verändert. Alle Entfernen-Modi fragen vor jedem
+# Schritt einzeln nach und lassen sich jederzeit mit "n" überspringen.
 
 set -uo pipefail
 
@@ -23,6 +25,8 @@ case "${1:-}" in
     --abzug)          MODUS="abzug" ;;
     --plan-entfernen) MODUS="plan" ;;
     --entfernen)      MODUS="entfernen" ;;
+    --entfernen-hailo)     MODUS="hailo" ;;
+    --entfernen-gstreamer) MODUS="gstreamer" ;;
     --hilfe|-h)       sed -n '2,20p' "$0"; exit 0 ;;
     "")               ;;
     *)                echo "Unbekannter Schalter: $1 — siehe --hilfe"; exit 1 ;;
@@ -113,6 +117,28 @@ if [ -d "$VENV_DIR" ]; then
 else
     echo "(keine venv unter $VENV_DIR)"
 fi
+
+trenner "Hailo — Herkunft der Dateien (apt oder Installer-Skript?)"
+# Wichtig vor dem Entfernen: per apt installierte Dateien gehoeren einem Paket
+# und muessen per apt weg. Vom Hailo-Installer abgelegte Dateien gehoeren
+# keinem Paket und muessen von Hand geloescht werden.
+for PFAD in /usr/local/hailo /usr/lib/aarch64-linux-gnu/hailo \
+            /usr/bin/hailortcli /lib/modules/$(uname -r)/updates/dkms/hailo_pci.ko; do
+    if [ -e "$PFAD" ]; then
+        BESITZER="$(dpkg -S "$PFAD" 2>/dev/null | cut -d: -f1)"
+        if [ -n "$BESITZER" ]; then
+            echo "  apt-Paket '$BESITZER'   -> $PFAD"
+        else
+            echo "  KEIN apt-Paket (Installer) -> $PFAD"
+        fi
+    fi
+done
+echo "  GStreamer-Plugin hailonet liegt in:"
+gst-inspect-1.0 hailonet 2>/dev/null | grep -i 'Filename' || echo "    (nicht ermittelbar)"
+echo "  hailo-Python-Modul im System-Python:"
+python3 -c "import hailo, os; print('   ', os.path.dirname(hailo.__file__))" 2>&1 | tail -1
+echo "  DKMS-Module:"
+dkms status 2>/dev/null | grep -i hailo || echo "    (keine)"
 
 trenner "Weitere Hailo-venvs auf dem System"
 find "$HOME" -maxdepth 4 -type d -name 'site-packages' 2>/dev/null \
@@ -222,6 +248,110 @@ fuehre_aus() {
     fi
 }
 
+
+# ---------------------------------------------------------------------
+# Gezieltes Entfernen: nur Hailo-Reste
+# ---------------------------------------------------------------------
+entferne_hailo() {
+    echo
+    echo "=== Hailo-Reste entfernen ==="
+    echo "Auf diesem Geraet wurde Hailo offenbar NICHT per apt installiert."
+    echo "Deshalb wird beides versucht: apt-Pakete (falls doch welche da sind)"
+    echo "und die vom Installer abgelegten Dateien."
+    echo
+
+    if dpkg -l 2>/dev/null | grep -qi hailo; then
+        if frage "apt-Pakete 'hailo*' entfernen?"; then
+            sudo apt remove --purge -y 'hailo*' 'python3-hailo*'
+            sudo apt autoremove --purge -y
+        fi
+    else
+        echo "  (keine Hailo-apt-Pakete vorhanden - uebersprungen)"
+    fi
+
+    if [ -d /usr/local/hailo ]; then
+        echo
+        echo "  /usr/local/hailo belegt $(du -sh /usr/local/hailo 2>/dev/null | cut -f1)"
+        echo "  (Modelle/HEF-Dateien, .so-Postprocessing, Ressourcen)"
+        frage "/usr/local/hailo loeschen?" && sudo rm -rf /usr/local/hailo
+    fi
+
+    if [ -d /usr/lib/aarch64-linux-gnu/hailo ]; then
+        echo
+        echo "  /usr/lib/aarch64-linux-gnu/hailo enthaelt die TAPPAS-Bibliotheken"
+        echo "  und die GStreamer-Hailo-Plugins."
+        frage "/usr/lib/aarch64-linux-gnu/hailo loeschen?" && sudo rm -rf /usr/lib/aarch64-linux-gnu/hailo
+    fi
+
+    if dkms status 2>/dev/null | grep -qi hailo; then
+        echo
+        echo "  DKMS-Treiber hailo_pci gefunden."
+        if frage "DKMS-Treiber deinstallieren?"; then
+            dkms status 2>/dev/null | grep -i hailo | while IFS=, read -r MOD VER _; do
+                sudo dkms remove "${MOD}/${VER#*/}" --all 2>/dev/null || true
+            done
+        fi
+    fi
+
+    for BIN in /usr/bin/hailortcli /usr/local/bin/hailortcli /usr/bin/hailo; do
+        [ -e "$BIN" ] && frage "$BIN loeschen?" && sudo rm -f "$BIN"
+    done
+
+    echo
+    echo "  Fertig. Der Kernel-Treiber wird erst nach 'sudo reboot' entladen."
+    echo "  Danach neu installieren mit:  sudo apt update && sudo apt install -y hailo-all"
+}
+
+# ---------------------------------------------------------------------
+# Gezieltes Entfernen: GStreamer
+# ---------------------------------------------------------------------
+entferne_gstreamer() {
+    echo
+    echo "=========================== WARNUNG ==========================="
+    echo "GStreamer ist auf Raspberry Pi OS eine Abhaengigkeit des Desktops"
+    echo "und vieler Standardprogramme. Ein pauschales Entfernen reisst per"
+    echo "Autoremove haeufig auch Desktop-Bestandteile mit heraus - im"
+    echo "schlimmsten Fall bootet das Geraet nur noch in die Konsole."
+    echo
+    echo "Deshalb wird hier NICHTS blind entfernt. Zuerst zeigt apt an, was"
+    echo "genau wegfallen wuerde (Trockenlauf), und du entscheidest danach."
+    echo "==============================================================="
+    echo
+
+    PAKETE="gstreamer1.0-plugins-base gstreamer1.0-plugins-good \
+gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly gstreamer1.0-libav \
+gstreamer1.0-tools gstreamer1.0-x gstreamer1.0-gl gstreamer1.0-alsa \
+gstreamer1.0-pulseaudio python3-gst-1.0 gir1.2-gstreamer-1.0 \
+gir1.2-gst-plugins-base-1.0 gir1.2-gst-plugins-bad-1.0 libgstreamer1.0-0"
+
+    echo "--- TROCKENLAUF: was apt entfernen wuerde ---"
+    # shellcheck disable=SC2086
+    sudo apt remove --purge --simulate $PAKETE 2>&1 | grep -E '^(Remv|REMOVING|Die folgenden|The following)' | head -60
+    echo
+    echo "--- Anzahl betroffener Pakete ---"
+    # shellcheck disable=SC2086
+    sudo apt remove --purge --simulate $PAKETE 2>&1 | grep -c '^Remv' || true
+    echo
+    echo "Pruefe die Liste. Stehen dort Pakete wie 'raspberrypi-ui-mods',"
+    echo "'lxde*', 'labwc', 'chromium*' oder 'pipewire', dann brich ab -"
+    echo "sonst verlierst du den Desktop."
+    echo
+
+    if frage "Liste geprueft - GStreamer jetzt wirklich entfernen?"; then
+        # shellcheck disable=SC2086
+        sudo apt remove --purge -y $PAKETE
+        echo
+        if frage "Zusaetzlich 'apt autoremove --purge' ausfuehren?"; then
+            sudo apt autoremove --purge -y
+        fi
+        echo
+        echo "  Neu installieren mit:"
+        echo "    sudo apt update"
+        echo "    sudo apt install -y python3-gi python3-gst-1.0 \\"
+        echo "                        gstreamer1.0-plugins-good gstreamer1.0-tools"
+    fi
+}
+
 # =====================================================================
 case "$MODUS" in
     anzeigen)
@@ -243,5 +373,11 @@ case "$MODUS" in
         ;;
     entfernen)
         fuehre_aus
+        ;;
+    hailo)
+        entferne_hailo
+        ;;
+    gstreamer)
+        entferne_gstreamer
         ;;
 esac
