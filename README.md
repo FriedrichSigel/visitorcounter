@@ -236,26 +236,159 @@ Kamera das diskret anbietet, zeigt `v4l2-ctl -d /dev/video0 --list-formats-ext`.
 braucht ein Display. Ohne gesetztes `DISPLAY` blockiert der Sink:
 `DISPLAY=:0 python core/core.py --input usb`.
 
+## Laufende Prozesse prüfen
+
+Ob der Sensor gerade arbeitet, beantwortet:
+
+```bash
+bash hailo_inventar.sh --status
+```
+
+Das zeigt laufende Projekt-Prozesse (`core.py`, `app.py`, Aufwärmlauf,
+LoRa-/MQTT-Sender), wer `/dev/hailo0` und die Kamera belegt, die Auslastung des
+Beschleunigers und ob ein Autostart-Eintrag existiert.
+
+Die einzelnen Handgriffe, falls du sie direkt brauchst:
+
+```bash
+pgrep -af core/core.py            # laeuft die Zähl-Pipeline?
+pgrep -af core/app.py             # laeuft die Steuer-App?
+sudo fuser -v /dev/hailo0         # welcher Prozess belegt den Beschleuniger?
+sudo fuser -v /dev/video0         # welcher Prozess belegt die Kamera?
+hailortcli monitor                # Live-Auslastung (Strg+C beendet)
+```
+
+`/dev/hailo0` kann immer nur **ein** Prozess gleichzeitig benutzen. Wenn ein
+Start mit einer Geraetefehlermeldung abbricht, laeuft meist noch eine alte
+Instanz. Sauber beenden:
+
+```bash
+pkill -INT -f core/core.py        # SIGINT — core.py raeumt dann selbst auf
+sleep 3; pgrep -af core/core.py   # leer = beendet
+pkill -TERM -f core/core.py       # nur falls noch etwas haengt
+```
+
+SIGINT ist wichtig: nur darauf schreibt `core.py` seine CSV-Dateien und das
+Bewegungsbild noch fertig. `kill -9` verliert die Daten des laufenden Laufs.
+
 ## Autostart beim Booten
 
-Kein systemd-Service, sondern ein Desktop-Autostart-Eintrag + Autologin:
+Der Sensor startet **nicht** per systemd, sondern über einen
+Desktop-Autostart-Eintrag. Grund: `core/app.py` ist eine Tkinter-Oberfläche und
+die Pipeline endet in einem Videofenster — beides braucht eine laufende
+Desktop-Sitzung. Ein systemd-Service startet zu früh, hat kein `DISPLAY` und
+scheitert daran.
 
-1. **Autologin einrichten** (`sudo raspi-config` → System Options → Boot /
-   Autologin → Desktop Autologin). Auf Raspberry Pi OS "trixie" ist die
-   Desktop-Session standardmässig `rpd-labwc` (Wayland/labwc statt LXDE).
-2. **Autostart-Eintrag anlegen**: `~/.config/autostart/visitorcounter.desktop`
-   ```ini
-   [Desktop Entry]
-   Type=Application
-   Name=Besucherzähler
-   Comment=Startet die Personenzähl-App automatisch beim Hochfahren
-   Exec=lxterminal --working-directory=/home/<user>/visitorcounter -e bash -c "./start_app.sh; exec bash"
-   X-GNOME-Autostart-enabled=true
-   ```
-   Pfad in `Exec=` an das tatsächliche Home-Verzeichnis anpassen.
-   `start_app.sh` macht einen Aufwärmlauf (`utils/warmup.py`) und startet
-   danach `core/app.py --autostart`, das automatisch mit dem zuletzt in der
-   App gewählten Input (`app_settings.json`) startet.
+### Was beim Booten passiert
+
+```
+Autologin in die Desktop-Sitzung
+        ↓
+~/.config/autostart/visitorcounter.desktop   öffnet ein Terminal mit
+        ↓
+start_app.sh
+        ↓  1. source setup_env.sh          venv aktivieren, PYTHONPATH setzen
+        ↓  2. python utils/warmup.py        Aufwärmlauf: startet core.py
+        ↓                                   nacheinander mit --input usb und
+        ↓                                   mit dem zuletzt gewählten Input,
+        ↓                                   wartet je bis Bilder fließen, und
+        ↓                                   beendet sauber per SIGINT
+        ↓  3. python core/app.py --autostart
+        ↓
+App startet die Zähl-Pipeline selbst
+(core.py --input <app_settings.json>, mit roi_config.json)
+```
+
+Der Aufwärmlauf ist kein Selbstzweck: der allererste Hailo-Start nach dem
+Booten dauert deutlich länger (Firmware laden, HEF initialisieren). `warmup.py`
+nimmt diese Wartezeit vorweg, damit der eigentliche Zähllauf sofort steht. Er
+läuft nur einmal pro Bootvorgang — gemerkt über die Boot-ID in
+`.warmup_state`.
+
+Welchen Input die App startet, steht in `app_settings.json` (zuletzt in Tab 1
+gewählt), die Zählgeometrie in `roi_config.json`. Beide werden von der App
+selbst geschrieben; der Autostart übernimmt sie unverändert.
+
+### Einrichten
+
+**1. Autologin aktivieren**
+
+```bash
+sudo raspi-config
+```
+
+→ `System Options` → `Boot / Auto Login` → **`Desktop Autologin`**.
+Ohne Autologin bleibt der Pi am Anmeldebildschirm stehen und nichts startet.
+
+**2. Vorher pruefen, dass der Ablauf von Hand funktioniert**
+
+```bash
+cd ~/visitorcounter
+bash start_app.sh
+```
+
+Erst wenn das durchläuft, lohnt der Autostart-Eintrag — sonst suchst du den
+Fehler später in einem Terminal, das beim Booten kurz aufblitzt und wieder weg
+ist.
+
+**3. Autostart-Eintrag anlegen**
+
+```bash
+mkdir -p ~/.config/autostart
+cat > ~/.config/autostart/visitorcounter.desktop <<EOF
+[Desktop Entry]
+Type=Application
+Name=Besucherzähler
+Comment=Startet die Personenzähl-App automatisch beim Hochfahren
+Exec=lxterminal --working-directory=$HOME/visitorcounter -e bash -c "./start_app.sh; exec bash"
+X-GNOME-Autostart-enabled=true
+EOF
+chmod +x ~/visitorcounter/start_app.sh
+```
+
+Das `$HOME` wird beim Schreiben der Datei aufgelöst — kontrollieren mit
+`cat ~/.config/autostart/visitorcounter.desktop`.
+
+Das `exec bash` am Ende hält das Terminal offen, wenn die App beendet wird oder
+abstürzt. So bleibt die Fehlermeldung sichtbar, statt mit dem Fenster zu
+verschwinden. Für den Dauerbetrieb ohne Bildschirm kann es entfallen.
+
+**4. Neustart und Kontrolle**
+
+```bash
+sudo reboot
+# nach dem Hochfahren:
+bash ~/visitorcounter/hailo_inventar.sh --status
+```
+
+### Abschalten oder ändern
+
+```bash
+# vorübergehend abschalten
+mv ~/.config/autostart/visitorcounter.desktop ~/.config/autostart/visitorcounter.desktop.aus
+
+# ganz entfernen
+rm ~/.config/autostart/visitorcounter.desktop
+```
+
+Soll beim Booten ein anderer Input verwendet werden, startest du die App
+einmal von Hand, wählst ihn in Tab 1 und beendest sie — die Wahl landet in
+`app_settings.json` und gilt ab dem nächsten Autostart.
+
+### Wenn der Autostart nicht greift
+
+| Symptom | Ursache / Pruefung |
+|---|---|
+| Nichts passiert, Anmeldebildschirm | Autologin nicht auf *Desktop* Autologin gesetzt |
+| Terminal blitzt auf und schliesst | `exec bash` fehlt — Fehlermeldung nicht lesbar |
+| `venv nicht gefunden` | `bash create_venv.sh` nie gelaufen, oder falscher Pfad in `Exec=` |
+| `lxterminal: command not found` | `sudo apt install -y lxterminal` |
+| App startet, Pipeline nicht | `roi_config.json` fehlt — erst in Tab 2 Zählgeometrie speichern |
+| Geraetefehler beim Start | alte Instanz laeuft noch, siehe [Laufende Prozesse prüfen](#laufende-prozesse-prüfen) |
+
+Auf Raspberry Pi OS "trixie" ist die Desktop-Sitzung standardmässig
+`rpd-labwc` (Wayland/labwc statt LXDE). Der Autostart-Ordner
+`~/.config/autostart/` wird dort weiterhin ausgewertet.
 
 ## Module (Kurzüberblick)
 

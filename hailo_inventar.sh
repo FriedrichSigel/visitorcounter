@@ -5,6 +5,7 @@
 #
 # ANWENDUNG:
 #   bash hailo_inventar.sh                  # nur anzeigen (Standard, ändert nichts)
+#   bash hailo_inventar.sh --status         # laufen gerade Prozesse? (Hailo, core.py, App)
 #   bash hailo_inventar.sh --abzug          # anzeigen + in Datei schreiben (für Gerätevergleich)
 #   bash hailo_inventar.sh --plan-entfernen # zeigt die Deinstallationsbefehle, führt sie NICHT aus
 #   bash hailo_inventar.sh --entfernen      # stufenweise Deinstallation, nach Rückfrage
@@ -22,6 +23,7 @@ VENV_DIR="${SCRIPT_DIR}/${VENV_NAME}"
 
 MODUS="anzeigen"
 case "${1:-}" in
+    --status)         MODUS="status" ;;
     --abzug)          MODUS="abzug" ;;
     --plan-entfernen) MODUS="plan" ;;
     --entfernen)      MODUS="entfernen" ;;
@@ -392,12 +394,86 @@ gir1.2-gst-plugins-base-1.0 gir1.2-gst-plugins-bad-1.0 libgstreamer1.0-0"
     fi
 }
 
+
+# ---------------------------------------------------------------------
+# Laufende Prozesse und Geraetebelegung
+# ---------------------------------------------------------------------
+status() {
+
+trenner "Laufende Projekt-Prozesse"
+GEFUNDEN=0
+for MUSTER in "core/core.py" "core/app.py" "utils/warmup.py" \
+              "lora_send_loop" "mqtt_send_loop"; do
+    TREFFER="$(pgrep -af "$MUSTER" 2>/dev/null | grep -v 'hailo_inventar' || true)"
+    if [ -n "$TREFFER" ]; then
+        GEFUNDEN=1
+        echo "  $MUSTER:"
+        echo "$TREFFER" | sed 's/^/    /'
+    fi
+done
+[ "$GEFUNDEN" -eq 0 ] && echo "  (keiner dieser Prozesse laeuft)"
+
+trenner "Wer benutzt gerade das Hailo-Geraet?"
+# /dev/hailo0 kann immer nur von einem Prozess gleichzeitig belegt werden.
+# Ein hier gelisteter Prozess ist der Grund, wenn ein zweiter Start mit
+# "Device in use" oder aehnlich scheitert.
+if [ -e /dev/hailo0 ]; then
+    if command -v fuser >/dev/null 2>&1; then
+        BELEGT="$(sudo fuser -v /dev/hailo0 2>&1 | grep -v '^$' || true)"
+        if [ -n "$BELEGT" ]; then
+            echo "$BELEGT" | sed 's/^/  /'
+        else
+            echo "  /dev/hailo0 ist frei."
+        fi
+    elif command -v lsof >/dev/null 2>&1; then
+        sudo lsof /dev/hailo0 2>/dev/null | sed 's/^/  /' || echo "  /dev/hailo0 ist frei."
+    else
+        echo "  (weder fuser noch lsof installiert:  sudo apt install -y psmisc)"
+    fi
+else
+    echo "  /dev/hailo0 existiert nicht — Treiber nicht geladen?"
+fi
+
+trenner "Auslastung des Hailo-Beschleunigers"
+if command -v hailortcli >/dev/null 2>&1; then
+    timeout 5 hailortcli monitor 2>&1 | head -25 \
+        || echo "  (kein laufender Prozess nutzt das Geraet)"
+else
+    echo "  (hailortcli nicht im PATH)"
+fi
+
+trenner "Kamera belegt?"
+for DEV in /dev/video0 /dev/video1; do
+    if [ -e "$DEV" ]; then
+        BELEGT="$(sudo fuser -v "$DEV" 2>&1 | grep -v '^$' || true)"
+        if [ -n "$BELEGT" ]; then
+            echo "  $DEV:"; echo "$BELEGT" | sed 's/^/    /'
+        else
+            echo "  $DEV ist frei."
+        fi
+    fi
+done
+
+trenner "Autostart eingerichtet?"
+AUTOSTART="$HOME/.config/autostart/visitorcounter.desktop"
+if [ -f "$AUTOSTART" ]; then
+    echo "  vorhanden: $AUTOSTART"
+    sed 's/^/    /' "$AUTOSTART"
+else
+    echo "  (kein Autostart-Eintrag unter $AUTOSTART)"
+fi
+
+}
+
 # =====================================================================
 case "$MODUS" in
     anzeigen)
         inventar
         echo
         echo "Deinstallationsbefehle anzeigen:  bash $0 --plan-entfernen"
+        ;;
+    status)
+        status
         ;;
     abzug)
         DATEI="$HOME/hailo_abzug_$(hostname)_$(date +%Y%m%d_%H%M).txt"
