@@ -22,7 +22,8 @@ Zeitpunkt aktuellste Veröffentlichung.
 | scipy | 1.18.1 | pip |
 | hailo-apps-infra (`hailo_apps`) | 26.03.1 | pip aus Git (`create_venv.sh`) |
 | hailort / hailo-tappas-core / `hailo` | Version des Pi-OS-Pakets | apt (`hailo-all`) |
-| PyGObject (`gi`), GStreamer 1.0 | Version des Pi-OS-Pakets | apt |
+| PyGObject (`gi`) | Version des Pi-OS-Pakets | apt |
+| GStreamer 1.0 | Version des Pi-OS-Pakets, **≥ 1.26.3 empfohlen** | apt |
 
 Die apt-Pakete werden bewusst nicht gepinnt — sie müssen zum Kernel und zum
 PCIe-Treiber des jeweiligen Pi-OS-Stands passen und kommen deshalb immer aus
@@ -146,10 +147,48 @@ python core/core.py --input usb 2>&1 | head -40
 ```
 
 Ein bekannter Fall ist `AttributeError: 'StructureWrapper' object has no
-attribute 'get_value'` aus `hailo_apps/.../buffer_utils.py`: neuere PyGObject-
-Versionen liefern `Gst.Structure` als `StructureWrapper`, den der Hailo-Helper
-nicht kennt. Hier hilft eine `hailo_apps`-Version, die zur PyGObject-Version
-des Systems passt.
+attribute 'get_value'` aus `buffer_utils.py`. Das ist ein Fehler in
+**GStreamer 1.26.2**: `Gst.Caps.get_structure()` liefert dort einen
+`StructureWrapper`, der die Methoden des eigentlichen `Gst.Structure` nicht
+durchreicht. Behoben ist er in **GStreamer 1.26.3**
+([Quelle](https://discourse.gstreamer.org/t/python-get-structure-api-change/4767)).
+
+Das Projekt fängt das in [`utils/hailo_compat.py`](utils/hailo_compat.py) ab
+(eigene `get_caps_from_pad()`, die den Wrapper auspackt). Sobald alle Geräte
+auf GStreamer ≥ 1.26.3 laufen — `sudo apt upgrade` — kann diese Funktion dort
+entfallen. Eigene GStreamer-Version prüfen:
+
+```bash
+gst-launch-1.0 --version | head -1
+```
+
+**Modulpfade von `hailo_apps`.** Zwischen 25.7.0 und 26.03.x wurde das Paket
+umstrukturiert (`hailo_app_python/` → `python/`, `apps/` → `pipeline_apps/`).
+`utils/hailo_compat.py` probiert das neue Layout zuerst und fällt auf das alte
+zurück, sodass beide Versionen funktionieren. Bei
+`ModuleNotFoundError: No module named 'hailo_apps.hailo_app_python'` ist also
+nicht der Code kaputt, sondern eine neue `hailo_apps`-Version installiert.
+
+**Paketeigene Dateien nie per `rm` löschen.** Wer z. B.
+`/usr/bin/hailortcli` oder `/usr/lib/aarch64-linux-gnu/hailo` direkt löscht,
+hinterlässt dpkg im Glauben, alles sei installiert — `apt install` meldet dann
+`already the newest version` und installiert nichts nach. Erkennen und
+reparieren:
+
+```bash
+dpkg -V 'hailo*'      # listet fehlende Dateien
+sudo apt install --reinstall -y hailort hailo-tappas-core python3-hailort
+```
+
+`/usr/local/hailo` (die HEF-Modelle) gehört dagegen keinem Paket und wird von
+`hailo_apps` verwaltet — neu holen mit `hailo-download-resources --all`. Der
+Ordner muss dem Benutzer gehören, sonst scheitert der Download an
+`Errno 13 Permission denied`:
+
+```bash
+sudo mkdir -p /usr/local/hailo/resources
+sudo chown -R "$USER":"$USER" /usr/local/hailo
+```
 
 **Bestandsaufnahme.** [`hailo_inventar.sh`](hailo_inventar.sh) listet alle
 installierten Hailo-, GStreamer- und Python-Bestandteile samt Versionen auf

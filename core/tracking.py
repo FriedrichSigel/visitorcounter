@@ -14,7 +14,7 @@ import threading
 
 from collections import deque
 
-from hailo_apps.hailo_app_python.core.gstreamer.gstreamer_app import app_callback_class
+from hailo_compat import app_callback_class   # kapselt die hailo_apps-Modulpfade
 
 from config import (
     FRAMES_UNTIL_GONE, TRACKED_LABELS,

@@ -28,8 +28,12 @@ from gi.repository import Gst, GLib
 import cv2
 import hailo
 
-from hailo_apps.hailo_app_python.core.common.buffer_utils import get_caps_from_pad, get_numpy_from_buffer
-from hailo_apps.hailo_app_python.apps.detection.detection_pipeline import GStreamerDetectionApp
+# Importquelle ist bewusst hailo_compat statt hailo_apps direkt: dort sind
+# die zwischen den hailo_apps-Versionen verschobenen Modulpfade und der
+# StructureWrapper-Fehler von GStreamer 1.26.2 gekapselt.
+from hailo_compat import (
+    get_caps_from_pad, get_numpy_from_buffer, GStreamerDetectionApp,
+)
 
 from config import (
     TRACKED_LABELS, SUMMARY_CANVAS_WIDTH, SUMMARY_CANVAS_HEIGHT, RUN_DURATION_SECONDS,
