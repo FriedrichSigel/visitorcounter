@@ -151,6 +151,17 @@ Versionen liefern `Gst.Structure` als `StructureWrapper`, den der Hailo-Helper
 nicht kennt. Hier hilft eine `hailo_apps`-Version, die zur PyGObject-Version
 des Systems passt.
 
+**Bestandsaufnahme.** [`hailo_inventar.sh`](hailo_inventar.sh) listet alle
+installierten Hailo-, GStreamer- und Python-Bestandteile samt Versionen auf
+und zeigt auf Wunsch die Deinstallationsbefehle:
+
+```bash
+bash hailo_inventar.sh                  # nur anzeigen
+bash hailo_inventar.sh --abzug          # zusaetzlich in Datei (Geraetevergleich)
+bash hailo_inventar.sh --plan-entfernen # Deinstallationsbefehle anzeigen
+bash hailo_inventar.sh --entfernen      # stufenweise entfernen, mit Rueckfrage
+```
+
 **Setups zweier Geräte vergleichen.** Wenn dasselbe Repo auf einem Gerät
 läuft und auf einem anderen nicht, auf beiden einen Abzug erzeugen und diffen:
 
