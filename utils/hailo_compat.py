@@ -84,6 +84,9 @@ def get_caps_from_pad(pad):
     sind oder ein Feld fehlt — nie eine Exception, damit der Pad-Probe-
     Callback nicht versehentlich alle Buffer verwirft.
     """
+    if pad is None:
+        return None, None, None
+
     caps = pad.get_current_caps()
     if caps is None or caps.get_size() == 0:
         return None, None, None
@@ -101,10 +104,51 @@ def get_caps_from_pad(pad):
     return feld("format"), feld("width"), feld("height")
 
 
+# ---------------------------------------------------------------------------
+# 3) Callback-Signatur, unabhaengig von der hailo_apps-Version
+# ---------------------------------------------------------------------------
+# Bis 25.7.0 haengt der Pro-Frame-Callback als Pad-Probe am identity-Element
+# und bekommt (pad, info, user_data); der Buffer kommt aus info.get_buffer(),
+# und der Rueckgabewert muss ein Gst.PadProbeReturn sein.
+#
+# Ab 26.03.x haengt er am `handoff`-Signal desselben Elements und bekommt
+# (element, buffer, user_data) — der Buffer also direkt. Der Rueckgabewert
+# wird ignoriert. Ausserdem ruft der Wrapper von hailo_apps bereits selbst
+# user_data.increment() auf; wer das im eigenen Callback wiederholt, zaehlt
+# jeden Frame doppelt. Dafuer gibt es WRAPPER_ZAEHLT_FRAMES.
+
+# True, wenn hailo_apps den Frame-Zaehler selbst hochzaehlt (ab 26.03.x).
+WRAPPER_ZAEHLT_FRAMES = (HAILO_APPS_LAYOUT == "python")
+
+
+def entpacke_callback_argumente(erstes, zweites):
+    """Normalisiert die beiden ersten Callback-Argumente auf (pad, buffer).
+
+    Nimmt sowohl (pad, info) der alten als auch (element, buffer) der neuen
+    Signatur entgegen und liefert immer ein Pad (fuer get_caps_from_pad) und
+    den Gst.Buffer. Einer von beiden kann None sein, wenn er sich nicht
+    ermitteln laesst — der Aufrufer muss das abfangen.
+    """
+    # Alte Form: das zweite Argument ist ein Pad-Probe-Info-Objekt.
+    if hasattr(zweites, "get_buffer"):
+        return erstes, zweites.get_buffer()
+
+    # Neue Form: das zweite Argument ist bereits der Buffer, das erste das
+    # GStreamer-Element (identity_callback), von dem wir das Pad holen.
+    pad = None
+    if hasattr(erstes, "get_static_pad"):
+        pad = erstes.get_static_pad("sink") or erstes.get_static_pad("src")
+    elif hasattr(erstes, "get_current_caps"):
+        pad = erstes                      # es war doch schon ein Pad
+    return pad, zweites
+
+
 __all__ = [
     "get_caps_from_pad",
     "get_numpy_from_buffer",
     "GStreamerDetectionApp",
     "app_callback_class",
+    "entpacke_callback_argumente",
     "HAILO_APPS_LAYOUT",
+    "WRAPPER_ZAEHLT_FRAMES",
 ]

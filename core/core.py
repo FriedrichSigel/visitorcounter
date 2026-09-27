@@ -33,6 +33,7 @@ import hailo
 # StructureWrapper-Fehler von GStreamer 1.26.2 gekapselt.
 from hailo_compat import (
     get_caps_from_pad, get_numpy_from_buffer, GStreamerDetectionApp,
+    entpacke_callback_argumente, WRAPPER_ZAEHLT_FRAMES,
 )
 
 from config import (
@@ -208,8 +209,12 @@ def _finish_recording(pipeline):
 # -----------------------------------------------------------------------------------------------
 # Pro-Frame-Callback — wird von GStreamer für jeden Frame aufgerufen, der durch die Pipeline läuft
 # -----------------------------------------------------------------------------------------------
-def app_callback(pad, info, user_data):
-    buffer = info.get_buffer()
+def app_callback(erstes, zweites, user_data):
+    # Die beiden ersten Argumente unterscheiden sich je nach hailo_apps-Version:
+    # (pad, info) bis 25.7.0, (element, buffer) ab 26.03.x. entpacke_callback_-
+    # argumente() macht daraus immer (pad, buffer) — Details in hailo_compat.py.
+    pad, buffer = entpacke_callback_argumente(erstes, zweites)
+
     # Nur bei aktivem Benchmark-Mitschnitt gesetzt (siehe __main__ unten,
     # user_data.benchmark) — sonst None, dann messen die folgenden Zeilen
     # nichts (kein Overhead im Normalbetrieb).
@@ -222,7 +227,10 @@ def app_callback(pad, info, user_data):
     if benchmark is not None:
         benchmark.timing.mark_frame()
 
-    user_data.increment()
+    # Ab 26.03.x zaehlt der Wrapper von hailo_apps den Frame bereits selbst;
+    # ein zweiter Aufruf hier wuerde jeden Frame doppelt zaehlen.
+    if not WRAPPER_ZAEHLT_FRAMES:
+        user_data.increment()
     current_frame = user_data.get_count()
     string_to_print = f"Frame count: {current_frame}\n"
 
