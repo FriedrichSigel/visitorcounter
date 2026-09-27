@@ -99,8 +99,22 @@ source setup_env.sh
 `create_venv.sh` legt `venv_visitorcounter` mit `--system-site-packages` an
 (damit `hailo` und `gi` aus dem System sichtbar bleiben), installiert
 `requirements.txt` und danach `hailo_apps` per `pip` direkt aus
-`hailo-apps-infra`. Am Ende läuft ein Selbsttest aller Importe (`numpy`,
-`cv2`, `hailo`, `hailo_apps`, …).
+`hailo-apps-infra`. Anschliessend läuft `hailo-post-install`: dieser Schritt
+lädt die Modelle nach `/usr/local/hailo/resources`, **kompiliert die
+C++-Postprocessing-Bibliotheken** und schreibt die `.env`. Er dauert auf dem Pi
+einige Minuten und ist nicht optional — ohne ihn fehlt
+`libyolo_hailortpp_postprocess.so` mit dem Symbol `filter_letterbox`, und die
+Pipeline stirbt mit einem Segfault. Am Ende läuft ein Selbsttest aller Importe
+(`numpy`, `cv2`, `hailo`, `hailo_apps`, …) und eine Prüfung auf diese
+Bibliothek.
+
+Einzeln nachholen lassen sich die Schritte mit:
+
+```bash
+hailo-download-resources --all   # Modelle/HEF
+hailo-compile-postprocess        # C++-Bibliotheken
+hailo-set-env                    # .env schreiben
+```
 
 Eine andere `hailo_apps`-Version installieren:
 

@@ -88,6 +88,37 @@ else
     fi
 fi
 
+# --- Nachinstallation von hailo_apps ------------------------------------------
+# hailo_apps braucht nach dem pip-Install noch einen eigenen Schritt: er laedt
+# die Modelle (HEF) nach /usr/local/hailo/resources, kompiliert die C++-
+# Postprocessing-Bibliotheken (u. a. libyolo_hailortpp_postprocess.so mit dem
+# Symbol `filter_letterbox`, das die Pipeline braucht) und schreibt die .env.
+# Ohne diesen Schritt startet die Pipeline mit
+#   "Could not load lib ... libyolo_hailortpp_postprocess.so"
+# und stirbt mit einem Segfault.
+#
+# Voraussetzung: /usr/local/hailo muss dem Benutzer gehoeren, sonst scheitert
+# der Download an "Errno 13 Permission denied".
+if [ ! -d /usr/local/hailo ] || [ ! -w /usr/local/hailo ]; then
+    echo "--- /usr/local/hailo fuer $USER beschreibbar machen (braucht sudo) ---"
+    sudo mkdir -p /usr/local/hailo/resources
+    sudo chown -R "$USER":"$USER" /usr/local/hailo
+fi
+
+echo "--- hailo_apps nachinstallieren (Modelle laden + C++ kompilieren) ---"
+echo "    Das kann auf dem Raspberry Pi einige Minuten dauern."
+if command -v hailo-post-install >/dev/null 2>&1; then
+    hailo-post-install || {
+        echo "WARNUNG: hailo-post-install fehlgeschlagen. Einzeln versuchen:"
+        echo "    hailo-download-resources --all"
+        echo "    hailo-compile-postprocess"
+        echo "    hailo-set-env"
+    }
+else
+    echo "WARNUNG: hailo-post-install nicht gefunden — aeltere hailo_apps-Version?"
+    echo "  Dann die Ressourcen von Hand bereitstellen, siehe README.md."
+fi
+
 # --- Selbsttest ---------------------------------------------------------------
 echo "--- Selbsttest der Importe ---"
 PYTHONPATH="${SCRIPT_DIR}:${PYTHONPATH:-}" python - <<'PY'
@@ -100,6 +131,14 @@ for name in ("numpy", "cv2", "PIL", "customtkinter", "sklearn", "scipy",
     except Exception as exc:
         print(f"  FEHLT   {name}  ({exc})")
 PY
+
+POST_SO=/usr/local/hailo/resources/so/libyolo_hailortpp_postprocess.so
+if [ -f "$POST_SO" ]; then
+    echo "  OK      Postprocess-Bibliothek ($POST_SO)"
+else
+    echo "  FEHLT   $POST_SO — Pipeline wird mit Segfault abbrechen."
+    echo "          Nachholen mit: hailo-compile-postprocess"
+fi
 
 echo
 echo "Fertig. Weiter mit:"
