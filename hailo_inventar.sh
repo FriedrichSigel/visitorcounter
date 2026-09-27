@@ -186,13 +186,23 @@ Deinstallation — die einzelnen Stufen, von harmlos nach eingreifend:
       source venv_visitorcounter/bin/activate
       pip uninstall -y -r requirements.txt
 
-  STUFE 4 — Hailo-Systempakete entfernen (ENTFERNT TREIBER UND FIRMWARE-TOOLS;
+  STUFE 4 — Hailo entfernen (ENTFERNT TREIBER UND FIRMWARE-TOOLS;
             danach ist das Hailo-Modul bis zur Neuinstallation unbenutzbar)
 
-      sudo apt remove --purge -y 'hailo*' 'python3-hailo*'
-      sudo apt autoremove --purge -y
-      # Reste, die apt nicht mitnimmt:
-      sudo rm -rf /usr/local/hailo
+      bash hailo_inventar.sh --entfernen-hailo
+
+      WICHTIG: paketeigene Pfade NIE per rm loeschen. Wer z. B.
+      /usr/bin/hailortcli oder /usr/lib/aarch64-linux-gnu/hailo direkt
+      loescht, hinterlaesst dpkg im Glauben, alles sei installiert -
+      'apt install' meldet dann 'already the newest version' und
+      installiert nichts nach. Reparatur in dem Fall:
+
+          dpkg -V 'hailo*'      # zeigt fehlende Dateien
+          sudo apt install --reinstall -y hailort hailo-tappas-core python3-hailort
+
+      Nur /usr/local/hailo (die von hailo_apps geladenen Modelle) gehoert
+      keinem Paket und darf per rm weg.
+
       sudo reboot          # Kernel-Treiber wird erst nach Neustart entladen
 
   NEUINSTALLATION danach:
@@ -240,15 +250,10 @@ fuehre_aus() {
     echo
     echo "  STUFE 4 entfernt Treiber und Firmware-Tools. Das Hailo-Modul ist"
     echo "  danach bis zur Neuinstallation nicht mehr nutzbar."
-    if frage "STUFE 4: Hailo-Systempakete per apt entfernen?"; then
-        sudo apt remove --purge -y 'hailo*' 'python3-hailo*'
-        sudo apt autoremove --purge -y
-        if frage "Auch /usr/local/hailo loeschen (Modelle, .so-Dateien)?"; then
-            sudo rm -rf /usr/local/hailo
-        fi
-        echo
-        echo "  Fertig. Ein Neustart ist noetig, damit der Kernel-Treiber"
-        echo "  entladen wird:  sudo reboot"
+    if frage "STUFE 4: Hailo vom System entfernen?"; then
+        # Nicht selbst loeschen — entferne_hailo() prueft fuer jeden Pfad, ob
+        # ein apt-Paket ihn besitzt, und nimmt nur paketfremde Reste per rm.
+        entferne_hailo
     fi
 }
 
@@ -258,36 +263,56 @@ fuehre_aus() {
 # ---------------------------------------------------------------------
 entferne_hailo() {
     echo
-    echo "=== Hailo-Reste entfernen ==="
-    echo "Auf diesem Geraet wurde Hailo offenbar NICHT per apt installiert."
-    echo "Deshalb wird beides versucht: apt-Pakete (falls doch welche da sind)"
-    echo "und die vom Installer abgelegten Dateien."
+    echo "=== Hailo entfernen ==="
+    echo
+    echo "GRUNDREGEL: Pfade, die einem apt-Paket gehoeren, werden NIEMALS per"
+    echo "rm geloescht - sonst denkt dpkg weiter, die Dateien waeren da, und"
+    echo "'apt install' installiert nichts nach ('already the newest version')."
+    echo "Solche Pfade verschwinden nur ueber 'apt remove'. Per rm entfernt"
+    echo "werden hier ausschliesslich Reste, die keinem Paket gehoeren."
     echo
 
-    # Nicht `dpkg -l | grep -q` verwenden — siehe Kommentar oben (SIGPIPE + pipefail).
-    if [ -n "$(dpkg-query -W -f='${Package}\n' 'hailo*' 'python3-hailo*' 2>/dev/null)" ]; then
-        if frage "apt-Pakete 'hailo*' entfernen?"; then
+    # --- Stufe A: apt-Pakete (der richtige Weg fuer alles paketeigene) ----
+    HAILO_INSTALLIERT="$(dpkg-query -W -f='${Package} ' 'hailo*' 'python3-hailo*' 2>/dev/null)"
+    if [ -n "${HAILO_INSTALLIERT// /}" ]; then
+        echo "  Installierte Hailo-apt-Pakete:"
+        dpkg-query -W -f='    ${Package}\t${Version}\t${Status}\n' \
+            'hailo*' 'python3-hailo*' 2>/dev/null | grep -v 'not-installed'
+        echo
+        if frage "Diese apt-Pakete entfernen (inkl. Treiber)?"; then
             sudo apt remove --purge -y 'hailo*' 'python3-hailo*'
             sudo apt autoremove --purge -y
         fi
     else
-        echo "  (keine Hailo-apt-Pakete vorhanden - uebersprungen)"
+        echo "  (keine Hailo-apt-Pakete installiert)"
     fi
 
-    if [ -d /usr/local/hailo ]; then
+    # --- Stufe B: paketfremde Reste --------------------------------------
+    # loesche_wenn_paketfrei <pfad> <beschreibung>
+    loesche_wenn_paketfrei() {
+        local PFAD="$1" BESCHREIBUNG="$2" BESITZER
+        [ -e "$PFAD" ] || return 0
+        BESITZER="$(dpkg -S "$PFAD" 2>/dev/null | cut -d: -f1)"
         echo
-        echo "  /usr/local/hailo belegt $(du -sh /usr/local/hailo 2>/dev/null | cut -f1)"
-        echo "  (Modelle/HEF-Dateien, .so-Postprocessing, Ressourcen)"
-        frage "/usr/local/hailo loeschen?" && sudo rm -rf /usr/local/hailo
-    fi
+        if [ -n "$BESITZER" ]; then
+            echo "  UEBERSPRUNGEN: $PFAD"
+            echo "    gehoert dem apt-Paket '$BESITZER' - nur per 'apt remove $BESITZER'"
+            echo "    entfernen, nicht per rm."
+            return 0
+        fi
+        echo "  $PFAD ($BESCHREIBUNG)"
+        echo "    gehoert keinem apt-Paket - kann per rm weg."
+        frage "loeschen?" && sudo rm -rf "$PFAD"
+    }
 
-    if [ -d /usr/lib/aarch64-linux-gnu/hailo ]; then
-        echo
-        echo "  /usr/lib/aarch64-linux-gnu/hailo enthaelt die TAPPAS-Bibliotheken"
-        echo "  und die GStreamer-Hailo-Plugins."
-        frage "/usr/lib/aarch64-linux-gnu/hailo loeschen?" && sudo rm -rf /usr/lib/aarch64-linux-gnu/hailo
-    fi
+    loesche_wenn_paketfrei /usr/local/hailo \
+        "Modelle/HEF-Dateien, von hailo_apps heruntergeladen, $(du -sh /usr/local/hailo 2>/dev/null | cut -f1)"
+    loesche_wenn_paketfrei /usr/lib/aarch64-linux-gnu/hailo "TAPPAS-Bibliotheken"
+    loesche_wenn_paketfrei /usr/bin/hailortcli "HailoRT-Kommandozeile"
+    loesche_wenn_paketfrei /usr/local/bin/hailortcli "HailoRT-Kommandozeile (lokal)"
+    loesche_wenn_paketfrei /usr/bin/hailo "hailo-Kommandozeile"
 
+    # --- Stufe C: DKMS ----------------------------------------------------
     if [ -n "$(dkms status 2>/dev/null | grep -i hailo || true)" ]; then
         echo
         echo "  DKMS-Treiber hailo_pci gefunden."
@@ -298,13 +323,23 @@ entferne_hailo() {
         fi
     fi
 
-    for BIN in /usr/bin/hailortcli /usr/local/bin/hailortcli /usr/bin/hailo; do
-        [ -e "$BIN" ] && frage "$BIN loeschen?" && sudo rm -f "$BIN"
-    done
+    # --- Abschluss: Konsistenz pruefen ------------------------------------
+    echo
+    echo "  --- Konsistenzpruefung (fehlende Dateien installierter Pakete) ---"
+    FEHLT="$(dpkg -V 'hailo*' 'python3-hailo*' 2>/dev/null)"
+    if [ -n "$FEHLT" ]; then
+        echo "$FEHLT" | head -20
+        echo
+        echo "  Es fehlen Dateien, die laut dpkg installiert sein muessten."
+        echo "  Reparieren mit:"
+        echo "    sudo apt install --reinstall -y hailort hailo-tappas-core python3-hailort"
+    else
+        echo "  keine Abweichungen."
+    fi
 
     echo
-    echo "  Fertig. Der Kernel-Treiber wird erst nach 'sudo reboot' entladen."
-    echo "  Danach neu installieren mit:  sudo apt update && sudo apt install -y hailo-all"
+    echo "  Der Kernel-Treiber wird erst nach 'sudo reboot' entladen."
+    echo "  Neu installieren:  sudo apt update && sudo apt install -y hailo-all"
 }
 
 # ---------------------------------------------------------------------
