@@ -78,14 +78,71 @@ def _base_dialog(title, message, kind, parent=None):
     return win, btn_row
 
 
+def _toplevel_of(widget):
+    """Liefert das Toplevel-Fenster zu einem Widget (oder None).
+
+    Wichtig, weil RoiConfigApp eingebettet in der Steuer-App laeuft: dort ist
+    `parent` ein CTkFrame, kein Fenster. `wm transient` verlangt aber ein
+    Toplevel — mit einem Frame schlaegt der Aufruf fehl.
+    """
+    if widget is None:
+        return None
+    try:
+        return widget.winfo_toplevel()
+    except Exception:
+        return None
+
+
 def _run_modal(win, parent):
-    """Macht den Dialog modal und wartet, bis er geschlossen wird."""
-    win.transient(parent)
-    win.grab_set()
-    if parent is not None:
-        win.wait_window()
-    else:
+    """Macht den Dialog modal und wartet, bis er geschlossen wird.
+
+    Robust gegen die Faelle, die hier zum Einfrieren der App gefuehrt haben:
+
+    * `parent` ist ein Frame statt eines Fensters (eingebetteter Betrieb) —
+      fuer `transient` wird deshalb dessen Toplevel benutzt.
+    * `grab_set()` auf einem noch nicht sichtbaren Fenster scheitert unter
+      X11/Wayland mit "grab failed: window not viewable". Deshalb erst die
+      Sichtbarkeit abwarten und den Griff notfalls verschmerzen — ein Dialog
+      ohne Grab ist immer noch bedienbar, ein haengendes `wait_window()` auf
+      einem unsichtbaren Fenster nicht.
+    * Schliessen ueber den Fensterrahmen muss den Dialog zerstoeren, sonst
+      wartet `wait_window()` endlos.
+    """
+    oberstes = _toplevel_of(parent)
+    if oberstes is not None:
+        try:
+            win.transient(oberstes)
+        except Exception:
+            pass   # nicht kritisch — der Dialog funktioniert auch ohne
+
+    # Sicherstellen, dass der Dialog vorne und sichtbar ist, bevor gegriffen
+    # wird. Sonst wartet die Mainloop auf ein Fenster, das niemand sieht.
+    try:
+        win.deiconify()
+        win.lift()
+        win.focus_force()
+        win.wait_visibility()
+    except Exception:
+        pass
+
+    try:
+        win.grab_set()
+    except Exception:
+        pass   # ohne Grab weiter — besser als ein blockierter Dialog
+
+    # Fenster-Schliessen-Knopf muss den Dialog wirklich beenden.
+    try:
+        win.protocol("WM_DELETE_WINDOW", win.destroy)
+    except Exception:
+        pass
+
+    try:
         win.wait_window(win)
+    finally:
+        try:
+            win.grab_release()
+        except Exception:
+            pass
 
 
 def _show(title, message, kind, parent=None):
@@ -162,5 +219,8 @@ def askstring(title, prompt, parent=None):
                   hover_color="gray25", command=cancel).pack(side="right")
     win.bind("<Return>", lambda e: ok())
     win.bind("<Escape>", lambda e: cancel())
+    # Erst nachdem der Dialog sichtbar ist und den Fokus hat, ins Eingabefeld
+    # springen — ein focus_set() davor geht durch focus_force() wieder verloren.
+    win.after(50, entry.focus_set)
     _run_modal(win, parent)
     return result["value"]
